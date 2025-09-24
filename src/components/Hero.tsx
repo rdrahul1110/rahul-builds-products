@@ -1,0 +1,72 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Download } from "lucide-react";
+
+const Hero = () => {
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary-light/30 to-accent-teal-light/40 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent-orange/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-20 w-48 h-48 bg-accent-teal/10 rounded-full blur-xl animate-pulse delay-700"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-primary/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+      </div>
+
+      <div className="container relative z-10 text-center animate-fade-in">
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* Main Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            Hi, I'm{" "}
+            <span className="gradient-hero">Rahul Das</span>
+            <br />
+            <span className="text-2xl md:text-4xl lg:text-5xl font-semibold text-muted-foreground mt-2 block">
+              Product Manager | Problem Solver | Growth Builder
+            </span>
+          </h1>
+
+          {/* Subtext */}
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
+            I simplify complex problems into delightful user experiences. 
+            From fintech to e-commerce, I've built products that drive{" "}
+            <span className="text-accent-orange font-semibold">growth</span>,{" "}
+            <span className="text-accent-teal font-semibold">trust</span>, and{" "}
+            <span className="text-primary font-semibold">engagement</span>.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-accent-orange to-accent-orange/90 hover:from-accent-orange/90 hover:to-accent-orange text-white px-8 py-6 text-lg font-semibold rounded-xl hover-glow group"
+            >
+              <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
+              Download Resume
+            </Button>
+            
+            <Button 
+              size="lg" 
+              variant="outline"
+              onClick={scrollToProjects}
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg font-semibold rounded-xl hover-lift group"
+            >
+              View My Work
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
