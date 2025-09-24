@@ -159,6 +159,34 @@ const Contact = () => {
             {/* Quick Contact */}
             <div>
               <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
+              
+              {/* Social Icons Row */}
+              <div className="flex gap-4 mb-6">
+                <a
+                  href="mailto:rahuldas@email.com"
+                  className="p-3 rounded-xl bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition-all duration-300 hover:scale-110"
+                  title="Email"
+                >
+                  <Mail className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/rahuldas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                <a
+                  href="tel:+916202320035"
+                  className="p-3 rounded-xl bg-accent-teal/10 text-accent-teal hover:bg-accent-teal hover:text-white transition-all duration-300 hover:scale-110"
+                  title="Phone"
+                >
+                  <Phone className="h-6 w-6" />
+                </a>
+              </div>
+              
               <div className="space-y-4">
                 {contactInfo.map((item) => (
                   <a
@@ -186,13 +214,24 @@ const Contact = () => {
                 <p className="text-muted-foreground mb-6">
                   Get the full details of my experience and achievements.
                 </p>
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-accent-orange to-accent-orange/90 text-white hover:opacity-90 transition-opacity w-full"
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume (PDF)
-                </Button>
+                <div className="flex gap-4">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-accent-orange to-accent-orange/90 text-white hover:opacity-90 transition-opacity flex-1"
+                  >
+                    <Download className="mr-2 h-5 w-5" />
+                    Download Resume (PDF)
+                  </Button>
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white flex-1"
+                    onClick={() => window.open('https://linkedin.com/in/rahuldas', '_blank')}
+                  >
+                    <Linkedin className="mr-2 h-5 w-5" />
+                    View My LinkedIn
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 

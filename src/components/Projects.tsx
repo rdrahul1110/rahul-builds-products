@@ -67,7 +67,7 @@ const ProjectCard = ({ title, problem, solution, impact, icon, gradient, accentC
 };
 
 const Projects = () => {
-  const projects = [
+  const workExperience = [
     {
       title: "Basket Investing Feature",
       problem: "Users struggled to pick the right funds from hundreds of options, leading to analysis paralysis and low engagement.",
@@ -106,43 +106,123 @@ const Projects = () => {
     }
   ];
 
+  const personalPortfolio = [
+    {
+      title: "Fintech Product Teardown Analysis",
+      description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
+      buttonText: "Read Teardown",
+      gradient: "from-primary/20 to-accent-teal/20"
+    },
+    {
+      title: "Growth Strategy Case Study",
+      description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
+      buttonText: "View Case Study Deck",
+      gradient: "from-accent-orange/20 to-primary/20"
+    },
+    {
+      title: "Product Requirements Documents",
+      description: "Collection of detailed PRDs showcasing feature specifications, user stories, and technical requirements.",
+      buttonText: "View PRD Examples",
+      gradient: "from-accent-teal/20 to-accent-orange/20"
+    },
+    {
+      title: "User Research & Testing Reports",
+      description: "Usability testing reports and user interview insights driving data-backed product decisions.",
+      buttonText: "View Research",
+      gradient: "from-primary/20 to-accent-orange/20"
+    }
+  ];
+
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container">
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Real products, real impact. Here are some case studies showcasing how I've driven growth 
-            and solved complex user problems through data-driven product decisions.
-          </p>
-        </div>
+    <>
+      {/* Work Experience Projects */}
+      <section id="projects" className="py-20 bg-background">
+        <div className="container">
+          {/* Header */}
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Work Experience <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Real products launched at 5paisa with measurable impact. Here's how I've driven growth 
+              and solved complex user problems through data-driven product decisions.
+            </p>
+          </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              {...project}
-              delay={index === 0 ? "" : index === 1 ? "delay-200" : index === 2 ? "delay-500" : "delay-700"}
-            />
-          ))}
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {workExperience.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                {...project}
+                delay={index === 0 ? "" : index === 1 ? "delay-200" : index === 2 ? "delay-500" : "delay-700"}
+              />
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="text-center mt-16 animate-fade-in">
-          <Button 
-            size="lg"
-            className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity px-8 py-6 text-lg font-semibold rounded-xl"
-          >
-            <BarChart3 className="mr-2 h-5 w-5" />
-            View All Case Studies
-          </Button>
+      {/* Personal Portfolio */}
+      <section id="portfolio" className="py-20 bg-gradient-subtle">
+        <div className="container">
+          {/* Header */}
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Personal <span className="gradient-text">Portfolio</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Product decks, teardown analyses, and BRDs showcasing my strategic thinking and 
+              analytical approach to product management.
+            </p>
+          </div>
+
+          {/* Portfolio Grid */}
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {personalPortfolio.map((item, index) => (
+              <Card 
+                key={item.title}
+                className={`group hover-lift animate-fade-in delay-${index * 200} border-0 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] bg-card/50 backdrop-blur-sm`}
+              >
+                <CardContent className="p-8">
+                  <div className={`p-4 rounded-2xl bg-gradient-to-br ${item.gradient} w-fit mb-6`}>
+                    <BarChart3 className="h-12 w-12" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-foreground group-hover:gradient-text transition-colors mb-4">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {item.description}
+                  </p>
+                  
+                  <Button 
+                    variant="outline"
+                    className="group-hover:bg-primary group-hover:text-white transition-colors"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    {item.buttonText}
+                  </Button>
+                  
+                  <div className={`h-1 bg-gradient-to-r ${item.gradient} rounded-full mt-6 opacity-60 group-hover:opacity-100 transition-opacity`}></div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16 animate-fade-in">
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity px-8 py-6 text-lg font-semibold rounded-xl"
+            >
+              <BarChart3 className="mr-2 h-5 w-5" />
+              View Complete Portfolio
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

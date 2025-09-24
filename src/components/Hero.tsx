@@ -23,7 +23,7 @@ const Hero = () => {
             <span className="gradient-hero">Rahul Das</span>
             <br />
             <span className="text-2xl md:text-4xl lg:text-5xl font-semibold text-muted-foreground mt-2 block">
-              Product Manager | Problem Solver | Growth Builder
+              Product Manager | Growth Builder | Problem Solver | User-First Thinker | Data-Driven Innovator
             </span>
           </h1>
 

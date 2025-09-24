@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Target, Users, TrendingUp } from "lucide-react";
+
 const About = () => {
-  return <section id="about" className="py-20 bg-gradient-subtle">
+  return (
+    <section id="about" className="py-20 bg-gradient-subtle">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -28,8 +30,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <Card className="p-4 text-center hover-lift">
                 <TrendingUp className="h-6 w-6 text-accent-orange mx-auto mb-2" />
-                <div className="text-2xl font-bold text-foreground">7
-%+</div>
+                <div className="text-2xl font-bold text-foreground">7%+</div>
                 <div className="text-sm text-muted-foreground">Avg Conversion Boost</div>
               </Card>
               
@@ -82,7 +83,41 @@ const About = () => {
             </div>
           </div>
         </div>
+
+        {/* Key Metrics */}
+        <div className="mt-16 animate-fade-in">
+          <h3 className="text-2xl font-bold text-center mb-8">
+            Key <span className="gradient-text">Achievements</span>
+          </h3>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="p-6 text-center hover-lift border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+              <div className="text-3xl font-bold text-accent-orange mb-2">5-7%</div>
+              <div className="text-sm text-muted-foreground">User Engagement Boost</div>
+              <div className="text-xs text-muted-foreground mt-1">Homepage & page redesigns</div>
+            </Card>
+            
+            <Card className="p-6 text-center hover-lift border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+              <div className="text-3xl font-bold text-accent-teal mb-2">3%</div>
+              <div className="text-sm text-muted-foreground">Conversion Improvement</div>
+              <div className="text-xs text-muted-foreground mt-1">Basket Investing & Compare tools</div>
+            </Card>
+            
+            <Card className="p-6 text-center hover-lift border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+              <div className="text-3xl font-bold text-primary mb-2">70%</div>
+              <div className="text-sm text-muted-foreground">Support Automation</div>
+              <div className="text-xs text-muted-foreground mt-1">AI chatbot implementation</div>
+            </Card>
+            
+            <Card className="p-6 text-center hover-lift border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+              <div className="text-3xl font-bold text-accent-orange mb-2">500+</div>
+              <div className="text-sm text-muted-foreground">Partner Onboardings</div>
+              <div className="text-xs text-muted-foreground mt-1">Partner Page revamp</div>
+            </Card>
+          </div>
+        </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;
