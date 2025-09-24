@@ -36,9 +36,22 @@ const Navigation = () => {
         {/* Logo */}
         <button 
           onClick={() => scrollToSection('hero')}
-          className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
+          className="flex items-center space-x-2 text-2xl font-bold gradient-text hover:opacity-80 transition-opacity group"
         >
-          RD
+          <svg 
+            className="h-8 w-8 text-accent-orange group-hover:rotate-12 transition-transform duration-300" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2"
+          >
+            <path d="M20 7h-3V4c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"/>
+            <circle cx="8" cy="14" r="2"/>
+            <circle cx="16" cy="14" r="2"/>
+            <path d="M8 12V9"/>
+            <path d="M16 12V9"/>
+          </svg>
+          <span>RD</span>
         </button>
 
         {/* Desktop Navigation */}
