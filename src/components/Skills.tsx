@@ -83,7 +83,7 @@ const Skills = () => {
     {
       icon: <Lightbulb className="h-8 w-8 text-primary" />,
       title: "Innovation",
-      description: "First Implement AI chatbot in fintech space"
+      description: "Implemented AI chatbot in fintech space"
     },
     {
       icon: <Search className="h-8 w-8 text-accent-orange" />,
