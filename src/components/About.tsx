@@ -1,9 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Target, Users, TrendingUp } from "lucide-react";
-
 const About = () => {
-  return (
-    <section id="about" className="py-20 bg-gradient-subtle">
+  return <section id="about" className="py-20 bg-gradient-subtle">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -30,7 +28,8 @@ const About = () => {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <Card className="p-4 text-center hover-lift">
                 <TrendingUp className="h-6 w-6 text-accent-orange mx-auto mb-2" />
-                <div className="text-2xl font-bold text-foreground">3%+</div>
+                <div className="text-2xl font-bold text-foreground">7
+%+</div>
                 <div className="text-sm text-muted-foreground">Avg Conversion Boost</div>
               </Card>
               
@@ -47,11 +46,7 @@ const About = () => {
             {/* Professional Photo */}
             <div className="relative mb-8">
               <div className="w-80 h-80 mx-auto rounded-2xl overflow-hidden shadow-[var(--shadow-medium)] hover-lift">
-                <img 
-                  src="/lovable-uploads/93eeb9bc-1674-4014-83f5-4166799ce65d.png" 
-                  alt="Rahul Das - Product Manager"
-                  className="w-full h-full object-cover object-center"
-                />
+                <img src="/lovable-uploads/93eeb9bc-1674-4014-83f5-4166799ce65d.png" alt="Rahul Das - Product Manager" className="w-full h-full object-cover object-center" />
               </div>
               
               {/* Floating Elements */}
@@ -88,8 +83,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
