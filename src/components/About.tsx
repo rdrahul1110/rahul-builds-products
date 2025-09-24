@@ -44,14 +44,14 @@ const About = () => {
 
           {/* Photo & Highlights */}
           <div className="animate-slide-up">
-            {/* Profile Photo Placeholder */}
+            {/* Professional Photo */}
             <div className="relative mb-8">
-              <div className="w-80 h-80 mx-auto rounded-2xl bg-gradient-to-br from-primary/20 to-accent-teal/20 flex items-center justify-center shadow-[var(--shadow-medium)]">
-                <div className="text-center space-y-2">
-                  <Users className="h-16 w-16 text-primary mx-auto" />
-                  <p className="text-muted-foreground font-medium">Professional Photo</p>
-                  <p className="text-sm text-muted-foreground">Coming Soon</p>
-                </div>
+              <div className="w-80 h-80 mx-auto rounded-2xl overflow-hidden shadow-[var(--shadow-medium)] hover-lift">
+                <img 
+                  src="/lovable-uploads/93eeb9bc-1674-4014-83f5-4166799ce65d.png" 
+                  alt="Rahul Das - Product Manager"
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
               
               {/* Floating Elements */}
