@@ -1,7 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ExternalLink, TrendingUp, Users, BarChart3, HandHeart, ChevronDown, Edit, Trash2, Download } from "lucide-react";
+import { ExternalLink, TrendingUp, Users, BarChart3, HandHeart, ChevronDown, Edit, Trash2, Download, Upload } from "lucide-react";
 import { useState } from "react";
 import basketIcon from "@/assets/basket-investing-icon.png";
 import chatbotIcon from "@/assets/ai-chatbot-icon.png";
@@ -71,6 +75,44 @@ const ProjectCard = ({ title, problem, solution, impact, icon, gradient, accentC
 const Projects = () => {
   const [isAdmin, setIsAdmin] = useState(true); // Set to true for admin access
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
+  const [editingItem, setEditingItem] = useState<number | null>(null);
+  const [editFormData, setEditFormData] = useState({
+    title: '',
+    description: '',
+    expandedDescription: '',
+    image: '',
+    gradient: ''
+  });
+  const [portfolioData, setPortfolioData] = useState([
+    {
+      title: "Fintech Product Teardown Analysis",
+      description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
+      expandedDescription: "Deep dive analysis covering user onboarding flows, feature comparison matrix, monetization strategies, and growth hacking techniques used by top fintech companies. Includes actionable insights and recommendations for product managers.",
+      image: "/lovable-uploads/presentation-1.png", // Upload your presentation image here
+      gradient: "from-primary/20 to-accent-teal/20"
+    },
+    {
+      title: "Growth Strategy Case Study",
+      description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
+      expandedDescription: "Complete case study showcasing A/B testing methodologies, conversion funnel optimization, user acquisition strategies, and retention techniques. Includes real metrics and performance indicators with actionable growth frameworks.",
+      image: "/lovable-uploads/presentation-2.png", // Upload your presentation image here
+      gradient: "from-accent-orange/20 to-primary/20"
+    },
+    {
+      title: "Product Requirements Documents",
+      description: "Collection of detailed PRDs showcasing feature specifications, user stories, and technical requirements.",
+      expandedDescription: "Professional PRD templates and examples covering feature specifications, user journey mapping, acceptance criteria, technical architecture, and stakeholder alignment. Perfect reference for product development workflows.",
+      image: "/lovable-uploads/presentation-3.png", // Upload your presentation image here
+      gradient: "from-accent-teal/20 to-accent-orange/20"
+    },
+    {
+      title: "User Research & Testing Reports",
+      description: "Usability testing reports and user interview insights driving data-backed product decisions.",
+      expandedDescription: "Comprehensive user research methodology including interview scripts, usability testing protocols, data analysis frameworks, and actionable insights. Demonstrates user-centric approach to product development and decision making.",
+      image: "/lovable-uploads/presentation-4.png", // Upload your presentation image here
+      gradient: "from-primary/20 to-accent-orange/20"
+    }
+  ]);
 
   const toggleExpanded = (index: number) => {
     const newExpanded = new Set(expandedItems);
@@ -82,14 +124,58 @@ const Projects = () => {
     setExpandedItems(newExpanded);
   };
 
-  const handleEdit = (title: string) => {
-    console.log('Edit:', title);
-    // Add edit functionality here
+  const handleEdit = (index: number) => {
+    const item = portfolioData[index];
+    setEditFormData({
+      title: item.title,
+      description: item.description,
+      expandedDescription: item.expandedDescription,
+      image: item.image,
+      gradient: item.gradient
+    });
+    setEditingItem(index);
   };
 
-  const handleDelete = (title: string) => {
-    console.log('Delete:', title);
-    // Add delete functionality here
+  const handleSaveEdit = () => {
+    if (editingItem !== null) {
+      const updatedData = [...portfolioData];
+      updatedData[editingItem] = { ...editFormData };
+      setPortfolioData(updatedData);
+      setEditingItem(null);
+      setEditFormData({
+        title: '',
+        description: '',
+        expandedDescription: '',
+        image: '',
+        gradient: ''
+      });
+    }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        setEditFormData(prev => ({ ...prev, image: result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlePresentationUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Handle presentation file upload
+      console.log('Presentation uploaded:', file.name);
+      // You can add logic here to store the presentation file
+    }
+  };
+
+  const handleDelete = (index: number) => {
+    const updatedData = portfolioData.filter((_, i) => i !== index);
+    setPortfolioData(updatedData);
   };
 
   const handleDownload = (title: string) => {
@@ -211,7 +297,7 @@ const Projects = () => {
 
           {/* Portfolio Grid */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {personalPortfolio.map((item, index) => (
+            {portfolioData.map((item, index) => (
               <Card 
                 key={item.title}
                 className={`group hover-lift animate-fade-in delay-${index * 200} border-0 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] bg-card/50 backdrop-blur-sm`}
@@ -267,20 +353,98 @@ const Projects = () => {
                     
                     {isAdmin && (
                       <>
-                        <Button 
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleEdit(item.title)}
-                          className="hover:bg-blue-500 hover:text-white transition-colors"
-                        >
-                          <Edit className="mr-2 h-4 w-4" />
-                          Edit
-                        </Button>
+                        <Dialog open={editingItem === index} onOpenChange={(open) => !open && setEditingItem(null)}>
+                          <DialogTrigger asChild>
+                            <Button 
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleEdit(index)}
+                              className="hover:bg-blue-500 hover:text-white transition-colors"
+                            >
+                              <Edit className="mr-2 h-4 w-4" />
+                              Edit
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>Edit Portfolio Item</DialogTitle>
+                            </DialogHeader>
+                            <div className="space-y-4 py-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="title">Title</Label>
+                                <Input
+                                  id="title"
+                                  value={editFormData.title}
+                                  onChange={(e) => setEditFormData(prev => ({ ...prev, title: e.target.value }))}
+                                />
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <Label htmlFor="description">Description</Label>
+                                <Textarea
+                                  id="description"
+                                  value={editFormData.description}
+                                  onChange={(e) => setEditFormData(prev => ({ ...prev, description: e.target.value }))}
+                                  rows={3}
+                                />
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <Label htmlFor="expanded-description">Expanded Description</Label>
+                                <Textarea
+                                  id="expanded-description"
+                                  value={editFormData.expandedDescription}
+                                  onChange={(e) => setEditFormData(prev => ({ ...prev, expandedDescription: e.target.value }))}
+                                  rows={4}
+                                />
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <Label htmlFor="image-upload">Upload Presentation Image</Label>
+                                <Input
+                                  id="image-upload"
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={handleImageUpload}
+                                />
+                                {editFormData.image && (
+                                  <img 
+                                    src={editFormData.image} 
+                                    alt="Preview" 
+                                    className="w-full h-32 object-cover rounded border"
+                                  />
+                                )}
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <Label htmlFor="presentation-upload">Upload Presentation File</Label>
+                                <Input
+                                  id="presentation-upload"
+                                  type="file"
+                                  accept=".pdf,.ppt,.pptx,.doc,.docx"
+                                  onChange={handlePresentationUpload}
+                                />
+                              </div>
+                              
+                              <div className="flex justify-end gap-2 pt-4">
+                                <Button 
+                                  variant="outline" 
+                                  onClick={() => setEditingItem(null)}
+                                >
+                                  Cancel
+                                </Button>
+                                <Button onClick={handleSaveEdit}>
+                                  Save Changes
+                                </Button>
+                              </div>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                         
                         <Button 
                           variant="outline"
                           size="sm"
-                          onClick={() => handleDelete(item.title)}
+                          onClick={() => handleDelete(index)}
                           className="hover:bg-red-500 hover:text-white transition-colors"
                         >
                           <Trash2 className="mr-2 h-4 w-4" />
