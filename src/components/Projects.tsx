@@ -69,7 +69,7 @@ const ProjectCard = ({ title, problem, solution, impact, icon, gradient, accentC
 };
 
 const Projects = () => {
-  const [isAdmin, setIsAdmin] = useState(false); // Set to true for admin access
+  const [isAdmin, setIsAdmin] = useState(true); // Set to true for admin access
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
 
   const toggleExpanded = (index: number) => {
