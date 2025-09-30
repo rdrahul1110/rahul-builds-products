@@ -11,10 +11,13 @@ import {
   Download, 
   Send,
   MapPin,
-  Clock
+  Clock,
+  Edit
 } from "lucide-react";
+import { useAdmin } from "@/contexts/AdminContext";
 
 const Contact = () => {
+  const { isAdminMode } = useAdmin();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +26,10 @@ const Contact = () => {
   });
   
   const { toast } = useToast();
+  
+  const handleEdit = () => {
+    alert('Edit Contact Section - This would open a modal to edit content');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,7 +88,18 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-background">
+    <section id="contact" className="relative py-20 bg-gradient-to-br from-background via-secondary to-background">
+      {/* Admin Edit Button */}
+      {isAdminMode && (
+        <button
+          onClick={handleEdit}
+          className="absolute top-8 right-8 z-10 p-3 bg-accent-purple hover:bg-accent-purple/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
+        >
+          <Edit className="h-5 w-5" />
+          Edit Contact
+        </button>
+      )}
+      
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
@@ -96,7 +114,7 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className="animate-slide-up border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+          <Card className="glass-effect animate-slide-in-left hover-glow">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
               
@@ -155,7 +173,7 @@ const Contact = () => {
           </Card>
 
           {/* Contact Info */}
-          <div className="space-y-8 animate-fade-in delay-200">
+          <div className="space-y-8 animate-slide-in-right">
             {/* Quick Contact */}
             <div>
               <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
@@ -164,7 +182,7 @@ const Contact = () => {
               <div className="flex gap-4 mb-6">
                 <a
                   href="mailto:rahuldas@email.com"
-                  className="p-3 rounded-xl bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition-all duration-300 hover:scale-110"
+                  className="p-3 rounded-xl glass-effect text-accent-orange hover:bg-accent-orange hover:text-white transition-all duration-300 hover-scale hover-glow-orange"
                   title="Email"
                 >
                   <Mail className="h-6 w-6" />
@@ -173,14 +191,14 @@ const Contact = () => {
                   href="https://linkedin.com/in/rahuldas"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
+                  className="p-3 rounded-xl glass-effect text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-scale hover-glow"
                   title="LinkedIn"
                 >
                   <Linkedin className="h-6 w-6" />
                 </a>
                 <a
                   href="tel:+916202320035"
-                  className="p-3 rounded-xl bg-accent-teal/10 text-accent-teal hover:bg-accent-teal hover:text-white transition-all duration-300 hover:scale-110"
+                  className="p-3 rounded-xl glass-effect text-accent-teal hover:bg-accent-teal hover:text-white transition-all duration-300 hover-scale hover-glow-teal"
                   title="Phone"
                 >
                   <Phone className="h-6 w-6" />
@@ -192,9 +210,9 @@ const Contact = () => {
                   <a
                     key={item.label}
                     href={item.link}
-                    className="flex items-center space-x-4 p-4 bg-card rounded-xl border hover-lift group"
+                    className="flex items-center space-x-4 p-4 glass-effect rounded-xl hover-lift hover-glow hover-scale group"
                   >
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors hover-rotate">
                       {item.icon}
                     </div>
                     <div>
@@ -207,7 +225,7 @@ const Contact = () => {
             </div>
 
             {/* Resume Download */}
-            <Card className="border-0 shadow-[var(--shadow-soft)] bg-gradient-to-br from-accent-orange/10 to-accent-teal/10">
+            <Card className="glass-effect hover-glow-orange hover-scale bg-gradient-to-br from-accent-orange/10 to-accent-teal/10">
               <CardContent className="p-6 text-center">
                 <Download className="h-12 w-12 text-accent-orange mx-auto mb-4" />
                 <h4 className="text-xl font-bold mb-2">Download My Resume</h4>
@@ -236,7 +254,7 @@ const Contact = () => {
             </Card>
 
             {/* Availability */}
-            <Card className="border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm">
+            <Card className="glass-effect hover-glow hover-scale">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <Clock className="h-5 w-5 text-accent-teal" />

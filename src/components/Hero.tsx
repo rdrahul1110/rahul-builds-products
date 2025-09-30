@@ -1,18 +1,38 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Edit } from "lucide-react";
+import { useAdmin } from "@/contexts/AdminContext";
 const Hero = () => {
+  const { isAdminMode } = useAdmin();
+  
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-  return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary-light/30 to-accent-teal-light/40 overflow-hidden">
+  
+  const handleEdit = () => {
+    alert('Edit Hero Section - This would open a modal to edit content');
+  };
+  
+  return <section className="relative min-h-screen flex items-center justify-center bg-mesh-gradient overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent-orange/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-20 w-48 h-48 bg-accent-teal/10 rounded-full blur-xl animate-pulse delay-700"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-primary/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-32 right-20 w-96 h-96 bg-accent-orange/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent-teal/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
       </div>
+      
+      {/* Admin Edit Button */}
+      {isAdminMode && (
+        <button
+          onClick={handleEdit}
+          className="absolute top-20 right-8 z-20 p-3 bg-accent-orange hover:bg-accent-orange/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
+        >
+          <Edit className="h-5 w-5" />
+          Edit Hero
+        </button>
+      )}
 
       <div className="container relative z-10 text-center animate-fade-in">
         <div className="max-w-4xl mx-auto space-y-8">
@@ -35,12 +55,12 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button size="lg" className="bg-gradient-to-r from-accent-orange to-accent-orange/90 hover:from-accent-orange/90 hover:to-accent-orange text-white px-8 py-6 text-lg font-semibold rounded-xl hover-glow group">
+            <Button size="lg" className="bg-gradient-to-r from-accent-orange via-accent-orange-dark to-accent-orange hover:shadow-[var(--shadow-glow-orange)] text-white px-8 py-6 text-lg font-semibold rounded-xl hover-lift hover-glow-orange group">
               <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
               Download Resume
             </Button>
             
-            <Button size="lg" variant="outline" onClick={scrollToProjects} className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg font-semibold rounded-xl hover-lift group">
+            <Button size="lg" variant="outline" onClick={scrollToProjects} className="glass-effect border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl hover-lift hover-glow group">
               View My Work
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>

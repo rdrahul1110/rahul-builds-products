@@ -10,10 +10,18 @@ import {
   Figma,
   Database,
   LineChart,
-  Settings
+  Settings,
+  Edit
 } from "lucide-react";
+import { useAdmin } from "@/contexts/AdminContext";
 
 const Skills = () => {
+  const { isAdminMode } = useAdmin();
+  
+  const handleEdit = () => {
+    alert('Edit Skills Section - This would open a modal to edit content');
+  };
+  
   const skillCategories = [
     {
       title: "Product Skills",
@@ -93,7 +101,18 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gradient-subtle">
+    <section id="skills" className="relative py-20 bg-gradient-to-br from-secondary via-background to-secondary">
+      {/* Admin Edit Button */}
+      {isAdminMode && (
+        <button
+          onClick={handleEdit}
+          className="absolute top-8 right-8 z-10 p-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg hover-lift flex items-center gap-2"
+        >
+          <Edit className="h-5 w-5" />
+          Edit Skills
+        </button>
+      )}
+      
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
@@ -110,10 +129,10 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title} 
-              className={`hover-lift animate-fade-in delay-${index * 100} border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm`}
+              className={`glass-effect hover-lift hover-glow hover-scale animate-fade-in delay-${index * 100}`}
             >
               <CardContent className="p-6">
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${category.gradient} w-fit mb-4`}>
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${category.gradient} w-fit mb-4 hover-rotate`}>
                   {category.icon}
                 </div>
                 
@@ -124,7 +143,7 @@ const Skills = () => {
                     <Badge 
                       key={skill} 
                       variant="secondary" 
-                      className="mr-1 mb-1 bg-muted/50 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="mr-1 mb-1 glass-effect text-foreground hover:bg-primary hover:text-primary-foreground transition-all hover-scale"
                     >
                       {skill}
                     </Badge>
@@ -140,10 +159,10 @@ const Skills = () => {
           {achievements.map((achievement, index) => (
             <Card 
               key={achievement.title}
-              className={`text-center hover-lift animate-slide-up delay-${index * 150} border-0 shadow-[var(--shadow-soft)] bg-card/50 backdrop-blur-sm`}
+              className={`text-center glass-effect hover-lift hover-glow hover-scale animate-slide-up delay-${index * 150}`}
             >
               <CardContent className="p-6">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-4 hover-rotate">
                   {achievement.icon}
                 </div>
                 <h3 className="font-bold mb-2">{achievement.title}</h3>
