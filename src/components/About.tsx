@@ -1,26 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Target, Users, TrendingUp, Edit } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
-
 const About = () => {
-  const { isAdminMode } = useAdmin();
-  
+  const {
+    isAdminMode
+  } = useAdmin();
   const handleEdit = () => {
     alert('Edit About Section - This would open a modal to edit content');
   };
-  
-  return (
-    <section id="about" className="relative py-20 bg-gradient-to-br from-background via-secondary to-background">
+  return <section id="about" className="relative py-20 bg-gradient-to-br from-background via-secondary to-background">
       {/* Admin Edit Button */}
-      {isAdminMode && (
-        <button
-          onClick={handleEdit}
-          className="absolute top-8 right-8 z-10 p-3 bg-accent-teal hover:bg-accent-teal/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
-        >
+      {isAdminMode && <button onClick={handleEdit} className="absolute top-8 right-8 z-10 p-3 bg-accent-teal hover:bg-accent-teal/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2">
           <Edit className="h-5 w-5" />
           Edit About
-        </button>
-      )}
+        </button>}
       
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -33,7 +26,7 @@ const About = () => {
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
                 I'm a <span className="text-primary font-semibold">2024 BITS Pilani graduate</span> and 
-                currently a <span className="text-accent-orange font-semibold">Product Manager at 5paisa Capital</span>. 
+                currently a <span className="text-accent-orange font-semibold">Associate Product Manager at 5paisa Capital</span>. 
                 I'm passionate about solving real-world problems using data, user research, and design thinking.
               </p>
               
@@ -52,7 +45,9 @@ const About = () => {
                 <div className="text-sm text-muted-foreground">Avg Conversion Boost</div>
               </Card>
               
-              <Card className="glass-effect p-4 text-center hover-lift hover-glow-teal animate-glow-pulse" style={{ animationDelay: '0.5s' }}>
+              <Card className="glass-effect p-4 text-center hover-lift hover-glow-teal animate-glow-pulse" style={{
+              animationDelay: '0.5s'
+            }}>
                 <Target className="h-6 w-6 text-accent-teal mx-auto mb-2" />
                 <div className="text-2xl font-bold text-foreground">70%</div>
                 <div className="text-sm text-muted-foreground">Support Automation</div>
@@ -70,8 +65,12 @@ const About = () => {
               
               {/* Floating Elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent-orange/30 rounded-full animate-float blur-lg"></div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent-teal/30 rounded-full animate-float blur-lg" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/2 -right-8 w-10 h-10 bg-primary/30 rounded-full animate-float blur-lg" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent-teal/30 rounded-full animate-float blur-lg" style={{
+              animationDelay: '1s'
+            }}></div>
+              <div className="absolute top-1/2 -right-8 w-10 h-10 bg-primary/30 rounded-full animate-float blur-lg" style={{
+              animationDelay: '1.5s'
+            }}></div>
             </div>
 
             {/* Highlights */}
@@ -141,8 +140,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
