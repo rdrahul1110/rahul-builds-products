@@ -29,7 +29,7 @@ const Contact = () => {
   
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -42,19 +42,40 @@ const Contact = () => {
       return;
     }
     
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you within 24 hours.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
+    try {
+      // Call edge function to send email
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact me directly via email.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -237,6 +258,15 @@ const Contact = () => {
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-accent-orange to-accent-orange/90 text-white hover:opacity-90 transition-opacity flex-1"
+                    onClick={() => {
+                      const downloadUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
+                      const link = document.createElement('a');
+                      link.href = downloadUrl;
+                      link.download = 'Rahul-Das-Resume.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
                   >
                     <Download className="mr-2 h-5 w-5" />
                     Download Resume (PDF)

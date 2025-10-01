@@ -189,8 +189,18 @@ const Projects = () => {
   };
 
   const handleDownload = (title: string) => {
-    console.log('Download:', title);
-    // Add download functionality here
+    // Create a link to download from Supabase storage
+    // You'll need to upload files to storage bucket first
+    const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
+    const downloadUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-files/${fileName}`;
+    
+    // Create temporary link and trigger download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
   const [workExperienceData, setWorkExperienceData] = useState([
     {
@@ -440,7 +450,7 @@ const Projects = () => {
                       Download
                     </Button>
                     
-                    {isAdmin && (
+                    {isAdminMode && (
                       <>
                         <Dialog open={editingItem === index} onOpenChange={(open) => !open && setEditingItem(null)}>
                           <DialogTrigger asChild>
@@ -554,10 +564,14 @@ const Projects = () => {
             <Button 
               size="lg"
               className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity px-8 py-6 text-lg font-semibold rounded-xl"
+              onClick={() => window.open('https://drive.google.com/drive/folders/YOUR_GOOGLE_DRIVE_FOLDER_ID', '_blank')}
             >
               <BarChart3 className="mr-2 h-5 w-5" />
               View Complete Portfolio
             </Button>
+            <p className="text-sm text-muted-foreground mt-4">
+              {isAdminMode && "⚠️ Update the Google Drive link in Projects.tsx"}
+            </p>
           </div>
         </div>
       </section>
