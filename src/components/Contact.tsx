@@ -15,9 +15,11 @@ import {
   Edit
 } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
+import { EditContactDialog } from "./EditDialogs";
 
 const Contact = () => {
   const { isAdminMode } = useAdmin();
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,10 +28,6 @@ const Contact = () => {
   });
   
   const { toast } = useToast();
-  
-  const handleEdit = () => {
-    alert('Edit Contact Section - This would open a modal to edit content');
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,14 +68,14 @@ const Contact = () => {
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      value: "rahuldas@email.com",
-      link: "mailto:rahuldas@email.com"
+      value: "rahul4ever2011@gmail.com",
+      link: "mailto:rahul4ever2011@gmail.com"
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
-      value: "linkedin.com/in/rahuldas",
-      link: "https://linkedin.com/in/rahuldas"
+      value: "linkedin.com/in/rahul-das-117a56223",
+      link: "https://www.linkedin.com/in/rahul-das-117a56223/"
     },
     {
       icon: <Phone className="h-5 w-5" />,
@@ -91,13 +89,16 @@ const Contact = () => {
     <section id="contact" className="relative py-20 bg-gradient-to-br from-background via-secondary to-background">
       {/* Admin Edit Button */}
       {isAdminMode && (
-        <button
-          onClick={handleEdit}
-          className="absolute top-8 right-8 z-10 p-3 bg-accent-purple hover:bg-accent-purple/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
-        >
-          <Edit className="h-5 w-5" />
-          Edit Contact
-        </button>
+        <>
+          <button
+            onClick={() => setEditDialogOpen(true)}
+            className="absolute top-8 right-8 z-10 p-3 bg-accent-purple hover:bg-accent-purple/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
+          >
+            <Edit className="h-5 w-5" />
+            Edit Contact
+          </button>
+          <EditContactDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} />
+        </>
       )}
       
       <div className="container">
@@ -181,14 +182,14 @@ const Contact = () => {
               {/* Social Icons Row */}
               <div className="flex gap-4 mb-6">
                 <a
-                  href="mailto:rahuldas@email.com"
+                  href="mailto:rahul4ever2011@gmail.com"
                   className="p-3 rounded-xl glass-effect text-accent-orange hover:bg-accent-orange hover:text-white transition-all duration-300 hover-scale hover-glow-orange"
                   title="Email"
                 >
                   <Mail className="h-6 w-6" />
                 </a>
                 <a
-                  href="https://linkedin.com/in/rahuldas"
+                  href="https://www.linkedin.com/in/rahul-das-117a56223/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 rounded-xl glass-effect text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-scale hover-glow"
@@ -244,7 +245,7 @@ const Contact = () => {
                     size="lg"
                     variant="outline"
                     className="border-2 border-primary text-primary hover:bg-primary hover:text-white flex-1"
-                    onClick={() => window.open('https://linkedin.com/in/rahuldas', '_blank')}
+                    onClick={() => window.open('https://www.linkedin.com/in/rahul-das-117a56223/', '_blank')}
                   >
                     <Linkedin className="mr-2 h-5 w-5" />
                     View My LinkedIn

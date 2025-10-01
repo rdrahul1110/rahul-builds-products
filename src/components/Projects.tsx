@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ExternalLink, TrendingUp, Users, BarChart3, HandHeart, ChevronDown, Edit, Trash2, Download, Upload } from "lucide-react";
 import { useState } from "react";
+import { useAdmin } from "@/contexts/AdminContext";
 import basketIcon from "@/assets/basket-investing-icon.png";
 import chatbotIcon from "@/assets/ai-chatbot-icon.png";
 import compareIcon from "@/assets/compare-tool-icon.png";
@@ -73,9 +74,18 @@ const ProjectCard = ({ title, problem, solution, impact, icon, gradient, accentC
 };
 
 const Projects = () => {
-  const [isAdmin, setIsAdmin] = useState(true); // Set to true for admin access
+  const { isAdminMode } = useAdmin();
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
   const [editingItem, setEditingItem] = useState<number | null>(null);
+  const [editingWorkItem, setEditingWorkItem] = useState<number | null>(null);
+  const [workEditFormData, setWorkEditFormData] = useState({
+    title: '',
+    problem: '',
+    solution: '',
+    impact: '',
+    gradient: '',
+    accentColor: ''
+  });
   const [editFormData, setEditFormData] = useState({
     title: '',
     description: '',
@@ -182,7 +192,7 @@ const Projects = () => {
     console.log('Download:', title);
     // Add download functionality here
   };
-  const workExperience = [
+  const [workExperienceData, setWorkExperienceData] = useState([
     {
       title: "Basket Investing Feature",
       problem: "Users struggled to pick the right funds from hundreds of options, leading to analysis paralysis and low engagement.",
@@ -219,7 +229,32 @@ const Projects = () => {
       gradient: "from-primary/20 to-accent-teal/20",
       accentColor: "text-accent-teal"
     }
-  ];
+  ]);
+
+  const handleEditWork = (index: number) => {
+    const item = workExperienceData[index];
+    setWorkEditFormData({
+      title: item.title,
+      problem: item.problem,
+      solution: item.solution,
+      impact: item.impact,
+      gradient: item.gradient,
+      accentColor: item.accentColor
+    });
+    setEditingWorkItem(index);
+  };
+
+  const handleSaveWorkEdit = () => {
+    if (editingWorkItem !== null) {
+      const updatedData = [...workExperienceData];
+      updatedData[editingWorkItem] = { 
+        ...updatedData[editingWorkItem],
+        ...workEditFormData 
+      };
+      setWorkExperienceData(updatedData);
+      setEditingWorkItem(null);
+    }
+  };
 
   const personalPortfolio = [
     {
@@ -270,12 +305,66 @@ const Projects = () => {
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {workExperience.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                {...project}
-                delay={index === 0 ? "" : index === 1 ? "delay-200" : index === 2 ? "delay-500" : "delay-700"}
-              />
+            {workExperienceData.map((project, index) => (
+              <div key={project.title} className="relative">
+                {isAdminMode && (
+                  <Dialog open={editingWorkItem === index} onOpenChange={(open) => !open && setEditingWorkItem(null)}>
+                    <DialogTrigger asChild>
+                      <button
+                        onClick={() => handleEditWork(index)}
+                        className="absolute top-4 right-4 z-10 p-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg hover-lift"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>Edit Work Project</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4 mt-4">
+                        <div>
+                          <Label>Title</Label>
+                          <Input
+                            value={workEditFormData.title}
+                            onChange={(e) => setWorkEditFormData(prev => ({ ...prev, title: e.target.value }))}
+                          />
+                        </div>
+                        <div>
+                          <Label>Problem</Label>
+                          <Textarea
+                            value={workEditFormData.problem}
+                            onChange={(e) => setWorkEditFormData(prev => ({ ...prev, problem: e.target.value }))}
+                            rows={3}
+                          />
+                        </div>
+                        <div>
+                          <Label>Solution</Label>
+                          <Textarea
+                            value={workEditFormData.solution}
+                            onChange={(e) => setWorkEditFormData(prev => ({ ...prev, solution: e.target.value }))}
+                            rows={3}
+                          />
+                        </div>
+                        <div>
+                          <Label>Impact</Label>
+                          <Textarea
+                            value={workEditFormData.impact}
+                            onChange={(e) => setWorkEditFormData(prev => ({ ...prev, impact: e.target.value }))}
+                            rows={2}
+                          />
+                        </div>
+                        <Button onClick={handleSaveWorkEdit} className="w-full">
+                          Save Changes
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+                <ProjectCard
+                  {...project}
+                  delay={index === 0 ? "" : index === 1 ? "delay-200" : index === 2 ? "delay-500" : "delay-700"}
+                />
+              </div>
             ))}
           </div>
         </div>

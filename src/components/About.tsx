@@ -1,19 +1,26 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Target, Users, TrendingUp, Edit } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
+import { EditAboutDialog } from "./EditDialogs";
+import { useState } from "react";
+
 const About = () => {
-  const {
-    isAdminMode
-  } = useAdmin();
-  const handleEdit = () => {
-    alert('Edit About Section - This would open a modal to edit content');
-  };
+  const { isAdminMode } = useAdmin();
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   return <section id="about" className="relative py-20 bg-gradient-to-br from-background via-secondary to-background">
       {/* Admin Edit Button */}
-      {isAdminMode && <button onClick={handleEdit} className="absolute top-8 right-8 z-10 p-3 bg-accent-teal hover:bg-accent-teal/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2">
-          <Edit className="h-5 w-5" />
-          Edit About
-        </button>}
+      {isAdminMode && (
+        <>
+          <button 
+            onClick={() => setEditDialogOpen(true)} 
+            className="absolute top-8 right-8 z-10 p-3 bg-accent-teal hover:bg-accent-teal/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
+          >
+            <Edit className="h-5 w-5" />
+            Edit About
+          </button>
+          <EditAboutDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} />
+        </>
+      )}
       
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">

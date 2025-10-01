@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Edit } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
+import { EditHeroDialog } from "./EditDialogs";
+import { useState } from "react";
+
 const Hero = () => {
   const { isAdminMode } = useAdmin();
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({
       behavior: 'smooth'
     });
-  };
-  
-  const handleEdit = () => {
-    alert('Edit Hero Section - This would open a modal to edit content');
   };
   
   return <section className="relative min-h-screen flex items-center justify-center bg-mesh-gradient overflow-hidden">
@@ -25,13 +25,16 @@ const Hero = () => {
       
       {/* Admin Edit Button */}
       {isAdminMode && (
-        <button
-          onClick={handleEdit}
-          className="absolute top-20 right-8 z-20 p-3 bg-accent-orange hover:bg-accent-orange/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
-        >
-          <Edit className="h-5 w-5" />
-          Edit Hero
-        </button>
+        <>
+          <button
+            onClick={() => setEditDialogOpen(true)}
+            className="absolute top-20 right-8 z-20 p-3 bg-accent-orange hover:bg-accent-orange/90 text-white rounded-lg shadow-lg hover-lift flex items-center gap-2"
+          >
+            <Edit className="h-5 w-5" />
+            Edit Hero
+          </button>
+          <EditHeroDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} />
+        </>
       )}
 
       <div className="container relative z-10 text-center animate-fade-in">
