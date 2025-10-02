@@ -62,7 +62,7 @@ const Hero = () => {
               size="lg" 
               className="bg-gradient-to-r from-accent-orange via-accent-orange-dark to-accent-orange hover:shadow-[var(--shadow-glow-orange)] text-white px-8 py-6 text-lg font-semibold rounded-xl hover-lift hover-glow-orange group"
               onClick={() => {
-                const downloadUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
+                const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
                 const link = document.createElement('a');
                 link.href = downloadUrl;
                 link.download = 'Rahul-Das-Resume.pdf';

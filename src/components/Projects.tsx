@@ -192,7 +192,7 @@ const Projects = () => {
     // Create a link to download from Supabase storage
     // You'll need to upload files to storage bucket first
     const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
-    const downloadUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-files/${fileName}`;
+    const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/${fileName}`;
     
     // Create temporary link and trigger download
     const link = document.createElement('a');

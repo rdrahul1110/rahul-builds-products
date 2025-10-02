@@ -44,7 +44,7 @@ const Contact = () => {
     
     try {
       // Call edge function to send email
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`, {
+      const response = await fetch(`https://lggoryptfxfuqtlkojsd.supabase.co/functions/v1/send-contact-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -259,7 +259,7 @@ const Contact = () => {
                     size="lg"
                     className="bg-gradient-to-r from-accent-orange to-accent-orange/90 text-white hover:opacity-90 transition-opacity flex-1"
                     onClick={() => {
-                      const downloadUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
+                      const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
                       const link = document.createElement('a');
                       link.href = downloadUrl;
                       link.download = 'Rahul-Das-Resume.pdf';
