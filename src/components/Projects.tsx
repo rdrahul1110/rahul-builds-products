@@ -564,7 +564,7 @@ const Projects = () => {
             <Button 
               size="lg"
               className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity px-8 py-6 text-lg font-semibold rounded-xl"
-              onClick={() => window.open('https://drive.google.com/drive/folders/YOUR_GOOGLE_DRIVE_FOLDER_ID', '_blank')}
+              onClick={() => window.open('https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf', '_blank')}
             >
               <BarChart3 className="mr-2 h-5 w-5" />
               View Complete Portfolio
