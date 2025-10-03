@@ -69,18 +69,21 @@ const Navigation = () => {
             </button>
           ))}
           
-          <Button 
-            size="sm"
-            onClick={toggleAdminMode}
-            variant={isAdminMode ? "default" : "outline"}
-            className={isAdminMode 
-              ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
-              : "border-2 border-border hover:bg-secondary"
-            }
-          >
-            {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
-            {isAdminMode ? "Exit Admin" : "Admin"}
-          </Button>
+          {/* Only show Admin button in development mode */}
+          {import.meta.env.DEV && (
+            <Button 
+              size="sm"
+              onClick={toggleAdminMode}
+              variant={isAdminMode ? "default" : "outline"}
+              className={isAdminMode 
+                ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
+                : "border-2 border-border hover:bg-secondary"
+              }
+            >
+              {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
+              {isAdminMode ? "Exit Admin" : "Admin"}
+            </Button>
+          )}
           
           <Button 
             size="sm"
@@ -122,18 +125,21 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            <Button 
-              size="sm"
-              onClick={toggleAdminMode}
-              variant={isAdminMode ? "default" : "outline"}
-              className={`w-full ${isAdminMode 
-                ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
-                : "border-2 border-border hover:bg-secondary"
-              }`}
-            >
-              {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
-              {isAdminMode ? "Exit Admin Mode" : "Enter Admin Mode"}
-            </Button>
+            {/* Only show Admin button in development mode */}
+            {import.meta.env.DEV && (
+              <Button 
+                size="sm"
+                onClick={toggleAdminMode}
+                variant={isAdminMode ? "default" : "outline"}
+                className={`w-full ${isAdminMode 
+                  ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
+                  : "border-2 border-border hover:bg-secondary"
+                }`}
+              >
+                {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
+                {isAdminMode ? "Exit Admin Mode" : "Enter Admin Mode"}
+              </Button>
+            )}
             <Button 
               size="sm"
               className="w-full bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity mt-4"
