@@ -7,6 +7,7 @@ interface AdminContextType {
   isAdmin: boolean;
   user: User | null;
   loading: boolean;
+  toggleAdminMode: () => void;
   signOut: () => Promise<void>;
 }
 
@@ -19,7 +20,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
+    // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -45,32 +46,30 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const checkAdminStatus = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', userId)
-        .eq('role', 'admin')
-        .single();
+    const { data, error } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .eq('role', 'admin')
+      .maybeSingle();
 
-      setIsAdmin(!!data && !error);
-      setIsAdminMode(!!data && !error);
-    } catch (error) {
-      console.error('Error checking admin status:', error);
-      setIsAdmin(false);
-    } finally {
-      setLoading(false);
+    setIsAdmin(!!data && !error);
+    setLoading(false);
+  };
+
+  const toggleAdminMode = () => {
+    if (isAdmin) {
+      setIsAdminMode(prev => !prev);
     }
   };
 
   const signOut = async () => {
     await supabase.auth.signOut();
     setIsAdminMode(false);
-    setIsAdmin(false);
   };
 
   return (
-    <AdminContext.Provider value={{ isAdminMode, isAdmin, user, loading, signOut }}>
+    <AdminContext.Provider value={{ isAdminMode, isAdmin, user, loading, toggleAdminMode, signOut }}>
       {children}
     </AdminContext.Provider>
   );
