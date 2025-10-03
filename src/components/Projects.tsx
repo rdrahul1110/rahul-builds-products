@@ -100,16 +100,14 @@ const Projects = () => {
   const initialPortfolioData = [
       {
         title: "Improved ticket booking for BookMyShow",
-        description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
-        expandedDescription: "Deep dive analysis covering user onboarding flows, feature comparison matrix, monetization strategies, and growth hacking techniques used by top fintech companies. Includes actionable insights and recommendations for product managers.",
+        description: "Led product solution to enhance ticket booking for high-demand events (e.g., Coldplay, CWC), resolving user pain points. Conducted user research and competitor analysis to identify challenges in helping save 15% of BMS's user base. Understand the system design by talking with BMS engineers to identify the potential problems from the tech side Proposed a pre-booking solution with system diagrams and low-fidelity wireframes to optimize bookings and reduce traffic congestion",
         image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/bms.png",
         gradient: "from-primary/20 to-accent-teal/20",
         fileName: "NL BMS.pdf" // Exact filename from Supabase
       },
       {
         title: "Improved Gross order value for Zepto",
-        description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
-        expandedDescription: "Complete case study showcasing A/B testing methodologies, conversion funnel optimization, user acquisition strategies, and retention techniques. Includes real metrics and performance indicators with actionable growth frameworks.",
+        description: "Conducted RCA through user interviews and surveys to identify key factors impacting Gross Order Value for users. Proposed 3 strategic solutions to enhance GOV, supported by low-fidelity wireframes for visualization. Defined KPIs, identified potential pitfalls, and suggested mitigations to optimize the effectiveness of proposed solutions. Drove product improvement by incorporating user feedback and research insights into solution design, impacting 18 million Zepto users",
         image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/zepton%20nl.png",
         gradient: "from-accent-orange/20 to-primary/20",
         fileName: "NL Zepto  (1).pdf" // Exact filename from Supabase
@@ -123,9 +121,8 @@ const Projects = () => {
         fileName: "Associate Product Management Deck 1.pdf"
       },
       {
-        title: "User Research & Testing Reports",
-        description: "Usability testing reports and user interview insights driving data-backed product decisions.",
-        expandedDescription: "Comprehensive user research methodology including interview scripts, usability testing protocols, data analysis frameworks, and actionable insights. Demonstrates user-centric approach to product development and decision making.",
+        title: "Teardown of Amazon's Notification System",
+        description: "An in-depth analysis of Amazon's notification system, exploring its architecture, user experience, and potential areas for improvement.",
         image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/Amazon%20notification.png",
         gradient: "from-primary/20 to-accent-orange/20",
         fileName: "LIP Amazon notification.pdf" // Exact filename from Supabase
@@ -315,7 +312,7 @@ const Projects = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Work Experience <span className="gradient-text">Projects</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Real products launched at 5paisa with measurable impact. Here's how I've driven growth 
               and solved complex user problems through data-driven product decisions.
             </p>
@@ -396,7 +393,7 @@ const Projects = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Personal <span className="gradient-text">Portfolio</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Product decks, teardown analyses, and BRDs showcasing my strategic thinking and 
               analytical approach to product management.
             </p>

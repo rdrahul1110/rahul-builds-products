@@ -117,7 +117,7 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Let's <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Interested in collaborating or discussing product opportunities? 
             I'd love to hear from you.
           </p>

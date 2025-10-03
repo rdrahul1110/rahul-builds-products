@@ -148,7 +148,7 @@ const Skills = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Skills & <span className="gradient-text">Expertise</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for building products that users love and businesses need.
           </p>
         </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Download, LogIn, LogOut, Edit } from "lucide-react";
+import { Menu, X, Download, LogIn, LogOut, Edit, RefreshCw } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
 
 const Navigation = () => {
@@ -21,6 +21,16 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
+  };
+
+  const handleResetContent = () => {
+    if (window.confirm("Are you sure you want to reset all content to the default? This will clear all your local edits.")) {
+      localStorage.removeItem('portfolioData');
+      localStorage.removeItem('workExperienceData');
+      localStorage.removeItem('skillCategories');
+      localStorage.removeItem('achievements');
+      window.location.reload();
+    }
   };
 
   const navItems = [
@@ -71,42 +81,32 @@ const Navigation = () => {
             </button>
           ))}
           
-          {!loading && (
-            user ? (
-              <>
-                {isAdmin && (
-                  <Button 
-                    size="sm"
-                    onClick={toggleAdminMode}
-                    variant={isAdminMode ? "default" : "outline"}
-                    className={isAdminMode ? "bg-primary" : "border-2 border-border hover:bg-secondary"}
-                  >
-                    <Edit className="mr-2 h-4 w-4" />
-                    {isAdminMode ? "Exit Edit Mode" : "Edit Mode"}
-                  </Button>
-                )}
+          {/* Admin and User Buttons */}
+          {!loading && user ? (
+            <>
+              {isAdmin && (
                 <Button 
                   size="sm"
-                  onClick={signOut}
-                  variant="outline"
-                  className="border-2 border-border hover:bg-secondary"
+                  onClick={toggleAdminMode}
+                  variant={isAdminMode ? "default" : "outline"}
+                  className={isAdminMode ? "bg-primary" : "border-2 border-border hover:bg-secondary"}
                 >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign Out
+                  <Edit className="mr-2 h-4 w-4" />
+                  {isAdminMode ? "Exit Edit Mode" : "Edit Mode"}
                 </Button>
-              </>
-            ) : (
-              <Button 
-                size="sm"
-                onClick={() => navigate('/admin/login')}
-                variant="outline"
-                className="border-2 border-border hover:bg-secondary"
-              >
-                <LogIn className="mr-2 h-4 w-4" />
-                Admin Login
+              )}
+              {isAdminMode && (
+                <Button size="sm" onClick={handleResetContent} variant="destructive">
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Reset Content
+                </Button>
+              )}
+              <Button size="sm" onClick={signOut} variant="outline" className="border-2 border-border hover:bg-secondary">
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
               </Button>
-            )
-          )}
+            </>
+          ) : null}
           
           <Button
             size="sm"
@@ -148,42 +148,27 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            {!loading && (
-              user ? (
-                <>
-                  {isAdmin && (
-                    <Button 
-                      size="sm"
-                      onClick={toggleAdminMode}
-                      variant={isAdminMode ? "default" : "outline"}
-                      className={isAdminMode ? "w-full bg-primary" : "w-full border-2 border-border hover:bg-secondary"}
-                    >
-                      <Edit className="mr-2 h-4 w-4" />
-                      {isAdminMode ? "Exit Edit Mode" : "Edit Mode"}
-                    </Button>
-                  )}
-                  <Button 
-                    size="sm"
-                    onClick={signOut}
-                    variant="outline"
-                    className="w-full border-2 border-border hover:bg-secondary"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
+            {/* Mobile Admin and User Buttons */}
+            {!loading && user ? (
+              <>
+                {isAdmin && (
+                  <Button size="sm" onClick={toggleAdminMode} variant={isAdminMode ? "default" : "outline"} className={isAdminMode ? "w-full bg-primary" : "w-full border-2 border-border hover:bg-secondary"}>
+                    <Edit className="mr-2 h-4 w-4" />
+                    {isAdminMode ? "Exit Edit Mode" : "Edit Mode"}
                   </Button>
-                </>
-              ) : (
-                <Button 
-                  size="sm"
-                  onClick={() => navigate('/admin/login')}
-                  variant="outline"
-                  className="w-full border-2 border-border hover:bg-secondary"
-                >
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Admin Login
+                )}
+                {isAdminMode && (
+                  <Button size="sm" onClick={handleResetContent} variant="destructive" className="w-full">
+                    <RefreshCw className="mr-2 h-4 w-4" />
+                    Reset Content
+                  </Button>
+                )}
+                <Button size="sm" onClick={signOut} variant="outline" className="w-full border-2 border-border hover:bg-secondary">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
                 </Button>
-              )
-            )}
+              </>
+            ) : null}
             <Button
               size="sm"
               className="w-full bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity mt-4"
