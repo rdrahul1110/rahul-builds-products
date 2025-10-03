@@ -14,14 +14,14 @@ import {
   Edit
 } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
-import { EditSkillsDialog } from "./EditSkillsDialog";
-import { useState } from "react";
+// import { EditSkillsDialog } from "./EditSkillsDialog";
+import { useState, useEffect } from "react";
 
 const Skills = () => {
   const { isAdminMode } = useAdmin();
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   
-  const skillCategories = [
+  const initialSkillCategories = [
     {
       title: "Product Skills",
       icon: <Brain className="h-6 w-6" />,
@@ -76,7 +76,7 @@ const Skills = () => {
     }
   ];
 
-  const achievements = [
+  const initialAchievements = [
     {
       icon: <TrendingUp className="h-8 w-8 text-accent-orange" />,
       title: "Growth Impact",
@@ -99,6 +99,33 @@ const Skills = () => {
     }
   ];
 
+  const [skillCategories, setSkillCategories] = useState(() => {
+    const saved = localStorage.getItem('skillCategories');
+    if (saved) {
+      const savedData = JSON.parse(saved);
+      // Restore non-serializable icon and gradient from initial data
+      return savedData.map((item: any, index: number) => ({
+        ...item,
+        icon: initialSkillCategories[index]?.icon,
+        gradient: initialSkillCategories[index]?.gradient,
+      }));
+    }
+    return initialSkillCategories;
+  });
+
+  const [achievements, setAchievements] = useState(() => {
+    const saved = localStorage.getItem('achievements');
+    // Restore non-serializable icon from initial data
+    const savedData = saved ? JSON.parse(saved) : initialAchievements;
+    return savedData.map((item: any, index: number) => ({ ...item, icon: initialAchievements[index]?.icon }));
+  });
+
+  useEffect(() => {
+    // We stringify a version without the non-serializable icon/gradient elements for localStorage
+    localStorage.setItem('skillCategories', JSON.stringify(skillCategories.map(({ icon, gradient, ...rest }) => rest)));
+    localStorage.setItem('achievements', JSON.stringify(achievements.map(({ icon, ...rest }) => rest)));
+  }, [skillCategories, achievements]);
+
   return (
     <section id="skills" className="relative py-20 bg-gradient-to-br from-secondary via-background to-secondary">
       {/* Admin Edit Button */}
@@ -111,7 +138,7 @@ const Skills = () => {
             <Edit className="h-5 w-5" />
             Edit Skills
           </button>
-          <EditSkillsDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} />
+          {/* <EditSkillsDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} /> */}
         </>
       )}
       

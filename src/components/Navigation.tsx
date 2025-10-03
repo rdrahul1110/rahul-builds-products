@@ -85,6 +85,15 @@ const Navigation = () => {
           <Button 
             size="sm"
             className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity"
+            onClick={() => {
+              const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
+              const link = document.createElement('a');
+              link.href = downloadUrl;
+              link.download = 'Rahul-Das-Resume.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
           >
             <Download className="mr-2 h-4 w-4" />
             Resume
@@ -128,6 +137,15 @@ const Navigation = () => {
             <Button 
               size="sm"
               className="w-full bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity mt-4"
+              onClick={() => {
+                const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = 'Rahul-Das-Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
             >
               <Download className="mr-2 h-4 w-4" />
               Download Resume

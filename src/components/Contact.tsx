@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,12 +10,13 @@ import {
   Linkedin, 
   Download, 
   Send,
+  Loader2,
   MapPin,
   Clock,
   Edit
 } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
-import { EditContactDialog } from "./EditDialogs";
+// import { EditContactDialog } from "./EditDialogs";
 
 const Contact = () => {
   const { isAdminMode } = useAdmin();
@@ -26,63 +27,51 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    try {
-      // Call edge function to send email
-      const response = await fetch(`https://lggoryptfxfuqtlkojsd.supabase.co/functions/v1/send-contact-email`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send email');
-      }
-
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
-      });
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or contact me directly via email.",
-        variant: "destructive"
-      });
-    }
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const web3FormData = new FormData(form);
+    web3FormData.append("access_key", "85d8b5aa-d5bd-4c2d-862b-829cdb53849e");
+    web3FormData.append("from_name", "Portfolio Contact Form");
+    web3FormData.append("subject", `New Message from ${web3FormData.get('name')}: ${web3FormData.get('subject')}`);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: 'POST',
+        body: web3FormData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. I'll get back to you within 24 hours.",
+        });
+        form.reset(); // Reset the form fields
+        setFormData({ name: "", email: "", subject: "", message: "" }); // Reset the state
+      } else {
+        console.error("Error from Web3Forms:", result);
+        toast({ title: "Error", description: result.message || "Failed to send message.", variant: "destructive" });
+      }
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to send message. Please try again.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -118,7 +107,7 @@ const Contact = () => {
             <Edit className="h-5 w-5" />
             Edit Contact
           </button>
-          <EditContactDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} />
+          {/* <EditContactDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} /> */}
         </>
       )}
       
@@ -144,6 +133,7 @@ const Contact = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Input
+                      id="name"
                       name="name"
                       placeholder="Your Name"
                       value={formData.name}
@@ -154,6 +144,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <Input
+                      id="email"
                       name="email"
                       type="email"
                       placeholder="Your Email"
@@ -166,6 +157,7 @@ const Contact = () => {
                 </div>
                 
                 <Input
+                  id="subject"
                   name="subject"
                   placeholder="Subject"
                   value={formData.subject}
@@ -174,6 +166,7 @@ const Contact = () => {
                 />
                 
                 <Textarea
+                  id="message"
                   name="message"
                   placeholder="Your Message"
                   value={formData.message}
@@ -186,9 +179,12 @@ const Contact = () => {
                   type="submit"
                   size="lg"
                   className="w-full bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity"
+                  disabled={isSubmitting}
                 >
-                  <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  {isSubmitting 
+                    ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</>
+                    : <><Send className="mr-2 h-5 w-5" /> Send Message</>
+                  }
                 </Button>
               </form>
             </CardContent>

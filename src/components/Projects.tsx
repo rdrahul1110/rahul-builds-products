@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ExternalLink, TrendingUp, Users, BarChart3, HandHeart, ChevronDown, Edit, Trash2, Download, Upload } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAdmin } from "@/contexts/AdminContext";
 import basketIcon from "@/assets/basket-investing-icon.png";
 import chatbotIcon from "@/assets/ai-chatbot-icon.png";
@@ -18,7 +18,7 @@ interface ProjectCardProps {
   problem: string;
   solution: string;
   impact: string;
-  icon: string;
+  icon: any; // Allow direct image imports
   gradient: string;
   accentColor: string;
   delay?: string;
@@ -73,6 +73,8 @@ const ProjectCard = ({ title, problem, solution, impact, icon, gradient, accentC
   );
 };
 
+const FALLBACK_IMAGE_SRC = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE1MCA5Mi44IDEzNy4yIDg3IDE0MCA4MEM5NiA4MCA2MCA4MCA2MCA4MEM2MCA4NCA2NCA4OCA2OCA5MkM3MiA5NiA3NiAxMDAgODAgMTA0Qzg0IDEwOCA4OCAxMTIgOTIgMTE2Qzk2IDEyMCAxMDAgMTI0IDEwNCAxMjhDMTA4IDEzMiAxMTIgMTM2IDExNiAxNDBDMTIwIDE0NCAxMjQgMTQ4IDEyOCAxNTJDMTMyIDE1NiAxMzYgMTYwIDE0MCA1MkMxNDQgNTYgMTQ4IDYwIDE1MiA2NEMxNTYgNjggMTYwIDcyIDE2NCA3NkMxNjggODAgMTcyIDg0IDE3NiA4OEMxODAgOTIgMTg0IDk2IDE4OCAxMDBDMTkyIDEwNCAxOTYgMTA4IDIwMCAxMTJDMjA0IDExNiAyMDggMTIwIDIxMiAxMjRDMjE2IDEyOCAyMjAgMTMyIDIyNCAxMzZDMjI4IDE0MCAyMzIgMTQ0IDIzNiAxNDhDMjQwIDE1MiAyNDQgMTU2IDI0OCAxNjBDMjUyIDE2NCAyNTYgMTY4IDI2MCAxNzJDMjY0IDE3NiAyNjggMTgwIDI3MiAxODRDMjc2IDE4OCAyODAgMTkyIDI4NCAyMDBIMTZDMTYgMTk2IDIwIDE5MiAyNCAxODhDMjggMTg0IDMyIDE4MCAzNiAxNzZDNDAgMTcyIDQ0IDE2OCA0OCAxNjRDNTIgMTYwIDU2IDE1NiA2MCAxNTJDNjQgMTQ4IDY4IDE0NCA3MiAxNDBDNzYgMTM2IDgwIDEzMiA4NCAxMjhDODggMTI0IDkyIDEyMCA5NiAxMTZDMTAwIDExMiAxMDQgMTA4IDEwOCAxMDRDMTEyIDEwMCAxMTYgOTYgMTIwIDkyQzEyNCA4OCAxMjggODQgMTMyIDgwQzEzNiA3NiAxNDAgNzIgMTQ0IDY4QzE0OCA2NCAxNTIgNjAgMTU2IDU2QzE2MCA1MiAxNjQgNDggMTY4IDQ0QzE3MiA0MCAxNzYgMzYgMTgwIDMyQzE4NCAyOCAxODggMjQgMTkyIDIwQzE5NiAxNiAyMDAgMTIgMjA0IDhDMjA4IDQgMjEyIDAgMjE2IDRDMjIwIDggMjI0IDEyIDIyOCAxNkMyMzIgMjAgMjM2IDI0IDI0MCAyOEMyNDQgMzIgMjQ4IDM2IDI1MiA0MEMyNTYgNDQgMjYwIDQ4IDI2NCA1MkMyNjggNTYgMjcyIDYwIDI3NiA2NEMyODAgNjggMjg0IDcyIDI4OCA3NkMyOTIgODAgMjk2IDg0IDMwMCA4OFYyMDBIMTZDMTYgMTk2IDIwIDE5MiAyNCAxODhMMTUwIDEwMFoiIGZpbGw9IiNEMUQ1REIiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxMzAiIHk9IjgwIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOTg5REE1Ii8+CjxwYXRoIGQ9Ik0yMCAxMEwzMCAyMEwyMCAzMEwxMCAyMEwyMCAxMFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo8L3N2Zz4K';
+
 const Projects = () => {
   const { isAdminMode } = useAdmin();
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
@@ -91,38 +93,51 @@ const Projects = () => {
     description: '',
     expandedDescription: '',
     image: '',
-    gradient: ''
+    gradient: '',
+    fileName: '' // Add fileName to the state
   });
-  const [portfolioData, setPortfolioData] = useState([
-    {
-      title: "Fintech Product Teardown Analysis",
-      description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
-      expandedDescription: "Deep dive analysis covering user onboarding flows, feature comparison matrix, monetization strategies, and growth hacking techniques used by top fintech companies. Includes actionable insights and recommendations for product managers.",
-      image: "/lovable-uploads/presentation-1.png", // Upload your presentation image here
-      gradient: "from-primary/20 to-accent-teal/20"
-    },
-    {
-      title: "Growth Strategy Case Study",
-      description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
-      expandedDescription: "Complete case study showcasing A/B testing methodologies, conversion funnel optimization, user acquisition strategies, and retention techniques. Includes real metrics and performance indicators with actionable growth frameworks.",
-      image: "/lovable-uploads/presentation-2.png", // Upload your presentation image here
-      gradient: "from-accent-orange/20 to-primary/20"
-    },
-    {
-      title: "Product Requirements Documents",
-      description: "Collection of detailed PRDs showcasing feature specifications, user stories, and technical requirements.",
-      expandedDescription: "Professional PRD templates and examples covering feature specifications, user journey mapping, acceptance criteria, technical architecture, and stakeholder alignment. Perfect reference for product development workflows.",
-      image: "/lovable-uploads/presentation-3.png", // Upload your presentation image here
-      gradient: "from-accent-teal/20 to-accent-orange/20"
-    },
-    {
-      title: "User Research & Testing Reports",
-      description: "Usability testing reports and user interview insights driving data-backed product decisions.",
-      expandedDescription: "Comprehensive user research methodology including interview scripts, usability testing protocols, data analysis frameworks, and actionable insights. Demonstrates user-centric approach to product development and decision making.",
-      image: "/lovable-uploads/presentation-4.png", // Upload your presentation image here
-      gradient: "from-primary/20 to-accent-orange/20"
-    }
-  ]);
+
+  const initialPortfolioData = [
+      {
+        title: "Improved ticket booking for BookMyShow",
+        description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
+        expandedDescription: "Deep dive analysis covering user onboarding flows, feature comparison matrix, monetization strategies, and growth hacking techniques used by top fintech companies. Includes actionable insights and recommendations for product managers.",
+        image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/bms.png",
+        gradient: "from-primary/20 to-accent-teal/20",
+        fileName: "NL BMS.pdf" // Exact filename from Supabase
+      },
+      {
+        title: "Improved Gross order value for Zepto",
+        description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
+        expandedDescription: "Complete case study showcasing A/B testing methodologies, conversion funnel optimization, user acquisition strategies, and retention techniques. Includes real metrics and performance indicators with actionable growth frameworks.",
+        image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/zepton%20nl.png",
+        gradient: "from-accent-orange/20 to-primary/20",
+        fileName: "NL Zepto  (1).pdf" // Exact filename from Supabase
+      },
+      {
+        title: "Root Cause Analysis of an Ed-Tech platform",
+        description: "A detailed root cause analysis for an Ed-Tech platform, identifying key issues and proposing strategic solutions.",
+        expandedDescription: "This deck provides a step-by-step breakdown of a critical issue within an Ed-Tech product. It covers the problem statement, data analysis, user research findings, and a prioritized list of actionable recommendations to address the core problem.",
+        image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/associate%20product%20manager%20deck.png",
+        gradient: "from-accent-teal/20 to-accent-orange/20",
+        fileName: "Associate Product Management Deck 1.pdf"
+      },
+      {
+        title: "User Research & Testing Reports",
+        description: "Usability testing reports and user interview insights driving data-backed product decisions.",
+        expandedDescription: "Comprehensive user research methodology including interview scripts, usability testing protocols, data analysis frameworks, and actionable insights. Demonstrates user-centric approach to product development and decision making.",
+        image: "https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio%20images/Amazon%20notification.png",
+        gradient: "from-primary/20 to-accent-orange/20",
+        fileName: "LIP Amazon notification.pdf" // Exact filename from Supabase
+      }
+    ];
+  const [portfolioData, setPortfolioData] = useState(() => {
+    const saved = localStorage.getItem('portfolioData');
+    return saved ? JSON.parse(saved) : initialPortfolioData;
+  });
+  useEffect(() => {
+    localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+  }, [portfolioData]);
 
   const toggleExpanded = (index: number) => {
     const newExpanded = new Set(expandedItems);
@@ -141,7 +156,8 @@ const Projects = () => {
       description: item.description,
       expandedDescription: item.expandedDescription,
       image: item.image,
-      gradient: item.gradient
+      gradient: item.gradient,
+      fileName: item.fileName
     });
     setEditingItem(index);
   };
@@ -149,7 +165,10 @@ const Projects = () => {
   const handleSaveEdit = () => {
     if (editingItem !== null) {
       const updatedData = [...portfolioData];
-      updatedData[editingItem] = { ...editFormData };
+      // Merge the original item with the edited form data to preserve all properties
+      updatedData[editingItem] = { 
+        ...updatedData[editingItem], ...editFormData 
+      };
       setPortfolioData(updatedData);
       setEditingItem(null);
       setEditFormData({
@@ -157,7 +176,8 @@ const Projects = () => {
         description: '',
         expandedDescription: '',
         image: '',
-        gradient: ''
+        gradient: '',
+        fileName: ''
       });
     }
   };
@@ -188,58 +208,67 @@ const Projects = () => {
     setPortfolioData(updatedData);
   };
 
-  const handleDownload = (title: string) => {
-    // Create a link to download from Supabase storage
-    // You'll need to upload files to storage bucket first
-    const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
+  const handleDownload = (fileName: string) => {
+    // Use the exact filename to create a download link from Supabase storage
     const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/${fileName}`;
     
     // Create temporary link and trigger download
     const link = document.createElement('a');
     link.href = downloadUrl;
+    // The 'download' attribute suggests a filename to the browser. Using the original filename is a good default.
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-  const [workExperienceData, setWorkExperienceData] = useState([
-    {
-      title: "Basket Investing Feature",
-      problem: "Users struggled to pick the right funds from hundreds of options, leading to analysis paralysis and low engagement.",
-      solution: "Curated investment baskets with detailed research insights, risk assessments, and performance tracking.",
-      impact: "Boosted user engagement by 3% and improved conversion rates across all user segments.",
-      icon: basketIcon,
-      gradient: "from-primary/20 to-accent-orange/20",
-      accentColor: "text-accent-orange"
-    },
-    {
-      title: "AI-Powered Chatbot",
-      problem: "High load on customer support agents with 80% repetitive queries causing delays and user frustration.",
-      solution: "Built intelligent chatbot using NLP intent classification with seamless handoff to human agents.",
-      impact: "Automated 70% of repetitive queries, reduced response time by 60%.",
-      icon: chatbotIcon,
-      gradient: "from-accent-teal/20 to-primary/20",
-      accentColor: "text-accent-teal"
-    },
-    {
-      title: "MF Compare & Nifty50 Tool",
-      problem: "Lack of easy-to-use comparison tools for mutual funds and benchmarking against indices.",
-      solution: "Interactive comparison dashboard with benchmark overlay, performance metrics, and visual analytics.",
-      impact: "Traffic increased by 3%, conversion rate improved significantly.",
-      icon: compareIcon,
-      gradient: "from-accent-orange/20 to-accent-teal/20",
-      accentColor: "text-primary"
-    },
-    {
-      title: "Pre-login & Partner Page Revamp",
-      problem: "Low engagement on landing pages and poor partner signup conversion rates.",
-      solution: "Redesigned layouts with trust signals, social proof, and optimized conversion funnels.",
-      impact: "Engagement increased by 5%, achieved 500+ new partner onboardings.",
-      icon: partnershipIcon,
-      gradient: "from-primary/20 to-accent-teal/20",
-      accentColor: "text-accent-teal"
-    }
-  ]);
+  const initialWorkExperienceData = [
+      {
+        title: "Basket Investing Feature",
+        problem: "Users struggled to pick the right funds from hundreds of options, leading to analysis paralysis and low engagement.",
+        solution: "Curated investment baskets with detailed research insights, risk assessments, and performance tracking.",
+        impact: "Boosted user engagement by 3% and improved conversion rates across all user segments.",
+        icon: basketIcon,
+        gradient: "from-primary/20 to-accent-orange/20",
+        accentColor: "text-accent-orange"
+      },
+      {
+        title: "AI-Powered Chatbot",
+        problem: "High load on customer support agents with 80% repetitive queries causing delays and user frustration.",
+        solution: "Built intelligent chatbot using NLP intent classification with seamless handoff to human agents.",
+        impact: "Automated 70% of repetitive queries, reduced response time by 60%.",
+        icon: chatbotIcon,
+        gradient: "from-accent-teal/20 to-primary/20",
+        accentColor: "text-accent-teal"
+      },
+      {
+        title: "MF Compare & Nifty50 Tool",
+        problem: "Lack of easy-to-use comparison tools for mutual funds and benchmarking against indices.",
+        solution: "Interactive comparison dashboard with benchmark overlay, performance metrics, and visual analytics.",
+        impact: "Traffic increased by 3%, conversion rate improved significantly.",
+        icon: compareIcon,
+        gradient: "from-accent-orange/20 to-accent-teal/20",
+        accentColor: "text-primary"
+      },
+      {
+        title: "Pre-login & Partner Page Revamp",
+        problem: "Low engagement on landing pages and poor partner signup conversion rates.",
+        solution: "Redesigned layouts with trust signals, social proof, and optimized conversion funnels.",
+        impact: "Engagement increased by 5%, achieved 500+ new partner onboardings.",
+        icon: partnershipIcon,
+        gradient: "from-primary/20 to-accent-teal/20",
+        accentColor: "text-accent-teal"
+      }
+    ];
+  const [workExperienceData, setWorkExperienceData] = useState(() => {
+    const saved = localStorage.getItem('workExperienceData');
+    const savedData = saved ? JSON.parse(saved) : initialWorkExperienceData;
+    // Restore non-serializable icon from initial data
+    return savedData.map((item: any, index: number) => ({ ...item, icon: initialWorkExperienceData[index]?.icon }));
+  });
+  useEffect(() => {
+    // We stringify a version without the non-serializable icon element for localStorage
+    localStorage.setItem('workExperienceData', JSON.stringify(workExperienceData.map(({ icon, ...rest }) => rest)));
+  }, [workExperienceData]);
 
   const handleEditWork = (index: number) => {
     const item = workExperienceData[index];
@@ -257,45 +286,24 @@ const Projects = () => {
   const handleSaveWorkEdit = () => {
     if (editingWorkItem !== null) {
       const updatedData = [...workExperienceData];
+      // Merge the original item with the edited form data to preserve all properties
       updatedData[editingWorkItem] = { 
         ...updatedData[editingWorkItem],
         ...workEditFormData 
       };
       setWorkExperienceData(updatedData);
       setEditingWorkItem(null);
+      // Reset the form data after saving
+      setWorkEditFormData({
+        title: '',
+        problem: '',
+        solution: '',
+        impact: '',
+        gradient: '',
+        accentColor: ''
+      });
     }
   };
-
-  const personalPortfolio = [
-    {
-      title: "Fintech Product Teardown Analysis",
-      description: "Comprehensive teardown of leading fintech apps analyzing UX, growth strategies, and monetization models.",
-      expandedDescription: "Deep dive analysis covering user onboarding flows, feature comparison matrix, monetization strategies, and growth hacking techniques used by top fintech companies. Includes actionable insights and recommendations for product managers.",
-      image: "/lovable-uploads/presentation-1.png", // Upload your presentation image here
-      gradient: "from-primary/20 to-accent-teal/20"
-    },
-    {
-      title: "Growth Strategy Case Study",
-      description: "Data-driven growth experiments and optimization strategies for SaaS products with detailed ROI analysis.",
-      expandedDescription: "Complete case study showcasing A/B testing methodologies, conversion funnel optimization, user acquisition strategies, and retention techniques. Includes real metrics and performance indicators with actionable growth frameworks.",
-      image: "/lovable-uploads/presentation-2.png", // Upload your presentation image here
-      gradient: "from-accent-orange/20 to-primary/20"
-    },
-    {
-      title: "Product Requirements Documents",
-      description: "Collection of detailed PRDs showcasing feature specifications, user stories, and technical requirements.",
-      expandedDescription: "Professional PRD templates and examples covering feature specifications, user journey mapping, acceptance criteria, technical architecture, and stakeholder alignment. Perfect reference for product development workflows.",
-      image: "/lovable-uploads/presentation-3.png", // Upload your presentation image here
-      gradient: "from-accent-teal/20 to-accent-orange/20"
-    },
-    {
-      title: "User Research & Testing Reports",
-      description: "Usability testing reports and user interview insights driving data-backed product decisions.",
-      expandedDescription: "Comprehensive user research methodology including interview scripts, usability testing protocols, data analysis frameworks, and actionable insights. Demonstrates user-centric approach to product development and decision making.",
-      image: "/lovable-uploads/presentation-4.png", // Upload your presentation image here
-      gradient: "from-primary/20 to-accent-orange/20"
-    }
-  ];
 
   return (
     <>
@@ -409,7 +417,7 @@ const Projects = () => {
                       alt={`${item.title} presentation`}
                       className="w-full h-48 object-cover rounded-xl border border-border/50"
                       onError={(e) => {
-                        e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xNTAgMTAwQzE1MCA5Mi44IDEzNy4yIDg3IDE0MCA4MEM5NiA4MCA2MCA4MCA2MCA4MEM2MCA4NCA2NCA4OCA2OCA5MkM3MiA5NiA3NiAxMDAgODAgMTA0Qzg0IDEwOCA4OCAxMTIgOTIgMTE2Qzk2IDEyMCAxMDAgMTI0IDEwNCAxMjhDMTA4IDEzMiAxMTIgMTM2IDExNiAxNDBDMTIwIDE0NCAxMjQgMTQ4IDEyOCAxNTJDMTMyIDE1NiAxMzYgMTYwIDE0MCA1MkMxNDQgNTYgMTQ4IDYwIDE1MiA2NEMxNTYgNjggMTYwIDcyIDE2NCA3NkMxNjggODAgMTcyIDg0IDE3NiA4OEMxODAgOTIgMTg0IDk2IDE4OCAxMDBDMTkyIDEwNCAxOTYgMTA4IDIwMCAxMTJDMjA0IDExNiAyMDggMTIwIDIxMiAxMjRDMjE2IDEyOCAyMjAgMTMyIDIyNCAxMzZDMjI4IDE0MCAyMzIgMTQ0IDIzNiAxNDhDMjQwIDE1MiAyNDQgMTU2IDI0OCAxNjBDMjUyIDE2NCAyNTYgMTY4IDI2MCAxNzJDMjY0IDE3NiAyNjggMTgwIDI3MiAxODRDMjc2IDE4OCAyODAgMTkyIDI4NCAyMDBIMTZDMTYgMTk2IDIwIDE5MiAyNCAxODhDMjggMTg0IDMyIDE4MCAzNiAxNzZDNDAgMTcyIDQ0IDE2OCA0OCAxNjRDNTIgMTYwIDU2IDE1NiA2MCAxNTJDNjQgMTQ4IDY4IDE0NCA3MiAxNDBDNzYgMTM2IDgwIDEzMiA4NCAxMjhDODggMTI0IDkyIDEyMCA5NiAxMTZDMTAwIDExMiAxMDQgMTA4IDEwOCAxMDRDMTEyIDEwMCAxMTYgOTYgMTIwIDkyQzEyNCA4OCAxMjggODQgMTMyIDgwQzEzNiA3NiAxNDAgNzIgMTQ0IDY4QzE0OCA2NCAxNTIgNjAgMTU2IDU2QzE2MCA1MiAxNjQgNDggMTY4IDQ0QzE3MiA0MCAxNzYgMzYgMTgwIDMyQzE4NCAyOCAxODggMjQgMTkyIDIwQzE5NiAxNiAyMDAgMTIgMjA0IDhDMjA4IDQgMjEyIDAgMjE2IDRDMjIwIDggMjI0IDEyIDIyOCAxNkMyMzIgMjAgMjM2IDI0IDI0MCAyOEMyNDQgMzIgMjQ4IDM2IDI1MiA0MEMyNTYgNDQgMjYwIDQ4IDI2NCA1MkMyNjggNTYgMjcyIDYwIDI3NiA2NEMyODAgNjggMjg0IDcyIDI4OCA3NkMyOTIgODAgMjk2IDg0IDMwMCA4OFYyMDBIMTZDMTYgMTk2IDIwIDE5MiAyNCAxODhMMTUwIDEwMFoiIGZpbGw9IiNEMUQ1REIiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSIxMzAiIHk9IjgwIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOTg5REE1Ii8+CjxwYXRoIGQ9Ik0yMCAxMEwzMCAyMEwyMCAzMEwxMCAyMEwyMCAxMFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo8L3N2Zz4K';
+                        e.currentTarget.src = FALLBACK_IMAGE_SRC;
                       }}
                     />
                   </div>
@@ -443,7 +451,7 @@ const Projects = () => {
                     <Button 
                       variant="outline"
                       size="sm"
-                      onClick={() => handleDownload(item.title)}
+                      onClick={() => handleDownload(item.fileName)}
                       className="group-hover:bg-primary group-hover:text-white transition-colors"
                     >
                       <Download className="mr-2 h-4 w-4" />
