@@ -18,7 +18,7 @@ import { useAdmin } from "@/contexts/AdminContext";
 import { useState, useEffect } from "react";
 
 const Skills = () => {
-  const { isAdminMode } = useAdmin();
+  const { isAdmin } = useAdmin();
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   
   const initialSkillCategories = [
@@ -129,7 +129,7 @@ const Skills = () => {
   return (
     <section id="skills" className="relative py-20 bg-gradient-to-br from-secondary via-background to-secondary">
       {/* Admin Edit Button */}
-      {isAdminMode && (
+      {isAdmin && (
         <>
           <button
             onClick={() => setEditDialogOpen(true)}

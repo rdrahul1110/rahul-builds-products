@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Download, Shield, ShieldOff } from "lucide-react";
+import { Menu, X, Download, LogIn, LogOut } from "lucide-react";
 import { useAdmin } from "@/contexts/AdminContext";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isAdminMode, toggleAdminMode } = useAdmin();
+  const { isAdmin, user, signOut, loading } = useAdmin();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,23 +71,31 @@ const Navigation = () => {
             </button>
           ))}
           
-          {/* Only show Admin button in development mode */}
-          {import.meta.env.DEV && (
-            <Button 
-              size="sm"
-              onClick={toggleAdminMode}
-              variant={isAdminMode ? "default" : "outline"}
-              className={isAdminMode 
-                ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
-                : "border-2 border-border hover:bg-secondary"
-              }
-            >
-              {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
-              {isAdminMode ? "Exit Admin" : "Admin"}
-            </Button>
+          {!loading && (
+            user ? (
+              <Button 
+                size="sm"
+                onClick={signOut}
+                variant="outline"
+                className="border-2 border-border hover:bg-secondary"
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign Out
+              </Button>
+            ) : (
+              <Button 
+                size="sm"
+                onClick={() => navigate('/auth')}
+                variant="outline"
+                className="border-2 border-border hover:bg-secondary"
+              >
+                <LogIn className="mr-2 h-4 w-4" />
+                Admin Login
+              </Button>
+            )
           )}
           
-          <Button 
+          <Button
             size="sm"
             className="bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity"
             onClick={() => {
@@ -125,22 +135,30 @@ const Navigation = () => {
                 {item.name}
               </button>
             ))}
-            {/* Only show Admin button in development mode */}
-            {import.meta.env.DEV && (
-              <Button 
-                size="sm"
-                onClick={toggleAdminMode}
-                variant={isAdminMode ? "default" : "outline"}
-                className={`w-full ${isAdminMode 
-                  ? "bg-accent-orange hover:bg-accent-orange/90 text-white" 
-                  : "border-2 border-border hover:bg-secondary"
-                }`}
-              >
-                {isAdminMode ? <ShieldOff className="mr-2 h-4 w-4" /> : <Shield className="mr-2 h-4 w-4" />}
-                {isAdminMode ? "Exit Admin Mode" : "Enter Admin Mode"}
-              </Button>
+            {!loading && (
+              user ? (
+                <Button 
+                  size="sm"
+                  onClick={signOut}
+                  variant="outline"
+                  className="w-full border-2 border-border hover:bg-secondary"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </Button>
+              ) : (
+                <Button 
+                  size="sm"
+                  onClick={() => navigate('/auth')}
+                  variant="outline"
+                  className="w-full border-2 border-border hover:bg-secondary"
+                >
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Admin Login
+                </Button>
+              )
             )}
-            <Button 
+            <Button
               size="sm"
               className="w-full bg-gradient-to-r from-primary to-accent-teal text-white hover:opacity-90 transition-opacity mt-4"
               onClick={() => {
