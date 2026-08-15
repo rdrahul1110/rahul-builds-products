@@ -1,0 +1,267 @@
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Edit, ArrowRight, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useAdmin } from "@/contexts/AdminContext";
+
+interface ProjectCardProps {
+  id: number;
+  title: string;
+  category: string;
+  featured?: boolean;
+  description: string;
+  flow?: string[];
+  tags: string[];
+  link?: string;
+  statusText?: string;
+}
+
+const ProjectCard = ({ title, category, featured, description, flow, tags, link, statusText }: ProjectCardProps) => {
+  return (
+    <div className="group bg-[#111111] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30">
+      {/* Top Tag Bar */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase">
+          {category}
+        </span>
+        {featured && (
+          <span className="px-2 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold tracking-wider uppercase">
+            Featured
+          </span>
+        )}
+        <div className="ml-auto text-slate-600 group-hover:text-emerald-500 transition-colors">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9C12 9.27614 11.7761 9.5 11.5 9.5C11.2239 9.5 11 9.27614 11 9L11 4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
+          </svg>
+        </div>
+      </div>
+      
+      {/* Title & Desc */}
+      <h3 className="text-2xl font-bold font-display text-white mb-3">{title}</h3>
+      <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
+      
+      {/* Flow Sequence */}
+      {flow && flow.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 mb-8">
+          {flow.map((step, idx) => (
+            <div key={idx} className="flex items-center gap-2">
+              <span className="px-2.5 py-1 rounded-md border border-white/10 bg-white/5 text-xs font-mono font-medium text-slate-300">
+                {step}
+              </span>
+              {idx < flow.length - 1 && (
+                <span className="text-slate-600 font-mono text-xs">→</span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Bottom Tags */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {tags.map((tag, idx) => (
+          <span key={idx} className="px-3 py-1 rounded-full border border-white/10 bg-transparent text-xs font-medium text-slate-400 shadow-sm group-hover:border-white/20 transition-colors">
+            {tag}
+          </span>
+        ))}
+      </div>
+      
+      {/* Links */}
+      <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
+        <span className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-500 hover:text-emerald-400 transition-colors">
+          Read case study <ArrowRight className="w-4 h-4 ml-1" />
+        </span>
+        {link && (
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
+            View Project <ExternalLink className="w-4 h-4" />
+          </a>
+        )}
+        {!link && statusText && (
+          <span className="text-xs font-mono text-slate-600">{statusText}</span>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const Projects = () => {
+  const { isAdminMode } = useAdmin();
+  const [editingWorkItem, setEditingWorkItem] = useState<number | null>(null);
+  
+  const [workEditFormData, setWorkEditFormData] = useState({
+    title: '',
+    category: '',
+    description: '',
+    tags: '',
+    flow: '',
+    link: '',
+    statusText: ''
+  });
+
+  const initialWorkExperienceData = [
+    {
+      id: 1,
+      title: "BookMyShow Ticket Booking Experience",
+      category: "UX/SYSTEM DESIGN",
+      featured: true,
+      description: "Proposed a scalable pre-booking experience to improve ticket availability during high-demand events. Designed system diagrams and low-fidelity wireframes to optimize bookings.",
+      flow: ["User Research", "Competitor Analysis", "System Design", "Wireframing"],
+      tags: ["UX Research", "System Design", "Wireframing"],
+      statusText: "Case Study",
+      link: ""
+    },
+    {
+      id: 2,
+      title: "Insurance Operations Suite (Edme)",
+      category: "B2B SAAS",
+      description: "Led 0→1 development of an AI-enabled Claims Management System (CMS) and Policy Administration System (PAS), transforming fragmented workflows into scalable digital products.",
+      flow: ["Discovery", "PRD", "UAT", "Launch"],
+      tags: ["Insurtech", "B2B SaaS", "Automation"],
+      statusText: "50% higher operational efficiency",
+      link: ""
+    },
+    {
+      id: 3,
+      title: "Basket Investing (5paisa)",
+      category: "FINTECH",
+      description: "Launched a curated Basket Investing feature with the research team, boosting investor engagement through simplified, goal-based fund selection.",
+      flow: ["Research", "Design", "Implementation", "Launch"],
+      tags: ["Fintech", "Consumer Product"],
+      statusText: "Live Feature",
+      link: ""
+    },
+    {
+      id: 4,
+      title: "Customer Support AI Chatbot",
+      category: "VOICE AI",
+      description: "Launched an LLM-powered AI chatbot that automated repetitive customer queries and significantly reduced response time for user inquiries.",
+      flow: ["Intent Mapping", "LLM Integration", "Validation"],
+      tags: ["AI", "Customer Support"],
+      statusText: "Automated Support",
+      link: ""
+    }
+  ];
+
+  const [workExperienceData, setWorkExperienceData] = useState(() => {
+    const saved = localStorage.getItem('portfolioProjectsData');
+    return saved ? JSON.parse(saved) : initialWorkExperienceData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('portfolioProjectsData', JSON.stringify(workExperienceData));
+  }, [workExperienceData]);
+
+  const handleEditWork = (index: number) => {
+    const item = workExperienceData[index];
+    setWorkEditFormData({
+      title: item.title,
+      category: item.category,
+      description: item.description,
+      tags: item.tags.join(', '),
+      flow: item.flow ? item.flow.join(', ') : '',
+      link: item.link || '',
+      statusText: item.statusText || ''
+    });
+    setEditingWorkItem(index);
+  };
+
+  const handleSaveWorkEdit = () => {
+    if (editingWorkItem !== null) {
+      const updatedData = [...workExperienceData];
+      updatedData[editingWorkItem] = { 
+        ...updatedData[editingWorkItem],
+        title: workEditFormData.title,
+        category: workEditFormData.category,
+        description: workEditFormData.description,
+        tags: workEditFormData.tags.split(',').map(t => t.trim()).filter(Boolean),
+        flow: workEditFormData.flow.split(',').map(t => t.trim()).filter(Boolean),
+        link: workEditFormData.link,
+        statusText: workEditFormData.statusText
+      };
+      setWorkExperienceData(updatedData);
+      setEditingWorkItem(null);
+    }
+  };
+
+  return (
+    <section id="projects" className="py-24 bg-transparent border-t border-white/5 relative z-10 backdrop-blur-sm">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <div className="mb-16">
+          <span className="text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase mb-2 block">SELECTED WORK</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-4">
+            Things I've Built
+          </h2>
+          <p className="text-slate-400 max-w-2xl text-lg">
+            Turning operational problems into scalable products and automation.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
+          {workExperienceData.map((project: any, index: number) => (
+            <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              {isAdminMode && (
+                <div className="absolute top-4 right-4 z-50 flex gap-2">
+                  <Dialog open={editingWorkItem === index} onOpenChange={(open) => !open && setEditingWorkItem(null)}>
+                    <DialogTrigger asChild>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleEditWork(index); }}
+                        className="p-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg shadow-lg hover-lift"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>Edit Project</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4 mt-4">
+                        <div>
+                          <Label>Project Title</Label>
+                          <Input value={workEditFormData.title} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, title: e.target.value }))} />
+                        </div>
+                        <div>
+                          <Label>Category (Top Left Pill)</Label>
+                          <Input value={workEditFormData.category} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, category: e.target.value }))} />
+                        </div>
+                        <div>
+                          <Label>Description</Label>
+                          <Textarea value={workEditFormData.description} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, description: e.target.value }))} rows={3} />
+                        </div>
+                        <div>
+                          <Label>Flow Steps (Comma separated)</Label>
+                          <Input value={workEditFormData.flow} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, flow: e.target.value }))} placeholder="User Input, AI, Output" />
+                        </div>
+                        <div>
+                          <Label>Tags (Comma separated)</Label>
+                          <Input value={workEditFormData.tags} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, tags: e.target.value }))} />
+                        </div>
+                        <div>
+                          <Label>Live Project Link (URL)</Label>
+                          <Input value={workEditFormData.link} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, link: e.target.value }))} placeholder="https://..." />
+                        </div>
+                        <div>
+                          <Label>Status/Meta Text (If no link)</Label>
+                          <Input value={workEditFormData.statusText} onChange={(e) => setWorkEditFormData(prev => ({ ...prev, statusText: e.target.value }))} />
+                        </div>
+                        <Button onClick={handleSaveWorkEdit} className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
+                          Save Changes
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              )}
+              
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
