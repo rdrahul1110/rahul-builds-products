@@ -23,7 +23,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="pt-32 pb-20 sm:pt-40 sm:pb-32 overflow-hidden relative">
+    <div className="pt-32 pb-10 sm:pt-40 sm:pb-14 overflow-hidden relative">
       {isAdminMode && (
         <>
           <button
@@ -76,29 +76,33 @@ const Hero = () => {
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
-              <button 
-                onClick={() => {
-                  const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
-                  const link = document.createElement('a');
-                  link.href = downloadUrl;
-                  link.download = 'Rahul-Das-Resume.pdf';
-                  document.body.appendChild(link);
-                  link.click();
-                  document.body.removeChild(link);
-                }}
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-transparent hover:bg-white/5 text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 shadow-sm"
               >
-                Download Resume
+                View Resume
                 <Download className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
-              </button>
+              </a>
             </div>
 
             {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-              <a href="#" className="p-2.5 rounded-lg border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-500 transition-all text-slate-400">
+              <a 
+                href="https://www.linkedin.com/in/rahul-das-117a56223/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn Profile"
+                className="p-2.5 rounded-lg border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-500 transition-all text-slate-400"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2.5 rounded-lg border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-500 transition-all text-slate-400">
+              <a 
+                href="mailto:rahul4ever2011@gmail.com" 
+                aria-label="Send Email"
+                className="p-2.5 rounded-lg border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-500 transition-all text-slate-400"
+              >
                 <Mail className="w-5 h-5" />
               </a>
               <div className="flex items-center gap-2 text-sm text-slate-400 font-medium px-2">
@@ -111,17 +115,16 @@ const Hero = () => {
           {/* RIGHT COLUMN: Photo & Process Block */}
           <div className="lg:pl-8 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             
-            {/* Photo Placeholder Card */}
+            {/* Photo Card */}
             <div className="rounded-3xl border border-white/10 bg-[#111111] p-2 shadow-sm hover-lift relative overflow-hidden group">
-              <div className="aspect-[4/3] sm:aspect-video lg:aspect-[4/3] w-full rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 relative overflow-hidden">
-                <div className="text-slate-500 font-medium flex flex-col items-center gap-2">
-                  <svg className="w-8 h-8 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Add Portrait Here
-                </div>
-                {/* Optional overlay gradient on photo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#181818] relative">
+                <img 
+                  src="/profile.jpg" 
+                  alt="Rahul Das - AI Product Manager" 
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Subtle dark gradient overlay at bottom of photo */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
               </div>
             </div>
 

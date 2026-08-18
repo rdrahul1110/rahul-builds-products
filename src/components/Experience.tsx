@@ -7,40 +7,46 @@ const Experience = () => {
   const experiences = [
     {
       id: 0,
-      tags: "PRODUCT • AUTOMATION • INSURTECH",
+      tags: "INSURTECH • 0→1 PRODUCT • AI & AUTOMATION",
       role: "Associate Product Manager",
       company: "Edme Insurance Broker",
       period: "Dec 25 — June 26",
       location: "India",
       bullets: [
-        "Led 0→1 development of AI-enabled Claims Management System (CMS) and Policy Administration System (PAS).",
-        "Reduced manual effort by 10% by conducting product discovery and prioritizing requirements.",
-        "Reduced invoice processing time and manual errors by redesigning reconciliation workflows using fuzzy matching and intelligent automation."
+        "Led the 0→1 development and rollout of an AI-enabled Claims Management System (CMS) and Policy Administration System (PAS), consolidating fragmented manual operations and driving a 50% increase in operational throughput.",
+        "Conducted end-to-end product discovery across claims, underwriting, and operations teams—translating complex operational pain points into prioritized PRDs, process maps, and sprint backlogs to reduce manual effort by 10%.",
+        "Re-engineered the financial reconciliation pipeline by integrating fuzzy matching algorithms and intelligent batch processing, significantly cutting invoice processing turnarounds and eliminating manual reconciliation errors.",
+        "Directed backend data migration and schema alignment across legacy workflows, ensuring zero data loss during platform transition and unlocking real-time operational reporting.",
+        "Accelerated feature discovery and PRD authoring by leveraging Generative AI workflows (ChatGPT, Cursor, Lovable) to rapidly prototype UI flows and document technical requirements."
       ]
     },
     {
       id: 1,
-      tags: "PRODUCT • DATA • AI",
-      role: "Associate Product Manager Trainee",
+      tags: "FINTECH • WEALTH-TECH • PRODUCT GROWTH • AI",
+      role: "Associate Product Manager",
       company: "5paisa Capital Ltd",
       period: "Nov 24 — Sept 25",
       location: "India",
       bullets: [
-        "Launched a curated Basket Investing feature with the research team, boosting investor engagement.",
-        "Improved customer support efficiency by launching an LLM-powered AI chatbot automating repetitive queries.",
-        "Improved user engagement by 5% by redesigning key prelogin journeys using customer behavior insights."
+        "Spearheaded the conceptualization and launch of curated Basket Investing in partnership with research analysts, simplifying multi-asset portfolio creation for retail investors and boosting platform engagement.",
+        "Designed and deployed an LLM-powered AI customer support chatbot, automating high-frequency queries, deflecting repetitive tier-1 tickets, and drastically slashing average resolution time.",
+        "Analyzed user drop-off funnels in mutual fund discovery to design and launch interactive MF Compare and Nifty50 benchmarking tools, achieving a 3% lift in user conversion.",
+        "Redesigned key pre-login acquisition funnels with one-tap Google Sign-In and behavioral-targeted landing screens, driving a 5% increase in user engagement and faster onboarding.",
+        "Streamlined the partner ecosystem onboarding experience and self-service portal, enabling seamless onboarding of 500+ institutional and sub-broker partners.",
+        "Conducted structured Root Cause Analysis (RCA) across trade execution and operational touchpoints, proactively resolving platform bottlenecks and ensuring high reliability during market volatility."
       ]
     },
     {
       id: 2,
-      tags: "PRODUCT • RESEARCH",
+      tags: "0→1 STARTUP • USER ONBOARDING • FINTECH",
       role: "Product Management Intern",
       company: "Liquidmind AI",
       period: "Jun 24 — Aug 24",
       location: "India",
       bullets: [
-        "Reduced onboarding time by 30% by identifying friction points through user journey analysis.",
-        "Increased payment flexibility by introducing Pay Later, Partial Payment, and Pay Now options."
+        "Uncovered user friction points through detailed journey mapping and funnel analysis, redesigning the onboarding flow to achieve a 30% reduction in customer time-to-value.",
+        "Introduced flexible checkout payment structures (Pay Later, Split/Partial Payments, and Instant Pay), improving transaction affordability and conversion rates.",
+        "Collaborated closely with engineering to integrate payment verification APIs and automated webhook listeners, achieving 99% accuracy in transaction verification."
       ]
     }
   ];
@@ -81,8 +87,11 @@ const Experience = () => {
                       <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-slate-500 mb-4 block">
                         {exp.tags}
                       </span>
-                      <button className="text-slate-500 hover:text-emerald-500 transition-colors">
-                        {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      <button 
+                        aria-label="Toggle experience details"
+                        className="text-slate-500 hover:text-emerald-500 transition-colors p-1"
+                      >
+                        {isExpanded ? <ChevronUp className="w-5 h-5 text-emerald-400" /> : <ChevronDown className="w-5 h-5" />}
                       </button>
                     </div>
 
@@ -101,11 +110,11 @@ const Experience = () => {
                     </div>
 
                     {/* Expandable Content */}
-                    <div className={`transition-all duration-300 ${isExpanded ? 'max-h-[500px] opacity-100 mt-6 pt-6 border-t border-white/5' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                    <div className={`transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[800px] opacity-100 mt-6 pt-6 border-t border-white/5' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                       <ul className="space-y-4">
                         {exp.bullets.map((bullet, i) => (
-                          <li key={i} className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
-                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                          <li key={i} className="flex items-start gap-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
                             <span>{bullet}</span>
                           </li>
                         ))}

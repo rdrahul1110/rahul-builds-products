@@ -41,8 +41,8 @@ const Index = () => {
         <About />
         <Experience />
         <Projects />
-        <Impact />
         <AIPractice />
+        <Impact />
         <Skills />
         <Contact />
       </main>

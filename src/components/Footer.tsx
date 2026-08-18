@@ -7,17 +7,12 @@ const Footer = () => {
     {
       name: "LinkedIn",
       icon: <Linkedin className="h-5 w-5" />,
-      url: "https://linkedin.com/in/rahuldas"
+      url: "https://www.linkedin.com/in/rahul-das-117a56223/"
     },
     {
       name: "Email",
       icon: <Mail className="h-5 w-5" />,
-      url: "mailto:rahuldas@email.com"
-    },
-    {
-      name: "GitHub",
-      icon: <Github className="h-5 w-5" />,
-      url: "https://github.com/rahuldas"
+      url: "mailto:rahul4ever2011@gmail.com"
     }
   ];
 

@@ -95,20 +95,14 @@ const Navigation = () => {
               </>
             ) : null}
             
-            <button
-              onClick={() => {
-                const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.download = 'Rahul-Das-Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
             >
               Resume
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -154,21 +148,15 @@ const Navigation = () => {
                 </Button>
               </div>
             ) : null}
-            <button
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full inline-flex justify-center items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-300 mt-4"
-              onClick={() => {
-                const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.download = 'Rahul-Das-Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
             >
               <Download className="mr-2 h-4 w-4" />
-              Download Resume
-            </button>
+              View Resume
+            </a>
           </div>
         </div>
       )}

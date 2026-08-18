@@ -16,12 +16,27 @@ interface ProjectCardProps {
   flow?: string[];
   tags: string[];
   link?: string;
+  pdfLink?: string;
+  buttonText?: string;
   statusText?: string;
 }
 
-const ProjectCard = ({ title, category, featured, description, flow, tags, link, statusText }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, featured, description, flow, tags, link, pdfLink, buttonText, statusText }: ProjectCardProps) => {
+  const targetUrl = link || pdfLink;
+
+  const handleCardClick = () => {
+    if (targetUrl) {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const actionText = buttonText || (pdfLink ? "View Case Study" : link ? "View Prototype" : "Read case study");
+
   return (
-    <div className="group bg-[#111111] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30">
+    <div 
+      onClick={handleCardClick}
+      className="group bg-[#111111] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30"
+    >
       {/* Top Tag Bar */}
       <div className="flex items-center gap-3 mb-6">
         <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase">
@@ -70,16 +85,23 @@ const ProjectCard = ({ title, category, featured, description, flow, tags, link,
       
       {/* Links */}
       <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
-        <span className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-500 hover:text-emerald-400 transition-colors">
-          Read case study <ArrowRight className="w-4 h-4 ml-1" />
-        </span>
-        {link && (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-white transition-colors" onClick={(e) => e.stopPropagation()}>
-            View Project <ExternalLink className="w-4 h-4" />
+        {targetUrl ? (
+          <a 
+            href={targetUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-500 hover:text-emerald-400 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {actionText} <ExternalLink className="w-4 h-4 ml-0.5" />
           </a>
+        ) : (
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-500 hover:text-emerald-400 transition-colors">
+            {actionText} <ArrowRight className="w-4 h-4 ml-1" />
+          </span>
         )}
-        {!link && statusText && (
-          <span className="text-xs font-mono text-slate-600">{statusText}</span>
+        {statusText && (
+          <span className="text-xs font-mono text-slate-500">{statusText}</span>
         )}
       </div>
     </div>
@@ -97,60 +119,82 @@ const Projects = () => {
     tags: '',
     flow: '',
     link: '',
+    pdfLink: '',
+    buttonText: '',
     statusText: ''
   });
 
   const initialWorkExperienceData = [
     {
       id: 1,
-      title: "BookMyShow Ticket Booking Experience",
-      category: "UX/SYSTEM DESIGN",
+      title: "PM Interview Coach Pro — AI Mock Simulator",
+      category: "GENAI • AGENTIC WORKFLOWS",
       featured: true,
-      description: "Proposed a scalable pre-booking experience to improve ticket availability during high-demand events. Designed system diagrams and low-fidelity wireframes to optimize bookings.",
-      flow: ["User Research", "Competitor Analysis", "System Design", "Wireframing"],
-      tags: ["UX Research", "System Design", "Wireframing"],
-      statusText: "Case Study",
-      link: ""
+      description: "An AI-powered mock interview platform built with n8n workflow automation, adaptive LLM agents, and voice interaction — conducting realistic PM interviews with real-time follow-ups, rubric scoring, and structured feedback.",
+      flow: ["Resume Ingestion", "n8n Agent Pipeline", "Adaptive Voice Interview", "Rubric Evaluation"],
+      tags: ["n8n Workflows", "Multi-Agent LLMs", "Evaluation Engine", "Lovable", "Voice AI"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://pm-coach-pro.lovable.app"
     },
     {
       id: 2,
-      title: "Insurance Operations Suite (Edme)",
-      category: "B2B SAAS",
-      description: "Led 0→1 development of an AI-enabled Claims Management System (CMS) and Policy Administration System (PAS), transforming fragmented workflows into scalable digital products.",
-      flow: ["Discovery", "PRD", "UAT", "Launch"],
-      tags: ["Insurtech", "B2B SaaS", "Automation"],
-      statusText: "50% higher operational efficiency",
-      link: ""
+      title: "BookMyShow Ticket Booking Experience",
+      category: "UX / SYSTEM DESIGN",
+      featured: true,
+      description: "Proposed a scalable pre-booking architecture and waitlist engine to resolve high-demand ticket surges (Coldplay, World Cup), preventing scalping and platform crashes.",
+      flow: ["User Research", "Root Cause Analysis", "System Design", "Wireframing"],
+      tags: ["UX Research", "System Architecture", "Wireframing", "Product Teardown"],
+      statusText: "NextLeap Top Fellow",
+      buttonText: "View Case Study",
+      pdfLink: "/bookmyshow-case-study.pdf",
+      link: "/bookmyshow-case-study.pdf"
     },
     {
       id: 3,
-      title: "Basket Investing (5paisa)",
-      category: "FINTECH",
-      description: "Launched a curated Basket Investing feature with the research team, boosting investor engagement through simplified, goal-based fund selection.",
-      flow: ["Research", "Design", "Implementation", "Launch"],
-      tags: ["Fintech", "Consumer Product"],
-      statusText: "Live Feature",
-      link: ""
+      title: "Money Wrapped — Spend Story Unpacked",
+      category: "FINTECH • CONSUMER AI",
+      featured: true,
+      description: "An interactive personal finance web application that transforms raw UPI transaction statements into personalized, shareable spending patterns and behavioral stories — a 'Spotify Wrapped' for your wallet.",
+      flow: ["Upload Statement", "UPI Parser", "Behavioral Insights", "Shareable Stories"],
+      tags: ["Consumer Fintech", "Data Analytics", "AI Insights", "Interactive Prototype"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://spend-story-unpacked.lovable.app"
     },
     {
       id: 4,
-      title: "Customer Support AI Chatbot",
-      category: "VOICE AI",
-      description: "Launched an LLM-powered AI chatbot that automated repetitive customer queries and significantly reduced response time for user inquiries.",
-      flow: ["Intent Mapping", "LLM Integration", "Validation"],
-      tags: ["AI", "Customer Support"],
-      statusText: "Automated Support",
-      link: ""
+      title: "Nooka — On-Demand Workspace Marketplace",
+      category: "MARKETPLACE • 0→1 PRODUCT",
+      featured: true,
+      description: "A curated workspace discovery platform connecting remote professionals with boutique cafés, hotel lounges, call pods, and quiet creative studios — with dynamic filters, collections, and a unified WorkPass membership.",
+      flow: ["Vibe & Needs Filter", "Space Discovery", "Instant Booking", "WorkPass Pass"],
+      tags: ["Marketplace", "Product Discovery", "Consumer Tech", "Lovable"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://work-inspired-frontend.lovable.app"
+    },
+    {
+      id: 5,
+      title: "TripMind — AI Travel Copilot for India",
+      category: "TRAVEL-TECH • CONSUMER AI",
+      featured: true,
+      description: "An AI travel consultant for domestic Indian travel that computes dynamic 0–100 Trip Confidence Scores across weather seasonality, travel styles, and budget constraints — generating realistic day-wise itineraries in under 90 seconds.",
+      flow: ["Travel Preferences", "Seasonality Filter", "Trip Confidence Score", "Day-Wise Itinerary"],
+      tags: ["TravelTech", "GenAI", "Recommendation Engine", "Lovable"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://go-india-ai.lovable.app"
     }
   ];
 
   const [workExperienceData, setWorkExperienceData] = useState(() => {
-    const saved = localStorage.getItem('portfolioProjectsData');
+    const saved = localStorage.getItem('portfolioProjectsData_v7');
     return saved ? JSON.parse(saved) : initialWorkExperienceData;
   });
 
   useEffect(() => {
-    localStorage.setItem('portfolioProjectsData', JSON.stringify(workExperienceData));
+    localStorage.setItem('portfolioProjectsData_v7', JSON.stringify(workExperienceData));
   }, [workExperienceData]);
 
   const handleEditWork = (index: number) => {

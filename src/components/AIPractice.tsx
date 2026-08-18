@@ -1,184 +1,93 @@
-import { useState, useEffect, useRef } from "react";
-import { Terminal, ArrowDown } from "lucide-react";
+import { Compass, Bot, Braces, Network, Zap, FlaskConical } from "lucide-react";
 
 const AIPractice = () => {
-  const steps = [
-    "Incoming Document",
-    "AI Extraction",
-    "Structured Data",
-    "Validation",
-    "Business Rules",
-    "Human Exception",
-    "Automated Action"
-  ];
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
-
-  const terminalSteps = [
-    { text: "ingest --source=inbox --type=order", isCommand: true },
-    { text: "→ document received: PO_4821.pdf", isCommand: false, color: "text-slate-500" },
-    { text: "ai.extract(fields=[customer, sku, qty, price])", isCommand: true },
-    { text: "→ 12 fields parsed • confidence 0.96", isCommand: false, color: "text-slate-500" },
-    { text: "validate --rules=pricing,address,sku_map", isCommand: true },
-    { text: "✓ validation passed • 1 exception flagged", isCommand: false, color: "text-emerald-500/80" },
-    { text: "route --exception=human_in_loop", isCommand: true },
-    { text: "→ sales_order SO-90312 created • notified", isCommand: false, color: "text-slate-500" }
-  ];
-
-  // Intersection Observer for triggering animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (terminalRef.current) {
-      observer.observe(terminalRef.current);
+  const practices = [
+    {
+      icon: Compass,
+      title: "AI Product Management",
+      description: "Identifying where models genuinely outperform rules, defining evaluation criteria, and designing for trust, validation, fallback and human override."
+    },
+    {
+      icon: Bot,
+      title: "Claude Code & AI Agents",
+      description: "Building and orchestrating agentic workflows and using AI-assisted development to rapidly turn validated ideas into working prototypes."
+    },
+    {
+      icon: Braces,
+      title: "LLMs & Prompt Engineering",
+      description: "Structured prompting, tool use, context engineering, and grounding model outputs in domain data for reliable business workflows."
+    },
+    {
+      icon: Network,
+      title: "MCP & Workflow Automation",
+      description: "Connecting AI models with real systems, tools and workflows — moving from demos to reliable automation."
+    },
+    {
+      icon: Zap,
+      title: "Rapid Prototyping",
+      description: "Using AI-assisted development to prototype concepts quickly, validate assumptions and reduce unnecessary engineering cycles."
+    },
+    {
+      icon: FlaskConical,
+      title: "Future AI Experiments",
+      tag: "EXPLORATORY",
+      description: "Exploring AI-assisted planning, intelligent monitoring, exception detection, natural-language constraints and autonomous workflow agents."
     }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Typing Effect Logic
-  useEffect(() => {
-    if (!isVisible) return;
-    if (currentStep >= terminalSteps.length) return;
-
-    const step = terminalSteps[currentStep];
-
-    if (step.isCommand) {
-      if (currentCharIndex < step.text.length) {
-        const timeout = setTimeout(() => {
-          setCurrentCharIndex((prev) => prev + 1);
-        }, 20 + Math.random() * 20); // Fast typing
-        return () => clearTimeout(timeout);
-      } else {
-        const timeout = setTimeout(() => {
-          setCurrentStep((prev) => prev + 1);
-          setCurrentCharIndex(0);
-        }, 300); // pause before output
-        return () => clearTimeout(timeout);
-      }
-    } else {
-      const timeout = setTimeout(() => {
-        setCurrentStep((prev) => prev + 1);
-        setCurrentCharIndex(0);
-      }, 500); // pause after output
-      return () => clearTimeout(timeout);
-    }
-  }, [isVisible, currentStep, currentCharIndex, terminalSteps.length]);
-
-  // Highlight looping logic
-  useEffect(() => {
-    if (isHovered || !isVisible) return;
-
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % steps.length);
-    }, 2000); // Cycles every 2 seconds
-
-    return () => clearInterval(interval);
-  }, [isHovered, isVisible, steps.length]);
+  ];
 
   return (
     <section id="ai-practice" className="py-24 relative z-10 bg-[#0a0a0a]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
-        <div className="mb-16">
-          <span className="text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase mb-2 block">AI + AUTOMATION</span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-4">
-            I Build Practical AI Systems
+        {/* Header */}
+        <div className="mb-12">
+          <span className="text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase mb-3 block">
+            AI PRACTICE
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-3">
+            AI, in production terms
           </h2>
-          <p className="text-slate-400 max-w-2xl text-lg">
-            A product professional who understands how AI can be applied to real business workflows — not an AI researcher, but the person who makes it work in operations.
+          <p className="text-slate-300 text-base sm:text-lg font-medium mb-4">
+            How I apply AI to real products, workflows and business problems.
+          </p>
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-3xl">
+            I treat AI as a product material — something shaped around a business decision, not a feature bolted on.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          {/* Terminal Block */}
-          <div className="rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-sm hover:border-white/20 transition-colors">
-            {/* Terminal Header */}
-            <div className="bg-[#1a1a1a] border-b border-white/5 px-4 py-3 flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-              </div>
-              <div className="mx-auto flex items-center text-xs font-mono text-slate-500">
-                <Terminal className="w-3.5 h-3.5 mr-2" />
-                intent-to-order • pipeline
-              </div>
-            </div>
-            {/* Terminal Body */}
-            <div ref={terminalRef} className="p-6 font-mono text-sm leading-relaxed overflow-x-auto text-slate-300 relative min-h-[300px]">
-              {terminalSteps.map((step, index) => {
-                if (index > currentStep) return null;
-                
-                const isCurrentStep = index === currentStep;
-                const displayedText = (step.isCommand && isCurrentStep) 
-                  ? step.text.slice(0, currentCharIndex) 
-                  : step.text;
-
-                return (
-                  <div key={index} className={`mb-${step.isCommand ? '1' : '4'} ${step.isCommand ? 'text-emerald-400 flex items-center gap-2' : (step.color + ' ml-2')}`}>
-                    {step.isCommand && <span>$</span>}
-                    <span>{displayedText}</span>
-                    {step.isCommand && isCurrentStep && (
-                      <span className="inline-block w-2 h-4 bg-emerald-500 animate-pulse ml-1"></span>
-                    )}
+        {/* 6-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {practices.map((practice, index) => {
+            const Icon = practice.icon;
+            return (
+              <div 
+                key={index}
+                className="group bg-[#111111] rounded-2xl border border-white/10 p-6 sm:p-8 hover-lift relative overflow-hidden shadow-sm transition-all duration-300 hover:border-emerald-500/30"
+              >
+                {/* Header Row: Icon + Title (+ optional tag) */}
+                <div className="flex items-center gap-3.5 mb-4">
+                  <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-colors flex-shrink-0">
+                    <Icon className="w-5 h-5" />
                   </div>
-                );
-              })}
-              {currentStep >= terminalSteps.length && (
-                <div className="text-emerald-400 flex items-center gap-2 mt-1">
-                  <span>$</span>
-                  <span className="inline-block w-2 h-4 bg-emerald-500 animate-pulse ml-1"></span>
+                  <h3 className="text-lg sm:text-xl font-bold font-display text-white">
+                    {practice.title}
+                  </h3>
+                  {practice.tag && (
+                    <span className="ml-auto text-[10px] font-mono font-bold tracking-widest px-2.5 py-1 rounded-full border border-white/10 bg-white/5 text-slate-400 uppercase">
+                      {practice.tag}
+                    </span>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
 
-          {/* Data Flow Block */}
-          <div className="rounded-2xl border border-white/10 bg-[#111111] p-6 shadow-sm hover:border-white/20 transition-colors">
-            <div className="text-xs font-mono font-bold tracking-widest text-slate-500 uppercase mb-6">DATA_FLOW</div>
-            
-            <div className="flex flex-col items-center">
-              {steps.map((step, i) => {
-                const isActive = activeIndex === i;
-
-                return (
-                  <div key={i} className="w-full flex flex-col items-center">
-                    <div 
-                      onMouseEnter={() => { setActiveIndex(i); setIsHovered(true); }}
-                      onMouseLeave={() => setIsHovered(false)}
-                      className={`w-full rounded-lg py-3 px-4 text-sm font-medium mb-2 relative overflow-hidden transition-all duration-500 flex items-center ${
-                        isActive 
-                          ? "bg-[#1a1a1a] border border-amber-500/50 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)] -translate-y-0.5" 
-                          : "bg-[#1a1a1a] border border-white/5 text-slate-300 shadow-sm hover:border-amber-500/30"
-                      }`}
-                    >
-                      <span className="relative z-10">{step}</span>
-                      <div className={`absolute inset-0 transition-colors duration-500 ${isActive ? "bg-amber-500/10" : "bg-transparent"}`}></div>
-                    </div>
-                    {i < steps.length - 1 && (
-                      <ArrowDown className={`w-4 h-4 mb-2 transition-colors duration-500 ${
-                        isActive || activeIndex === i + 1 ? "text-amber-500/80 animate-bounce" : "text-emerald-500/50"
-                      }`} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
+                {/* Description */}
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                  {practice.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );

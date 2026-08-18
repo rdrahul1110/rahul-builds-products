@@ -60,7 +60,7 @@ const Process = () => {
   }, [isHovered, isVisible, steps.length]);
 
   return (
-    <section ref={sectionRef} className="py-24 relative z-10 bg-[#0a0a0a] overflow-hidden">
+    <section ref={sectionRef} className="pt-8 pb-20 sm:pt-10 sm:pb-24 relative z-10 bg-[#0a0a0a] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         
         <div className="mb-16">

@@ -11,21 +11,15 @@ const Contact = () => {
           <p className="text-slate-400 text-lg mb-8">
             Explore my experience, projects and product journey in one page.
           </p>
-          <button 
-            onClick={() => {
-              const downloadUrl = `https://lggoryptfxfuqtlkojsd.supabase.co/storage/v1/object/public/portfolio-files/rahul-das-resume.pdf`;
-              const link = document.createElement('a');
-              link.href = downloadUrl;
-              link.download = 'Rahul-Das-Resume.pdf';
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            }}
+          <a 
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]"
           >
-            Download Resume
+            View Resume
             <Download className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         {/* Traditional Contact */}
@@ -37,7 +31,7 @@ const Contact = () => {
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <a 
-            href="https://linkedin.com/in/your-profile" 
+            href="https://www.linkedin.com/in/rahul-das-117a56223/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#111111] border border-white/10 px-8 py-4 text-sm font-semibold text-white hover:border-emerald-500/50 hover:bg-white/5 hover:text-emerald-400 transition-all duration-300 shadow-sm hover-lift"
