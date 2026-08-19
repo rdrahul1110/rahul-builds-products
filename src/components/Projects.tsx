@@ -245,9 +245,9 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 lg:gap-6 auto-rows-fr">
           {workExperienceData.map((project: any, index: number) => (
-            <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div key={index} className={`relative animate-fade-in ${index === 0 ? 'lg:col-span-4' : index === 1 ? 'lg:col-span-2' : 'lg:col-span-2'}`} style={{ animationDelay: `${index * 0.1}s` }}>
               {isAdminMode && (
                 <div className="absolute top-4 right-4 z-50 flex gap-2">
                   <Dialog open={editingWorkItem === index} onOpenChange={(open) => !open && setEditingWorkItem(null)}>
