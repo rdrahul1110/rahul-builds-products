@@ -68,7 +68,7 @@ const Hero = () => {
 
             <h1 className="hero-headline font-extrabold tracking-tight text-white mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               Transforming Complex Problems Into
-              <span className="text-emerald-500 block mt-2">Products & AI Solutions.</span>
+              <span className="text-gradient-ai block mt-2">Products & AI Solutions.</span>
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed mb-8 animate-fade-in max-w-xl" style={{ animationDelay: '0.2s' }}>
