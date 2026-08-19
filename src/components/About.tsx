@@ -54,7 +54,7 @@ const About = () => {
           
           <div className="grid grid-cols-1 gap-4 max-w-3xl">
             {education.map((item, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-[#111111] p-6 shadow-sm hover-lift flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+              <div key={i} className="rounded-2xl border border-white/10 bg-[#0D0F14] p-6 shadow-sm hover-lift flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                 <div>
                   <h4 className="font-bold text-white font-display text-lg mb-1">{item.degree}</h4>
                   <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors">{item.school}</p>

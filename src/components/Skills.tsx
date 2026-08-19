@@ -61,7 +61,7 @@ const Skills = () => {
   }, [isHovered, isVisible, categories.length]);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-24 relative z-10 bg-[#0a0a0a]">
+    <section ref={sectionRef} id="skills" className="py-24 relative z-10 bg-[#08090C]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">
@@ -86,7 +86,7 @@ const Skills = () => {
                 className={`min-w-[280px] lg:min-w-0 flex-1 rounded-3xl p-6 border snap-start transition-all duration-500 flex flex-col ${
                   isActive 
                     ? "border-emerald-500 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.1)] -translate-y-1" 
-                    : "border-white/10 bg-[#111111] hover:border-emerald-500/30"
+                    : "border-white/10 bg-[#0D0F14] hover:border-emerald-500/30"
                 }`}
               >
                 <div className="flex items-center gap-3 mb-8">

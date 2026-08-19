@@ -52,7 +52,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 relative z-10 bg-[#0a0a0a]">
+    <section id="experience" className="py-24 relative z-10 bg-[#08090C]">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">
@@ -71,11 +71,11 @@ const Experience = () => {
             return (
               <div key={exp.id} className="relative animate-fade-in" style={{ animationDelay: `${exp.id * 0.1}s` }}>
                 {/* Timeline Dot */}
-                <div className={`absolute -left-[2.5rem] sm:-left-[3rem] top-8 w-4 h-4 rounded-full border-2 bg-[#0a0a0a] transition-colors duration-300 ${isExpanded ? 'border-emerald-500' : 'border-white/20'}`}></div>
+                <div className={`absolute -left-[2.5rem] sm:-left-[3rem] top-8 w-4 h-4 rounded-full border-2 bg-[#08090C] transition-colors duration-300 ${isExpanded ? 'border-emerald-500' : 'border-white/20'}`}></div>
 
                 {/* Experience Card */}
                 <div 
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden bg-[#111111] hover-lift cursor-pointer ${
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden bg-[#0D0F14] hover-lift cursor-pointer ${
                     isExpanded 
                       ? 'border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.1)]' 
                       : 'border-white/10 hover:border-emerald-500/50 hover:shadow-sm'

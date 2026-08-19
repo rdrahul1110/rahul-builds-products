@@ -21,7 +21,7 @@ const Impact = () => {
   ];
 
   return (
-    <section id="impact" className="py-24 relative z-10 bg-[#0a0a0a]">
+    <section id="impact" className="py-24 relative z-10 bg-[#08090C]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">
@@ -38,7 +38,7 @@ const Impact = () => {
           {impacts.map((item, i) => (
             <div 
               key={i} 
-              className="rounded-3xl border border-white/10 bg-[#111111] p-8 shadow-sm hover-lift hover:border-emerald-500/30 transition-all duration-300 flex flex-col h-full"
+              className="rounded-3xl border border-white/10 bg-[#0D0F14] p-8 shadow-sm hover-lift hover:border-emerald-500/30 transition-all duration-300 flex flex-col h-full"
             >
               <div className="mb-6">
                 <span className="text-[10px] font-mono font-bold tracking-widest text-slate-500 uppercase block mb-1">PROBLEM</span>

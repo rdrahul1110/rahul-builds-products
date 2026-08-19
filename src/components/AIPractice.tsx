@@ -36,7 +36,7 @@ const AIPractice = () => {
   ];
 
   return (
-    <section id="ai-practice" className="py-24 relative z-10 bg-[#0a0a0a]">
+    <section id="ai-practice" className="py-24 relative z-10 bg-[#08090C]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -62,7 +62,7 @@ const AIPractice = () => {
             return (
               <div 
                 key={index}
-                className="group bg-[#111111] rounded-2xl border border-white/10 p-6 sm:p-8 hover-lift relative overflow-hidden shadow-sm transition-all duration-300 hover:border-emerald-500/30"
+                className="group bg-[#0D0F14] rounded-2xl border border-white/10 p-6 sm:p-8 hover-lift relative overflow-hidden shadow-sm transition-all duration-300 hover:border-emerald-500/30"
               >
                 {/* Header Row: Icon + Title (+ optional tag) */}
                 <div className="flex items-center gap-3.5 mb-4">

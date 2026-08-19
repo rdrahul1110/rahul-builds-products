@@ -35,7 +35,7 @@ const ProjectCard = ({ title, category, featured, description, flow, tags, link,
   return (
     <div 
       onClick={handleCardClick}
-      className="group bg-[#111111] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30"
+      className="group bg-[#0D0F14] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30"
     >
       {/* Top Tag Bar */}
       <div className="flex items-center gap-3 mb-6">

@@ -60,7 +60,7 @@ const Process = () => {
   }, [isHovered, isVisible, steps.length]);
 
   return (
-    <section ref={sectionRef} className="pt-8 pb-20 sm:pt-10 sm:pb-24 relative z-10 bg-[#0a0a0a] overflow-hidden">
+    <section ref={sectionRef} className="pt-8 pb-20 sm:pt-10 sm:pb-24 relative z-10 bg-[#08090C] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
         
         <div className="mb-16">
@@ -89,7 +89,7 @@ const Process = () => {
                   className={`w-[260px] lg:w-full flex-1 snap-start relative z-10 rounded-2xl border p-6 sm:p-8 transition-all duration-500 shadow-sm flex flex-col ${
                     isActive 
                       ? "bg-emerald-500/5 border-emerald-500/50 -translate-y-1 shadow-[0_0_30px_rgba(16,185,129,0.15)]" 
-                      : "bg-[#111111] border-white/10 hover:border-emerald-500/30"
+                      : "bg-[#0D0F14] border-white/10 hover:border-emerald-500/30"
                   }`}
                 >
                   <div className={`text-sm font-mono font-bold mb-6 w-8 h-8 rounded-full flex items-center justify-center border transition-colors duration-500 ${

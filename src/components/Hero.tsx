@@ -42,7 +42,7 @@ const Hero = () => {
           
           {/* LEFT COLUMN: Text Content */}
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111111]/50 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold text-emerald-500 mb-8 animate-fade-in shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0D0F14]/50 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold text-emerald-500 mb-8 animate-fade-in shadow-sm">
               <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-dot"></span>
               <span className="tracking-widest uppercase">PRODUCT • AI • AUTOMATION • ANALYTICS</span>
             </div>
@@ -61,7 +61,7 @@ const Hero = () => {
               <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
                 <span className="font-semibold text-white text-sm">Rahul Das — AI Product Manager</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-[#111111]">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-[#0D0F14]">
                 <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                 <span className="text-sm font-medium text-slate-400">Open to AI PM / APM roles</span>
               </div>
@@ -116,8 +116,8 @@ const Hero = () => {
           <div className="lg:pl-8 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             
             {/* Photo Card */}
-            <div className="rounded-3xl border border-white/10 bg-[#111111] p-2 shadow-sm hover-lift relative overflow-hidden group">
-              <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#181818] relative">
+            <div className="rounded-3xl border border-white/10 bg-[#0D0F14] p-2 shadow-sm hover-lift relative overflow-hidden group">
+              <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#12161F] relative">
                 <img 
                   src="/profile.jpg" 
                   alt="Rahul Das - AI Product Manager" 
@@ -129,7 +129,7 @@ const Hero = () => {
             </div>
 
             {/* Product Thinking System Block */}
-            <div className="rounded-3xl border border-white/10 bg-[#111111] p-6 shadow-sm hover-lift">
+            <div className="rounded-3xl border border-white/10 bg-[#0D0F14] p-6 shadow-sm hover-lift">
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs font-mono font-bold tracking-widest text-slate-500">PRODUCT_THINKING.SYSTEM</span>
                 <div className="flex gap-1.5">
@@ -151,7 +151,7 @@ const Hero = () => {
                       className={`w-full text-left flex items-center gap-4 p-3 rounded-xl border transition-all duration-300 ${
                         activeStep === step.id 
                           ? 'border-emerald-500 bg-emerald-500/10 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
-                          : 'border-white/10 bg-[#111111] hover:border-white/20 hover:bg-white/5'
+                          : 'border-white/10 bg-[#0D0F14] hover:border-white/20 hover:bg-white/5'
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold font-mono transition-colors ${

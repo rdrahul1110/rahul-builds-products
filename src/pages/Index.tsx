@@ -22,7 +22,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden selection:bg-emerald-500/30 selection:text-white bg-[#0a0a0a] text-slate-100">
+    <div className="relative min-h-screen overflow-x-hidden selection:bg-emerald-500/30 selection:text-white bg-[#08090C] text-slate-100">
       {/* Ambient Mouse Tracker Background */}
       <div className="pointer-events-none fixed inset-0 z-30 mouse-glow mix-blend-screen opacity-50"></div>
 
