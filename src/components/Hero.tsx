@@ -135,20 +135,36 @@ const Hero = () => {
           <div className="lg:pl-8 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             
             {/* Photo Card */}
-            <div className="rounded-3xl border border-white/10 bg-[#0D0F14] p-2 shadow-sm hover-lift relative overflow-hidden group">
+            <div className="rounded-3xl glass-panel edge-glow p-2 shadow-sm hover-lift relative overflow-hidden group">
               <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#12161F] relative">
                 <img 
                   src="/profile.jpg" 
                   alt="Rahul Das - AI Product Manager" 
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Subtle dark gradient overlay at bottom of photo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+                {/* Radar / grid overlay */}
+                <div className="pointer-events-none absolute inset-0 grid-bg opacity-25 mix-blend-overlay"></div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
+
+                {/* Corner brackets */}
+                <div className="pointer-events-none absolute top-3 left-3 w-6 h-6 border-l border-t border-emerald-400/50 rounded-tl-md"></div>
+                <div className="pointer-events-none absolute bottom-3 right-3 w-6 h-6 border-r border-b border-cyan-400/50 rounded-br-md"></div>
+
+                {/* Corner system tag */}
+                <div className="absolute top-3 right-3 data-chip chip-cyan backdrop-blur-sm">
+                  [SYS: APM • BITS PILANI]
+                </div>
+
+                {/* Live signal footer */}
+                <div className="absolute bottom-3 left-3 flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+                  SIGNAL: LIVE
+                </div>
               </div>
             </div>
 
             {/* Product Thinking System Block */}
-            <div className="rounded-3xl border border-white/10 bg-[#0D0F14] p-6 shadow-sm hover-lift">
+            <div className="rounded-3xl glass-panel edge-glow p-6 shadow-sm hover-lift">
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs font-mono font-bold tracking-widest text-slate-500">PRODUCT_THINKING.SYSTEM</span>
                 <div className="flex gap-1.5">
