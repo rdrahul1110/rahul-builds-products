@@ -58,8 +58,8 @@ const ProjectCard = ({ title, category, featured, description, flow, tags, link,
       </div>
       
       {/* Title & Desc */}
-      <h3 className="text-2xl font-bold font-display text-white mb-3">{title}</h3>
-      <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
+      <h3 className="relative text-2xl font-bold font-display text-white mb-3">{title}</h3>
+      <p className="relative text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
       
       {/* Flow Sequence */}
       {flow && flow.length > 0 && (
