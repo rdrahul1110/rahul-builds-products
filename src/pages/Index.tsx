@@ -29,9 +29,9 @@ const Index = () => {
       {/* Background Grid */}
       <div className="pointer-events-none fixed inset-0 z-[-1] grid-bg grid-fade opacity-30"></div>
       
-      {/* Ambient Emerald Orbs (Static Base) */}
-      <div className="pointer-events-none fixed top-[-10%] left-[-10%] z-[-2] h-[600px] w-[600px] rounded-full opacity-20 float-soft mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 60%)' }}></div>
-      <div className="pointer-events-none fixed top-[20%] right-[-10%] z-[-2] h-[500px] w-[500px] rounded-full opacity-15 float-delayed mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 60%)' }}></div>
+      {/* Ambient Emerald / Cyan Orbs (Static Base) */}
+      <div className="pointer-events-none fixed top-[-10%] left-[-10%] z-[-2] h-[600px] w-[600px] rounded-full opacity-25 float-soft mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(0,245,160,0.16) 0%, transparent 60%)' }}></div>
+      <div className="pointer-events-none fixed top-[20%] right-[-10%] z-[-2] h-[500px] w-[500px] rounded-full opacity-20 float-delayed mix-blend-screen" style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.16) 0%, transparent 60%)' }}></div>
 
       <Navigation />
       
