@@ -42,9 +42,28 @@ const Hero = () => {
           
           {/* LEFT COLUMN: Text Content */}
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0D0F14]/50 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold text-emerald-500 mb-8 animate-fade-in shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-dot"></span>
-              <span className="tracking-widest uppercase">PRODUCT • AI • AUTOMATION • ANALYTICS</span>
+            {/* Live telemetry ticker */}
+            <div className="max-w-xl overflow-hidden rounded-full glass-panel px-4 py-1.5 mb-8 animate-fade-in ticker-mask">
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 pulse-dot flex-shrink-0"></span>
+                <div className="overflow-hidden">
+                  <div className="ticker-track font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+                    {[0, 1].map((k) => (
+                      <span key={k} className="pr-10 text-emerald-400">
+                        FINTECH INFRASTRUCTURE <span className="text-slate-500">×</span> <span className="text-cyan-300">APPLIED AI</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-slate-400">OPEN TO HIGH-IMPACT PM ROLES</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-cyan-300">LEDGER RECON</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-emerald-400">AGENTIC WORKFLOWS</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-slate-400">LLM EVALS</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h1 className="hero-headline font-extrabold tracking-tight text-white mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
