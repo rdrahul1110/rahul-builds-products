@@ -12,6 +12,7 @@ const Experience = () => {
       company: "Edme Insurance Broker",
       period: "Dec 25 — June 26",
       location: "India",
+      metrics: ["+50% OPS THROUGHPUT", "10% ↓ MANUAL EFFORT", "ZERO DATA LOSS"],
       bullets: [
         "Led the 0→1 development and rollout of an AI-enabled Claims Management System (CMS) and Policy Administration System (PAS), consolidating fragmented manual operations and driving a 50% increase in operational throughput.",
         "Conducted end-to-end product discovery across claims, underwriting, and operations teams—translating complex operational pain points into prioritized PRDs, process maps, and sprint backlogs to reduce manual effort by 10%.",
@@ -27,6 +28,7 @@ const Experience = () => {
       company: "5paisa Capital Ltd",
       period: "Nov 24 — Sept 25",
       location: "India",
+      metrics: ["+3% MF CONVERSION", "+5% ENGAGEMENT", "500+ PARTNERS"],
       bullets: [
         "Spearheaded the conceptualization and launch of curated Basket Investing in partnership with research analysts, simplifying multi-asset portfolio creation for retail investors and boosting platform engagement.",
         "Designed and deployed an LLM-powered AI customer support chatbot, automating high-frequency queries, deflecting repetitive tier-1 tickets, and drastically slashing average resolution time.",
@@ -43,6 +45,7 @@ const Experience = () => {
       company: "Liquidmind AI",
       period: "Jun 24 — Aug 24",
       location: "India",
+      metrics: ["30% ↓ TIME-TO-VALUE", "99% PAY ACCURACY"],
       bullets: [
         "Uncovered user friction points through detailed journey mapping and funnel analysis, redesigning the onboarding flow to achieve a 30% reduction in customer time-to-value.",
         "Introduced flexible checkout payment structures (Pay Later, Split/Partial Payments, and Instant Pay), improving transaction affordability and conversion rates.",
@@ -52,7 +55,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 relative z-10 bg-[#0a0a0a]">
+    <section id="experience" className="py-24 relative z-10 bg-[#08090C]">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         
         <div className="mb-16">
@@ -71,11 +74,11 @@ const Experience = () => {
             return (
               <div key={exp.id} className="relative animate-fade-in" style={{ animationDelay: `${exp.id * 0.1}s` }}>
                 {/* Timeline Dot */}
-                <div className={`absolute -left-[2.5rem] sm:-left-[3rem] top-8 w-4 h-4 rounded-full border-2 bg-[#0a0a0a] transition-colors duration-300 ${isExpanded ? 'border-emerald-500' : 'border-white/20'}`}></div>
+                <div className={`absolute -left-[2.5rem] sm:-left-[3rem] top-8 w-4 h-4 rounded-full border-2 bg-[#08090C] transition-colors duration-300 ${isExpanded ? 'border-emerald-500' : 'border-white/20'}`}></div>
 
                 {/* Experience Card */}
                 <div 
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden bg-[#111111] hover-lift cursor-pointer ${
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden glass-panel hover-lift edge-glow cursor-pointer ${
                     isExpanded 
                       ? 'border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.1)]' 
                       : 'border-white/10 hover:border-emerald-500/50 hover:shadow-sm'
@@ -84,9 +87,13 @@ const Experience = () => {
                 >
                   <div className="p-6 sm:p-8">
                     <div className="flex items-start justify-between mb-2">
-                      <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-slate-500 mb-4 block">
-                        {exp.tags}
-                      </span>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {exp.tags.split("•").map((t, i) => (
+                          <span key={i} className={`data-chip ${i === 0 ? "chip-emerald" : "chip-cyan"}`}>
+                            [{t.trim()}]
+                          </span>
+                        ))}
+                      </div>
                       <button 
                         aria-label="Toggle experience details"
                         className="text-slate-500 hover:text-emerald-500 transition-colors p-1"
@@ -107,6 +114,15 @@ const Experience = () => {
                         </svg>
                         {exp.location}
                       </div>
+                    </div>
+
+                    {/* Telemetry metric chips */}
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {exp.metrics.map((m, i) => (
+                        <span key={i} className={`data-chip ${i === 0 ? "chip-emerald metric-pulse" : "chip-neutral"}`}>
+                          {m}
+                        </span>
+                      ))}
                     </div>
 
                     {/* Expandable Content */}

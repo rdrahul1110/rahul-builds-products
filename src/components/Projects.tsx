@@ -35,17 +35,20 @@ const ProjectCard = ({ title, category, featured, description, flow, tags, link,
   return (
     <div 
       onClick={handleCardClick}
-      className="group bg-[#111111] rounded-3xl border border-white/10 p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500 hover:border-emerald-500/30"
+      className="group glass-panel edge-glow rounded-3xl p-7 sm:p-8 hover-lift relative overflow-hidden shadow-sm h-full flex flex-col cursor-pointer transition-all duration-500"
     >
-      {/* Top Tag Bar */}
-      <div className="flex items-center gap-3 mb-6">
-        <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-emerald-500 uppercase">
-          {category}
-        </span>
-        {featured && (
-          <span className="px-2 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold tracking-wider uppercase">
-            Featured
+      {/* Faint gridlines */}
+      <div className="pointer-events-none absolute inset-0 grid-bg opacity-[0.12]"></div>
+
+      {/* Top Tag Bar: dual domain / tech badges */}
+      <div className="relative flex flex-wrap items-center gap-2 mb-6">
+        {category.split("•").map((part: string, i: number) => (
+          <span key={i} className={`data-chip ${i === 0 ? 'chip-emerald' : 'chip-cyan'}`}>
+            [{part.trim()}]
           </span>
+        ))}
+        {featured && (
+          <span className="data-chip chip-neutral">Featured</span>
         )}
         <div className="ml-auto text-slate-600 group-hover:text-emerald-500 transition-colors">
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,8 +58,8 @@ const ProjectCard = ({ title, category, featured, description, flow, tags, link,
       </div>
       
       {/* Title & Desc */}
-      <h3 className="text-2xl font-bold font-display text-white mb-3">{title}</h3>
-      <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
+      <h3 className="relative text-2xl font-bold font-display text-white mb-3">{title}</h3>
+      <p className="relative text-slate-400 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
       
       {/* Flow Sequence */}
       {flow && flow.length > 0 && (
@@ -206,6 +209,8 @@ const Projects = () => {
       tags: item.tags.join(', '),
       flow: item.flow ? item.flow.join(', ') : '',
       link: item.link || '',
+      pdfLink: item.pdfLink || '',
+      buttonText: item.buttonText || '',
       statusText: item.statusText || ''
     });
     setEditingWorkItem(index);
@@ -243,9 +248,9 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 lg:gap-6 auto-rows-fr">
           {workExperienceData.map((project: any, index: number) => (
-            <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            <div key={index} className={`relative animate-fade-in ${index === 0 ? 'lg:col-span-4' : index === 1 ? 'lg:col-span-2' : 'lg:col-span-2'}`} style={{ animationDelay: `${index * 0.1}s` }}>
               {isAdminMode && (
                 <div className="absolute top-4 right-4 z-50 flex gap-2">
                   <Dialog open={editingWorkItem === index} onOpenChange={(open) => !open && setEditingWorkItem(null)}>

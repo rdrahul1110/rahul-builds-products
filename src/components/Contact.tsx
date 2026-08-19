@@ -2,11 +2,11 @@ import { Linkedin, Mail, ArrowUpRight, Download } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 relative z-10 bg-[#0a0a0a] border-t border-white/5">
+    <section id="contact" className="py-24 relative z-10 bg-[#08090C] border-t border-white/5">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Full Story CTA Box */}
-        <div className="mb-24 bg-[#111111] border border-white/10 rounded-3xl p-8 sm:p-12 shadow-sm animate-fade-in hover:border-emerald-500/20 transition-colors">
+        <div className="mb-24 glass-panel edge-glow rounded-3xl p-8 sm:p-12 shadow-sm animate-fade-in hover:border-emerald-500/20 transition-colors">
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white mb-4">Want the full story?</h2>
           <p className="text-slate-400 text-lg mb-8">
             Explore my experience, projects and product journey in one page.
@@ -34,7 +34,7 @@ const Contact = () => {
             href="https://www.linkedin.com/in/rahul-das-117a56223/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#111111] border border-white/10 px-8 py-4 text-sm font-semibold text-white hover:border-emerald-500/50 hover:bg-white/5 hover:text-emerald-400 transition-all duration-300 shadow-sm hover-lift"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#0D0F14] border border-white/10 px-8 py-4 text-sm font-semibold text-white hover:border-emerald-500/50 hover:bg-white/5 hover:text-emerald-400 transition-all duration-300 shadow-sm hover-lift"
           >
             <Linkedin className="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" />
             Connect on LinkedIn

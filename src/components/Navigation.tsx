@@ -39,7 +39,7 @@ const Navigation = () => {
   ];
 
   return (
-    <header className={`fixed top-0 z-50 w-full border-b transition-all duration-300 ${isScrolled ? 'bg-[#0a0a0a]/90 border-white/5 shadow-sm' : 'bg-[#0a0a0a]/70 border-transparent hover:bg-[#0a0a0a]/90'} backdrop-blur-md`}>
+    <header className={`fixed top-0 z-50 w-full border-b transition-all duration-300 ${isScrolled ? 'bg-[#08090C]/90 border-white/5 shadow-sm' : 'bg-[#08090C]/70 border-transparent hover:bg-[#08090C]/90'} backdrop-blur-md`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           
@@ -55,7 +55,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 border border-white/10 rounded-full px-2 py-1 bg-[#111111]/50 backdrop-blur-sm">
+          <div className="hidden md:flex items-center space-x-1 border border-white/10 rounded-full px-2 py-1 bg-[#0D0F14]/50 backdrop-blur-sm">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -117,7 +117,7 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#0a0a0a] border-t border-white/5 animate-fade-in shadow-lg">
+        <div className="md:hidden bg-[#08090C] border-t border-white/5 animate-fade-in shadow-lg">
           <div className="container py-6 space-y-4 px-4">
             {navItems.map((item) => (
               <button

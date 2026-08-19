@@ -42,14 +42,33 @@ const Hero = () => {
           
           {/* LEFT COLUMN: Text Content */}
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111111]/50 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold text-emerald-500 mb-8 animate-fade-in shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-dot"></span>
-              <span className="tracking-widest uppercase">PRODUCT • AI • AUTOMATION • ANALYTICS</span>
+            {/* Live telemetry ticker */}
+            <div className="max-w-xl overflow-hidden rounded-full glass-panel px-4 py-1.5 mb-8 animate-fade-in ticker-mask">
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 pulse-dot flex-shrink-0"></span>
+                <div className="overflow-hidden">
+                  <div className="ticker-track font-mono text-[11px] font-bold uppercase tracking-[0.18em]">
+                    {[0, 1].map((k) => (
+                      <span key={k} className="pr-10 text-emerald-400">
+                        FINTECH INFRASTRUCTURE <span className="text-slate-500">×</span> <span className="text-cyan-300">APPLIED AI</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-slate-400">OPEN TO HIGH-IMPACT PM ROLES</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-cyan-300">LEDGER RECON</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-emerald-400">AGENTIC WORKFLOWS</span>
+                        <span className="text-slate-600"> • </span>
+                        <span className="text-slate-400">LLM EVALS</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h1 className="hero-headline font-extrabold tracking-tight text-white mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               Transforming Complex Problems Into
-              <span className="text-emerald-500 block mt-2">Products & AI Solutions.</span>
+              <span className="text-gradient-ai block mt-2">Products & AI Solutions.</span>
             </h1>
 
             <p className="text-lg text-slate-400 leading-relaxed mb-8 animate-fade-in max-w-xl" style={{ animationDelay: '0.2s' }}>
@@ -61,7 +80,7 @@ const Hero = () => {
               <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
                 <span className="font-semibold text-white text-sm">Rahul Das — AI Product Manager</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-[#111111]">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-[#0D0F14]">
                 <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                 <span className="text-sm font-medium text-slate-400">Open to AI PM / APM roles</span>
               </div>
@@ -116,20 +135,36 @@ const Hero = () => {
           <div className="lg:pl-8 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             
             {/* Photo Card */}
-            <div className="rounded-3xl border border-white/10 bg-[#111111] p-2 shadow-sm hover-lift relative overflow-hidden group">
-              <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#181818] relative">
+            <div className="rounded-3xl glass-panel edge-glow p-2 shadow-sm hover-lift relative overflow-hidden group">
+              <div className="aspect-[3/4] sm:aspect-[4/5] w-full rounded-2xl overflow-hidden bg-[#12161F] relative">
                 <img 
                   src="/profile.jpg" 
                   alt="Rahul Das - AI Product Manager" 
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Subtle dark gradient overlay at bottom of photo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+                {/* Radar / grid overlay */}
+                <div className="pointer-events-none absolute inset-0 grid-bg opacity-25 mix-blend-overlay"></div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"></div>
+
+                {/* Corner brackets */}
+                <div className="pointer-events-none absolute top-3 left-3 w-6 h-6 border-l border-t border-emerald-400/50 rounded-tl-md"></div>
+                <div className="pointer-events-none absolute bottom-3 right-3 w-6 h-6 border-r border-b border-cyan-400/50 rounded-br-md"></div>
+
+                {/* Corner system tag */}
+                <div className="absolute top-3 right-3 data-chip chip-cyan backdrop-blur-sm">
+                  [SYS: APM • BITS PILANI]
+                </div>
+
+                {/* Live signal footer */}
+                <div className="absolute bottom-3 left-3 flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+                  SIGNAL: LIVE
+                </div>
               </div>
             </div>
 
             {/* Product Thinking System Block */}
-            <div className="rounded-3xl border border-white/10 bg-[#111111] p-6 shadow-sm hover-lift">
+            <div className="rounded-3xl glass-panel edge-glow p-6 shadow-sm hover-lift">
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs font-mono font-bold tracking-widest text-slate-500">PRODUCT_THINKING.SYSTEM</span>
                 <div className="flex gap-1.5">
@@ -151,7 +186,7 @@ const Hero = () => {
                       className={`w-full text-left flex items-center gap-4 p-3 rounded-xl border transition-all duration-300 ${
                         activeStep === step.id 
                           ? 'border-emerald-500 bg-emerald-500/10 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
-                          : 'border-white/10 bg-[#111111] hover:border-white/20 hover:bg-white/5'
+                          : 'border-white/10 bg-[#0D0F14] hover:border-white/20 hover:bg-white/5'
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold font-mono transition-colors ${

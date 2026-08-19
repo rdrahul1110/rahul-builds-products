@@ -73,7 +73,7 @@ export const DomainsCard = () => {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="rounded-3xl border border-white/10 bg-[#111111] p-6 sm:p-8 shadow-sm transition-all duration-300 hover-lift w-full"
+      className="rounded-3xl glass-panel edge-glow p-6 sm:p-8 shadow-sm transition-all duration-300 hover-lift w-full"
     >
       {/* Pills / Buttons: Row 1 (Business, Product, Technology), Row 2 (Data, AI & Automation) */}
       <div className="space-y-3 sm:space-y-3.5 mb-6">
@@ -88,8 +88,8 @@ export const DomainsCard = () => {
                 onMouseEnter={() => setActiveIndex(index)}
                 className={`py-3 px-2 sm:py-3.5 sm:px-4 rounded-xl sm:rounded-2xl font-display font-bold text-xs sm:text-sm md:text-base transition-all duration-300 text-center flex items-center justify-center ${
                   isActive
-                    ? "bg-[#111111] border-2 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] -translate-y-0.5"
-                    : "bg-[#181818] border border-white/10 text-white hover:border-white/20 hover:text-emerald-400"
+                    ? "bg-[#0D0F14] border-2 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] -translate-y-0.5"
+                    : "bg-[#12161F] border border-white/10 text-white hover:border-white/20 hover:text-emerald-400"
                 }`}
               >
                 {domain.name}
@@ -110,8 +110,8 @@ export const DomainsCard = () => {
                 onMouseEnter={() => setActiveIndex(index)}
                 className={`py-3 px-2 sm:py-3.5 sm:px-4 rounded-xl sm:rounded-2xl font-display font-bold text-xs sm:text-sm md:text-base transition-all duration-300 text-center flex items-center justify-center ${
                   isActive
-                    ? "bg-[#111111] border-2 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] -translate-y-0.5"
-                    : "bg-[#181818] border border-white/10 text-white hover:border-white/20 hover:text-emerald-400"
+                    ? "bg-[#0D0F14] border-2 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] -translate-y-0.5"
+                    : "bg-[#12161F] border border-white/10 text-white hover:border-white/20 hover:text-emerald-400"
                 }`}
               >
                 {domain.name}
