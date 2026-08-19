@@ -73,7 +73,7 @@ export const DomainsCard = () => {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="rounded-3xl border border-white/10 bg-[#0D0F14] p-6 sm:p-8 shadow-sm transition-all duration-300 hover-lift w-full"
+      className="rounded-3xl glass-panel edge-glow p-6 sm:p-8 shadow-sm transition-all duration-300 hover-lift w-full"
     >
       {/* Pills / Buttons: Row 1 (Business, Product, Technology), Row 2 (Data, AI & Automation) */}
       <div className="space-y-3 sm:space-y-3.5 mb-6">

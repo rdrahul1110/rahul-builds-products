@@ -6,7 +6,7 @@ const Contact = () => {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Full Story CTA Box */}
-        <div className="mb-24 bg-[#0D0F14] border border-white/10 rounded-3xl p-8 sm:p-12 shadow-sm animate-fade-in hover:border-emerald-500/20 transition-colors">
+        <div className="mb-24 glass-panel edge-glow rounded-3xl p-8 sm:p-12 shadow-sm animate-fade-in hover:border-emerald-500/20 transition-colors">
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white mb-4">Want the full story?</h2>
           <p className="text-slate-400 text-lg mb-8">
             Explore my experience, projects and product journey in one page.
