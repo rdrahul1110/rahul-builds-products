@@ -69,20 +69,73 @@ body {
 @layer components {
   /* Grid & Gradients */
   .grid-bg {
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 0),
-                      linear-gradient(180deg, rgba(0, 0, 0, 0.04) 1px, transparent 0);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 0),
+                      linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 0);
     background-size: 56px 56px;
   }
   .grid-fade {
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0, #000 40%, transparent 100%);
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0, #000 40%, transparent 100%);
   }
-  
+
   /* Interactive Mouse Tracking Glow */
   .mouse-glow {
-    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(16, 185, 129, 0.06), transparent 40%);
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.05), transparent 40%);
     transition: background 0.1s ease;
   }
+
+  /* Glassmorphic fintech surfaces */
+  .glass-panel {
+    background: var(--surface-glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-panel:hover {
+    border-color: rgba(16, 185, 129, 0.35);
+  }
+  /* Razor-thin emerald→cyan gradient border on hover */
+  .edge-glow {
+    position: relative;
+  }
+  .edge-glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, rgba(0, 245, 160, 0.7), rgba(6, 182, 212, 0.55), transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .edge-glow:hover::after {
+    opacity: 1;
+  }
+
+  /* Mono data chips */
+  .data-chip {
+    @apply inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest;
+  }
+  .chip-emerald {
+    @apply border-emerald-500/30 bg-emerald-500/10 text-emerald-400;
+  }
+  .chip-cyan {
+    @apply border-cyan-500/30 bg-cyan-500/10 text-cyan-300;
+  }
+  .chip-neutral {
+    @apply border-white/10 bg-white/5 text-slate-400;
+  }
+  .text-gradient-ai {
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(100deg, #00f5a0, #10b981 45%, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
 
   /* Text & Shadow FX */
   .hero-headline {
