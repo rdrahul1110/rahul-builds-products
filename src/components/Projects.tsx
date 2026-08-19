@@ -206,6 +206,8 @@ const Projects = () => {
       tags: item.tags.join(', '),
       flow: item.flow ? item.flow.join(', ') : '',
       link: item.link || '',
+      pdfLink: item.pdfLink || '',
+      buttonText: item.buttonText || '',
       statusText: item.statusText || ''
     });
     setEditingWorkItem(index);
