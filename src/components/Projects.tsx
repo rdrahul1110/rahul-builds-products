@@ -142,6 +142,18 @@ const Projects = () => {
     },
     {
       id: 2,
+      title: "Insurance Co-Pilot — Protection Gap Intelligence for MFDs",
+      category: "INSURTECH • ADVISORY COPILOT",
+      featured: true,
+      description: "An intelligent advisory copilot for Mutual Fund Distributors (MFDs) that audits client portfolios to detect critical protection gaps, computes underwriting limits and tax regime trade-offs, and generates commission-blind pre-meeting briefing cards.",
+      flow: ["Client Book Audit", "Gap Severity Ranking", "Underwriting Signals", "Pre-Meeting Cards"],
+      tags: ["Insurtech", "Advisory Copilot", "Gap Analysis", "Financial Intelligence", "Lovable"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://insurance-copilot-mfd.lovable.app"
+    },
+    {
+      id: 3,
       title: "BookMyShow Ticket Booking Experience",
       category: "UX / SYSTEM DESIGN",
       featured: true,
@@ -154,7 +166,7 @@ const Projects = () => {
       link: "/bookmyshow-case-study.pdf"
     },
     {
-      id: 3,
+      id: 4,
       title: "Money Wrapped — Spend Story Unpacked",
       category: "FINTECH • CONSUMER AI",
       featured: true,
@@ -166,7 +178,7 @@ const Projects = () => {
       link: "https://spend-story-unpacked.lovable.app"
     },
     {
-      id: 4,
+      id: 5,
       title: "Nooka — On-Demand Workspace Marketplace",
       category: "MARKETPLACE • 0→1 PRODUCT",
       featured: true,
@@ -178,7 +190,7 @@ const Projects = () => {
       link: "https://work-inspired-frontend.lovable.app"
     },
     {
-      id: 5,
+      id: 6,
       title: "TripMind — AI Travel Copilot for India",
       category: "TRAVEL-TECH • CONSUMER AI",
       featured: true,
@@ -192,12 +204,12 @@ const Projects = () => {
   ];
 
   const [workExperienceData, setWorkExperienceData] = useState(() => {
-    const saved = localStorage.getItem('portfolioProjectsData_v7');
+    const saved = localStorage.getItem('portfolioProjectsData_v8');
     return saved ? JSON.parse(saved) : initialWorkExperienceData;
   });
 
   useEffect(() => {
-    localStorage.setItem('portfolioProjectsData_v7', JSON.stringify(workExperienceData));
+    localStorage.setItem('portfolioProjectsData_v8', JSON.stringify(workExperienceData));
   }, [workExperienceData]);
 
   const handleEditWork = (index: number) => {
