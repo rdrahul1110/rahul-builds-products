@@ -106,7 +106,7 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Social Links */}
+            {/* Social Links & Location */}
             <div className="flex items-center gap-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               <a 
                 href="https://www.linkedin.com/in/rahul-das-117a56223/" 
@@ -124,9 +124,39 @@ const Hero = () => {
               >
                 <Mail className="w-5 h-5" />
               </a>
-              <div className="flex items-center gap-2 text-sm text-slate-400 font-medium px-2">
-                <MapPin className="w-4 h-4" />
-                India
+              <div className="flex items-center gap-2 text-sm text-slate-300 font-medium px-3 py-2 rounded-lg border border-white/10 bg-white/5">
+                <MapPin className="w-4 h-4 text-emerald-400" />
+                <span>India</span>
+              </div>
+            </div>
+
+            {/* Education Block (Top Fold - Directly Below Location Box) */}
+            <div className="mt-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <div className="flex items-center gap-2 mb-3">
+                <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+                <span className="text-[11px] font-mono font-bold tracking-widest text-emerald-400 uppercase">EDUCATION</span>
+              </div>
+
+              <div className="rounded-2xl glass-panel edge-glow p-4 sm:p-5 shadow-sm hover-lift flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/10 bg-[#0e131d]/90 hover:border-emerald-500/30 transition-all duration-300">
+                <div>
+                  <h4 className="font-bold text-white font-display text-base sm:text-lg mb-1">
+                    Bachelor of Technology(B-Tech)
+                  </h4>
+                  <div className="flex items-center gap-2 text-slate-400 text-xs sm:text-sm">
+                    <span>Birla Institute of Technology and Science (BITS), Pilani</span>
+                    <img 
+                      src="/bits-pilani-logo.png" 
+                      alt="BITS Pilani Logo" 
+                      className="w-5 h-5 sm:w-6 sm:h-6 object-contain inline-block shrink-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.15)]" 
+                    />
+                  </div>
+                </div>
+                <div className="text-xs sm:text-sm font-mono font-bold text-emerald-400 bg-emerald-500/10 px-3.5 py-1.5 rounded-full whitespace-nowrap self-start sm:self-auto border border-emerald-500/20">
+                  Nov 2020 — Aug 2024
+                </div>
               </div>
             </div>
           </div>
