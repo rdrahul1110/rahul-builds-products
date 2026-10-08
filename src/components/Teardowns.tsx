@@ -1,11 +1,4 @@
-import { useState } from "react";
-import { ExternalLink, FileText, Download, Eye, X, Maximize2 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { ExternalLink, FileText, ArrowRight } from "lucide-react";
 
 interface TeardownItem {
   id: number;
@@ -15,7 +8,7 @@ interface TeardownItem {
   badgeColor?: string;
   description: string;
   metrics: { value: string; label: string; color?: string }[];
-  pdfLink: string;
+  driveLink: string;
   buttonText: string;
   image: string;
   watermark: string;
@@ -23,8 +16,6 @@ interface TeardownItem {
 }
 
 const Teardowns = () => {
-  const [selectedTeardown, setSelectedTeardown] = useState<TeardownItem | null>(null);
-
   const teardownData: TeardownItem[] = [
     {
       id: 1,
@@ -38,7 +29,7 @@ const Teardowns = () => {
         { value: "-64%", label: "Checkout Bounce", color: "text-emerald-400" },
         { value: "0%", label: "Scalping Bot Leakage", color: "text-amber-400" }
       ],
-      pdfLink: "/bookmyshow-case-study.pdf",
+      driveLink: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
       buttonText: "Read Case Study (18-Page PRD)",
       image: "/projects/bookmyshow.png",
       watermark: "BMS",
@@ -56,7 +47,7 @@ const Teardowns = () => {
         { value: "4.5 / 5.0", label: "Prioritization Score (U*I/E)", color: "text-cyan-400" },
         { value: "18 Million", label: "Target GenZ/Millennials", color: "text-emerald-400" }
       ],
-      pdfLink: "/zepto-case-study.pdf",
+      driveLink: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
       buttonText: "Read Case Study (9-Page PRD)",
       image: "/projects/zepto-teardown.png",
       watermark: "Z",
@@ -64,12 +55,8 @@ const Teardowns = () => {
     }
   ];
 
-  const handleCardClick = (item: TeardownItem) => {
-    setSelectedTeardown(item);
-  };
-
-  const getGithubRawUrl = (pdfLink: string) => {
-    return `https://raw.githubusercontent.com/rdrahul1110/rahul-builds-products/main/public${pdfLink}`;
+  const handleCardClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -92,12 +79,12 @@ const Teardowns = () => {
           </p>
         </div>
 
-        {/* Teardown Cards (Stacked / Bento Grid) */}
+        {/* Teardown Cards */}
         <div className="space-y-8">
           {teardownData.map((item) => (
             <article 
               key={item.id}
-              onClick={() => handleCardClick(item)}
+              onClick={() => handleCardClick(item.driveLink)}
               className="group relative rounded-3xl overflow-hidden p-6 sm:p-8 cursor-pointer transition-all duration-500 bg-[#0e131d]/80 hover:bg-[#111724]/90 border border-white/10 hover:border-cyan-500/40 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/10"
             >
               {/* Background Watermark */}
@@ -117,18 +104,17 @@ const Teardowns = () => {
                   />
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedTeardown(item);
-                      }}
+                    <a
+                      href={item.driveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="px-4 py-2 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-semibold text-xs flex items-center gap-1.5 shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
                     >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Read Case Study</span>
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Open on Google Drive</span>
                       <ExternalLink className="w-3 h-3 ml-0.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -183,31 +169,18 @@ const Teardowns = () => {
 
                   {/* Action Link Footer */}
                   <div className="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedTeardown(item);
-                        }}
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
-                      >
-                        <FileText className="w-4 h-4" />
-                        <span>{item.buttonText}</span>
-                      </button>
-                      <span className="text-slate-700">·</span>
-                      <a
-                        href={item.pdfLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-white transition-colors"
-                      >
-                        <span>New Tab</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </div>
-                    <span className="text-xs font-mono text-slate-500">PDF · Verified Teardown</span>
+                    <a
+                      href={item.driveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{item.buttonText}</span>
+                      <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
+                    </a>
+                    <span className="text-xs font-mono text-slate-500">Google Drive · Verified Teardown</span>
                   </div>
                 </div>
 
@@ -217,94 +190,6 @@ const Teardowns = () => {
         </div>
 
       </div>
-
-      {/* Case Study In-Page Reader Modal */}
-      <Dialog open={!!selectedTeardown} onOpenChange={(open) => !open && setSelectedTeardown(null)}>
-        <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-0 bg-[#08090C] border-white/10 text-white flex flex-col overflow-hidden">
-          {selectedTeardown && (
-            <>
-              {/* Modal Header */}
-              <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between gap-3 bg-[#0c1017]">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
-                    <FileText className="w-4 h-4 text-cyan-400" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">
-                      {selectedTeardown.category}
-                    </div>
-                    <DialogTitle className="text-sm sm:text-base font-bold font-display text-white truncate max-w-xl">
-                      {selectedTeardown.title}
-                    </DialogTitle>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 pr-8">
-                  <a
-                    href={getGithubRawUrl(selectedTeardown.pdfLink)}
-                    download
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Download</span>
-                  </a>
-                  <a
-                    href={selectedTeardown.pdfLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-semibold transition-colors"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Full Tab</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Modal PDF Viewer Body */}
-              <div className="flex-1 w-full bg-[#030712] relative overflow-hidden">
-                <object
-                  data={selectedTeardown.pdfLink}
-                  type="application/pdf"
-                  className="w-full h-full"
-                >
-                  <iframe
-                    src={selectedTeardown.pdfLink}
-                    title={selectedTeardown.title}
-                    className="w-full h-full border-0"
-                  >
-                    <div className="p-8 text-center text-slate-400 flex flex-col items-center justify-center h-full">
-                      <FileText className="w-12 h-12 text-cyan-400 mb-4" />
-                      <p className="text-base font-semibold text-white mb-2">Browser blocked inline preview</p>
-                      <p className="text-xs text-slate-400 max-w-md mb-6">
-                        Your browser security settings require opening this PDF in a dedicated viewer.
-                      </p>
-                      <div className="flex gap-3">
-                        <a
-                          href={getGithubRawUrl(selectedTeardown.pdfLink)}
-                          download
-                          className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-semibold text-xs inline-flex items-center gap-2"
-                        >
-                          <Download className="w-4 h-4" />
-                          Download PDF File
-                        </a>
-                        <a
-                          href={selectedTeardown.pdfLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 rounded-xl bg-white/10 text-white font-semibold text-xs inline-flex items-center gap-2"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Open in New Tab
-                        </a>
-                      </div>
-                    </div>
-                  </iframe>
-                </object>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };
