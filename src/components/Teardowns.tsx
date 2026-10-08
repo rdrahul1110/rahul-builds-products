@@ -8,7 +8,9 @@ interface TeardownItem {
   badgeColor?: string;
   description: string;
   metrics: { value: string; label: string; color?: string }[];
-  driveLink: string;
+  driveFileUrl: string;
+  folderUrl: string;
+  localPdfUrl: string;
   buttonText: string;
   image: string;
   watermark: string;
@@ -29,7 +31,9 @@ const Teardowns = () => {
         { value: "-64%", label: "Checkout Bounce", color: "text-emerald-400" },
         { value: "0%", label: "Scalping Bot Leakage", color: "text-amber-400" }
       ],
-      driveLink: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
+      driveFileUrl: "https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing",
+      folderUrl: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
+      localPdfUrl: "/bookmyshow-case-study.pdf",
       buttonText: "Read Case Study (18-Page PRD)",
       image: "/projects/bookmyshow.png",
       watermark: "BMS",
@@ -47,7 +51,9 @@ const Teardowns = () => {
         { value: "4.5 / 5.0", label: "Prioritization Score (U*I/E)", color: "text-cyan-400" },
         { value: "18 Million", label: "Target GenZ/Millennials", color: "text-emerald-400" }
       ],
-      driveLink: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
+      driveFileUrl: "https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing",
+      folderUrl: "https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf",
+      localPdfUrl: "/zepto-case-study.pdf",
       buttonText: "Read Case Study (9-Page PRD)",
       image: "/projects/zepto-teardown.png",
       watermark: "Z",
@@ -84,7 +90,7 @@ const Teardowns = () => {
           {teardownData.map((item) => (
             <article 
               key={item.id}
-              onClick={() => handleCardClick(item.driveLink)}
+              onClick={() => handleCardClick(item.driveFileUrl)}
               className="group relative rounded-3xl overflow-hidden p-6 sm:p-8 cursor-pointer transition-all duration-500 bg-[#0e131d]/80 hover:bg-[#111724]/90 border border-white/10 hover:border-cyan-500/40 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/10"
             >
               {/* Background Watermark */}
@@ -105,14 +111,15 @@ const Teardowns = () => {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
                     <a
-                      href={item.driveLink}
+                      href={item.driveFileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      referrerPolicy="no-referrer"
                       onClick={(e) => e.stopPropagation()}
                       className="px-4 py-2 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-semibold text-xs flex items-center gap-1.5 shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
                     >
                       <FileText className="w-3.5 h-3.5" />
-                      <span>Open on Google Drive</span>
+                      <span>View on Google Drive</span>
                       <ExternalLink className="w-3 h-3 ml-0.5" />
                     </a>
                   </div>
@@ -169,18 +176,42 @@ const Teardowns = () => {
 
                   {/* Action Link Footer */}
                   <div className="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
-                    <a
-                      href={item.driveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>{item.buttonText}</span>
-                      <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
-                    </a>
-                    <span className="text-xs font-mono text-slate-500">Google Drive · Verified Teardown</span>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={item.driveFileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        referrerPolicy="no-referrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                      >
+                        <FileText className="w-4 h-4" />
+                        <span>{item.buttonText}</span>
+                        <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                      <a 
+                        href={item.folderUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        referrerPolicy="no-referrer"
+                        onClick={(e) => e.stopPropagation()} 
+                        className="hover:text-cyan-300 transition-colors"
+                      >
+                        Drive Folder
+                      </a>
+                      <span>·</span>
+                      <a 
+                        href={item.localPdfUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        onClick={(e) => e.stopPropagation()} 
+                        className="hover:text-cyan-300 transition-colors"
+                      >
+                        Direct PDF
+                      </a>
+                    </div>
                   </div>
                 </div>
 
