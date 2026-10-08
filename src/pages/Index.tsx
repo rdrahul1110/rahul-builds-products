@@ -5,6 +5,7 @@ import Process from "@/components/Process";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import Teardowns from "@/components/Teardowns";
 import Impact from "@/components/Impact";
 import AIPractice from "@/components/AIPractice";
 import Skills from "@/components/Skills";
@@ -41,6 +42,7 @@ const Index = () => {
         <About />
         <Experience />
         <Projects />
+        <Teardowns />
         <AIPractice />
         <Impact />
         <Skills />
