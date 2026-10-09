@@ -12,7 +12,7 @@ const Contact = () => {
             Explore my experience, projects and product journey in one page.
           </p>
           <a 
-            href="/resume.pdf"
+            href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]"

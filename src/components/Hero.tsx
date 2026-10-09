@@ -96,7 +96,7 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <a
-                href="/resume.pdf"
+                href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-transparent hover:bg-white/5 text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 shadow-sm"

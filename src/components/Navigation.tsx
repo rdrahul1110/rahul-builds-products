@@ -97,7 +97,7 @@ const Navigation = () => {
             ) : null}
             
             <a
-              href="/resume.pdf"
+              href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
@@ -150,7 +150,7 @@ const Navigation = () => {
               </div>
             ) : null}
             <a
-              href="/resume.pdf"
+              href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex justify-center items-center gap-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-300 mt-4"
