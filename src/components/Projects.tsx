@@ -225,6 +225,20 @@ const Projects = () => {
     },
     {
       id: 3,
+      title: "Ola FeedPod — Electric Micro-Transit Loops",
+      category: "URBAN MOBILITY • MICRO-TRANSIT",
+      featured: true,
+      description: "High-frequency electric pods looping between gated residential societies and metro stations every 90 seconds. Features dynamic loop dispatching, real-time seat tracking, metro timetable sync, and a single monthly pass.",
+      flow: ["Society-Metro Loop", "90s Frequency", "Metro Line Sync", "Monthly Pass"],
+      tags: ["Urban Mobility", "Electric Transit", "First-Last Mile", "Commute Sync", "Lovable"],
+      statusText: "Live Interactive App",
+      buttonText: "View Prototype",
+      link: "https://olapod2035.lovable.app",
+      image: "/projects/ola-feedpod.png",
+      urlDisplay: "olapod2035.lovable.app"
+    },
+    {
+      id: 4,
       title: "Money Wrapped — Spend Story Unpacked",
       category: "FINTECH • CONSUMER AI",
       featured: true,
@@ -238,7 +252,7 @@ const Projects = () => {
       urlDisplay: "spend-story-unpacked.lovable.app"
     },
     {
-      id: 4,
+      id: 5,
       title: "Nooka — On-Demand Workspace Marketplace",
       category: "MARKETPLACE • 0→1 PRODUCT",
       featured: true,
@@ -252,7 +266,7 @@ const Projects = () => {
       urlDisplay: "work-inspired-frontend.lovable.app"
     },
     {
-      id: 5,
+      id: 6,
       title: "TripMind — AI Travel Copilot for India",
       category: "TRAVEL-TECH • CONSUMER AI",
       featured: true,
@@ -268,12 +282,12 @@ const Projects = () => {
   ];
 
   const [workExperienceData, setWorkExperienceData] = useState(() => {
-    const saved = localStorage.getItem('portfolioProjectsData_v10');
+    const saved = localStorage.getItem('portfolioProjectsData_v11');
     return saved ? JSON.parse(saved) : initialWorkExperienceData;
   });
 
   useEffect(() => {
-    localStorage.setItem('portfolioProjectsData_v10', JSON.stringify(workExperienceData));
+    localStorage.setItem('portfolioProjectsData_v11', JSON.stringify(workExperienceData));
   }, [workExperienceData]);
 
   const handleEditWork = (index: number) => {
@@ -332,7 +346,7 @@ const Projects = () => {
           {workExperienceData.map((project: any, index: number) => (
             <div 
               key={index} 
-              className={`relative animate-fade-in h-full ${index === 4 ? 'md:col-span-2' : ''}`} 
+              className={`relative animate-fade-in h-full ${workExperienceData.length % 2 !== 0 && index === workExperienceData.length - 1 ? 'md:col-span-2' : ''}`} 
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {isAdminMode && (
