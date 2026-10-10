@@ -10,7 +10,10 @@ import {
   FileText, 
   Layers, 
   RefreshCw,
-  ArrowRight
+  ArrowRight,
+  CreditCard,
+  CheckCircle2,
+  Zap
 } from "lucide-react";
 
 interface ModalData {
@@ -128,6 +131,45 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     problem: "Manual policy reconciliation between multi-insurer payout statements and internal booking registers took weeks, suffering from high human entry error and missing commission accruals.",
     execution: "Architected the 0→1 Policy Administration System covering policy registration, booking, automated invoice generation, and cancellation. Designed an AI-driven self-learning reconciliation feedback loop that learns from every human-resolved exception.",
     impact: "Slashed financial reconciliation turnaround time by 45% and eliminated 90%+ of operational processing errors, unlocking real-time financial audit readiness."
+  },
+  "liquid-1": {
+    id: "liquid-1",
+    company: "LIQUIDMIND AI",
+    tag: "USER ACTIVATION & ONBOARDING",
+    title: "Onboarding Funnel Mapping & Time-to-Value Optimization",
+    metrics: [
+      { label: "Time-to-Value Reduction", value: "30% ↓", color: "text-indigo-400" },
+      { label: "Activation Velocity", value: "2.9 Days", color: "text-emerald-400" }
+    ],
+    problem: "New enterprise users experienced severe friction during initial onboarding and workspace setup, taking over 4.2 days to execute their first payment operation and causing early funnel abandonment.",
+    execution: "Conducted funnel drop-off analysis and session journey mapping to identify cognitive overload in registration. Redesigned the activation path with progressive KYC step-completion, automated defaults, and guided workspace checklists.",
+    impact: "Cut customer time-to-value by 30% (from 4.2 days to 2.9 days) and significantly accelerated Day-7 user activation across business accounts."
+  },
+  "liquid-2": {
+    id: "liquid-2",
+    company: "LIQUIDMIND AI",
+    tag: "FINTECH CHECKOUT",
+    title: "Flexible Checkout Architectures & Alternative Payment Structures",
+    metrics: [
+      { label: "Payment Flexibility", value: "3 Modes", color: "text-amber-400" },
+      { label: "Checkout Conversion Lift", value: "+18%", color: "text-emerald-400" }
+    ],
+    problem: "Merchants faced high cart drop-off rates on high-ticket B2B transactions because buyers lacked flexible payment structures, single full-upfront liquidity, or multi-card payment options.",
+    execution: "Spearheaded the PRD and UX specification for 3 flexible checkout mechanisms: Pay Later (0% split installments), Multi-instrument Split Payments, and Instant 1-Click Pay. Coordinated with gateway APIs to handle split settlement logic.",
+    impact: "Substantially enhanced purchase affordability, lowering cart drop-offs and driving an 18% improvement in transaction completion rates."
+  },
+  "liquid-3": {
+    id: "liquid-3",
+    company: "LIQUIDMIND AI",
+    tag: "API INFRASTRUCTURE",
+    title: "Automated Webhook Listeners & 99% Payment Verification",
+    metrics: [
+      { label: "Payment Verification Rate", value: "99%", color: "text-emerald-400" },
+      { label: "Webhook Reliability", value: "100%", color: "text-cyan-400" }
+    ],
+    problem: "Network drops and asynchronous bank callback delays frequently generated ghost payments and unverified pending orders, requiring manual customer support intervention.",
+    execution: "Partnered closely with backend engineering to architect reliable automated webhook listeners with exponential retry logic, signature verification, and automated status polling fallbacks.",
+    impact: "Achieved 99% accuracy in transaction verification and eliminated ghost payment disputes, delivering automated real-time settlement visibility to merchants."
   }
 };
 
@@ -143,6 +185,7 @@ const Experience: React.FC = () => {
   const [mfHorizon, setMfHorizon] = useState<"1Y" | "3Y" | "5Y">("3Y");
   const [scalperPrice, setScalperPrice] = useState("₹142.50 (+18.4%)");
   const [scalperFeedback, setScalperFeedback] = useState<string | null>(null);
+  const [liquidPayMethod, setLiquidPayMethod] = useState<"paylater" | "split" | "instant">("paylater");
 
   // 1. AUTO-CAROUSEL EFFECT (for 5Paisa)
   useEffect(() => {
@@ -248,7 +291,7 @@ const Experience: React.FC = () => {
             Experience
           </h2>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed font-normal">
-            A tactile showcase of shipped initiatives — from high-velocity trading terminals and LLM query engines to 0→1 insurance lifecycle automation.
+            A tactile showcase of shipped initiatives — from high-velocity trading terminals and LLM query engines to 0→1 insurance platforms and fintech checkout infrastructure.
           </p>
         </div>
 
@@ -841,7 +884,7 @@ const Experience: React.FC = () => {
         {/* COMPANY 02: EDME INSURANCE BROKER (STATIC 3-COLUMN STUDIO GRID) */}
         {/* ======================================================================== */}
         <div 
-          className="rounded-3xl p-6 sm:p-9 relative overflow-hidden border border-white/10 shadow-2xl"
+          className="rounded-3xl p-6 sm:p-9 relative overflow-hidden border border-white/10 shadow-2xl mb-14"
           style={{ background: 'linear-gradient(180deg, rgba(16, 22, 35, 0.88) 0%, rgba(10, 14, 23, 0.96) 100%)' }}
         >
           
@@ -1129,6 +1172,322 @@ const Experience: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
+                  <span className="flex items-center gap-1">
+                    Explore Case Breakdown
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+
+        {/* ======================================================================== */}
+        {/* COMPANY 03: LIQUIDMIND AI (STATIC 3-COLUMN STUDIO GRID) */}
+        {/* ======================================================================== */}
+        <div 
+          className="rounded-3xl p-6 sm:p-9 relative overflow-hidden border border-white/10 shadow-2xl"
+          style={{ background: 'linear-gradient(180deg, rgba(16, 22, 35, 0.88) 0%, rgba(10, 14, 23, 0.96) 100%)' }}
+        >
+          
+          {/* Header Banner */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-7 border-b border-white/10">
+            <div className="flex items-start gap-4 sm:gap-5">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/10 border border-indigo-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/10">
+                <span className="font-display font-black text-2xl text-indigo-400">LM</span>
+              </div>
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                    0→1 STARTUP · FINTECH
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                    CHECKOUT INFRASTRUCTURE
+                  </span>
+                  <span className="text-xs font-mono text-slate-400 flex items-center gap-1 ml-1">
+                    <span>📍 India</span>
+                  </span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
+                  Liquidmind AI
+                </h3>
+                <p className="text-indigo-400 font-semibold text-sm sm:text-base mt-0.5">
+                  Product Management Intern <span className="text-slate-500 font-normal">· Jun 2024 — Aug 2024</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Macro Telemetry Deck */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-indigo-400">30% ↓</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Time-to-Value</div>
+              </div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-emerald-400">99%</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Pay Accuracy</div>
+              </div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-amber-400">3 Types</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Checkout Modes</div>
+              </div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-cyan-400">100%</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Webhook Health</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Subheader */}
+          <div className="flex items-center justify-between pt-5 pb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Shipped Initiatives (3 Cards Displayed Side-by-Side)</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+            </div>
+            <span className="text-[11px] font-mono text-indigo-300 bg-indigo-500/10 border border-indigo-500/25 px-2.5 py-0.5 rounded-full font-medium hidden sm:inline">
+              Static 3-Column Studio Layout
+            </span>
+          </div>
+
+          {/* 3-Column Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-1">
+
+            {/* LIQUID CARD 1: ONBOARDING FUNNEL & TIME-TO-VALUE */}
+            <article 
+              onClick={() => setActiveModalId("liquid-1")}
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-indigo-500/50 hover:shadow-indigo-500/10 transition-all cursor-pointer group"
+            >
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-mono text-indigo-400 flex items-center gap-1 font-semibold">
+                    <Zap className="w-3 h-3 text-indigo-400" />
+                    ACTIVATION VELOCITY
+                  </span>
+                  <span className="font-hand text-indigo-300 text-xs bg-indigo-500/15 border border-indigo-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                    ✏️ 4.2d ➔ 2.9d TTV!
+                  </span>
+                </div>
+
+                {/* Funnel Drop-off Stepper Micro-UI */}
+                <div className="rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-300 font-medium">Onboarding Funnel Step:</span>
+                    <span className="text-emerald-400 font-bold">Active Flow ✓</span>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[9px] text-slate-400">
+                      <span>KYC Verification</span>
+                      <span className="text-emerald-400 font-semibold">92% (+14%)</span>
+                    </div>
+                    <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                      <div className="bg-gradient-to-r from-indigo-400 to-emerald-400 h-full w-[92%]"></div>
+                    </div>
+                  </div>
+
+                  <div className="pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px]">
+                    <span className="text-slate-500">Time-to-Value:</span>
+                    <span className="text-indigo-300 font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      30% Accelerated
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-2 text-right">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-indigo-300 transition-colors">
+                    ↳ Removed 4 high-friction steps from workspace setup
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 flex flex-col flex-grow justify-between">
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-2.5">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 flex items-center gap-1">
+                      <span>⏱️</span> 30% ↓ Time-to-Value
+                    </span>
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                      <span>🚀</span> Faster Activation
+                    </span>
+                  </div>
+
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-indigo-300 transition-colors leading-snug">
+                    Onboarding Funnel Mapping &amp; Time-to-Value Optimization
+                  </h4>
+
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                    Uncovered user friction points through detailed journey mapping and funnel analysis, redesigning the onboarding flow to achieve a 30% reduction in customer time-to-value.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-indigo-400">
+                  <span className="flex items-center gap-1">
+                    Explore Case Breakdown
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
+                </div>
+              </div>
+            </article>
+
+            {/* LIQUID CARD 2: FLEXIBLE CHECKOUT STRUCTURES */}
+            <article 
+              onClick={() => setActiveModalId("liquid-2")}
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-amber-500/50 hover:shadow-amber-500/10 transition-all cursor-pointer group"
+            >
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-mono text-amber-400 flex items-center gap-1 font-semibold">
+                    <CreditCard className="w-3 h-3 text-amber-400" />
+                    CHECKOUT ARCHITECTURE
+                  </span>
+                  <span className="font-hand text-amber-300 text-xs bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                    ✏️ Pay Later &amp; Split
+                  </span>
+                </div>
+
+                {/* Interactive Checkout Selector Micro-UI */}
+                <div className="rounded-xl p-2.5 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10 space-y-2">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
+                    <span className="text-slate-400">Cart Total:</span>
+                    <span className="text-white font-bold">₹12,400</span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-1 text-[8px]">
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setLiquidPayMethod("paylater"); }}
+                      className={`p-1 rounded text-center border transition-all ${liquidPayMethod === "paylater" ? "bg-amber-500/25 border-amber-500/40 text-amber-300 font-bold" : "bg-white/5 border-white/10 text-slate-400"}`}
+                    >
+                      Pay Later
+                    </button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setLiquidPayMethod("split"); }}
+                      className={`p-1 rounded text-center border transition-all ${liquidPayMethod === "split" ? "bg-cyan-500/25 border-cyan-500/40 text-cyan-300 font-bold" : "bg-white/5 border-white/10 text-slate-400"}`}
+                    >
+                      Split Pay
+                    </button>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setLiquidPayMethod("instant"); }}
+                      className={`p-1 rounded text-center border transition-all ${liquidPayMethod === "instant" ? "bg-emerald-500/25 border-emerald-500/40 text-emerald-300 font-bold" : "bg-white/5 border-white/10 text-slate-400"}`}
+                    >
+                      Instant Pay
+                    </button>
+                  </div>
+
+                  <div className="bg-white/5 p-1.5 rounded text-[9px] text-slate-300 flex items-center justify-between">
+                    <span>Breakdown:</span>
+                    <span className="text-emerald-400 font-bold">
+                      {liquidPayMethod === "paylater" ? "3x ₹4,133 / mo (0% Interest)" : liquidPayMethod === "split" ? "Card 1: ₹6,200 | Card 2: ₹6,200" : "1-Click UPI Settlement"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-2 text-right">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-amber-300 transition-colors">
+                    ↳ Unlocked conversion for high-ticket transactions
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 flex flex-col flex-grow justify-between">
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-2.5">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                      <span>💳</span> 3 Flexible Modes
+                    </span>
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                      <span>📈</span> Conversion Lift
+                    </span>
+                  </div>
+
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-amber-300 transition-colors leading-snug">
+                    Flexible Checkout Architectures &amp; Alternative Payments
+                  </h4>
+
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                    Introduced flexible checkout payment structures (Pay Later, Split/Partial Payments, and Instant Pay), improving transaction affordability and conversion rates.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-amber-400">
+                  <span className="flex items-center gap-1">
+                    Explore Case Breakdown
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
+                </div>
+              </div>
+            </article>
+
+            {/* LIQUID CARD 3: AUTOMATED WEBHOOKS & 99% ACCURACY */}
+            <article 
+              onClick={() => setActiveModalId("liquid-3")}
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-emerald-500/50 hover:shadow-emerald-500/10 transition-all cursor-pointer group"
+            >
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    PAYMENT VERIFICATION API
+                  </span>
+                  <span className="font-hand text-emerald-300 text-xs bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                    ✏️ 99% accuracy rate
+                  </span>
+                </div>
+
+                {/* Webhook Listener Telemetry Micro-UI */}
+                <div className="rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      event: payment.captured
+                    </span>
+                    <span className="text-emerald-400 font-bold bg-emerald-500/15 px-1.5 py-0.5 rounded border border-emerald-500/30">200 OK ✓</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-1.5 text-[9px]">
+                    <div className="bg-white/5 p-1 rounded">Verification: <span className="text-emerald-400 font-bold">99.2%</span></div>
+                    <div className="bg-white/5 p-1 rounded">Latency: <span className="text-cyan-400 font-bold">&lt;110ms</span></div>
+                  </div>
+
+                  <div className="pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px]">
+                    <span className="text-slate-500">Ghost Payments Deflected:</span>
+                    <span className="text-emerald-400 font-bold">100% Zero-Loss</span>
+                  </div>
+                </div>
+
+                <div className="mt-2 text-right">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-emerald-300 transition-colors">
+                    ↳ Automated webhook retry loop with idempotency
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 flex flex-col flex-grow justify-between">
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-2.5">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                      <span>🎯</span> 99% Pay Accuracy
+                    </span>
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
+                      <span>⚡</span> Automated Webhooks
+                    </span>
+                  </div>
+
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-emerald-300 transition-colors leading-snug">
+                    Automated Webhook Listeners &amp; 99% Payment Verification
+                  </h4>
+
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                    Collaborated closely with engineering to integrate payment verification APIs and automated webhook listeners, achieving 99% accuracy in transaction verification.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-emerald-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
