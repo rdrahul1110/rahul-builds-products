@@ -3,16 +3,13 @@ import {
   ChevronLeft, 
   ChevronRight, 
   X, 
-  ExternalLink, 
   TrendingUp, 
   Clock, 
   Bot, 
   Users, 
-  ShieldCheck, 
   FileText, 
   Layers, 
   RefreshCw,
-  Sparkles,
   ArrowRight
 } from "lucide-react";
 
@@ -34,8 +31,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "PRODUCT EXPANSION",
     title: 'Curated "Basket Investing" & Goal-Based Discovery',
     metrics: [
-      { label: "Repeat Engagement", value: "+15%", color: "text-emerald-600" },
-      { label: "Portfolio Adoption", value: "+20%", color: "text-cyan-600" }
+      { label: "Repeat Engagement", value: "+15%", color: "text-emerald-400" },
+      { label: "Portfolio Adoption", value: "+20%", color: "text-cyan-400" }
     ],
     problem: "Retail investors experienced high choice paralysis when navigating 2,000+ individual stocks and funds, leading to high drop-offs prior to completing first-time portfolio creation.",
     execution: "Partnered with the internal quantitative research team to structure algorithmic, thematic multi-asset baskets (Momentum, Value, All-Weather Hedged). Designed the 1-click execution journey, order basket carting logic, and rebalancing alert systems.",
@@ -47,8 +44,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "GENAI OPERATIONS",
     title: "LLM-Powered Investor Support Copilot",
     metrics: [
-      { label: "Response Time (12m ➔ <30s)", value: "70% ↓", color: "text-cyan-600" },
-      { label: "Tier-1 Queries Automated", value: "60%+", color: "text-emerald-600" }
+      { label: "Response Time (12m ➔ <30s)", value: "70% ↓", color: "text-cyan-400" },
+      { label: "Tier-1 Queries Automated", value: "60%+", color: "text-emerald-400" }
     ],
     problem: "High-volume repetitive queries regarding order status, fund withdrawals, ledger explanations, and margin pledges overwhelmed human support agents, creating 12-minute queues during market hours.",
     execution: "Architected conversational user journeys using LLM intent parsing, connected the bot directly to transactional trade ledger APIs for verified responses, and engineered guardrails with warm human agent handoffs for complex cases.",
@@ -60,8 +57,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "GROWTH & CONVERSION",
     title: "Mutual Fund Compare & Decision Benchmarking Tools",
     metrics: [
-      { label: "User Conversion Lift", value: "+3%", color: "text-amber-600" },
-      { label: "Benchmarking Index", value: "NIFTY 50", color: "text-emerald-600" }
+      { label: "User Conversion Lift", value: "+3%", color: "text-amber-400" },
+      { label: "Benchmarking Index", value: "NIFTY 50", color: "text-emerald-400" }
     ],
     problem: "Prelogin funnel analysis revealed severe drops on mutual fund detail pages. Users lacked intuitive benchmarking against indices like Nifty50 or comparable category peers, leading to second thoughts and abandonment.",
     execution: "Built the product PRD for an integrated MF Comparison Engine. Added side-by-side performance metrics (Alpha, Beta, Sharpe Ratio, Expense Ratio) and index relative performance charts.",
@@ -73,8 +70,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "HIGH-FREQUENCY TRADING",
     title: "Scalper Terminal, Margin Trading (MTF) & Pre-Login Journeys",
     metrics: [
-      { label: "Engagement Lift", value: "+5–7%", color: "text-purple-600" },
-      { label: "Funnel Conversion", value: "+3%", color: "text-emerald-600" }
+      { label: "Engagement Lift", value: "+5–7%", color: "text-purple-400" },
+      { label: "Funnel Conversion", value: "+3%", color: "text-emerald-400" }
     ],
     problem: "High-volume intraday and F&O traders experienced friction with traditional multi-step order windows, while MTF (Margin Trading Facility) discovery was hidden deep within desktop submenus.",
     execution: "Led user research and designed the specialized 1-click Scalper Page, enabling instant hotkey execution for index options. Redesigned the dedicated MTF discovery flow with transparent 4x leverage calculators and revamped prelogin landing behavior.",
@@ -86,8 +83,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "DISTRIBUTION NETWORK",
     title: "Partner Ecosystem & Self-Service Digital KYC Portal",
     metrics: [
-      { label: "Partners Onboarded", value: "500+", color: "text-emerald-600" },
-      { label: "Digital KYC Turnaround", value: "<15 Mins", color: "text-cyan-600" }
+      { label: "Partners Onboarded", value: "500+", color: "text-emerald-400" },
+      { label: "Digital KYC Turnaround", value: "<15 Mins", color: "text-cyan-400" }
     ],
     problem: "Partner and sub-broker onboarding was hindered by offline paperwork, manual verification delays of 5–7 days, and fragmented tracking for partner commissions and client mapping.",
     execution: "Led the complete revamp of the partner portal experience. Implemented instant API-based identity checks (PAN/Aadhaar/Digilocker), automated agreement e-signing, and real-time dashboard analytics for sub-broker commission reconciliation.",
@@ -99,8 +96,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "0→1 PLATFORMS",
     title: "0→1 AI Insurance Platforms: CMS & PAS Rollout",
     metrics: [
-      { label: "Operational Efficiency", value: "+50%", color: "text-cyan-600" },
-      { label: "Manual Effort Slashed", value: "10% ↓", color: "text-emerald-600" }
+      { label: "Operational Efficiency", value: "+50%", color: "text-cyan-400" },
+      { label: "Manual Effort Slashed", value: "10% ↓", color: "text-emerald-400" }
     ],
     problem: "Insurance claims and policy operations relied on fragmented legacy spreadsheets, physical discharge documents, and slow email trails across internal teams and third-party insurers.",
     execution: "Spearheaded the 0→1 build of two scalable platforms: Claims Management System (CMS) and Policy Administration System (PAS). Integrated GenAI OCR document parsing to automatically ingest, extract, and categorize complex medical and motor insurance discharge summaries.",
@@ -112,8 +109,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "CROSS-FUNCTIONAL EXECUTION",
     title: "AI Roadmap Prioritization & Zero-Loss Data Migration",
     metrics: [
-      { label: "On-Schedule Releases", value: "6+", color: "text-purple-600" },
-      { label: "Reporting Accuracy", value: "+30%", color: "text-cyan-600" }
+      { label: "On-Schedule Releases", value: "6+", color: "text-purple-400" },
+      { label: "Reporting Accuracy", value: "+30%", color: "text-cyan-400" }
     ],
     problem: "Migrating high volumes of historical insurance policies from Aditya Birla legacy data stores carried high risk of reporting discrepancies, broken schema mappings, and sprint deadline slippages.",
     execution: "Owned end-to-end sprint planning, user acceptance testing (UAT), and stakeholder management. Employed AI-proposed schema and field-mapping transformations to reconcile inconsistent legacy database records into normalized relational entities.",
@@ -125,8 +122,8 @@ const MODAL_DETAILS: Record<string, ModalData> = {
     tag: "FINANCIAL AUTOMATION",
     title: "0→1 Self-Learning Reconciliation Engine & Policy Lifecycle",
     metrics: [
-      { label: "Reconciliation Turnaround", value: "-45%", color: "text-emerald-600" },
-      { label: "Errors Eliminated", value: "90%+", color: "text-cyan-600" }
+      { label: "Reconciliation Turnaround", value: "-45%", color: "text-emerald-400" },
+      { label: "Errors Eliminated", value: "90%+", color: "text-cyan-400" }
     ],
     problem: "Manual policy reconciliation between multi-insurer payout statements and internal booking registers took weeks, suffering from high human entry error and missing commission accruals.",
     execution: "Architected the 0→1 Policy Administration System covering policy registration, booking, automated invoice generation, and cancellation. Designed an AI-driven self-learning reconciliation feedback loop that learns from every human-resolved exception.",
@@ -236,21 +233,21 @@ const Experience: React.FC = () => {
   const activeModal = activeModalId ? MODAL_DETAILS[activeModalId] : null;
 
   return (
-    <section id="experience" className="py-24 relative z-10 bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 text-slate-900 border-y border-slate-200/90 shadow-inner">
+    <section id="experience" className="py-24 relative z-10 bg-[#08090C] text-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="mb-14 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-600/20 bg-emerald-50 mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-            <span className="text-xs font-mono font-bold tracking-widest text-emerald-700 uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 mb-3.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">
               CAREER &amp; PRODUCT IMPACT
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 mb-3">
+          <h2 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-3">
             Experience
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+          <p className="text-slate-400 text-base sm:text-lg leading-relaxed font-normal">
             A tactile showcase of shipped initiatives — from high-velocity trading terminals and LLM query engines to 0→1 insurance lifecycle automation.
           </p>
         </div>
@@ -259,52 +256,55 @@ const Experience: React.FC = () => {
         {/* ======================================================================== */}
         {/* COMPANY 01: 5PAISA CAPITAL LTD (AUTO-CAROUSEL 3-UP) */}
         {/* ======================================================================== */}
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-9 relative overflow-hidden shadow-lg shadow-slate-900/5 mb-14">
+        <div 
+          className="rounded-3xl p-6 sm:p-9 relative overflow-hidden border border-white/10 shadow-2xl mb-14"
+          style={{ background: 'linear-gradient(180deg, rgba(16, 22, 35, 0.88) 0%, rgba(10, 14, 23, 0.96) 100%)' }}
+        >
           
           {/* Header Banner */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-7 border-b border-slate-200">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-7 border-b border-white/10">
             <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-50 border border-emerald-300 flex items-center justify-center shrink-0 shadow-sm">
-                <span className="font-display font-black text-2xl text-emerald-700">5P</span>
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/10">
+                <span className="font-display font-black text-2xl text-emerald-400">5P</span>
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                     FINTECH · WEALTHTECH
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200">
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                     DISCOUNT BROKERAGE
                   </span>
-                  <span className="text-xs font-mono text-slate-500 flex items-center gap-1 ml-1">
+                  <span className="text-xs font-mono text-slate-400 flex items-center gap-1 ml-1">
                     <span>📍 Mumbai, India</span>
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">
+                <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
                   5paisa Capital Ltd
                 </h3>
-                <p className="text-emerald-700 font-semibold text-sm sm:text-base mt-0.5">
-                  Associate Product Manager <span className="text-slate-400 font-normal">· Nov 2024 — Sept 2025</span>
+                <p className="text-emerald-400 font-semibold text-sm sm:text-base mt-0.5">
+                  Associate Product Manager <span className="text-slate-500 font-normal">· Nov 2024 — Sept 2025</span>
                 </p>
               </div>
             </div>
 
             {/* Macro Telemetry Deck */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-emerald-600">+15%</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Repeat Investor</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-emerald-400">+15%</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Repeat Investor</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-cyan-600">&lt;30s</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Response Time</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-cyan-400">&lt;30s</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Response Time</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-amber-600">60%+</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Bot Automated</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-amber-400">60%+</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Bot Automated</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-purple-600">500+</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Partners Ingested</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-purple-400">500+</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Partners Ingested</div>
               </div>
             </div>
           </div>
@@ -312,27 +312,27 @@ const Experience: React.FC = () => {
           {/* Controls Bar */}
           <div className="flex items-center justify-between pt-5 pb-3">
             <div className="flex items-center gap-2.5">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Shipped Initiatives (5 Cards)</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Shipped Initiatives (5 Cards)</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-mono font-medium">
-                <span className={`w-2 h-2 rounded-full ${isCarouselPaused ? 'bg-amber-500' : 'bg-emerald-500 animate-ping'}`}></span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-[11px] font-mono font-medium">
+                <span className={`w-2 h-2 rounded-full ${isCarouselPaused ? 'bg-amber-400' : 'bg-emerald-400 animate-ping'}`}></span>
                 <span>{isCarouselPaused ? "Paused (Reading)" : "Auto-Scrolling Left"}</span>
-                <span className="text-[9px] text-slate-400 font-sans hidden sm:inline">(Hover to pause)</span>
+                <span className="text-[9px] text-slate-500 font-sans hidden sm:inline">(Hover to pause)</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => handleManualScroll(-1)} 
-                className="p-2 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors shadow-xs" 
+                className="p-2 rounded-xl border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/10 text-slate-400 hover:text-emerald-400 transition-colors" 
                 title="Previous Card"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button 
                 onClick={() => handleManualScroll(1)} 
-                className="p-2 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors shadow-xs" 
+                className="p-2 rounded-xl border border-white/10 hover:border-emerald-500/50 hover:bg-emerald-500/10 text-slate-400 hover:text-emerald-400 transition-colors" 
                 title="Next Card"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -353,58 +353,58 @@ const Experience: React.FC = () => {
             {/* CARD 1: BASKET INVESTING */}
             <article 
               onClick={() => setActiveModalId("paisa-1")}
-              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-emerald-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-emerald-500/50 hover:shadow-emerald-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-emerald-700 flex items-center gap-1 font-semibold">
-                    <Layers className="w-3 h-3 text-emerald-600" />
+                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+                    <Layers className="w-3 h-3 text-emerald-400" />
                     THEMATIC BASKET
                   </span>
-                  <span className="font-hand text-amber-900 text-xs bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-amber-300 text-xs bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ 40+ user interviews
                   </span>
                 </div>
                 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-xs">
+                <div className="rounded-xl p-3 shadow-inner bg-[#080d16] border border-white/10">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className="text-xl">🧺</span>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">Tech Momentum 2025</div>
-                        <div className="text-[10px] text-slate-500 font-mono">4 Equities + 1 Gold ETF</div>
+                        <div className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">Tech Momentum 2025</div>
+                        <div className="text-[10px] text-slate-400 font-mono">4 Equities + 1 Gold ETF</div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs font-mono font-bold text-emerald-600">+24.8%</div>
-                      <div className="text-[9px] text-slate-400">3Y CAGR</div>
+                      <div className="text-xs font-mono font-bold text-emerald-400">+24.8%</div>
+                      <div className="text-[9px] text-slate-500">3Y CAGR</div>
                     </div>
                   </div>
 
                   <div className="space-y-1 mb-2.5">
-                    <div className="relative h-2 w-full rounded-full bg-slate-200 overflow-hidden flex cursor-pointer">
-                      <div className="bg-emerald-500 h-full w-[45%] relative" title="Large Cap 45%">
+                    <div className="relative h-2 w-full rounded-full bg-white/5 overflow-hidden flex cursor-pointer">
+                      <div className="bg-emerald-400 h-full w-[45%] relative" title="Large Cap 45%">
                         <div className="shimmer-layer"></div>
                       </div>
-                      <div className="bg-cyan-500 h-full w-[35%] relative" title="Tech 35%">
+                      <div className="bg-cyan-400 h-full w-[35%] relative" title="Tech 35%">
                         <div className="shimmer-layer"></div>
                       </div>
-                      <div className="bg-amber-500 h-full w-[20%] relative" title="Gold Hedge 20%">
+                      <div className="bg-amber-400 h-full w-[20%] relative" title="Gold Hedge 20%">
                         <div className="shimmer-layer"></div>
                       </div>
                     </div>
-                    <div className="flex justify-between text-[9px] font-mono text-slate-500">
-                      <span className="text-emerald-700 font-semibold">Large Cap 45%</span>
-                      <span className="text-cyan-700 font-semibold">Tech 35%</span>
-                      <span className="text-amber-700 font-semibold">Gold 20%</span>
+                    <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                      <span className="text-emerald-400">Large Cap 45%</span>
+                      <span className="text-cyan-400">Tech 35%</span>
+                      <span className="text-amber-400">Gold 20%</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                    <span className="text-[10px] font-mono text-slate-400">Min. ₹5,000</span>
+                  <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                    <span className="text-[10px] font-mono text-slate-500">Min. ₹5,000</span>
                     <button 
                       onClick={handleBasketClick}
-                      className="text-[10px] font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-md flex items-center gap-1 hover:bg-emerald-500 active:scale-95 transition-all shadow-xs"
+                      className="text-[10px] font-bold bg-emerald-500 text-slate-950 px-2.5 py-1 rounded-md flex items-center gap-1 hover:bg-emerald-400 active:scale-95 transition-all shadow-xs"
                     >
                       <span>
                         {basketState === "loading" ? "Routing..." : basketState === "ordered" ? "✓ Executed (38ms)" : "Invest in 1-Click →"}
@@ -414,7 +414,7 @@ const Experience: React.FC = () => {
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-emerald-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-emerald-300 transition-colors">
                     ↳ 1-click carting cut checkout drop-off by 34%!
                   </span>
                 </div>
@@ -423,29 +423,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>⚡</span> +15% Repeat Engagement
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>📈</span> +20% Adoption
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-emerald-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-emerald-300 transition-colors leading-snug">
                     Curated "Basket Investing" &amp; Multi-Asset Discovery
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Partnered with quantitative research to launch 1-click theme-based Basket Investing — turning single-instrument confusion into diversified goal-driven portfolios for retail users.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-emerald-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -453,35 +453,35 @@ const Experience: React.FC = () => {
             {/* CARD 2: CUTE LLM SUPPORT BOT */}
             <article 
               onClick={() => setActiveModalId("paisa-2")}
-              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-cyan-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-cyan-500/50 hover:shadow-cyan-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-6 h-6 rounded-lg bg-cyan-100 border border-cyan-300 flex items-center justify-center text-xs bot-bob shadow-xs">
-                      <Bot className="w-4 h-4 text-cyan-700" />
+                    <div className="w-6 h-6 rounded-lg bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-xs bot-bob shadow-xs">
+                      <Bot className="w-4 h-4 text-cyan-400" />
                     </div>
-                    <span className="text-[11px] font-mono text-cyan-700 font-semibold">
+                    <span className="text-[11px] font-mono text-cyan-400 font-semibold">
                       AI INVESTOR COPILOT
                     </span>
                   </div>
-                  <span className="font-hand text-emerald-900 text-xs bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-emerald-300 text-xs bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ 12m ➔ 28s queue drop!
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-[10px] shadow-xs">
-                  <div className="flex items-center gap-1 text-[9px] font-mono overflow-x-auto pb-0.5 text-slate-500">
-                    <span className="text-slate-400 shrink-0">Try prompt:</span>
+                <div className="rounded-xl p-3 space-y-2 text-[10px] shadow-inner bg-[#080d16] border border-white/10">
+                  <div className="flex items-center gap-1 text-[9px] font-mono overflow-x-auto pb-0.5 text-slate-400">
+                    <span className="text-slate-500 shrink-0">Try prompt:</span>
                     <button 
                       onClick={(e) => handleBotPrompt("margin", e)} 
-                      className={`px-1.5 py-0.5 rounded border shrink-0 transition-colors font-medium ${botPromptState === 'margin' ? 'bg-cyan-200 border-cyan-400 text-cyan-900' : 'bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border-cyan-200'}`}
+                      className={`px-1.5 py-0.5 rounded border shrink-0 transition-colors font-medium ${botPromptState === 'margin' ? 'bg-cyan-800/80 border-cyan-400 text-cyan-200' : 'bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border-cyan-500/30'}`}
                     >
                       MTF Limit?
                     </button>
                     <button 
                       onClick={(e) => handleBotPrompt("withdrawal", e)} 
-                      className={`px-1.5 py-0.5 rounded border shrink-0 transition-colors font-medium ${botPromptState === 'withdrawal' ? 'bg-cyan-200 border-cyan-400 text-cyan-900' : 'bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border-cyan-200'}`}
+                      className={`px-1.5 py-0.5 rounded border shrink-0 transition-colors font-medium ${botPromptState === 'withdrawal' ? 'bg-cyan-800/80 border-cyan-400 text-cyan-200' : 'bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border-cyan-500/30'}`}
                     >
                       Instant Payout?
                     </button>
@@ -489,7 +489,7 @@ const Experience: React.FC = () => {
 
                   <div className="space-y-1.5 min-h-[70px]">
                     <div className="flex items-end justify-end gap-1">
-                      <div className="bg-slate-100 text-slate-800 rounded-lg rounded-tr-none px-2.5 py-1 text-[10px] max-w-[85%] border border-slate-200">
+                      <div className="bg-white/10 text-slate-200 rounded-lg rounded-tr-none px-2.5 py-1 text-[10px] max-w-[85%] border border-white/5">
                         {botPromptState === "withdrawal" 
                           ? "Can I get instant fund payout to HDFC?" 
                           : "How do I pledge shares for MTF limit?"}
@@ -497,21 +497,21 @@ const Experience: React.FC = () => {
                     </div>
 
                     <div className="flex items-start gap-1.5">
-                      <div className="w-4 h-4 rounded-full bg-cyan-600 text-white flex items-center justify-center text-[9px] font-bold shrink-0 mt-0.5">🤖</div>
-                      <div className="bg-cyan-50 border border-cyan-200 rounded-lg rounded-tl-none p-2 text-[10px] text-cyan-900 leading-tight max-w-[88%]">
+                      <div className="w-4 h-4 rounded-full bg-cyan-500 text-slate-950 flex items-center justify-center text-[9px] font-bold shrink-0 mt-0.5">🤖</div>
+                      <div className="bg-cyan-950/40 border border-cyan-500/30 rounded-lg rounded-tl-none p-2 text-[10px] text-cyan-100 leading-tight max-w-[88%]">
                         {botLoading ? (
-                          <div className="flex items-center gap-1.5 py-1 text-cyan-800">
-                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 animate-ping"></span>
+                          <div className="flex items-center gap-1.5 py-1 text-cyan-300">
+                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
                             <span className="text-[9px] font-mono">Querying transactional ledger...</span>
                           </div>
                         ) : botPromptState === "withdrawal" ? (
                           <>
-                            <span className="text-emerald-800 font-semibold block mb-0.5">Instant IMPS Available:</span>
+                            <span className="text-emerald-300 font-semibold block mb-0.5">Instant IMPS Available:</span>
                             Withdrawable balance ₹34,500. Credits to HDFC within 3 minutes with zero fees!
                           </>
                         ) : (
                           <>
-                            <span className="text-cyan-800 font-semibold block mb-0.5">Instant MTF Pledge:</span>
+                            <span className="text-cyan-300 font-semibold block mb-0.5">Instant MTF Pledge:</span>
                             Go to Portfolio &gt; Pledge. Margin unlocked in &lt;10s via CDSL OTP!
                           </>
                         )}
@@ -519,17 +519,17 @@ const Experience: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-[9px] font-mono text-slate-500 pt-1 border-t border-slate-100">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-slate-500 pt-1 border-t border-white/5">
                     <span className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                       Tier-1 Autonomous
                     </span>
-                    <span className="text-emerald-700 font-semibold">98.6% Accuracy</span>
+                    <span className="text-emerald-400 font-semibold">98.6% Accuracy</span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-cyan-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-cyan-300 transition-colors">
                     ↳ 60%+ Tier-1 tickets solved autonomously
                   </span>
                 </div>
@@ -538,29 +538,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>⏱️</span> 70% ↓ First-Response
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>🤖</span> 60%+ Automated
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-cyan-300 transition-colors leading-snug">
                     LLM Support Copilot &amp; Real-Time Query Bot
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Designed and rolled out an LLM-powered support bot, dropping first-response time from 12 minutes to under 30 seconds and automating 60%+ of Tier-1 investor tickets.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -568,28 +568,28 @@ const Experience: React.FC = () => {
             {/* CARD 3: MF COMPARE & BENCHMARKING */}
             <article 
               onClick={() => setActiveModalId("paisa-3")}
-              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-amber-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-amber-500/50 hover:shadow-amber-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-amber-700 flex items-center gap-1 font-semibold">
-                    <TrendingUp className="w-3 h-3 text-amber-600" />
+                  <span className="text-[11px] font-mono text-amber-400 flex items-center gap-1 font-semibold">
+                    <TrendingUp className="w-3 h-3 text-amber-400" />
                     BENCHMARK ENGINE
                   </span>
-                  <span className="font-hand text-cyan-900 text-xs bg-cyan-100 border border-cyan-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-cyan-300 text-xs bg-cyan-500/15 border border-cyan-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ Solved search drop-off
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-2.5 text-[10px] font-mono shadow-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                    <span className="text-slate-500 font-sans text-[11px]">Quant Active vs Nifty</span>
-                    <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-md border border-slate-200">
+                <div className="rounded-xl p-2.5 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10">
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10">
+                    <span className="text-slate-400 font-sans text-[11px]">Quant Active vs Nifty</span>
+                    <div className="flex items-center gap-1 bg-white/5 p-0.5 rounded-md border border-white/5">
                       {(["1Y", "3Y", "5Y"] as const).map((h) => (
                         <button 
                           key={h}
                           onClick={(e) => { e.stopPropagation(); setMfHorizon(h); }} 
-                          className={`px-1.5 py-0.5 rounded text-[9px] transition-colors font-medium ${mfHorizon === h ? 'bg-amber-200 text-amber-900 font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+                          className={`px-1.5 py-0.5 rounded text-[9px] transition-colors font-medium ${mfHorizon === h ? 'bg-amber-500/30 text-amber-300 font-bold border border-amber-500/40' : 'text-slate-400 hover:text-white'}`}
                         >
                           {h}
                         </button>
@@ -598,32 +598,32 @@ const Experience: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5 pt-2">
-                    <div className="flex items-center justify-between py-1 border-b border-slate-100 hover:bg-slate-50 px-1 rounded transition-colors">
-                      <span className="text-slate-600 font-sans">Alpha vs Nifty</span>
-                      <span className="text-emerald-700 font-bold transition-all">
+                    <div className="flex items-center justify-between py-1 border-b border-white/5 hover:bg-white/[0.02] px-1 rounded transition-colors">
+                      <span className="text-slate-400 font-sans">Alpha vs Nifty</span>
+                      <span className="text-emerald-400 font-bold transition-all">
                         {mfHorizon === "1Y" ? "+4.1% Alpha" : mfHorizon === "3Y" ? "+6.2% Alpha" : "+8.5% Alpha"}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between py-1 border-b border-slate-100 hover:bg-slate-50 px-1 rounded transition-colors">
-                      <span className="text-slate-600 font-sans">Expense Ratio</span>
-                      <span className="text-cyan-700 font-semibold">0.76% <span className="text-[8px] text-slate-400">(Nifty: 0.20%)</span></span>
+                    <div className="flex items-center justify-between py-1 border-b border-white/5 hover:bg-white/[0.02] px-1 rounded transition-colors">
+                      <span className="text-slate-400 font-sans">Expense Ratio</span>
+                      <span className="text-cyan-400 font-semibold">0.76% <span className="text-[8px] text-slate-500">(Nifty: 0.20%)</span></span>
                     </div>
-                    <div className="flex items-center justify-between py-1 hover:bg-slate-50 px-1 rounded transition-colors">
-                      <span className="text-slate-600 font-sans">Sharpe Ratio</span>
-                      <span className="text-amber-700 font-bold transition-all">
+                    <div className="flex items-center justify-between py-1 hover:bg-white/[0.02] px-1 rounded transition-colors">
+                      <span className="text-slate-400 font-sans">Sharpe Ratio</span>
+                      <span className="text-amber-400 font-bold transition-all">
                         {mfHorizon === "1Y" ? "1.28 (Moderate)" : mfHorizon === "3Y" ? "1.42 (High Risk Adj.)" : "1.65 (Outperformer)"}
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-1 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-400">
+                  <div className="mt-1 pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px] text-slate-500">
                     <span>Rolling Outperformance:</span>
-                    <span className="text-emerald-700 font-semibold font-sans">84% of Quarters ✓</span>
+                    <span className="text-emerald-400 font-semibold font-sans">84% of Quarters ✓</span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-amber-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-amber-300 transition-colors">
                     ↳ Empowered retail users with institutional metrics
                   </span>
                 </div>
@@ -632,29 +632,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1">
                       <span>🎯</span> +3% User Conversion
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>📊</span> Nifty50 Benchmark
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-amber-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-amber-300 transition-colors leading-snug">
                     MF Compare &amp; Decision Benchmarking Tool
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Identified cognitive friction in fund selection and shipped side-by-side comparison metrics (Alpha, Beta, Sharpe, Expense Ratio) against Nifty50, driving a 3% conversion surge.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-amber-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -662,43 +662,43 @@ const Experience: React.FC = () => {
             {/* CARD 4: SCALPER & MTF PAGE */}
             <article 
               onClick={() => setActiveModalId("paisa-4")}
-              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-purple-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-purple-500/50 hover:shadow-purple-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-purple-700 flex items-center gap-1 font-semibold">
-                    <TrendingUp className="w-3 h-3 text-purple-600" />
+                  <span className="text-[11px] font-mono text-purple-400 flex items-center gap-1 font-semibold">
+                    <TrendingUp className="w-3 h-3 text-purple-400" />
                     SCALPER TERMINAL · MTF 4X
                   </span>
-                  <span className="font-hand text-purple-900 text-xs bg-purple-100 border border-purple-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-purple-300 text-xs bg-purple-500/15 border border-purple-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ &lt;80ms direct socket
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-xs">
+                <div className="rounded-xl p-3 shadow-inner bg-[#080d16] border border-white/10">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                      <span className="text-xs font-mono font-bold text-slate-900">NIFTY 24,850 CALL</span>
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span className="text-xs font-mono font-bold text-white">NIFTY 24,850 CALL</span>
                     </div>
-                    <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 transition-all">
+                    <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all">
                       {scalperFeedback || scalperPrice}
                     </span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-center text-[10px] font-mono mb-2.5">
-                    <div className="bg-slate-100 rounded p-1 text-slate-700">MTF Leverage: <span className="text-purple-700 font-bold">4.0x</span></div>
-                    <div className="bg-slate-100 rounded p-1 text-slate-700">Latency: <span className="text-emerald-700 font-bold">&lt;80ms</span></div>
+                    <div className="bg-white/5 rounded p-1 text-slate-300">MTF Leverage: <span className="text-purple-300 font-bold">4.0x</span></div>
+                    <div className="bg-white/5 rounded p-1 text-slate-300">Latency: <span className="text-emerald-400 font-bold">&lt;80ms</span></div>
                   </div>
                   <div className="grid grid-cols-2 gap-1.5">
                     <button 
-                      onClick={(e) => handleScalperClick("BUY", e)}
-                      className="bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 text-emerald-800 font-mono text-[10px] text-center py-1.5 rounded-md font-bold active:scale-95 transition-all shadow-xs"
+                      onClick={(e) => handleScalperClick("BUY", e)} 
+                      className="bg-emerald-500/20 hover:bg-emerald-500/40 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] text-center py-1.5 rounded-md font-bold active:scale-95 transition-all shadow-xs"
                     >
                       BUY (F2)
                     </button>
                     <button 
-                      onClick={(e) => handleScalperClick("SELL", e)}
-                      className="bg-rose-100 hover:bg-rose-200 border border-rose-300 text-rose-800 font-mono text-[10px] text-center py-1.5 rounded-md font-bold active:scale-95 transition-all shadow-xs"
+                      onClick={(e) => handleScalperClick("SELL", e)} 
+                      className="bg-rose-500/20 hover:bg-rose-500/40 border border-rose-500/40 text-rose-300 font-mono text-[10px] text-center py-1.5 rounded-md font-bold active:scale-95 transition-all shadow-xs"
                     >
                       SELL (F3)
                     </button>
@@ -706,7 +706,7 @@ const Experience: React.FC = () => {
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-purple-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-purple-300 transition-colors">
                     ↳ Co-designed alongside 25+ professional scalpers
                   </span>
                 </div>
@@ -715,29 +715,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1">
                       <span>⚡</span> +5–7% Engagement Lift
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>📈</span> +3% Funnel Conv
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-purple-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-purple-300 transition-colors leading-snug">
                     Scalper Terminal, MTF &amp; Pre-Login Behavior
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Analyzed drop-off funnels in the trading journey to architect specialized Scalper execution, Margin Trading Facility (MTF) interfaces, and streamlined prelogin discovery.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-purple-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-purple-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -745,59 +745,59 @@ const Experience: React.FC = () => {
             {/* CARD 5: PARTNER ONBOARDING PORTAL */}
             <article 
               onClick={() => setActiveModalId("paisa-5")}
-              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-emerald-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="carousel-slide carousel-slide-3up experience-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-emerald-500/50 hover:shadow-emerald-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-emerald-700 flex items-center gap-1 font-semibold">
-                    <Users className="w-3 h-3 text-emerald-600" />
+                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+                    <Users className="w-3 h-3 text-emerald-400" />
                     DIGITAL PARTNER PIPELINE
                   </span>
-                  <span className="font-hand text-emerald-900 text-xs bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-emerald-300 text-xs bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ 7 Days ➔ 15 Mins TAT
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-[10px] font-mono relative shadow-xs">
+                <div className="rounded-xl p-3 space-y-2 text-[10px] font-mono relative shadow-inner bg-[#080d16] border border-white/10">
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-700 flex items-center gap-1.5 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <span className="text-slate-300 flex items-center gap-1.5 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                       1. PAN &amp; Aadhaar API
                     </span>
-                    <span className="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Auto-Verified ✓</span>
+                    <span className="text-emerald-400 font-bold bg-emerald-500/15 px-1.5 py-0.5 rounded border border-emerald-500/30">Auto-Verified ✓</span>
                   </div>
 
                   <div className="h-2 flex items-center pl-1">
                     <svg width="100%" height="8">
-                      <line x1="0" y1="4" x2="100%" y2="4" stroke="#059669" strokeWidth="1.5" className="flowing-pipeline" opacity="0.7"/>
+                      <line x1="0" y1="4" x2="100%" y2="4" stroke="#10b981" strokeWidth="1.5" className="flowing-pipeline" opacity="0.7"/>
                     </svg>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-700 flex items-center gap-1.5 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <span className="text-slate-300 flex items-center gap-1.5 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                       2. Digilocker Agreement
                     </span>
-                    <span className="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">e-Signed ✓</span>
+                    <span className="text-emerald-400 font-bold bg-emerald-500/15 px-1.5 py-0.5 rounded border border-emerald-500/30">e-Signed ✓</span>
                   </div>
 
                   <div className="h-2 flex items-center pl-1">
                     <svg width="100%" height="8">
-                      <line x1="0" y1="4" x2="100%" y2="4" stroke="#0284c7" strokeWidth="1.5" className="flowing-pipeline" opacity="0.7"/>
+                      <line x1="0" y1="4" x2="100%" y2="4" stroke="#06b6d4" strokeWidth="1.5" className="flowing-pipeline" opacity="0.7"/>
                     </svg>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-700 flex items-center gap-1.5 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
+                    <span className="text-slate-300 flex items-center gap-1.5 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                       3. Sub-Broker ID Release
                     </span>
-                    <span className="text-cyan-700 font-bold bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-200">Instant (&lt;5m) ✓</span>
+                    <span className="text-cyan-300 font-bold bg-cyan-500/15 px-1.5 py-0.5 rounded border border-cyan-500/30">Instant (&lt;5m) ✓</span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-emerald-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-emerald-300 transition-colors">
                     ↳ Replaced 14-page physical courier loop
                   </span>
                 </div>
@@ -806,29 +806,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>🤝</span> 500+ Partners Onboarded
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>📱</span> Self-Serve Portal
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-emerald-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-emerald-300 transition-colors leading-snug">
                     Partner Ecosystem &amp; Self-Serve Portal Overhaul
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Simplified partner onboarding workflows and redesigned the digital portal, eliminating offline paperwork and unlocking rapid onboarding of 500+ distribution partners.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-emerald-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -840,52 +840,55 @@ const Experience: React.FC = () => {
         {/* ======================================================================== */}
         {/* COMPANY 02: EDME INSURANCE BROKER (STATIC 3-COLUMN STUDIO GRID) */}
         {/* ======================================================================== */}
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-9 relative overflow-hidden shadow-lg shadow-slate-900/5">
+        <div 
+          className="rounded-3xl p-6 sm:p-9 relative overflow-hidden border border-white/10 shadow-2xl"
+          style={{ background: 'linear-gradient(180deg, rgba(16, 22, 35, 0.88) 0%, rgba(10, 14, 23, 0.96) 100%)' }}
+        >
           
           {/* Header Banner */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-7 border-b border-slate-200">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-7 border-b border-white/10">
             <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-cyan-100 to-blue-50 border border-cyan-300 flex items-center justify-center shrink-0 shadow-sm">
-                <span className="font-display font-black text-2xl text-cyan-700">ED</span>
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/10">
+                <span className="font-display font-black text-2xl text-cyan-400">ED</span>
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200">
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                     INSURTECH · 0→1 PLATFORMS
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                  <span className="px-2.5 py-0.5 rounded-md font-mono text-[11px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30">
                     FORMERLY ADITYA BIRLA INSURANCE
                   </span>
-                  <span className="text-xs font-mono text-slate-500 flex items-center gap-1 ml-1">
+                  <span className="text-xs font-mono text-slate-400 flex items-center gap-1 ml-1">
                     <span>📍 India</span>
                   </span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900">
+                <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
                   Edme Insurance Broker
                 </h3>
-                <p className="text-cyan-700 font-semibold text-sm sm:text-base mt-0.5">
-                  Associate Product Manager <span className="text-slate-400 font-normal">· Dec 2025 — June 2026</span>
+                <p className="text-cyan-400 font-semibold text-sm sm:text-base mt-0.5">
+                  Associate Product Manager <span className="text-slate-500 font-normal">· Dec 2025 — June 2026</span>
                 </p>
               </div>
             </div>
 
             {/* Macro Telemetry Deck */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-cyan-600">+50%</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Ops Efficiency</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-cyan-400">+50%</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Ops Efficiency</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-emerald-600">-45%</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Recon Turnaround</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-emerald-400">-45%</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Recon Turnaround</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-amber-600">90%+</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">Errors Eliminated</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-amber-400">90%+</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">Errors Eliminated</div>
               </div>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-center shadow-xs">
-                <div className="text-lg sm:text-xl font-bold font-display text-purple-600">6+</div>
-                <div className="text-[10px] font-mono text-slate-500 uppercase mt-0.5">On-Time Releases</div>
+              <div className="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-center">
+                <div className="text-lg sm:text-xl font-bold font-display text-purple-400">6+</div>
+                <div className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">On-Time Releases</div>
               </div>
             </div>
           </div>
@@ -893,10 +896,10 @@ const Experience: React.FC = () => {
           {/* Subheader */}
           <div className="flex items-center justify-between pt-5 pb-4">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Shipped Platform Modules (3 Cards Displayed Side-by-Side)</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Shipped Platform Modules (3 Cards Displayed Side-by-Side)</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
             </div>
-            <span className="text-[11px] font-mono text-cyan-700 bg-cyan-50 border border-cyan-200 px-2.5 py-0.5 rounded-full font-medium hidden sm:inline">
+            <span className="text-[11px] font-mono text-cyan-300 bg-cyan-500/10 border border-cyan-500/25 px-2.5 py-0.5 rounded-full font-medium hidden sm:inline">
               Static 3-Column Studio Layout
             </span>
           </div>
@@ -907,51 +910,51 @@ const Experience: React.FC = () => {
             {/* EDME CARD 1: 0->1 DUAL AI PLATFORMS WITH LASER SCANNER */}
             <article 
               onClick={() => setActiveModalId("edme-1")}
-              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-cyan-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-cyan-500/50 hover:shadow-cyan-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-cyan-700 flex items-center gap-1 font-semibold">
-                    <FileText className="w-3 h-3 text-cyan-600" />
+                  <span className="text-[11px] font-mono text-cyan-400 flex items-center gap-1 font-semibold">
+                    <FileText className="w-3 h-3 text-cyan-400" />
                     GENAI DOCUMENT OCR
                   </span>
-                  <span className="font-hand text-cyan-900 text-xs bg-cyan-100 border border-cyan-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-cyan-300 text-xs bg-cyan-500/15 border border-cyan-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ Saved ops 4.5 hrs/day!
                   </span>
                 </div>
 
-                <div className="relative bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-[10px] font-mono overflow-hidden shadow-xs">
+                <div className="relative rounded-xl p-3 space-y-2 text-[10px] font-mono overflow-hidden shadow-inner bg-[#080d16] border border-white/10">
                   <div className="laser-beam"></div>
 
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                    <span className="text-slate-500 flex items-center gap-1">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-1.5">
+                    <span className="text-slate-400 flex items-center gap-1">
                       <span className="text-xs">📄</span> Ingest:
                     </span>
-                    <span className="text-slate-800 font-semibold truncate max-w-[170px]">Claim_Discharge_904.pdf</span>
+                    <span className="text-slate-200 font-semibold truncate max-w-[170px]">Claim_Discharge_904.pdf</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-1.5">
-                    <div className="bg-cyan-50 border border-cyan-200 p-1.5 rounded">
-                      <div className="text-[9px] text-slate-500">Policy Matched:</div>
-                      <div className="text-cyan-800 font-bold truncate">POL-88412-G</div>
+                    <div className="bg-cyan-950/40 border border-cyan-500/20 p-1.5 rounded">
+                      <div className="text-[9px] text-slate-400">Policy Matched:</div>
+                      <div className="text-cyan-300 font-bold truncate">POL-88412-G</div>
                     </div>
-                    <div className="bg-emerald-50 border border-emerald-200 p-1.5 rounded">
-                      <div className="text-[9px] text-slate-500">Claim Amount:</div>
-                      <div className="text-emerald-800 font-bold">₹2,45,000</div>
+                    <div className="bg-emerald-950/40 border border-emerald-500/20 p-1.5 rounded">
+                      <div className="text-[9px] text-slate-400">Claim Amount:</div>
+                      <div className="text-emerald-400 font-bold">₹2,45,000</div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between pt-1 text-[9px]">
                     <span className="text-slate-400">Extraction Confidence:</span>
-                    <span className="text-emerald-700 font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <span className="text-emerald-400 font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                       99.4% Verified
                     </span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-cyan-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-cyan-300 transition-colors">
                     ↳ Automated claims triage across 4 hospital networks
                   </span>
                 </div>
@@ -960,29 +963,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>🚀</span> +50% Ops Efficiency
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>📉</span> 10% ↓ Manual Effort
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-cyan-300 transition-colors leading-snug">
                     0→1 AI Insurance Platforms: CMS &amp; PAS Rollout
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Led the 0→1 build of two AI-enabled platforms (Claims Management &amp; Policy Administration), utilizing GenAI document extraction to unify fragmented operations and cut manual effort by 10%.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -990,45 +993,45 @@ const Experience: React.FC = () => {
             {/* EDME CARD 2: ROADMAP EXECUTION & DATA MIGRATION */}
             <article 
               onClick={() => setActiveModalId("edme-2")}
-              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-purple-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-purple-500/50 hover:shadow-purple-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-purple-700 flex items-center gap-1 font-semibold">
-                    <Clock className="w-3 h-3 text-purple-600" />
+                  <span className="text-[11px] font-mono text-purple-400 flex items-center gap-1 font-semibold">
+                    <Clock className="w-3 h-3 text-purple-400" />
                     AI SPRINT VELOCITY
                   </span>
-                  <span className="font-hand text-purple-900 text-xs bg-purple-100 border border-purple-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-purple-300 text-xs bg-purple-500/15 border border-purple-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ 180k+ policies migrated!
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-xs">
+                <div className="rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10">
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-600 font-medium">Release Execution:</span>
-                    <span className="text-emerald-700 font-bold">6/6 On Schedule (100%)</span>
+                    <span className="text-slate-300 font-medium">Release Execution:</span>
+                    <span className="text-emerald-400 font-bold">6/6 On Schedule (100%)</span>
                   </div>
                   
-                  <div className="relative w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-                    <div className="bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-500 h-full w-[100%] relative">
+                  <div className="relative w-full bg-white/5 rounded-full h-2 overflow-hidden">
+                    <div className="bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 h-full w-[100%] relative">
                       <div className="shimmer-layer"></div>
                     </div>
                   </div>
 
-                  <div className="flex justify-between text-[8px] text-slate-400 pt-0.5">
+                  <div className="flex justify-between text-[8px] text-slate-500 pt-0.5">
                     <span>R1: Ingestion</span>
                     <span>R3: UAT</span>
                     <span>R6: Live Migration</span>
                   </div>
 
-                  <div className="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px]">
+                  <div className="pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px]">
                     <span className="text-slate-500">Schema Field Mapping:</span>
-                    <span className="text-cyan-700 font-bold">+30% Reporting Accuracy</span>
+                    <span className="text-cyan-400 font-bold">+30% Reporting Accuracy</span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-purple-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-purple-300 transition-colors">
                     ↳ Zero data loss across multi-tier insurance tables
                   </span>
                 </div>
@@ -1037,29 +1040,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1">
                       <span>🗓️</span> 6+ Releases On Schedule
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>📊</span> +30% Accuracy
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-cyan-300 transition-colors leading-snug">
                     AI Roadmap Prioritization &amp; Zero-Loss Data Migration
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Delivered 6+ product releases on schedule owning AI sprint prioritization, stakeholder UAT, and backend data migration using AI-proposed schema and field-mapping.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -1067,39 +1070,39 @@ const Experience: React.FC = () => {
             {/* EDME CARD 3: RECONCILIATION ENGINE */}
             <article 
               onClick={() => setActiveModalId("edme-3")}
-              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-white border border-slate-200 shadow-md hover:border-emerald-500/60 hover:shadow-lg transition-all cursor-pointer group"
+              className="experience-card rounded-2xl overflow-hidden flex flex-col bg-[#0e131f]/95 border border-white/10 shadow-lg hover:border-emerald-500/50 hover:shadow-emerald-500/10 transition-all cursor-pointer group"
             >
-              <div className="bg-gradient-to-b from-slate-50 to-slate-100/80 border-b border-slate-200 p-4">
+              <div className="border-b border-white/10 p-4" style={{ background: 'linear-gradient(180deg, #131a29 0%, #0c101a 100%)' }}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-emerald-700 flex items-center gap-1.5 font-semibold">
-                    <RefreshCw className="spin-sync w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5 font-semibold">
+                    <RefreshCw className="spin-sync w-3.5 h-3.5 text-emerald-400" />
                     SELF-LEARNING RECON
                   </span>
-                  <span className="font-hand text-emerald-900 text-xs bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md font-bold shadow-xs">
+                  <span className="font-hand text-emerald-300 text-xs bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold shadow-xs">
                     ✏️ -45% TAT · 90% errors gone
                   </span>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-xs">
+                <div className="rounded-xl p-3 space-y-2 text-[10px] font-mono shadow-inner bg-[#080d16] border border-white/10">
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-600 font-medium">Auto-Matched Ledger:</span>
-                    <span className="text-emerald-700 font-bold">₹1.82 Cr (99.8%)</span>
+                    <span className="text-slate-300 font-medium">Auto-Matched Ledger:</span>
+                    <span className="text-emerald-400 font-bold">₹1.82 Cr (99.8%)</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-600 font-medium">Exceptions Auto-Cleared:</span>
-                    <span className="text-cyan-700 font-bold">142 Cases</span>
+                    <span className="text-slate-300 font-medium">Exceptions Auto-Cleared:</span>
+                    <span className="text-cyan-400 font-bold">142 Cases</span>
                   </div>
-                  <div className="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px]">
-                    <span className="text-slate-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                  <div className="pt-1.5 border-t border-white/5 flex items-center justify-between text-[9px]">
+                    <span className="text-slate-500 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                       Active Feedback Loop:
                     </span>
-                    <span className="text-emerald-700 font-bold">Self-Healing 🔁</span>
+                    <span className="text-emerald-400 font-bold">Self-Healing 🔁</span>
                   </div>
                 </div>
 
                 <div className="mt-2 text-right">
-                  <span className="font-hand text-[13px] text-slate-500 group-hover:text-emerald-700 transition-colors">
+                  <span className="font-hand text-[13px] text-slate-400 group-hover:text-emerald-300 transition-colors">
                     ↳ AI learns from every manual accountant fix
                   </span>
                 </div>
@@ -1108,29 +1111,29 @@ const Experience: React.FC = () => {
               <div className="p-5 flex flex-col flex-grow justify-between">
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
                       <span>⏱️</span> -45% Turnaround
                     </span>
-                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200 flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded font-mono text-[11px] font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1">
                       <span>🛡️</span> 90%+ Errors Eliminated
                     </span>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-bold font-display text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors leading-snug">
+                  <h4 className="text-base sm:text-lg font-bold font-display text-white mb-2 group-hover:text-cyan-300 transition-colors leading-snug">
                     0→1 Policy Administration (PAS) &amp; AI Self-Learning Recon
                   </h4>
 
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
                     Automated the complete policy lifecycle (booking to cancellation) and architected an AI reconciliation feedback loop, slashing TAT by 45% and eliminating 90%+ errors.
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-700">
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400">
                   <span className="flex items-center gap-1">
                     Explore Case Breakdown
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Expand Details</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded">Expand Details</span>
                 </div>
               </div>
             </article>
@@ -1141,57 +1144,57 @@ const Experience: React.FC = () => {
       </div>
 
       {/* ======================================================================== */}
-      {/* DEEP-DIVE MODAL DRAWER */}
+      {/* DEEP-DIVE MODAL DRAWER (SLEEK DARK FINTECH GLASS) */}
       {/* ======================================================================== */}
       {activeModal && (
         <div 
           onClick={() => setActiveModalId(null)}
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto"
+            className="bg-[#0e1422] border border-white/10 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto text-white"
           >
             <button 
               onClick={() => setActiveModalId(null)}
-              className="absolute top-6 right-6 text-slate-400 hover:text-slate-900 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors"
+              className="absolute top-6 right-6 text-slate-400 hover:text-white p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
             
             <div className="flex items-center gap-2 mb-3">
-              <span className="px-2.5 py-0.5 rounded font-mono text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span className="px-2.5 py-0.5 rounded font-mono text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                 {activeModal.company}
               </span>
-              <span className="text-slate-300">·</span>
-              <span className="text-xs font-mono text-slate-500">{activeModal.tag}</span>
+              <span className="text-slate-500">·</span>
+              <span className="text-xs font-mono text-slate-400">{activeModal.tag}</span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 mb-4">
+            <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-white mb-4">
               {activeModal.title}
             </h3>
 
             <div className="grid grid-cols-2 gap-3 mb-6">
               {activeModal.metrics.map((m, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div key={idx} className="p-3 rounded-xl bg-white/[0.03] border border-white/5">
                   <div className={`text-xl font-bold font-display ${m.color}`}>{m.value}</div>
-                  <div className="text-[11px] font-mono text-slate-500 uppercase mt-0.5">{m.label}</div>
+                  <div className="text-[11px] font-mono text-slate-400 uppercase mt-0.5">{m.label}</div>
                 </div>
               ))}
             </div>
 
-            <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
+            <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
               <div>
-                <h5 className="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider mb-1">THE CORE PROBLEM</h5>
-                <p className="text-slate-600">{activeModal.problem}</p>
+                <h5 className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">THE CORE PROBLEM</h5>
+                <p className="text-slate-400">{activeModal.problem}</p>
               </div>
               <div>
-                <h5 className="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider mb-1">MY ROLE &amp; PM EXECUTION</h5>
-                <p className="text-slate-600">{activeModal.execution}</p>
+                <h5 className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">MY ROLE &amp; PM EXECUTION</h5>
+                <p className="text-slate-400">{activeModal.execution}</p>
               </div>
               <div>
-                <h5 className="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider mb-1">QUANTIFIABLE BUSINESS IMPACT</h5>
-                <p className="text-slate-600">{activeModal.impact}</p>
+                <h5 className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">QUANTIFIABLE BUSINESS IMPACT</h5>
+                <p className="text-slate-400">{activeModal.impact}</p>
               </div>
             </div>
           </div>
