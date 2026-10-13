@@ -290,7 +290,156 @@
       .stats dd{font-size:1.35rem}
       .sticky-note{right:-6px}
     }
-    @media(prefers-reduced-motion:reduce){.cursor,.marquee__track{animation:none}}
+    /* ---------- scroll-spy active nav link ---------- */
+    .nav__links a.active {
+      color: var(--yellow) !important;
+      font-weight: 700;
+      position: relative;
+    }
+    .nav__links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--pink);
+      border-radius: 2px;
+    }
+    /* ---------- hero parallax will-change ---------- */
+    .hero__photo, .sticky-note { will-change: transform; }
+    /* ---------- case teaser snippet ---------- */
+    .case__teaser {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--ink);
+      opacity: 0.68;
+      margin: 10px 0 14px;
+      padding: 6px 10px;
+      background: rgba(28, 27, 25, 0.04);
+      border-left: 2px solid var(--pink);
+      border-radius: 0 4px 4px 0;
+      transition: opacity 0.2s, background-color 0.2s;
+    }
+    .case:hover .case__teaser {
+      opacity: 0.95;
+      background: rgba(28, 27, 25, 0.08);
+    }
+    .case__teaser strong {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-right: 5px;
+    }
+    /* ---------- scroll-triggered fade-up entrance ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* ---------- toolkit hover tooltips ---------- */
+    .chips li[data-tooltip] {
+      position: relative;
+      cursor: help;
+      transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .chips li[data-tooltip]:hover {
+      background: var(--yellow);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+    .chips li[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      padding: 6px 11px;
+      border-radius: 6px;
+      box-shadow: 2px 4px 0 rgba(0, 0, 0, 0.28);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 50;
+    }
+    .chips li[data-tooltip]::before {
+      content: "";
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      border: 5px solid transparent;
+      border-top-color: var(--ink);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 50;
+    }
+    .chips li[data-tooltip]:hover::after,
+    .chips li[data-tooltip]:hover::before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    /* ---------- floating back to top button ---------- */
+    .back-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 40;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--paper);
+      border: 2px dashed rgba(251, 246, 234, 0.45);
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.4);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      transition: transform 0.18s, background-color 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .back-top.visible { display: flex; animation: backTopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .back-top:hover {
+      background: var(--mat);
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-3px);
+    }
+    .back-top__arrow { font-size: 1rem; line-height: 1; margin-bottom: 2px; }
+    .back-top__text { font-size: 0.64rem; }
+    @keyframes backTopIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media(max-width:600px){
+      .back-top { bottom: 20px; right: 18px; padding: 6px 10px; }
+    }
+    @media(prefers-reduced-motion:reduce){
+      .cursor,.marquee__track{animation:none}
+      .reveal{opacity:1;transform:none;transition:none}
+    }
   </style>
 </head>
 <body>
@@ -999,6 +1148,12 @@
     </div>
   </dialog>
 
+  <!-- Floating Back to Top Button -->
+  <button class="back-top" id="backTop" type="button" aria-label="Back to top">
+    <span class="back-top__arrow">↑</span>
+    <span class="back-top__text">TOP</span>
+  </button>
+
   <script>
     // case breakdown pop-ups
     var dlg = document.getElementById('detail');
@@ -1013,9 +1168,64 @@
     dlg.querySelector('.detail__close').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
 
-    // copy email
+    // confetti helper
+    function triggerConfetti(originX, originY) {
+      var canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100vw';
+      canvas.style.height = '100vh';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '9999';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+      if (!ctx) { document.body.removeChild(canvas); return; }
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+      var colors = ['#236b4b', '#f2679b', '#ffe27a', '#fbf6ea', '#1c1b19'];
+      var particles = [];
+      for (var i = 0; i < 48; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var speed = 2.5 + Math.random() * 6.5;
+        particles.push({
+          x: originX, y: originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 4,
+          w: 6 + Math.random() * 7,
+          h: 4 + Math.random() * 4,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 12,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: 1
+        });
+      }
+      var start = null, dur = 1600;
+      function frame(t) {
+        if (!start) start = t;
+        var elapsed = t - start, p = elapsed / dur;
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        particles.forEach(function (pt) {
+          pt.x += pt.vx; pt.y += pt.vy; pt.vy += 0.2; pt.vx *= 0.98;
+          pt.rotation += pt.rotSpeed; pt.opacity = Math.max(0, 1 - p);
+          ctx.save(); ctx.translate(pt.x, pt.y); ctx.rotate(pt.rotation * Math.PI / 180);
+          ctx.fillStyle = pt.color; ctx.globalAlpha = pt.opacity;
+          ctx.fillRect(-pt.w / 2, -pt.h / 2, pt.w, pt.h);
+          ctx.restore();
+        });
+        if (elapsed < dur) requestAnimationFrame(frame);
+        else if (document.body.contains(canvas)) document.body.removeChild(canvas);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    // copy email with confetti
     var copyBtn = document.getElementById('copyEmail');
-    copyBtn.addEventListener('click', function () {
+    copyBtn.addEventListener('click', function (e) {
+      var rect = copyBtn.getBoundingClientRect();
+      triggerConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
       var email = copyBtn.dataset.email;
       function done() { copyBtn.textContent = 'Copied!'; setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 1800); }
       if (navigator.clipboard) { navigator.clipboard.writeText(email).then(done, function () { location.href = 'mailto:' + email; }); }
@@ -1033,6 +1243,63 @@
       toggle.setAttribute('aria-expanded', open);
     });
     links.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', false); });
+
+    // hero parallax and back-to-top button
+    var heroPhoto = document.querySelector('.hero__photo');
+    var stickyNote = document.querySelector('.sticky-note');
+    var backTopBtn = document.getElementById('backTop');
+    backTopBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          if (y < 750) {
+            if (heroPhoto) heroPhoto.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+            if (stickyNote) stickyNote.style.transform = 'translateY(' + (y * -0.07) + 'px) rotate(5deg)';
+          }
+          if (y > 400) backTopBtn.classList.add('visible');
+          else backTopBtn.classList.remove('visible');
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // scroll-spy active nav link
+    var sectionIds = ['focus', 'experience', 'built', 'teardowns', 'ai', 'about'];
+    var navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+    if ('IntersectionObserver' in window) {
+      var spyObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            navLinks.forEach(function (link) {
+              if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+              else link.classList.remove('active');
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+      sectionIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) spyObserver.observe(el);
+      });
+    }
+
+    // scroll reveal observer
+    if ('IntersectionObserver' in window) {
+      var revObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { revObserver.observe(el); });
+    }
 
     // count-up numbers
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

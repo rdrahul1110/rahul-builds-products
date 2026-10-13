@@ -132,10 +132,111 @@ const CoStat = ({
   );
 };
 
+// Confetti burst utility using cutting-mat brand palette
+const triggerConfetti = (originX: number, originY: number) => {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+
+  const canvas = document.createElement("canvas");
+  canvas.style.position = "fixed";
+  canvas.style.top = "0";
+  canvas.style.left = "0";
+  canvas.style.width = "100vw";
+  canvas.style.height = "100vh";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "9999";
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    if (document.body.contains(canvas)) document.body.removeChild(canvas);
+    return;
+  }
+
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  ctx.scale(dpr, dpr);
+
+  // Brand palette: green, pink, yellow, paper, ink
+  const colors = ["#236b4b", "#f2679b", "#ffe27a", "#fbf6ea", "#1c1b19"];
+  const particles: Array<{
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    w: number;
+    h: number;
+    rotation: number;
+    rotSpeed: number;
+    color: string;
+    opacity: number;
+  }> = [];
+
+  for (let i = 0; i < 48; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2.5 + Math.random() * 6.5;
+    particles.push({
+      x: originX,
+      y: originY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 4,
+      w: 6 + Math.random() * 7,
+      h: 4 + Math.random() * 4,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: 1,
+    });
+  }
+
+  let startTime: number | null = null;
+  const duration = 1600;
+
+  const frame = (time: number) => {
+    if (!startTime) startTime = time;
+    const elapsed = time - startTime;
+    const progress = elapsed / duration;
+
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.2;
+      p.vx *= 0.98;
+      p.rotation += p.rotSpeed;
+      p.opacity = Math.max(0, 1 - progress);
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+
+    if (elapsed < duration) {
+      requestAnimationFrame(frame);
+    } else {
+      if (document.body.contains(canvas)) {
+        document.body.removeChild(canvas);
+      }
+    }
+  };
+
+  requestAnimationFrame(frame);
+};
+
 const Index: React.FC = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [activeModal, setActiveModal] = useState<ModalData | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [showBackTop, setShowBackTop] = useState<boolean>(false);
+
+  const heroPhotoRef = useRef<HTMLDivElement>(null);
+  const stickyNoteRef = useRef<HTMLDivElement>(null);
 
   // Close modal on escape key
   useEffect(() => {
@@ -148,7 +249,89 @@ const Index: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const handleCopyEmail = () => {
+  // Parallax on hero photo/sticky note & Back-to-Top visibility
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < 750) {
+            if (heroPhotoRef.current) {
+              heroPhotoRef.current.style.transform = `translateY(${y * 0.12}px)`;
+            }
+            if (stickyNoteRef.current) {
+              stickyNoteRef.current.style.transform = `translateY(${y * -0.07}px) rotate(5deg)`;
+            }
+          }
+          setShowBackTop(y > 400);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll-spy active nav link
+  useEffect(() => {
+    const sectionIds = ["focus", "experience", "built", "teardowns", "ai", "about"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Scroll-triggered entrance animations (.reveal)
+  useEffect(() => {
+    const revealEls = document.querySelectorAll(".reveal");
+    if (!revealEls.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.08,
+      }
+    );
+
+    revealEls.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleCopyEmail = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      triggerConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    } else {
+      triggerConfetti(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
     const email = "rahul4ever2011@gmail.com";
     if (navigator.clipboard) {
       navigator.clipboard
@@ -198,22 +381,46 @@ const Index: React.FC = () => {
           Menu
         </button>
         <nav className={`nav__links ${navOpen ? "open" : ""}`}>
-          <a href="#focus" onClick={() => setNavOpen(false)}>
+          <a
+            href="#focus"
+            className={activeSection === "focus" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             Fintech × AI
           </a>
-          <a href="#experience" onClick={() => setNavOpen(false)}>
+          <a
+            href="#experience"
+            className={activeSection === "experience" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             Experience
           </a>
-          <a href="#built" onClick={() => setNavOpen(false)}>
+          <a
+            href="#built"
+            className={activeSection === "built" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             Built
           </a>
-          <a href="#teardowns" onClick={() => setNavOpen(false)}>
+          <a
+            href="#teardowns"
+            className={activeSection === "teardowns" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             Teardowns
           </a>
-          <a href="#ai" onClick={() => setNavOpen(false)}>
+          <a
+            href="#ai"
+            className={activeSection === "ai" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             AI
           </a>
-          <a href="#about" onClick={() => setNavOpen(false)}>
+          <a
+            href="#about"
+            className={activeSection === "about" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
             About
           </a>
           <a
@@ -265,14 +472,14 @@ const Index: React.FC = () => {
             </div>
           </div>
 
-          <div className="hero__photo">
+          <div className="hero__photo" ref={heroPhotoRef}>
             <img
               src="/photo.jpeg"
               alt="Rahul Das standing by a lake with hills behind him"
               width={1280}
               height={1143}
             />
-            <div className="sticky-note">
+            <div className="sticky-note" ref={stickyNoteRef}>
               <strong>Education: BITS Pilani</strong>
               <span>
                 B.Tech, Birla Institute of Technology and Science · Nov 2020 –
@@ -410,7 +617,7 @@ const Index: React.FC = () => {
             </h2>
           </div>
           <div className="tool-grid">
-            <article className="tool paper">
+            <article className="tool paper reveal">
               <span className="tool__badge">01</span>
               <h3>Discover</h3>
               <p>Understand users, workflows and pain points.</p>
@@ -418,7 +625,7 @@ const Index: React.FC = () => {
                 User interviews, workflow observation, and stakeholder context.
               </span>
             </article>
-            <article className="tool paper tilt-r">
+            <article className="tool paper tilt-r reveal">
               <span className="tool__badge">02</span>
               <h3>Define</h3>
               <p>Translate problems into clear requirements.</p>
@@ -426,7 +633,7 @@ const Index: React.FC = () => {
                 Journey maps, problem statements, constraints, and outcomes.
               </span>
             </article>
-            <article className="tool paper">
+            <article className="tool paper reveal">
               <span className="tool__badge">03</span>
               <h3>Design</h3>
               <p>Create workflows and product solutions.</p>
@@ -434,7 +641,7 @@ const Index: React.FC = () => {
                 Impact, effort, and sequencing around the core user job.
               </span>
             </article>
-            <article className="tool paper tilt-l">
+            <article className="tool paper tilt-l reveal">
               <span className="tool__badge">04</span>
               <h3>Build</h3>
               <p>Work with technology teams to implement.</p>
@@ -442,7 +649,7 @@ const Index: React.FC = () => {
                 PRDs, prototypes, AI workflows, and sprint collaboration.
               </span>
             </article>
-            <article className="tool paper">
+            <article className="tool paper reveal">
               <span className="tool__badge">05</span>
               <h3>Measure</h3>
               <p>Use data and feedback to improve.</p>
@@ -467,7 +674,7 @@ const Index: React.FC = () => {
           </div>
 
           {/* 5paisa */}
-          <div className="co">
+          <div className="co reveal">
             <div className="co__badge">5P</div>
             <div>
               <h3>5paisa Capital Ltd</h3>
@@ -477,7 +684,7 @@ const Index: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="co-stats">
+          <div className="co-stats reveal">
             <CoStat target={15} prefix="+" suffix="%" label="Repeat investor" />
             <CoStat target={30} prefix="<" suffix="s" label="Response time" />
             <CoStat target={60} suffix="%+" label="Bot automated" />
@@ -485,7 +692,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row case-row--2">
-            <article className="case paper tilt-l">
+            <article className="case paper tilt-l reveal">
               <span className="tape"></span>
               <div>
                 <span className="tag tag--fin">Fintech</span>
@@ -504,6 +711,11 @@ const Index: React.FC = () => {
                 <strong>+15%</strong> repeat engagement ·{" "}
                 <strong>+20%</strong> adoption · 1-click carting cut checkout
                 drop-off by <strong>34%</strong>
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Retail investors experienced
+                high choice paralysis navigating 2,000+ individual stocks,
+                causing heavy drop-off before order completion.
               </p>
               <button
                 className="more-btn"
@@ -525,7 +737,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -542,6 +754,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>70% ↓</strong> first-response time ·{" "}
                 <strong>60%+</strong> automated
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Repetitive margin &amp;
+                trading queries overwhelmed agents, causing response times to
+                balloon to 12 minutes during market hours.
               </p>
               <button
                 className="more-btn"
@@ -565,7 +782,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row">
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="pill">Growth &amp; conversion</span>
@@ -580,6 +797,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>+3%</strong> user conversion · benchmarked to{" "}
                 <strong>Nifty 50</strong>
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> High drop-offs on fund pages
+                because investors lacked side-by-side comparison against Nifty50
+                and category benchmarks.
               </p>
               <button
                 className="more-btn"
@@ -602,7 +824,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="pill">High-frequency trading</span>
@@ -617,6 +839,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>+5–7%</strong> engagement lift · <strong>+3%</strong>{" "}
                 funnel conversion
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> F&amp;O scalpers lost seconds
+                in multi-step order windows, while MTF leverage discovery was
+                buried deep in desktop submenus.
               </p>
               <button
                 className="more-btn"
@@ -639,7 +866,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="pill">Distribution network</span>
@@ -654,6 +881,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>500+</strong> partners onboarded · replaced a 14-page
                 physical courier loop
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Partner onboarding was stuck
+                in offline paperwork, taking 5–7 days with zero real-time
+                commission reconciliation.
               </p>
               <button
                 className="more-btn"
@@ -678,7 +910,7 @@ const Index: React.FC = () => {
           </div>
 
           {/* Edme */}
-          <div className="co">
+          <div className="co reveal">
             <div className="co__badge">ED</div>
             <div>
               <h3>Edme Insurance Broker</h3>
@@ -689,7 +921,7 @@ const Index: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="co-stats">
+          <div className="co-stats reveal">
             <CoStat target={50} prefix="+" suffix="%" label="Ops efficiency" />
             <CoStat target={45} prefix="-" suffix="%" label="Recon turnaround" />
             <CoStat target={90} suffix="%+" label="Errors eliminated" />
@@ -697,7 +929,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row">
-            <article className="case paper tilt-l">
+            <article className="case paper tilt-l reveal">
               <span className="tape"></span>
               <div>
                 <span className="tag tag--ai">AI</span>
@@ -715,6 +947,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>+50%</strong> ops efficiency · <strong>10% ↓</strong>{" "}
                 manual effort
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Claims and policy operations
+                relied on fragmented spreadsheets, physical discharge documents,
+                and slow email handoffs.
               </p>
               <button
                 className="more-btn"
@@ -736,7 +973,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--ai">AI</span>
                 <span className="pill">Cross-functional execution</span>
@@ -754,13 +991,18 @@ const Index: React.FC = () => {
                 <strong>6+</strong> releases on schedule ·{" "}
                 <strong>+30%</strong> reporting accuracy
               </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Migrating 180k+ historical
+                policies from legacy databases carried high risk of broken schema
+                mappings and reporting discrepancies.
+              </p>
               <button
                 className="more-btn"
                 type="button"
                 onClick={() =>
                   setActiveModal({
                     eyebrow:
-                      "Edme Insurance Broker · Cross-functional execution",
+                       "Edme Insurance Broker · Cross-functional execution",
                     title:
                       "AI roadmap prioritization & zero-loss data migration",
                     problem:
@@ -776,7 +1018,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -792,6 +1034,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>-45%</strong> turnaround · <strong>90%+</strong> errors
                 eliminated
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Insurer payout reconciliation
+                against internal registers took weeks, suffering from human data
+                entry errors and missed accruals.
               </p>
               <button
                 className="more-btn"
@@ -816,7 +1063,7 @@ const Index: React.FC = () => {
           </div>
 
           {/* Liquidmind */}
-          <div className="co">
+          <div className="co reveal">
             <div className="co__badge">LM</div>
             <div>
               <h3>Liquidmind AI</h3>
@@ -826,7 +1073,7 @@ const Index: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="co-stats">
+          <div className="co-stats reveal">
             <CoStat target={30} suffix="% ↓" label="Time-to-value" />
             <CoStat target={99} suffix="%" label="Pay accuracy" />
             <CoStat target={3} suffix=" types" label="Checkout modes" />
@@ -834,7 +1081,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row">
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="pill">Activation &amp; onboarding</span>
@@ -849,6 +1096,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>30% ↓</strong> time-to-value · removed{" "}
                 <strong>4</strong> high-friction setup steps
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Enterprise merchants took over
+                4.2 days to execute their first payment operation due to
+                cognitive overload during workspace setup.
               </p>
               <button
                 className="more-btn"
@@ -872,7 +1124,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper tilt-l">
+            <article className="case paper tilt-l reveal">
               <span className="tape"></span>
               <div>
                 <span className="tag tag--fin">Fintech</span>
@@ -888,6 +1140,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>3</strong> flexible modes · <strong>+18%</strong>{" "}
                 checkout conversion
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Merchants suffered cart
+                drop-offs on high-ticket B2B transactions because buyers lacked
+                split-instrument or delayed installment options.
               </p>
               <button
                 className="more-btn"
@@ -910,7 +1167,7 @@ const Index: React.FC = () => {
               </button>
             </article>
 
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="pill">API infrastructure</span>
@@ -925,6 +1182,11 @@ const Index: React.FC = () => {
               <p className="case__result">
                 <strong>99%</strong> pay accuracy · <strong>100%</strong>{" "}
                 webhook reliability
+              </p>
+              <p className="case__teaser">
+                <strong>Problem preview:</strong> Asynchronous bank callback
+                delays and network drops generated ghost payments requiring
+                costly manual intervention.
               </p>
               <button
                 className="more-btn"
@@ -962,7 +1224,7 @@ const Index: React.FC = () => {
             </p>
           </div>
 
-          <article className="case case--feature paper">
+          <article className="case case--feature paper reveal">
             <span className="tape"></span>
             <div>
               <span className="tag tag--ai">AI</span>
@@ -1001,7 +1263,7 @@ const Index: React.FC = () => {
           </article>
 
           <div className="case-row case-row--2">
-            <article className="case paper tilt-l">
+            <article className="case paper tilt-l reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -1032,7 +1294,7 @@ const Index: React.FC = () => {
               </a>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -1062,7 +1324,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row">
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="pill">Urban mobility</span>
                 <span className="pill pill--live">Live</span>
@@ -1088,7 +1350,7 @@ const Index: React.FC = () => {
               </a>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="pill">Marketplace</span>
                 <span className="pill pill--live">Live</span>
@@ -1113,7 +1375,7 @@ const Index: React.FC = () => {
               </a>
             </article>
 
-            <article className="case paper">
+            <article className="case paper reveal">
               <div>
                 <span className="tag tag--ai">AI</span>
                 <span className="pill">Travel-tech</span>
@@ -1155,7 +1417,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row case-row--2">
-            <article className="case paper tilt-l">
+            <article className="case paper tilt-l reveal">
               <span className="tape"></span>
               <div>
                 <span className="pill">System design &amp; PRD</span>
@@ -1219,7 +1481,7 @@ const Index: React.FC = () => {
               </div>
             </article>
 
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <div>
                 <span className="pill">Quick commerce</span>
                 <span className="pill">Unit economics</span>
@@ -1294,7 +1556,7 @@ const Index: React.FC = () => {
             </p>
           </div>
           <div className="ai-grid">
-            <article className="paper">
+            <article className="paper reveal">
               <h3>AI product management</h3>
               <p>
                 Identifying where models genuinely outperform rules, defining
@@ -1306,7 +1568,7 @@ const Index: React.FC = () => {
                 override
               </p>
             </article>
-            <article className="paper tilt-r">
+            <article className="paper tilt-r reveal">
               <h3>Claude Code &amp; AI agents</h3>
               <p>
                 Building and orchestrating agentic workflows and using
@@ -1318,7 +1580,7 @@ const Index: React.FC = () => {
                 build
               </p>
             </article>
-            <article className="paper">
+            <article className="paper reveal">
               <h3>LLMs &amp; prompt engineering</h3>
               <p>
                 Structured prompting, tool use, context engineering, and
@@ -1330,7 +1592,7 @@ const Index: React.FC = () => {
                 Guardrails
               </p>
             </article>
-            <article className="paper tilt-l">
+            <article className="paper tilt-l reveal">
               <h3>MCP &amp; workflow automation</h3>
               <p>
                 Connecting AI models with real systems, tools and workflows —
@@ -1341,7 +1603,7 @@ const Index: React.FC = () => {
                 trail
               </p>
             </article>
-            <article className="paper">
+            <article className="paper reveal">
               <h3>Rapid prototyping</h3>
               <p>
                 Prototyping concepts quickly with AI-assisted development to
@@ -1352,7 +1614,7 @@ const Index: React.FC = () => {
                 kill
               </p>
             </article>
-            <article className="paper tilt-r">
+            <article className="paper tilt-r reveal">
               <span className="tape"></span>
               <h3>
                 Future experiments{" "}
@@ -1383,7 +1645,7 @@ const Index: React.FC = () => {
             <p>Every metric here is from my own work.</p>
           </div>
           <div className="case-row">
-            <article className="case paper">
+            <article className="case paper reveal">
               <p className="eyebrow">Ops · recon</p>
               <h3>Fragmented insurance workflows &amp; manual invoices</h3>
               <dl className="stats" style={{ gridTemplateColumns: "1fr 1fr" }}>
@@ -1407,7 +1669,7 @@ const Index: React.FC = () => {
                 matching.
               </p>
             </article>
-            <article className="case paper tilt-r">
+            <article className="case paper tilt-r reveal">
               <p className="eyebrow">Support · LLM</p>
               <h3>Repetitive customer queries delaying responses</h3>
               <dl className="stats" style={{ gridTemplateColumns: "1fr 1fr" }}>
@@ -1425,7 +1687,7 @@ const Index: React.FC = () => {
               <h4 style={{ marginTop: "10px" }}>Solution</h4>
               <p>Launched an LLM-powered chatbot for automated support.</p>
             </article>
-            <article className="case paper">
+            <article className="case paper reveal">
               <p className="eyebrow">Onboard · pay</p>
               <h3>High friction and drop-offs during onboarding</h3>
               <dl className="stats" style={{ gridTemplateColumns: "1fr 1fr" }}>
@@ -1450,7 +1712,7 @@ const Index: React.FC = () => {
 
         {/* ============ ABOUT ============ */}
         <section id="about" className="section">
-          <div className="about paper">
+          <div className="about paper reveal">
             <span className="tape"></span>
             <div>
               <p className="eyebrow">06 · About</p>
@@ -1524,59 +1786,107 @@ const Index: React.FC = () => {
             </ul>
           </div>
 
-          <div className="chips paper">
+          <div className="chips paper reveal">
             <p className="eyebrow" style={{ marginBottom: "8px" }}>
               Toolkit
             </p>
             <div className="chip-group">
               <strong>Product</strong>
               <ul>
-                <li>Product discovery</li>
-                <li>PRD/BRD</li>
-                <li>Feature prioritisation</li>
-                <li>Requirement gathering</li>
-                <li>User research</li>
-                <li>Product analytics</li>
+                <li data-tooltip="User interviews, workflow shadowing, and pain point validation">
+                  Product discovery
+                </li>
+                <li data-tooltip="Comprehensive PRDs, user stories, and acceptance criteria">
+                  PRD/BRD
+                </li>
+                <li data-tooltip="RICE scoring, impact-vs-effort matrices, and sprint roadmaps">
+                  Feature prioritisation
+                </li>
+                <li data-tooltip="Translating stakeholder requests into technical specifications">
+                  Requirement gathering
+                </li>
+                <li data-tooltip="Qualitative interviews, surveys, and usability testing">
+                  User research
+                </li>
+                <li data-tooltip="Funnel analysis, cohort tracking, and drop-off diagnosis">
+                  Product analytics
+                </li>
               </ul>
             </div>
             <div className="chip-group">
               <strong>AI &amp; Gen-AI</strong>
               <ul>
-                <li>Generative AI</li>
-                <li>Prompt engineering</li>
-                <li>AI agents</li>
-                <li>ChatGPT</li>
-                <li>Claude</li>
-                <li>Google Gemini</li>
-                <li>AI workflow automation</li>
-                <li>AI-assisted product design</li>
+                <li data-tooltip="Integrating LLMs and vision models into product workflows">
+                  Generative AI
+                </li>
+                <li data-tooltip="Structured JSON output, few-shot prompting, and evaluation datasets">
+                  Prompt engineering
+                </li>
+                <li data-tooltip="Multi-agent orchestration, tool routing, and autonomous loops">
+                  AI agents
+                </li>
+                <li data-tooltip="Ideation, fast PRD drafting, and market research synthesis">
+                  ChatGPT
+                </li>
+                <li data-tooltip="Code generation, agentic development, and deep document parsing">
+                  Claude
+                </li>
+                <li data-tooltip="Multimodal analysis, context window testing, and Google ecosystem">
+                  Google Gemini
+                </li>
+                <li data-tooltip="Trigger-based agent pipelines and operational bots">
+                  AI workflow automation
+                </li>
+                <li data-tooltip="Accelerated prototyping and interactive design validation">
+                  AI-assisted product design
+                </li>
               </ul>
             </div>
             <div className="chip-group">
               <strong>Analytics</strong>
               <ul>
-                <li>SQL</li>
-                <li>Power BI</li>
-                <li>Tableau</li>
-                <li>KPI monitoring</li>
-                <li>ETL pipelines</li>
-                <li>Dashboarding</li>
+                <li data-tooltip="Complex joins, window functions, and reconciliation queries">
+                  SQL
+                </li>
+                <li data-tooltip="Executive reporting dashboards and cross-table KPI models">
+                  Power BI
+                </li>
+                <li data-tooltip="Interactive visual drill-downs and operational telemetry">
+                  Tableau
+                </li>
+                <li data-tooltip="Tracking North Star, operational TAT, and financial churn">
+                  KPI monitoring
+                </li>
+                <li data-tooltip="Automated data extraction, schema normalization, and ingestion">
+                  ETL pipelines
+                </li>
+                <li data-tooltip="Real-time transaction tracking and ops escalation views">
+                  Dashboarding
+                </li>
               </ul>
             </div>
             <div className="chip-group">
               <strong>Execution</strong>
               <ul>
-                <li>Agile / Scrum</li>
-                <li>Stakeholder management</li>
-                <li>Workflow automation</li>
-                <li>Business analysis</li>
+                <li data-tooltip="Sprint ceremonies, backlog grooming, and velocity tracking">
+                  Agile / Scrum
+                </li>
+                <li data-tooltip="Aligning engineering, design, legal, compliance, and CX">
+                  Stakeholder management
+                </li>
+                <li data-tooltip="Eliminating manual handoffs with event-driven scripts & bots">
+                  Workflow automation
+                </li>
+                <li data-tooltip="Financial ledger reconciliation, unit economics, and process flows">
+                  Business analysis
+                </li>
               </ul>
             </div>
           </div>
         </section>
 
         {/* ============ CONTACT ============ */}
-        <section id="contact" className="contact paper">
+        <section id="contact" className="contact paper reveal">
           <span className="tape"></span>
           <p className="eyebrow">07 · Contact</p>
           <h2>
@@ -1618,6 +1928,19 @@ const Index: React.FC = () => {
           </span>
         </section>
       </main>
+
+      {/* Floating Back to Top Button */}
+      {showBackTop && (
+        <button
+          className="back-top"
+          type="button"
+          aria-label="Scroll back to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <span className="back-top__arrow">↑</span>
+          <span className="back-top__text">TOP</span>
+        </button>
+      )}
 
       {/* Footer */}
       <footer className="footer">

@@ -1303,8 +1303,201 @@ dialog.detail::backdrop {
   }
 }
 
+/* ---------- scroll-spy active nav link ---------- */
+.nav__links a.active {
+  color: var(--yellow) !important;
+  font-weight: 700;
+  position: relative;
+}
+
+.nav__links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--pink);
+  border-radius: 2px;
+}
+
+/* ---------- hero parallax will-change ---------- */
+.hero__photo {
+  will-change: transform;
+}
+
+.sticky-note {
+  will-change: transform;
+}
+
+/* ---------- case teaser snippet ---------- */
+.case__teaser {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink);
+  opacity: 0.68;
+  margin: 10px 0 14px;
+  padding: 6px 10px;
+  background: rgba(28, 27, 25, 0.04);
+  border-left: 2px solid var(--pink);
+  border-radius: 0 4px 4px 0;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.case:hover .case__teaser {
+  opacity: 0.95;
+  background: rgba(28, 27, 25, 0.08);
+}
+
+.case__teaser strong {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  margin-right: 5px;
+}
+
+/* ---------- scroll-triggered fade-up entrance ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- toolkit hover tooltips ---------- */
+.chips li[data-tooltip] {
+  position: relative;
+  cursor: help;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.chips li[data-tooltip]:hover {
+  background: var(--yellow);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.chips li[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  padding: 6px 11px;
+  border-radius: 6px;
+  box-shadow: 2px 4px 0 rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 50;
+}
+
+.chips li[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border: 5px solid transparent;
+  border-top-color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 50;
+}
+
+.chips li[data-tooltip]:hover::after,
+.chips li[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- floating back to top button ---------- */
+.back-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px dashed rgba(251, 246, 234, 0.45);
+  box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.4);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  transition: transform 0.18s, background-color 0.18s, border-color 0.18s, color 0.18s;
+  animation: backTopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-top:hover {
+  background: var(--mat);
+  border-color: var(--yellow);
+  color: var(--yellow);
+  transform: translateY(-3px);
+}
+
+.back-top__arrow {
+  font-size: 1rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.back-top__text {
+  font-size: 0.64rem;
+}
+
+@keyframes backTopIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .back-top {
+    bottom: 20px;
+    right: 18px;
+    padding: 6px 10px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cursor, .marquee__track {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
