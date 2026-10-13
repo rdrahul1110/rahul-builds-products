@@ -1808,81 +1808,208 @@ const Index: React.FC = () => {
             </p>
           </div>
           <div className="ai-grid">
-            <article className="paper reveal">
-              <h3>AI product management</h3>
-              <p>
-                Identifying where models genuinely outperform rules, defining
-                evaluation criteria, and designing for trust, validation,
-                fallback and human override.
-              </p>
-              <p className="flow">
-                Signal<b>→</b>Model vs rules<b>→</b>Eval criteria<b>→</b>Human
-                override
-              </p>
+            {/* Card 1: AI Product Management */}
+            <article className="paper ai-card reveal">
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--eval">GATE EVAL</span>
+                  <span className="ai-chip">Heuristics vs LLM</span>
+                </div>
+                <h3>AI product management</h3>
+                <p className="ai-card__takeaway">
+                  Deploying models only where rules fail, backed by deterministic evals and human fallback.
+                </p>
+                <div className="ai-gate-viz">
+                  <div className="ai-gate__input">
+                    <span className="ai-stream-dot"></span>
+                    <span>Event Stream</span>
+                  </div>
+                  <div className="ai-gate__split">
+                    <div className="ai-gate__branch">
+                      <span className="ai-branch__name">Static Rules</span>
+                      <span className="ai-branch__meta">82%</span>
+                    </div>
+                    <div className="ai-gate__branch ai-gate__branch--model is-active">
+                      <div className="ai-pulse-bead"></div>
+                      <span className="ai-branch__name">LLM Eval</span>
+                      <span className="ai-branch__meta">18% (fallback)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Eval: <b>Deterministic triage</b></span>
+                <span>Guard: <b>Human-in-loop</b></span>
+              </div>
             </article>
-            <article className="paper tilt-r reveal">
-              <h3>Claude Code &amp; AI agents</h3>
-              <p>
-                Building and orchestrating agentic workflows and using
-                AI-assisted development to turn validated ideas into working
-                prototypes.
-              </p>
-              <p className="flow">
-                Task spec<b>→</b>Agent loop<b>→</b>Tool calls<b>→</b>Shipped
-                build
-              </p>
+
+            {/* Card 2: Claude Code & AI Agents */}
+            <article className="paper ai-card tilt-r reveal">
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--cli">AGENT CLI</span>
+                  <span className="ai-chip">Autonomous Loops</span>
+                </div>
+                <h3>Claude Code &amp; AI agents</h3>
+                <p className="ai-card__takeaway">
+                  Directing multi-agent loops that test, iterate, and ship validated prototypes in hours.
+                </p>
+                <div className="ai-terminal">
+                  <div className="ai-term-bar">
+                    <div className="ai-term-dots">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <span className="ai-term-title">claude-agent-runner</span>
+                  </div>
+                  <div className="ai-term-body">
+                    <div className="ai-term-line"><span className="c-prompt">$</span> agent execute --goal &quot;ship feature&quot;</div>
+                    <div className="ai-term-line"><span className="c-warn">&gt;</span> 4 subagents active · 0 errors</div>
+                    <div className="ai-term-line"><span className="c-live">&#9679;</span> verified build <span className="c-cursor">_</span></div>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Runtime: <b>Autonomous CLI</b></span>
+                <span>Cycle: <b>Spec &rarr; PR</b></span>
+              </div>
             </article>
-            <article className="paper reveal">
-              <h3>LLMs &amp; prompt engineering</h3>
-              <p>
-                Structured prompting, tool use, context engineering, and
-                grounding model outputs in domain data for reliable business
-                workflows.
-              </p>
-              <p className="flow">
-                Domain data<b>→</b>Context pack<b>→</b>Structured out<b>→</b>
-                Guardrails
-              </p>
+
+            {/* Card 3: LLMs & Prompt Engineering */}
+            <article className="paper ai-card reveal">
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--json">STRUCTURED</span>
+                  <span className="ai-chip">Domain Grounding</span>
+                </div>
+                <h3>LLMs &amp; prompt engineering</h3>
+                <p className="ai-card__takeaway">
+                  Transforming fuzzy conversational input into strict, schema-validated business objects.
+                </p>
+                <div className="ai-transform-viz">
+                  <div className="ai-tf-in">
+                    <span className="ai-tf-pill">&quot;Refund 250 for damaged parcel #921&quot;</span>
+                  </div>
+                  <div className="ai-tf-arrow">Schema Guard validated</div>
+                  <div className="ai-tf-out">
+                    <code>
+                      {`{`}&quot;action&quot;: <span className="c-json-val">&quot;REFUND&quot;</span>, &quot;amt&quot;: <span className="c-json-num">250</span>, &quot;id&quot;: 921{`}`}
+                    </code>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Output: <b>Zod / JSON Schema</b></span>
+                <span>Hallucination: <b>0%</b></span>
+              </div>
             </article>
-            <article className="paper tilt-l reveal">
-              <h3>MCP &amp; workflow automation</h3>
-              <p>
-                Connecting AI models with real systems, tools and workflows —
-                moving from demos to reliable automation.
-              </p>
-              <p className="flow">
-                Core APIs<b>→</b>MCP bridge<b>→</b>Rules engine<b>→</b>Audit
-                trail
-              </p>
+
+            {/* Card 4: MCP & Workflow Automation */}
+            <article className="paper ai-card tilt-l reveal">
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--mcp">MCP BRIDGE</span>
+                  <span className="ai-chip">Live Tool Calling</span>
+                </div>
+                <h3>MCP &amp; workflow automation</h3>
+                <p className="ai-card__takeaway">
+                  Bridging LLMs directly to live databases, internal microservices, and audit logs.
+                </p>
+                <div className="ai-mcp-hub">
+                  <div className="ai-mcp-center">
+                    <div className="ai-mcp-ring"></div>
+                    <span>MCP</span>
+                  </div>
+                  <div className="ai-mcp-nodes">
+                    <div className="ai-node ai-node--db"><span className="ai-node-dot"></span>Postgres DB (Read/Write)</div>
+                    <div className="ai-node ai-node--api"><span className="ai-node-dot"></span>Payment Ledger API</div>
+                    <div className="ai-node ai-node--hook"><span className="ai-node-dot"></span>Audit Webhook</div>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Protocol: <b>Model Context Protocol</b></span>
+                <span>Auth: <b>Scoped tokens</b></span>
+              </div>
             </article>
-            <article className="paper reveal">
-              <h3>Rapid prototyping</h3>
-              <p>
-                Prototyping concepts quickly with AI-assisted development to
-                validate assumptions and cut unnecessary engineering cycles.
-              </p>
-              <p className="flow">
-                Hypothesis<b>→</b>Prototype<b>→</b>User test<b>→</b>Build /
-                kill
-              </p>
+
+            {/* Card 5: Rapid Prototyping */}
+            <article className="paper ai-card reveal">
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--speed">SPEED</span>
+                  <span className="ai-chip">48h Concept to Live</span>
+                </div>
+                <h3>Rapid prototyping</h3>
+                <p className="ai-card__takeaway">
+                  Zero-to-working product in 48 hours to validate PM assumptions before dev lock-in.
+                </p>
+                <div className="ai-sprint-viz">
+                  <div className="ai-sprint-bar">
+                    <div className="ai-sprint-progress"></div>
+                  </div>
+                  <div className="ai-sprint-steps">
+                    <div className="ai-step is-complete">
+                      <span className="step-dot"></span>
+                      <span className="step-label">Spec</span>
+                    </div>
+                    <div className="ai-step is-complete">
+                      <span className="step-dot"></span>
+                      <span className="step-label">UX Mock</span>
+                    </div>
+                    <div className="ai-step is-active">
+                      <span className="step-dot"></span>
+                      <span className="step-label">AI MVP</span>
+                    </div>
+                    <div className="ai-step">
+                      <span className="step-dot"></span>
+                      <span className="step-label">Tested</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Velocity: <b>10x faster validation</b></span>
+                <span>Outcome: <b>Build or Kill</b></span>
+              </div>
             </article>
-            <article className="paper tilt-r reveal">
+
+            {/* Card 6: Future Experiments */}
+            <article className="paper ai-card tilt-r reveal">
               <span className="tape"></span>
-              <h3>
-                Future experiments{" "}
-                <span className="pill" style={{ verticalAlign: "middle" }}>
-                  Exploratory
-                </span>
-              </h3>
-              <p>
-                AI-assisted planning, intelligent monitoring, exception
-                detection, natural-language constraints and autonomous workflow
-                agents.
-              </p>
-              <p className="flow">
-                Monitoring<b>→</b>Exception detect<b>→</b>NL constraints<b>→</b>
-                Autonomous agent
-              </p>
+              <div>
+                <div className="ai-card__header">
+                  <span className="ai-badge ai-badge--future">NEXT GEN</span>
+                  <span className="ai-chip">Self-Healing</span>
+                </div>
+                <h3>
+                  Future experiments{" "}
+                  <span className="pill" style={{ verticalAlign: "middle" }}>
+                    Exploratory
+                  </span>
+                </h3>
+                <p className="ai-card__takeaway">
+                  Autonomous exception detection, continuous drift monitors, and self-healing systems.
+                </p>
+                <div className="ai-radar-viz">
+                  <div className="ai-radar-screen">
+                    <div className="ai-radar-sweep"></div>
+                    <div className="ai-radar-ring ai-ring-1"></div>
+                    <div className="ai-radar-ring ai-ring-2"></div>
+                    <div className="ai-radar-blip blip-1"></div>
+                    <div className="ai-radar-blip blip-2"></div>
+                  </div>
+                  <div className="ai-radar-event">
+                    <span className="event-tag">Anomaly detected</span>
+                    <span className="event-action">Auto-healing via agent &nearr;</span>
+                  </div>
+                </div>
+              </div>
+              <div className="ai-card__footer">
+                <span>Status: <b>Active experimentation</b></span>
+                <span>Focus: <b>Agentic auto-ops</b></span>
+              </div>
             </article>
           </div>
         </section>

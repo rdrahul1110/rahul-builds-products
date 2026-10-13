@@ -592,6 +592,468 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* --- Dynamic AI Practice Cards & Micro-Widgets --- */
+    .ai-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+      position: relative;
+    }
+    .ai-card:hover {
+      box-shadow: 6px 8px 0 rgba(0, 0, 0, 0.28);
+    }
+    .ai-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .ai-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .ai-badge--eval { background: var(--mat); border-color: var(--mat); color: #fff; }
+    .ai-badge--cli { background: #252422; border-color: var(--ink); color: var(--yellow); }
+    .ai-badge--json { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .ai-badge--mcp { background: var(--mat-2); border-color: var(--mat-2); color: #fff; }
+    .ai-badge--speed { background: var(--yellow); border-color: var(--ink); color: var(--ink); }
+    .ai-badge--future { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .ai-chip {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .ai-card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 6px 0;
+      line-height: 1.18;
+    }
+    .ai-card__takeaway {
+      font-size: 0.85rem;
+      color: #4a4842;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      min-height: 2.8em;
+    }
+    .ai-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(28, 27, 25, 0.18);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+    .ai-card__footer b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    /* Widget 1: Decision Gate */
+    .ai-gate-viz {
+      background: var(--paper-2);
+      border: 1.5px solid rgba(28, 27, 25, 0.15);
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+    }
+    .ai-gate__input {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .ai-stream-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mat);
+      box-shadow: 0 0 0 3px rgba(35, 107, 75, 0.25);
+      animation: streamPulse 1.8s infinite ease-in-out;
+    }
+    @keyframes streamPulse {
+      0%, 100% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+    .ai-gate__split {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      max-width: 140px;
+    }
+    .ai-gate__branch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(28, 27, 25, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .ai-gate__branch--model.is-active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      font-weight: 600;
+    }
+    .ai-gate__branch--model .ai-branch__meta {
+      color: var(--yellow);
+    }
+    .ai-pulse-bead {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: linear-gradient(90deg, transparent, rgba(255, 226, 122, 0.6), transparent);
+      animation: pulseBeadTravel 2.2s infinite ease-in-out;
+    }
+    @keyframes pulseBeadTravel {
+      0% { left: -30%; opacity: 0; }
+      30% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { left: 110%; opacity: 0; }
+    }
+    /* Widget 2: Terminal */
+    .ai-terminal {
+      background: #1c1b19;
+      border: 1.5px solid #1c1b19;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.15);
+    }
+    .ai-term-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #252422;
+      padding: 5px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .ai-term-dots {
+      display: flex;
+      gap: 4px;
+    }
+    .ai-term-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .ai-term-dots span:nth-child(1) { background: #ff5f56; }
+    .ai-term-dots span:nth-child(2) { background: #ffbd2e; }
+    .ai-term-dots span:nth-child(3) { background: #27c93f; }
+    .ai-term-title {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: rgba(251, 246, 234, 0.6);
+    }
+    .ai-term-body {
+      padding: 8px 10px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      line-height: 1.5;
+      color: var(--paper);
+    }
+    .ai-term-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .c-prompt { color: var(--pink); font-weight: 700; margin-right: 4px; }
+    .c-warn { color: var(--yellow); margin-right: 4px; }
+    .c-ok { color: #27c93f; font-weight: 700; margin-right: 4px; }
+    .c-live { color: #27c93f; margin-right: 4px; animation: blink 1.2s infinite; }
+    .c-cursor { display: inline-block; color: var(--yellow); font-weight: 700; animation: blink 0.9s infinite; }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    /* Widget 3: Structured JSON Transformer */
+    .ai-transform-viz {
+      background: var(--paper-2);
+      border: 1.5px solid rgba(28, 27, 25, 0.15);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ai-tf-in {
+      display: flex;
+      align-items: center;
+    }
+    .ai-tf-pill {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px dashed rgba(28, 27, 25, 0.25);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #3d3b37;
+    }
+    .ai-tf-arrow {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--mat);
+      padding-left: 10px;
+    }
+    .ai-tf-arrow::before {
+      content: "↓";
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--pink);
+    }
+    .ai-tf-out {
+      background: #1c1b19;
+      color: var(--paper);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .c-json-val { color: var(--yellow); }
+    .c-json-num { color: #27c93f; }
+    /* Widget 4: MCP Hub */
+    .ai-mcp-hub {
+      background: var(--paper-2);
+      border: 1.5px solid rgba(28, 27, 25, 0.15);
+      border-radius: 6px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 12px;
+    }
+    .ai-mcp-center {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      box-shadow: 0 0 0 2px var(--pink);
+    }
+    .ai-mcp-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--pink);
+      animation: spinSlow 12s linear infinite;
+    }
+    @keyframes spinSlow {
+      to { transform: rotate(360deg); }
+    }
+    .ai-mcp-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .ai-node {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(28, 27, 25, 0.12);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--ink);
+    }
+    .ai-node-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .ai-node--db .ai-node-dot { background: #27c93f; box-shadow: 0 0 0 2px rgba(39, 201, 63, 0.3); }
+    .ai-node--api .ai-node-dot { background: var(--pink); box-shadow: 0 0 0 2px rgba(242, 103, 155, 0.3); }
+    .ai-node--hook .ai-node-dot { background: var(--yellow); box-shadow: 0 0 0 2px rgba(255, 226, 122, 0.5); }
+    /* Widget 5: Sprint Bar */
+    .ai-sprint-viz {
+      background: var(--paper-2);
+      border: 1.5px solid rgba(28, 27, 25, 0.15);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .ai-sprint-bar {
+      height: 6px;
+      background: rgba(28, 27, 25, 0.12);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .ai-sprint-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--mat), var(--pink), var(--yellow));
+      border-radius: 99px;
+      animation: sprintFill 4s ease-in-out infinite alternate;
+    }
+    @keyframes sprintFill {
+      0% { width: 35%; }
+      100% { width: 100%; }
+    }
+    .ai-sprint-steps {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+    }
+    .ai-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: var(--muted);
+    }
+    .ai-step .step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(28, 27, 25, 0.3);
+    }
+    .ai-step.is-complete .step-dot {
+      background: var(--mat);
+    }
+    .ai-step.is-active .step-dot {
+      background: var(--pink);
+      box-shadow: 0 0 0 3px rgba(242, 103, 155, 0.35);
+      animation: streamPulse 1.4s infinite ease-in-out;
+    }
+    .ai-step.is-active .step-label {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    /* Widget 6: Radar Scanner */
+    .ai-radar-viz {
+      background: #12241b;
+      border: 1.5px solid var(--ink);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ai-radar-screen {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .ai-radar-sweep {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 75%, rgba(242, 103, 155, 0.6) 100%);
+      animation: radarSweep 3s linear infinite;
+    }
+    @keyframes radarSweep {
+      to { transform: rotate(360deg); }
+    }
+    .ai-radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+    .ai-ring-1 { inset: 8px; }
+    .ai-ring-2 { inset: 16px; }
+    .ai-radar-blip {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .blip-1 {
+      top: 14px;
+      right: 12px;
+      background: var(--yellow);
+      box-shadow: 0 0 6px var(--yellow);
+      animation: blipFade 3s infinite 0.7s;
+    }
+    .blip-2 {
+      bottom: 12px;
+      left: 14px;
+      background: var(--pink);
+      box-shadow: 0 0 6px var(--pink);
+      animation: blipFade 3s infinite 2.1s;
+    }
+    @keyframes blipFade {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+    .ai-radar-event {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-family: var(--mono);
+    }
+    .event-tag {
+      font-size: 0.62rem;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .event-action {
+      font-size: 0.68rem;
+      color: #fff;
+      font-weight: 700;
+      background: rgba(35, 107, 75, 0.8);
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
     @media(prefers-reduced-motion:reduce){
       .cursor,.marquee__track{animation:none}
       .reveal{opacity:1;transform:none;transition:none}
@@ -1291,36 +1753,201 @@
         <p>I treat AI as a product material — something shaped around a business decision, not a feature bolted on.</p>
       </div>
       <div class="ai-grid">
-        <article class="paper">
-          <h3>AI product management</h3>
-          <p>Identifying where models genuinely outperform rules, defining evaluation criteria, and designing for trust, validation, fallback and human override.</p>
-          <p class="flow">Signal<b>→</b>Model vs rules<b>→</b>Eval criteria<b>→</b>Human override</p>
+        <!-- Card 1: AI Product Management -->
+        <article class="paper ai-card">
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--eval">GATE EVAL</span>
+              <span class="ai-chip">Heuristics vs LLM</span>
+            </div>
+            <h3>AI product management</h3>
+            <p class="ai-card__takeaway">
+              Deploying models only where rules fail, backed by deterministic evals and human fallback.
+            </p>
+            <div class="ai-gate-viz">
+              <div class="ai-gate__input">
+                <span class="ai-stream-dot"></span>
+                <span>Event Stream</span>
+              </div>
+              <div class="ai-gate__split">
+                <div class="ai-gate__branch">
+                  <span class="ai-branch__name">Static Rules</span>
+                  <span class="ai-branch__meta">82%</span>
+                </div>
+                <div class="ai-gate__branch ai-gate__branch--model is-active">
+                  <div class="ai-pulse-bead"></div>
+                  <span class="ai-branch__name">LLM Eval</span>
+                  <span class="ai-branch__meta">18% (fallback)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Eval: <b>Deterministic triage</b></span>
+            <span>Guard: <b>Human-in-loop</b></span>
+          </div>
         </article>
-        <article class="paper tilt-r">
-          <h3>Claude Code &amp; AI agents</h3>
-          <p>Building and orchestrating agentic workflows and using AI-assisted development to turn validated ideas into working prototypes.</p>
-          <p class="flow">Task spec<b>→</b>Agent loop<b>→</b>Tool calls<b>→</b>Shipped build</p>
+
+        <!-- Card 2: Claude Code & AI Agents -->
+        <article class="paper ai-card tilt-r">
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--cli">AGENT CLI</span>
+              <span class="ai-chip">Autonomous Loops</span>
+            </div>
+            <h3>Claude Code &amp; AI agents</h3>
+            <p class="ai-card__takeaway">
+              Directing multi-agent loops that test, iterate, and ship validated prototypes in hours.
+            </p>
+            <div class="ai-terminal">
+              <div class="ai-term-bar">
+                <div class="ai-term-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <span class="ai-term-title">claude-agent-runner</span>
+              </div>
+              <div class="ai-term-body">
+                <div class="ai-term-line"><span class="c-prompt">$</span> agent execute --goal &quot;ship feature&quot;</div>
+                <div class="ai-term-line"><span class="c-warn">&gt;</span> 4 subagents active · 0 errors</div>
+                <div class="ai-term-line"><span class="c-live">&#9679;</span> verified build <span class="c-cursor">_</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Runtime: <b>Autonomous CLI</b></span>
+            <span>Cycle: <b>Spec &rarr; PR</b></span>
+          </div>
         </article>
-        <article class="paper">
-          <h3>LLMs &amp; prompt engineering</h3>
-          <p>Structured prompting, tool use, context engineering, and grounding model outputs in domain data for reliable business workflows.</p>
-          <p class="flow">Domain data<b>→</b>Context pack<b>→</b>Structured out<b>→</b>Guardrails</p>
+
+        <!-- Card 3: LLMs & Prompt Engineering -->
+        <article class="paper ai-card">
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--json">STRUCTURED</span>
+              <span class="ai-chip">Domain Grounding</span>
+            </div>
+            <h3>LLMs &amp; prompt engineering</h3>
+            <p class="ai-card__takeaway">
+              Transforming fuzzy conversational input into strict, schema-validated business objects.
+            </p>
+            <div class="ai-transform-viz">
+              <div class="ai-tf-in">
+                <span class="ai-tf-pill">&quot;Refund 250 for damaged parcel #921&quot;</span>
+              </div>
+              <div class="ai-tf-arrow">Schema Guard validated</div>
+              <div class="ai-tf-out">
+                <code>{&quot;action&quot;: <span class="c-json-val">&quot;REFUND&quot;</span>, &quot;amt&quot;: <span class="c-json-num">250</span>, &quot;id&quot;: 921}</code>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Output: <b>Zod / JSON Schema</b></span>
+            <span>Hallucination: <b>0%</b></span>
+          </div>
         </article>
-        <article class="paper tilt-l">
-          <h3>MCP &amp; workflow automation</h3>
-          <p>Connecting AI models with real systems, tools and workflows — moving from demos to reliable automation.</p>
-          <p class="flow">Core APIs<b>→</b>MCP bridge<b>→</b>Rules engine<b>→</b>Audit trail</p>
+
+        <!-- Card 4: MCP & Workflow Automation -->
+        <article class="paper ai-card tilt-l">
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--mcp">MCP BRIDGE</span>
+              <span class="ai-chip">Live Tool Calling</span>
+            </div>
+            <h3>MCP &amp; workflow automation</h3>
+            <p class="ai-card__takeaway">
+              Bridging LLMs directly to live databases, internal microservices, and audit logs.
+            </p>
+            <div class="ai-mcp-hub">
+              <div class="ai-mcp-center">
+                <div class="ai-mcp-ring"></div>
+                <span>MCP</span>
+              </div>
+              <div class="ai-mcp-nodes">
+                <div class="ai-node ai-node--db"><span class="ai-node-dot"></span>Postgres DB (Read/Write)</div>
+                <div class="ai-node ai-node--api"><span class="ai-node-dot"></span>Payment Ledger API</div>
+                <div class="ai-node ai-node--hook"><span class="ai-node-dot"></span>Audit Webhook</div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Protocol: <b>Model Context Protocol</b></span>
+            <span>Auth: <b>Scoped tokens</b></span>
+          </div>
         </article>
-        <article class="paper">
-          <h3>Rapid prototyping</h3>
-          <p>Prototyping concepts quickly with AI-assisted development to validate assumptions and cut unnecessary engineering cycles.</p>
-          <p class="flow">Hypothesis<b>→</b>Prototype<b>→</b>User test<b>→</b>Build / kill</p>
+
+        <!-- Card 5: Rapid Prototyping -->
+        <article class="paper ai-card">
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--speed">SPEED</span>
+              <span class="ai-chip">48h Concept to Live</span>
+            </div>
+            <h3>Rapid prototyping</h3>
+            <p class="ai-card__takeaway">
+              Zero-to-working product in 48 hours to validate PM assumptions before dev lock-in.
+            </p>
+            <div class="ai-sprint-viz">
+              <div class="ai-sprint-bar">
+                <div class="ai-sprint-progress"></div>
+              </div>
+              <div class="ai-sprint-steps">
+                <div class="ai-step is-complete">
+                  <span class="step-dot"></span>
+                  <span class="step-label">Spec</span>
+                </div>
+                <div class="ai-step is-complete">
+                  <span class="step-dot"></span>
+                  <span class="step-label">UX Mock</span>
+                </div>
+                <div class="ai-step is-active">
+                  <span class="step-dot"></span>
+                  <span class="step-label">AI MVP</span>
+                </div>
+                <div class="ai-step">
+                  <span class="step-dot"></span>
+                  <span class="step-label">Tested</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Velocity: <b>10x faster validation</b></span>
+            <span>Outcome: <b>Build or Kill</b></span>
+          </div>
         </article>
-        <article class="paper tilt-r">
+
+        <!-- Card 6: Future Experiments -->
+        <article class="paper ai-card tilt-r">
           <span class="tape"></span>
-          <h3>Future experiments <span class="pill" style="vertical-align:middle">Exploratory</span></h3>
-          <p>AI-assisted planning, intelligent monitoring, exception detection, natural-language constraints and autonomous workflow agents.</p>
-          <p class="flow">Monitoring<b>→</b>Exception detect<b>→</b>NL constraints<b>→</b>Autonomous agent</p>
+          <div>
+            <div class="ai-card__header">
+              <span class="ai-badge ai-badge--future">NEXT GEN</span>
+              <span class="ai-chip">Self-Healing</span>
+            </div>
+            <h3>Future experiments <span class="pill" style="vertical-align:middle">Exploratory</span></h3>
+            <p class="ai-card__takeaway">
+              Autonomous exception detection, continuous drift monitors, and self-healing systems.
+            </p>
+            <div class="ai-radar-viz">
+              <div class="ai-radar-screen">
+                <div class="ai-radar-sweep"></div>
+                <div class="ai-radar-ring ai-ring-1"></div>
+                <div class="ai-radar-ring ai-ring-2"></div>
+                <div class="ai-radar-blip blip-1"></div>
+                <div class="ai-radar-blip blip-2"></div>
+              </div>
+              <div class="ai-radar-event">
+                <span class="event-tag">Anomaly detected</span>
+                <span class="event-action">Auto-healing via agent &nearr;</span>
+              </div>
+            </div>
+          </div>
+          <div class="ai-card__footer">
+            <span>Status: <b>Active experimentation</b></span>
+            <span>Focus: <b>Agentic auto-ops</b></span>
+          </div>
         </article>
       </div>
     </section>
