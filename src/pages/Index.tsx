@@ -174,25 +174,7 @@ const Index: React.FC = () => {
             <p className="mat-label">Fintech × AI Product Manager · India</p>
             <p className="hero__hi">Hi, I'm Rahul. I spend my time</p>
             <h1>
-              transforming complex problems into{" "}
-              <span className="bbox">
-                products &amp; AI solutions.
-                <span className="bbox__h bbox__h--tl"></span>
-                <span className="bbox__h bbox__h--tm"></span>
-                <span className="bbox__h bbox__h--tr"></span>
-                <span className="bbox__h bbox__h--ml"></span>
-                <span className="bbox__h bbox__h--mr"></span>
-                <span className="bbox__h bbox__h--bl"></span>
-                <span className="bbox__h bbox__h--bm"></span>
-                <span className="bbox__h bbox__h--br"></span>
-                <svg
-                  className="cursor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M3 2 3 19 7.6 14.8 10.6 21.6 13.6 20.3 10.7 13.6 17 13.6z" />
-                </svg>
-              </span>
+              transforming complex problems into products &amp; AI solutions.
             </h1>
             <p className="focus" aria-label="Fintech and AI">
               <span>Fintech</span>
