@@ -95,7 +95,13 @@
     .mat-label{color:var(--cream-2)}
     .eyebrow{color:var(--mat)}
     .hero__hi{font-family:var(--hand);font-size:2rem;color:var(--cream);margin-top:14px;line-height:1}
-    .hero h1{margin-top:10px}
+    .hero h1, .hero__title{
+      margin-top:10px;
+      background:linear-gradient(180deg, #FFFFFF 15%, #E5E7EB 50%, #9CA3AF 78%, #18181B 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
     .bbox{position:relative;display:inline-block;padding:0 .14em;margin:.18em 0 .3em;border:1.5px solid var(--pink)}
     .bbox__h{position:absolute;width:11px;height:11px;background:#fff;border:2px solid var(--pink)}
     .bbox__h--tl{top:-6px;left:-6px}.bbox__h--tm{top:-6px;left:calc(50% - 5px)}.bbox__h--tr{top:-6px;right:-6px}
@@ -305,8 +311,8 @@
       <div class="hero__text">
         <p class="mat-label">Fintech × AI Product Manager · India</p>
         <p class="hero__hi">Hi, I'm Rahul. I spend my time</p>
-        <h1>
-          transforming complex problems into products &amp; AI solutions.
+        <h1 class="hero__title">
+          Transforming Complex Problems into Products &amp; AI Solutions.
         </h1>
         <p class="focus" aria-label="Fintech and AI"><span>Fintech</span><b>×</b><span class="ai">AI</span></p>
         <p class="hero__lede">

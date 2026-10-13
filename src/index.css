@@ -255,8 +255,13 @@ main.main-content {
   line-height: 1;
 }
 
-.hero h1 {
+.hero h1,
+.hero__title {
   margin-top: 10px;
+  background: linear-gradient(180deg, #FFFFFF 15%, #E5E7EB 50%, #9CA3AF 78%, #18181B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .bbox {

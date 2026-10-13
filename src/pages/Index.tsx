@@ -173,8 +173,8 @@ const Index: React.FC = () => {
           <div className="hero__text">
             <p className="mat-label">Fintech × AI Product Manager · India</p>
             <p className="hero__hi">Hi, I'm Rahul. I spend my time</p>
-            <h1>
-              transforming complex problems into products &amp; AI solutions.
+            <h1 className="hero__title">
+              Transforming Complex Problems into Products &amp; AI Solutions.
             </h1>
             <p className="focus" aria-label="Fintech and AI">
               <span>Fintech</span>
