@@ -97,10 +97,8 @@
     .hero__hi{font-family:var(--hand);font-size:2rem;color:var(--cream);margin-top:14px;line-height:1}
     .hero h1, .hero__title{
       margin-top:10px;
-      background:linear-gradient(180deg, #FFFFFF 15%, #E5E7EB 50%, #9CA3AF 78%, #18181B 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      color:#FFFFFF;
+      text-shadow:2px 2px 0 #1c1b19, 4px 4px 0 rgba(0, 0, 0, 0.35);
     }
     .bbox{position:relative;display:inline-block;padding:0 .14em;margin:.18em 0 .3em;border:1.5px solid var(--pink)}
     .bbox__h{position:absolute;width:11px;height:11px;background:#fff;border:2px solid var(--pink)}
@@ -121,9 +119,9 @@
     .hero__photo{position:relative;max-width:360px;width:100%;margin:0 auto}
     .hero__photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:52% 30%;border-radius:10px;transform:rotate(-2deg);
       filter:grayscale(.2) contrast(1.04) drop-shadow(4px 0 0 var(--cream)) drop-shadow(-4px 0 0 var(--cream)) drop-shadow(0 4px 0 var(--cream)) drop-shadow(0 -4px 0 var(--cream)) drop-shadow(8px 10px 0 rgba(0,0,0,.5))}
-    .sticky-note{position:absolute;right:-18px;bottom:22px;width:170px;background:var(--yellow);padding:16px 14px 14px;transform:rotate(5deg);box-shadow:4px 5px 0 rgba(0,0,0,.22);font-size:.8rem;line-height:1.35}
+    .sticky-note{position:absolute;right:-18px;bottom:22px;width:185px;background:var(--yellow);padding:16px 14px 14px;transform:rotate(5deg);box-shadow:4px 5px 0 rgba(0,0,0,.22);font-size:.8rem;line-height:1.35}
     .sticky-note::before{content:"";position:absolute;top:-11px;left:50%;width:70px;height:22px;margin-left:-35px;background:var(--pink-soft);transform:rotate(-3deg)}
-    .sticky-note strong{display:block;font-family:var(--display);font-size:1.5rem;line-height:1.05;margin-bottom:4px}
+    .sticky-note strong{display:block;font-family:var(--display);font-size:1.28rem;line-height:1.1;margin-bottom:5px}
     .photo-tag{position:absolute;left:14px;top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;background:rgba(28,27,25,.78);color:var(--cream);padding:4px 9px;border-radius:4px;transform:rotate(-2deg)}
 
     /* ---------- marquee ---------- */
@@ -329,9 +327,8 @@
 
       <div class="hero__photo">
         <img src="photo.jpeg" alt="Rahul Das standing by a lake with hills behind him" width="1280" height="1143">
-        <span class="photo-tag">APM · BITS PILANI</span>
         <div class="sticky-note">
-          <strong>BITS Pilani</strong>
+          <strong>Education: BITS Pilani</strong>
           <span>B.Tech, Birla Institute of Technology and Science · Nov 2020 – Aug 2024</span>
         </div>
       </div>

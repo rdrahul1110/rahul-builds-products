@@ -211,9 +211,8 @@ const Index: React.FC = () => {
               width={1280}
               height={1143}
             />
-            <span className="photo-tag">APM · BITS PILANI</span>
             <div className="sticky-note">
-              <strong>BITS Pilani</strong>
+              <strong>Education: BITS Pilani</strong>
               <span>
                 B.Tech, Birla Institute of Technology and Science · Nov 2020 –
                 Aug 2024

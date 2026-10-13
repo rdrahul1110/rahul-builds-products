@@ -258,10 +258,8 @@ main.main-content {
 .hero h1,
 .hero__title {
   margin-top: 10px;
-  background: linear-gradient(180deg, #FFFFFF 15%, #E5E7EB 50%, #9CA3AF 78%, #18181B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
+  text-shadow: 2px 2px 0 #1c1b19, 4px 4px 0 rgba(0, 0, 0, 0.35);
 }
 
 .bbox {
@@ -397,7 +395,7 @@ main.main-content {
   position: absolute;
   right: -18px;
   bottom: 22px;
-  width: 170px;
+  width: 185px;
   background: var(--yellow);
   padding: 16px 14px 14px;
   transform: rotate(5deg);
@@ -422,9 +420,9 @@ main.main-content {
 .sticky-note strong {
   display: block;
   font-family: var(--display);
-  font-size: 1.5rem;
-  line-height: 1.05;
-  margin-bottom: 4px;
+  font-size: 1.28rem;
+  line-height: 1.1;
+  margin-bottom: 5px;
 }
 
 .photo-tag {
