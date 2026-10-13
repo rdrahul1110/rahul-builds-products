@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Das — Fintech and AI Product Manager</title>
+  
+  <!-- Typography: Source Serif 4 (headings), IBM Plex Sans (body/UI), IBM Plex Mono (numbers/dates), Caveat (annotations) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'serif'],
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            pen: ['"Caveat"', 'cursive'],
+          },
+          colors: {
+            paper: '#F5F6F3',
+            ink: '#12201A',
+            green: '#0B5D45',
+            rule: '#D3D9D2',
+            muted: '#566159',
+            penblue: '#2B4C9B',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --paper: #F5F6F3;
+      --ink: #12201A;
+      --green: #0B5D45;
+      --rule: #D3D9D2;
+      --muted: #566159;
+      --pen-blue: #2B4C9B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-color: #D3D9D2;
+    }
+
+    html, body {
+      background-color: #F5F6F3;
+      color: #12201A;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, .font-heading {
+      font-family: "Source Serif 4", serif;
+      font-feature-settings: "kern" 1, "liga" 1;
+      font-optical-sizing: auto;
+      letter-spacing: -0.01em;
+      color: #12201A;
+      font-weight: 500;
+    }
+
+    /* Tabular Numerals */
+    .tabular-numbers, .font-mono {
+      font-family: "IBM Plex Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Handwritten pen annotations */
+    .pen-note {
+      font-family: "Caveat", cursive;
+      color: #2B4C9B;
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    /* Strict Link Styling */
+    a.ledger-link {
+      color: #0B5D45;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 120ms ease;
+    }
+    a.ledger-link:hover {
+      color: #12201A;
+    }
+
+    /* Strict Focus Ring */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #0B5D45;
+      outline-offset: 2px;
+    }
+
+    /* Evidence Tags */
+    .tag-measured {
+      color: #0B5D45;
+      background-color: #E4EFE9;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .tag-projected {
+      color: #7A4F0A;
+      background-color: #F6EBD5;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .tag-illustrative {
+      color: #566159;
+      background-color: #E9ECE8;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* Dotted leader row */
+    .leader-row {
+      display: flex;
+      align-items: baseline;
+      width: 100%;
+      gap: 8px;
+    }
+    .leader-dots {
+      flex: 1;
+      border-bottom: 1px dotted #D3D9D2;
+      position: relative;
+      top: -3px;
+      min-width: 20px;
+    }
+
+    /* Reconciliation animation (1.6s ease-out, plays once) */
+    @keyframes drawMatchLine {
+      from { width: 0%; opacity: 0; }
+      to { width: 100%; opacity: 1; }
+    }
+    @keyframes settleTag {
+      from { opacity: 0; transform: translateY(2px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .match-anim-1 { animation: drawMatchLine 0.4s ease-out forwards; }
+    .match-anim-2 { animation: drawMatchLine 0.4s ease-out 0.25s forwards; }
+    .match-anim-3 { animation: drawMatchLine 0.4s ease-out 0.5s forwards; }
+    .match-anim-4 { animation: drawMatchLine 0.4s ease-out 0.75s forwards; }
+    .match-anim-5 { animation: drawMatchLine 0.4s ease-out 1.0s forwards; }
+
+    .tag-settle-1 { animation: settleTag 0.3s ease-out 0.35s forwards; }
+    .tag-settle-2 { animation: settleTag 0.3s ease-out 0.6s forwards; }
+    .tag-settle-3 { animation: settleTag 0.3s ease-out 0.85s forwards; }
+    .tag-settle-4 { animation: settleTag 0.3s ease-out 1.1s forwards; }
+    .tag-settle-5 { animation: settleTag 0.3s ease-out 1.35s forwards; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .match-anim-1, .match-anim-2, .match-anim-3, .match-anim-4, .match-anim-5,
+      .tag-settle-1, .tag-settle-2, .tag-settle-3, .tag-settle-4, .tag-settle-5 {
+        animation: none !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink min-h-screen">
+
+  <!-- ========================================================================= -->
+  <!-- NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="w-full border-b border-rule bg-paper sticky top-0 z-40">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-10 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-6 sm:gap-10">
+        <a href="#hero" class="font-serif font-medium text-lg text-ink hover:text-green transition-colors duration-150">
+          Rahul Das
+        </a>
+        <nav class="hidden sm:flex items-center gap-6 text-[15px] text-muted font-normal">
+          <a href="#experience" class="hover:text-ink transition-colors duration-120">Work</a>
+          <a href="#projects" class="hover:text-ink transition-colors duration-120">Projects</a>
+          <a href="#teardowns" class="hover:text-ink transition-colors duration-120">Teardowns</a>
+          <a href="#ai-practice" class="hover:text-ink transition-colors duration-120">AI practice</a>
+          <a href="#about" class="hover:text-ink transition-colors duration-120">About</a>
+          <a href="#contact" class="hover:text-ink transition-colors duration-120">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <a 
+          href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="ledger-link text-[15px] font-medium"
+        >
+          Resume
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1120px] mx-auto px-5 sm:px-10">
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: HERO -->
+    <!-- ========================================================================= -->
+    <section id="hero" class="pt-16 sm:pt-24 pb-16 sm:pb-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+        
+        <!-- Left: Headline, Bio, CTAs, Photo (7 columns) -->
+        <div class="lg:col-span-7 space-y-7">
+          
+          <h1 class="font-serif text-[36px] sm:text-[56px] font-normal leading-[1.1] tracking-[-0.01em] text-ink">
+            Transforming complex problems into products & AI solutions.
+          </h1>
+
+          <p class="text-[17px] leading-[1.6] text-muted max-w-[620px]">
+            AI-native product manager turning messy workflows into simple, measurable products. Building practical solutions across fintech, insurtech, and zero-to-one development.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex items-center gap-6 pt-1">
+            <a 
+              href="#projects" 
+              class="inline-block bg-green text-white text-[15px] font-medium px-5 py-2.5 rounded-[4px] hover:bg-ink transition-colors duration-120"
+            >
+              Explore my work
+            </a>
+            <a 
+              href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="ledger-link text-[15px]"
+            >
+              Resume
+            </a>
+          </div>
+
+          <!-- Real Photo & Education -->
+          <div class="pt-4 flex items-center gap-4">
+            <div class="w-16 h-20 rounded-[2px] border border-rule overflow-hidden bg-paper flex-shrink-0">
+              <img 
+                src="./profile.jpg" 
+                alt="Rahul Das" 
+                class="w-full h-full object-cover object-top"
+                loading="eager"
+              />
+            </div>
+            <div class="text-[15px] text-muted space-y-0.5">
+              <div class="text-ink font-medium">Rahul Das · Associate PM</div>
+              <div>B.Tech, BITS Pilani, <span class="font-mono text-ink text-[14px]">2020 — 2024</span></div>
+              <div class="text-[14px]">India · <a href="mailto:rahul4ever2011@gmail.com" class="ledger-link">rahul4ever2011@gmail.com</a></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: The Hero Reconciliation Artifact (5 columns) -->
+        <div class="lg:col-span-5 pt-2">
+          
+          <!-- Reconciliation Frame (1px Rule border, 2px radius, no shadow) -->
+          <div 
+            class="border border-rule rounded-[2px] bg-paper p-5 sm:p-6"
+            aria-label="Illustrative reconciliation statement showing 4 automated matches and 1 flagged for human review."
+          >
+            <!-- Header -->
+            <div class="flex items-baseline justify-between border-b border-rule pb-3 mb-4">
+              <div class="text-[13px] font-medium text-ink uppercase tracking-wider">
+                Fuzzy ledger reconciliation
+              </div>
+              <span class="tag-illustrative">illustrative</span>
+            </div>
+
+            <div class="text-[12px] text-muted mb-3 flex justify-between font-mono">
+              <span>STATEMENT LINE</span>
+              <span>LEDGER ENTRY & STATUS</span>
+            </div>
+
+            <!-- 5 Rows of Reconciliation -->
+            <div class="space-y-3 font-mono text-[13px]">
+              
+              <!-- Row 1 -->
+              <div class="border-b border-rule pb-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="text-ink">Blue Harbor Traders, ₹42,500.00</div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="tag-measured text-[12px]">matched, 0.99</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-muted mt-0.5">
+                  → Blue Harbor Trdrs, ₹42,500.00
+                </div>
+              </div>
+
+              <!-- Row 2 -->
+              <div class="border-b border-rule pb-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="text-ink">Kestrel Supplies, ₹18,240.50</div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="tag-measured text-[12px]">matched, 0.96</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-muted mt-0.5">
+                  → INV-2291 Kestrel Supply Co, ₹18,240.50
+                </div>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="border-b border-rule pb-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="text-ink">Orchard Foods, ₹1,26,000.00</div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="tag-measured text-[12px]">matched, 0.94</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-muted mt-0.5">
+                  → Orchard Food Products, ₹1,26,000.00
+                </div>
+              </div>
+
+              <!-- Row 4 -->
+              <div class="border-b border-rule pb-2.5">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="text-ink">Delta Print, ₹7,900.00</div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="tag-measured text-[12px]">matched, 0.91</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-muted mt-0.5">
+                  → Delta Printing, ₹7,900.00
+                </div>
+              </div>
+
+              <!-- Row 5 (Requires Human Review with pen note) -->
+              <div class="pt-1">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="text-ink font-medium">Mira Textiles, ₹3,450.00</div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="tag-projected text-[12px]">needs review, 0.62</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between text-[12px] mt-0.5">
+                  <span class="text-muted">→ Mira Textiles, ₹3,540.00</span>
+                  <span class="pen-note">digits swapped?</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Footer of artifact -->
+            <div class="mt-4 pt-3 border-t border-rule flex items-center justify-between text-[14px]">
+              <span class="text-ink font-medium font-mono">4 matched, 1 for review</span>
+              <span class="text-[13px] text-muted">fuzzy match engine</span>
+            </div>
+            
+            <p class="text-[13px] text-muted mt-2">
+              Illustrative: fuzzy matching with a human review step.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: EXPERIENCE -->
+    <!-- ========================================================================= -->
+    <section id="experience" class="py-16 sm:py-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            Experience
+          </h2>
+          <div class="pen-note mt-3 max-w-[200px]">
+            every figure reconciled against internal telemetry
+          </div>
+        </div>
+
+        <!-- Content: 9 columns -->
+        <div class="lg:col-span-9 space-y-16">
+
+          <!-- ========================================================= -->
+          <!-- COMPANY 1: 5PAISA CAPITAL LTD -->
+          <!-- ========================================================= -->
+          <article class="space-y-6">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-rule pb-3">
+              <div>
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  5paisa Capital Ltd
+                </h3>
+                <div class="text-[15px] text-muted">
+                  Associate Product Manager
+                </div>
+              </div>
+              <div class="font-mono text-[14px] text-muted">
+                Nov 2024 — Sept 2025
+              </div>
+            </div>
+
+            <!-- Outcome Ledger -->
+            <div class="space-y-2 pt-1 pb-3">
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Repeat investor engagement</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+15%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Portfolio adoption acceleration</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+20%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Support first-response time</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">-70%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Tier-1 query automation</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">60%+</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">User conversion lift via MF compare</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+3%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Trading engagement lift via scalper & MTF</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+5–7%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Distribution partners onboarded</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">500+</span>
+                <span class="tag-measured">measured</span>
+              </div>
+            </div>
+
+            <!-- Initiatives List -->
+            <div class="border-t border-rule divide-y divide-rule">
+              
+              <!-- Initiative 1 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Curated "Basket Investing" & goal-based fund discovery
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Simplified multi-asset, goal-based fund discovery in collaboration with research team.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('paisa-1-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <div class="pen-note mt-1">thematic baskets cut choice paralysis</div>
+                <!-- Detail pane -->
+                <div id="paisa-1-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Retail investors experienced high choice paralysis when navigating 2,000+ individual stocks and funds, leading to high drop-offs prior to completing first-time portfolio creation.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Partnered with the quantitative research team to structure algorithmic, thematic multi-asset baskets. Designed the 1-click execution journey, order basket carting logic, and rebalancing alert systems.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Drove a 15% increase in repeat investor engagement and accelerated portfolio adoption by 20% across mobile and web.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 2 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      LLM-powered investor support copilot
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Reduced first-response time from 12 mins to &lt;30 secs and automated 60%+ of Tier-1 queries.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('paisa-2-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="paisa-2-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Repetitive queries regarding order status, margin pledges, and ledger statements overwhelmed support agents during market peak hours.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Architected conversational journeys using LLM intent parsing, connected the bot directly to trade ledger APIs for verified responses, and engineered guardrails with warm human agent handoffs.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Reduced first-response latency by 70% and automated 60%+ of Tier-1 queries without agent escalation.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 3 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Mutual fund compare & decision benchmarking tools
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Side-by-side performance comparison and Nifty50 relative benchmarking.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('paisa-3-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="paisa-3-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Prelogin funnel analysis revealed severe drops on mutual fund detail pages due to lack of transparent peer benchmarking.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Built the comparison engine integrating Alpha, Beta, Sharpe Ratio, and Nifty50 relative performance indices.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Increased user conversion by 3% from fund discovery to order placement.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 4 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Scalper terminal, margin trading (MTF) & pre-login journeys
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      1-click execution for options traders and transparent leverage calculator for MTF.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('paisa-4-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="paisa-4-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> High-volume intraday traders experienced latency in traditional order windows; MTF was hidden deep within desktop submenus.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Shipped 1-click Scalper interface for index options, revamped the MTF page with instant leverage calculators, and optimized prelogin landing behavior.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Boosted trading engagement by 5–7% and increased user conversion by 3%.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 5 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Partner ecosystem & self-service digital KYC portal
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Automated digital onboarding and commission ledger for 500+ distribution partners.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('paisa-5-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="paisa-5-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Manual paperwork delayed partner onboarding by 5–7 days with fragmented commission tracking.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Redesigned partner onboarding with Digilocker KYC, agreement e-signatures, and live commission reconciliation.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Enabled onboarding of 500+ partners with turnaround reduced from 7 days to &lt;15 minutes.</p>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- ========================================================= -->
+          <!-- COMPANY 2: EDME INSURANCE BROKER -->
+          <!-- ========================================================= -->
+          <article class="space-y-6 pt-6 border-t border-rule">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-rule pb-3">
+              <div>
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Edme Insurance Broker <span class="text-muted text-[16px] font-normal font-sans">(Formerly Aditya Birla Insurance)</span>
+                </h3>
+                <div class="text-[15px] text-muted">
+                  Associate Product Manager
+                </div>
+              </div>
+              <div class="font-mono text-[14px] text-muted">
+                Aug 2024 — Nov 2024
+              </div>
+            </div>
+
+            <!-- Outcome Ledger -->
+            <div class="space-y-2 pt-1 pb-3">
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Operational efficiency increase</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+50%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Manual effort reduction</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">-10%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">On-schedule product releases</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">6+</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Backend reporting accuracy</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+30%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Reconciliation turnaround reduction</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">-45%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Processing errors eliminated</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">90%+</span>
+                <span class="tag-measured">measured</span>
+              </div>
+            </div>
+
+            <!-- Initiatives List -->
+            <div class="border-t border-rule divide-y divide-rule">
+              
+              <!-- Initiative 1 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      0→1 AI insurance platforms: CMS & PAS rollout
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      GenAI document extraction for discharge summaries across claims and ops teams.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('edme-1-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <div class="pen-note mt-1">OCR parsed multi-page hospital summaries</div>
+                <!-- Detail pane -->
+                <div id="edme-1-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Insurance claims and policy workflows relied on fragmented legacy spreadsheets, physical discharge documents, and slow email trails.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Led the 0→1 build of Claims Management System (CMS) and Policy Administration System (PAS) with GenAI-driven document extraction and discovery synthesis.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Improved operational efficiency by 50% and reduced manual effort by 10% across claims, operations, and policy teams.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 2 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      AI roadmap prioritization & zero-loss data migration
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Delivered 6+ releases and reconciled legacy records with AI-proposed schema mapping.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('edme-2-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="edme-2-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Migrating historical policies from Aditya Birla legacy data stores risked data mismatch and missed sprint deadlines.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Owned sprint planning, UAT, and stakeholder management; used AI-proposed schema and field-mapping to accelerate backend reporting workflows.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Delivered 6+ releases on schedule and improved reporting accuracy by 30% during platform transition.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 3 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      0→1 self-learning reconciliation engine & policy lifecycle
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Automated registration, booking, invoicing, and self-learning exception matching.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('edme-3-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <div class="pen-note mt-1">feedback loop learns from every human match</div>
+                <!-- Detail pane -->
+                <div id="edme-3-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Policy reconciliation between insurer payout statements and booking registers took weeks with frequent calculation errors.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Architected 0→1 PAS automating registration, booking, invoice generation, cancellation, and AI self-learning reconciliation powered by human-resolved feedback loops.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Reduced reconciliation turnaround time by 45% and eliminated 90%+ of processing errors.</p>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- ========================================================= -->
+          <!-- COMPANY 3: LIQUIDMIND AI -->
+          <!-- ========================================================= -->
+          <article class="space-y-6 pt-6 border-t border-rule">
+            <!-- Header Row -->
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-rule pb-3">
+              <div>
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Liquidmind AI
+                </h3>
+                <div class="text-[15px] text-muted">
+                  Product Management Intern
+                </div>
+              </div>
+              <div class="font-mono text-[14px] text-muted">
+                Jun 2024 — Aug 2024
+              </div>
+            </div>
+
+            <!-- Outcome Ledger -->
+            <div class="space-y-2 pt-1 pb-3">
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Time-to-value reduction</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">-30%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Activation velocity</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">2.9 days</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Checkout conversion lift</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">+18%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Payment verification accuracy</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">99%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+              <div class="leader-row">
+                <span class="text-[15px] text-muted">Webhook listener reliability</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink text-[15px] font-medium">100%</span>
+                <span class="tag-measured">measured</span>
+              </div>
+            </div>
+
+            <!-- Initiatives List -->
+            <div class="border-t border-rule divide-y divide-rule">
+              
+              <!-- Initiative 1 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Onboarding funnel mapping & time-to-value optimization
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Progressive onboarding and checklist guidance reducing time-to-value from 4.2 to 2.9 days.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('liquid-1-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="liquid-1-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Enterprise customers experienced slow setup times and cognitive overload during credential validation.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Mapped the onboarding journey to identify drop-off points, simplified form steps, and introduced actionable progress tracking.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Cut customer time-to-value by 30% and improved Day-7 activation rates.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 2 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Flexible checkout architectures & alternative payment structures
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Pay later, split payments, and 1-click checkout options for high-ticket transactions.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('liquid-2-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="liquid-2-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> B2B transactions had high checkout drop-offs due to lack of flexible payment structures.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Defined PRD for multi-instrument split payments and Pay Later workflows with automated interest calculations.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Drove an 18% improvement in checkout conversion for high-ticket orders.</p>
+                </div>
+              </div>
+
+              <!-- Initiative 3 -->
+              <div class="py-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-[16px] font-medium text-ink">
+                      Automated webhook listeners & 99% payment verification
+                    </div>
+                    <div class="text-[15px] text-muted mt-0.5">
+                      Idempotent callback handling and automated status polling eliminating ghost transactions.
+                    </div>
+                  </div>
+                  <button 
+                    onclick="toggleDetail('liquid-3-detail', this)" 
+                    class="text-[14px] text-green hover:text-ink font-medium flex-shrink-0 pt-0.5"
+                    aria-expanded="false"
+                  >
+                    [expand +]
+                  </button>
+                </div>
+                <!-- Detail pane -->
+                <div id="liquid-3-detail" class="hidden mt-3 pl-4 border-l-2 border-rule space-y-2 text-[15px] text-muted">
+                  <p><strong class="text-ink font-medium">Problem:</strong> Asynchronous bank callbacks caused delayed order confirmation and ghost payment disputes.</p>
+                  <p><strong class="text-ink font-medium">Execution:</strong> Built webhook listener architecture with signature verification and retry mechanisms.</p>
+                  <p><strong class="text-ink font-medium">Impact:</strong> Achieved 99% accuracy in payment verification and eliminated manual discrepancy checks.</p>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: THINGS I'VE BUILT (PROJECTS) -->
+    <!-- ========================================================================= -->
+    <section id="projects" class="py-16 sm:py-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            Things I've built
+          </h2>
+          <div class="pen-note mt-3 max-w-[200px]">
+            working prototypes built to test hypotheses quickly
+          </div>
+        </div>
+
+        <!-- Content: 9 columns (Rows separated by 1px Rule) -->
+        <div class="lg:col-span-9 divide-y divide-rule">
+
+          <!-- Project 1 -->
+          <article class="py-8 first:pt-0">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <!-- Screenshot frame: 5 columns, 2px radius, 1px Rule -->
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/pm-coach-pro.png" 
+                  alt="PM Interview Coach Pro screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Text: 7 columns -->
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  PM Interview Coach Pro — AI Mock Simulator
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  An AI-powered mock interview platform built with n8n workflow automation, adaptive LLM agents, and voice interaction — conducting realistic PM interviews with real-time follow-ups, rubric scoring, and structured feedback.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Resume ingestion, n8n pipeline, adaptive voice interview, rubric evaluation
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://pm-coach-pro.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/insurance-copilot.png" 
+                  alt="Insurance Co-Pilot screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Insurance Co-Pilot — Protection Gap Intelligence for MFDs
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  An intelligent advisory copilot for Mutual Fund Distributors (MFDs) that audits client portfolios to detect critical protection gaps, computes underwriting limits and tax regime trade-offs, and generates commission-blind pre-meeting briefing cards.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Client book audit, gap severity ranking, underwriting signals, pre-meeting cards
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://insurance-copilot-mfd.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/ola-feedpod.png" 
+                  alt="Ola FeedPod screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Ola FeedPod — Electric Micro-Transit Loops
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  High-frequency electric pods looping between gated residential societies and metro stations every 90 seconds. Features dynamic loop dispatching, real-time seat tracking, metro timetable sync, and a single monthly pass.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Society-metro loop, 90s frequency, metro line sync, monthly pass
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://olapod2035.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/money-wrapped.png" 
+                  alt="Money Wrapped screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Money Wrapped — Spend Story Unpacked
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  An interactive personal finance web application that transforms raw UPI transaction statements into personalized, shareable spending patterns and behavioral stories — a 'Spotify Wrapped' for your wallet.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Statement upload, UPI parser, behavioral insights, shareable stories
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://spend-story-unpacked.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/nooka.png" 
+                  alt="Nooka screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Nooka — On-Demand Workspace Marketplace
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  A curated workspace discovery platform connecting remote professionals with boutique cafés, hotel lounges, call pods, and quiet creative studios — with dynamic filters, collections, and a unified WorkPass membership.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Vibe & needs filter, space discovery, instant booking, WorkPass membership
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://work-inspired-frontend.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/tripmind.png" 
+                  alt="TripMind screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  TripMind — AI Travel Copilot for India
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  An AI travel consultant for domestic Indian travel that computes dynamic 0–100 Trip Confidence Scores across weather seasonality, travel styles, and budget constraints — generating realistic day-wise itineraries in under 90 seconds.
+                </p>
+                <div class="text-[14px] text-muted">
+                  Travel preferences, seasonality filter, trip confidence score, day-wise itinerary
+                </div>
+                <div class="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://go-india-ai.lovable.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Open live prototype
+                  </a>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 4: PRODUCT TEARDOWNS -->
+    <!-- ========================================================================= -->
+    <section id="teardowns" class="py-16 sm:py-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            Product teardowns
+          </h2>
+          <div class="pen-note mt-3 max-w-[200px]">
+            self-directed product strategy on high-growth platforms
+          </div>
+        </div>
+
+        <!-- Content: 9 columns -->
+        <div class="lg:col-span-9 divide-y divide-rule">
+
+          <!-- Teardown 1: BookMyShow -->
+          <article class="py-8 first:pt-0">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/bookmyshow.png" 
+                  alt="BookMyShow teardown presentation screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <div class="text-[13px] text-muted">System design & PRD · NextLeap Top Fellow</div>
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Improving BookMyShow: High-Surge Ticket Booking & Phantom Lock Resolution
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  Root-cause investigation of why 500k+ concurrent fans caused 82% phantom lock rates and checkout crashes during Coldplay & World Cup sales. Proposed a tokenized FIFO virtual waiting room, edge seat soft-reservations, and bot rate-limiting to protect revenue conversion.
+                </p>
+                <!-- Teardown ledger -->
+                <div class="space-y-1.5 pt-1 pb-1">
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Peak surge uptime target</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">99.4%</span>
+                    <span class="tag-projected">projected</span>
+                  </div>
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Checkout bounce reduction</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">-64%</span>
+                    <span class="tag-projected">projected</span>
+                  </div>
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Scalping bot leakage</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">0%</span>
+                    <span class="tag-projected">projected</span>
+                  </div>
+                </div>
+                <div class="pt-2">
+                  <a 
+                    href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Read case study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Teardown 2: Zepto -->
+          <article class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-paper aspect-[16/10]">
+                <img 
+                  src="./projects/zepto-teardown.png" 
+                  alt="Zepto teardown presentation screenshot" 
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div class="md:col-span-7 space-y-3">
+                <div class="text-[13px] text-muted">Quick commerce · Product teardown & PRD</div>
+                <h3 class="font-serif text-[22px] font-medium text-ink">
+                  Zepto: Boosting Order Value & Grocery Experience via 'Zepto Stock Up'
+                </h3>
+                <p class="text-[16px] text-muted leading-[1.6]">
+                  A comprehensive product strategy and system design teardown analyzing why users hesitate to place high-value grocery orders. Designed 'Zepto Stock Up' with household inventory tracking, bulk discount ladders, and shelf-life indicators to boost dark store throughput.
+                </p>
+                <!-- Teardown ledger -->
+                <div class="space-y-1.5 pt-1 pb-1">
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Baseline AOV target</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">₹400–450</span>
+                    <span class="tag-projected">projected</span>
+                  </div>
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Prioritization score (U*I/E)</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">4.5 / 5.0</span>
+                    <span class="tag-illustrative">illustrative</span>
+                  </div>
+                  <div class="leader-row">
+                    <span class="text-[14px] text-muted">Target GenZ and millennials</span>
+                    <span class="leader-dots"></span>
+                    <span class="font-mono text-ink text-[14px] font-medium">18 million</span>
+                    <span class="tag-projected">projected</span>
+                  </div>
+                </div>
+                <div class="pt-2">
+                  <a 
+                    href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="ledger-link text-[15px] font-medium"
+                  >
+                    Read case study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 5: AI PRACTICE -->
+    <!-- ========================================================================= -->
+    <section id="ai-practice" class="py-16 sm:py-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            AI practice
+          </h2>
+          <div class="text-[15px] text-muted mt-1">AI, in production terms</div>
+          <div class="pen-note mt-3 max-w-[200px]">
+            treating models as product materials, not features
+          </div>
+        </div>
+
+        <!-- Content: 9 columns -->
+        <div class="lg:col-span-9 space-y-6">
+          <p class="text-[17px] text-muted leading-[1.6]">
+            I treat AI as a product material — something shaped around a business decision, not a feature bolted on.
+          </p>
+
+          <div class="border-t border-rule divide-y divide-rule">
+            
+            <!-- Item 1 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                AI product management
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Identifying where models genuinely outperform rules, defining evaluation criteria, and designing for trust, validation, fallback and human override.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Signal → Model vs rules → Eval criteria → Human override
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                Claude Code & AI agents
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Building and orchestrating agentic workflows and using AI-assisted development to rapidly turn validated ideas into working prototypes.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Task spec → Agent loop → Tool calls → Shipped build
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                LLMs & prompt engineering
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Structured prompting, tool use, context engineering, and grounding model outputs in domain data for reliable business workflows.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Domain data → Context pack → Structured out → Guardrails
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                MCP & workflow automation
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Connecting AI models with real systems, tools and workflows — moving from demos to reliable automation.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Core APIs → MCP bridge → Rules engine → Audit trail
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                Rapid prototyping
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Using AI-assisted development to prototype concepts quickly, validate assumptions and reduce unnecessary engineering cycles.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Hypothesis → Prototype → User test → Build or kill
+              </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="py-5">
+              <h3 class="font-serif text-[20px] font-medium text-ink">
+                Future AI experiments
+              </h3>
+              <p class="text-[16px] text-muted leading-[1.6] mt-1">
+                Exploring AI-assisted planning, intelligent monitoring, exception detection, natural-language constraints and autonomous workflow agents.
+              </p>
+              <div class="text-[14px] text-muted mt-2">
+                Monitoring → Exception detect → Natural-language constraints → Autonomous agent
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 6: ABOUT & SKILLS -->
+    <!-- ========================================================================= -->
+    <section id="about" class="py-16 sm:py-24 border-b border-rule">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            About & skills
+          </h2>
+          <div class="pen-note mt-3 max-w-[200px]">
+            engineering foundation from BITS Pilani
+          </div>
+        </div>
+
+        <!-- Content: 9 columns -->
+        <div class="lg:col-span-9 space-y-10">
+          
+          <!-- Bio -->
+          <div class="space-y-4 text-[17px] leading-[1.6] text-muted max-w-[680px]">
+            <p>
+              I've spent the last few years inside the messiest parts of fintech and insurtech — where legacy ops meets broken software, and someone has to figure out what actually needs to be built. That's where I come in.
+            </p>
+            <p>
+              I connect the business context (what stakeholders really need) to the product (what gets shipped), bridging technology and data to make decisions stick — and lately, using AI & automation to cut the manual work that nobody should be doing today.
+            </p>
+          </div>
+
+          <!-- Education -->
+          <div class="border-t border-rule pt-6">
+            <h3 class="font-serif text-[20px] font-medium text-ink mb-1">
+              Education
+            </h3>
+            <div class="text-[15px] text-muted">
+              Bachelor of Technology (B.Tech), Birla Institute of Technology and Science (BITS), Pilani, <span class="font-mono text-ink text-[14px]">Nov 2020 — Aug 2024</span>
+            </div>
+          </div>
+
+          <!-- Skills Lists (Plain text lists under group headings, no chips) -->
+          <div class="border-t border-rule pt-6 space-y-6">
+            <h3 class="font-serif text-[20px] font-medium text-ink">
+              Skills & domain toolkit
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-[15px]">
+              <div>
+                <div class="font-medium text-ink mb-1">Product</div>
+                <div class="text-muted leading-[1.6]">
+                  Product discovery, PRD/BRD, feature prioritisation, requirement gathering, user research, product analytics
+                </div>
+              </div>
+
+              <div>
+                <div class="font-medium text-ink mb-1">AI & gen AI</div>
+                <div class="text-muted leading-[1.6]">
+                  Generative AI, prompt engineering, AI agents, ChatGPT, Claude, Google Gemini, AI workflow automation, AI-assisted product design
+                </div>
+              </div>
+
+              <div>
+                <div class="font-medium text-ink mb-1">Analytics</div>
+                <div class="text-muted leading-[1.6]">
+                  SQL, Power BI, Tableau, KPI monitoring, ETL pipelines, dashboarding
+                </div>
+              </div>
+
+              <div>
+                <div class="font-medium text-ink mb-1">Execution</div>
+                <div class="text-muted leading-[1.6]">
+                  Agile / Scrum, stakeholder management, workflow automation, business analysis
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <div class="font-medium text-ink mb-1">Domain</div>
+                <div class="text-muted leading-[1.6]">
+                  Fintech, insurtech, B2B SaaS, e-commerce, supply chain, warehouse management, HRMS
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 7: CONTACT -->
+    <!-- ========================================================================= -->
+    <section id="contact" class="py-16 sm:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left rail: 3 columns -->
+        <div class="lg:col-span-3">
+          <h2 class="font-serif text-[28px] sm:text-[36px] font-medium leading-[1.25] text-ink">
+            Contact
+          </h2>
+        </div>
+
+        <!-- Content: 9 columns (Left-aligned) -->
+        <div class="lg:col-span-9 space-y-6">
+          <p class="font-serif text-[22px] sm:text-[28px] text-ink leading-[1.3] max-w-[620px]">
+            Have a difficult workflow, an AI product problem, or an interesting PM role?
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-2 text-[15px]">
+            <a 
+              href="mailto:rahul4ever2011@gmail.com" 
+              class="ledger-link font-medium"
+            >
+              rahul4ever2011@gmail.com
+            </a>
+            <span class="hidden sm:inline text-rule">|</span>
+            <a 
+              href="https://www.linkedin.com/in/rahul-das-117a56223/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="ledger-link font-medium"
+            >
+              LinkedIn profile
+            </a>
+            <span class="hidden sm:inline text-rule">|</span>
+            <a 
+              href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="ledger-link font-medium"
+            >
+              Resume on Google Docs
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-rule py-10 bg-paper">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[14px] text-muted">
+      <div>
+        <span class="text-ink font-medium">Rahul Das</span> · Fintech and AI product manager, India.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://www.linkedin.com/in/rahul-das-117a56223/" target="_blank" rel="noopener noreferrer" class="ledger-link">LinkedIn</a>
+        <a href="mailto:rahul4ever2011@gmail.com" class="ledger-link">Email</a>
+        <a href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="ledger-link">Resume</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Expand/Collapse initiative details
+    function toggleDetail(id, btn) {
+      var pane = document.getElementById(id);
+      if (!pane) return;
+      var isHidden = pane.classList.contains('hidden');
+      if (isHidden) {
+        pane.classList.remove('hidden');
+        btn.textContent = '[collapse −]';
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        pane.classList.add('hidden');
+        btn.textContent = '[expand +]';
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+  </script>
+</body>
+</html>

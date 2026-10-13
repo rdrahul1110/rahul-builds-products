@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Das — Fintech and AI Product Manager</title>
+  
+  <!-- Strict Typography: Source Serif 4 (headings), IBM Plex Sans (body/UI), IBM Plex Mono (tabular numbers/dates), Caveat (pen annotations) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'serif'],
+            sans: ['"IBM Plex Sans"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            pen: ['"Caveat"', 'cursive'],
+          },
+          colors: {
+            paper: '#F5F6F3',
+            ink: '#12201A',
+            green: '#0B5D45',
+            rule: '#D3D9D2',
+            muted: '#566159',
+            penblue: '#2B4C9B',
+            surface: '#FFFFFF',
+          },
+          boxShadow: {
+            float: '0 8px 24px rgba(18,32,26,0.10), 0 1px 3px rgba(18,32,26,0.06)',
+            drawer: '0 16px 48px rgba(18,32,26,0.18), 0 2px 6px rgba(18,32,26,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --paper: #F5F6F3;
+      --ink: #12201A;
+      --green: #0B5D45;
+      --rule: #D3D9D2;
+      --muted: #566159;
+      --pen-blue: #2B4C9B;
+      --surface: #FFFFFF;
+      --scrim: rgba(18,32,26,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-color: #D3D9D2;
+    }
+
+    html, body {
+      background-color: #F5F6F3;
+      color: #12201A;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, .font-heading {
+      font-family: "Source Serif 4", serif;
+      font-feature-settings: "kern" 1, "liga" 1;
+      font-optical-sizing: auto;
+      letter-spacing: -0.01em;
+      color: #12201A;
+      font-weight: 500;
+    }
+
+    /* Numbers & Dates only */
+    .tabular-numbers, .font-mono {
+      font-family: "IBM Plex Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Pen blue annotations */
+    .pen-note {
+      font-family: "Caveat", cursive;
+      color: #2B4C9B;
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    /* Archival Stamp Styling (Authentic physical ledger feel) */
+    .audit-stamp {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border: 1.5px solid #2B4C9B;
+      color: #2B4C9B;
+      border-radius: 2px;
+      display: inline-block;
+      transform: rotate(-1.5deg);
+      opacity: 0.9;
+      background-color: rgba(43,76,155,0.04);
+      user-select: none;
+    }
+    .audit-stamp-green {
+      border-color: #0B5D45;
+      color: #0B5D45;
+      background-color: rgba(11,93,69,0.05);
+      transform: rotate(1deg);
+    }
+
+    /* Double rules for balance sheet / accounting headers */
+    .ledger-double-rule {
+      border-bottom: 3px double #D3D9D2;
+    }
+
+    /* Strict Link Styling */
+    a.ledger-link, button.ledger-link {
+      color: #0B5D45;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 120ms ease;
+      cursor: pointer;
+    }
+    a.ledger-link:hover, button.ledger-link:hover {
+      color: #12201A;
+    }
+
+    /* Strict Focus Ring */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid #0B5D45;
+      outline-offset: 2px;
+    }
+
+    /* Evidence Tags */
+    .tag-measured {
+      color: #0B5D45;
+      background-color: #E4EFE9;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px solid rgba(11,93,69,0.15);
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .tag-projected {
+      color: #7A4F0A;
+      background-color: #F6EBD5;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px dashed rgba(122,79,10,0.3);
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .tag-illustrative {
+      color: #566159;
+      background-color: #E9ECE8;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px dotted rgba(86,97,89,0.35);
+      display: inline-block;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    /* Change bars (Section 7) */
+    .bar-measured {
+      background-color: #12201A;
+      height: 8px;
+      border-radius: 1px;
+    }
+    .bar-projected {
+      background: repeating-linear-gradient(45deg, #12201A, #12201A 2px, transparent 2px, transparent 5px);
+      height: 8px;
+      border: 1px dashed #12201A;
+      border-radius: 1px;
+    }
+    .bar-illustrative {
+      background: transparent;
+      border: 1px dotted #566159;
+      height: 8px;
+      border-radius: 1px;
+    }
+
+    /* Dotted leader row */
+    .leader-row {
+      display: flex;
+      align-items: baseline;
+      width: 100%;
+      gap: 8px;
+    }
+    .leader-dots {
+      flex: 1;
+      border-bottom: 1px dotted #D3D9D2;
+      position: relative;
+      top: -3px;
+      min-width: 20px;
+    }
+
+    /* Initiative Row Tactile Hover */
+    .initiative-row {
+      border-left: 2px solid transparent;
+      transition: all 140ms ease;
+    }
+    .initiative-row:hover {
+      border-left-color: #0B5D45;
+      background-color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(18,32,26,0.04);
+    }
+
+    /* Lens filtering transition */
+    .lens-dimmed {
+      opacity: 0.35;
+      color: #566159;
+      order: 99;
+      transition: opacity 250ms ease, transform 250ms ease;
+    }
+    .lens-active-item {
+      opacity: 1;
+      order: 1;
+      transition: opacity 250ms ease, transform 250ms ease;
+    }
+
+    /* Fast-Track Spotlight Pulse */
+    .fast-track-highlight {
+      outline: 2px solid #0B5D45 !important;
+      outline-offset: 4px;
+      background-color: #FFFFFF !important;
+      box-shadow: 0 0 24px rgba(11,93,69,0.18) !important;
+      transition: all 250ms ease;
+    }
+
+    /* Drawer animation */
+    #case-drawer {
+      transition: transform 220ms ease-out, visibility 220ms;
+    }
+    #case-drawer.drawer-open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    #case-drawer.drawer-closed {
+      transform: translateX(100%);
+      visibility: hidden;
+    }
+
+    /* Scrim */
+    #drawer-scrim {
+      transition: opacity 220ms ease-out, visibility 220ms;
+    }
+    #drawer-scrim.scrim-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    #drawer-scrim.scrim-closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Quick Find Modal */
+    #search-modal {
+      transition: opacity 180ms ease-out, visibility 180ms;
+    }
+    #search-modal.modal-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    #search-modal.modal-closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Slider input styling */
+    input[type=range] {
+      accent-color: #0B5D45;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, #case-drawer, #drawer-scrim, #search-modal {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-paper text-ink min-h-screen relative">
+
+  <!-- ========================================================================= -->
+  <!-- FAST-TRACK TOUR HEADER BAR (Appears during Guided Tour) -->
+  <!-- ========================================================================= -->
+  <aside id="tour-banner" class="hidden sticky top-0 z-40 bg-ink text-white px-5 py-3 border-b border-rule shadow-float flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+    <div class="flex items-center gap-3">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-white font-bold font-sans">⚡ Recruiter Fast-Track (45s Audit Mode)</span>
+      <span class="text-slate-400" id="tour-step-counter">Stop 1 of 4: Claims Confidence Architecture</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="prevTourStep()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded">‹ Prev</button>
+      <button onclick="nextTourStep()" class="px-3 py-1 bg-green hover:bg-emerald-700 text-white font-bold rounded">Next Stop ›</button>
+      <button onclick="exitTour()" class="text-slate-400 hover:text-white underline ml-2">Exit Tour</button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="w-full border-b border-rule bg-paper sticky top-0 z-30">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-10 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-6 sm:gap-8">
+        <a href="#hero" class="font-serif font-medium text-lg text-ink hover:text-green transition-colors duration-120 flex items-center gap-2">
+          <span>Rahul Das</span>
+          <span class="audit-stamp audit-stamp-green text-[9px]">Verified PM</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-[15px] text-muted font-normal">
+          <a href="#outcomes" class="hover:text-ink transition-colors duration-120">Outcomes</a>
+          <a href="#experience" class="hover:text-ink transition-colors duration-120">Experience</a>
+          <a href="#built" class="hover:text-ink transition-colors duration-120">Built</a>
+          <a href="#how-i-work" class="hover:text-ink transition-colors duration-120">Method</a>
+          <a href="#teardowns" class="hover:text-ink transition-colors duration-120">Teardowns</a>
+          <a href="#ai-practice" class="hover:text-ink transition-colors duration-120">AI practice</a>
+          <a href="#matrix" class="hover:text-ink transition-colors duration-120">Evidence</a>
+          <a href="#about" class="hover:text-ink transition-colors duration-120">About</a>
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Quick Find Search button -->
+        <button 
+          onclick="openSearchModal()" 
+          class="text-xs font-mono text-muted hover:text-ink px-2.5 py-1 border border-rule rounded-[4px] bg-surface flex items-center gap-1.5 transition-colors duration-120"
+          title="Search items (press /)"
+        >
+          <span>Find</span>
+          <kbd class="border border-rule px-1 rounded text-[11px] bg-paper">/</kbd>
+        </button>
+        <a 
+          href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="ledger-link text-[15px] font-medium"
+        >
+          Resume
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- E2. LENS BAR (Sticky under navigation with Fast-Track Trigger) -->
+  <!-- ========================================================================= -->
+  <aside id="lens-bar" class="w-full bg-paper/95 backdrop-blur-sm border-b border-rule sticky top-[61px] z-20">
+    <div class="max-w-[1120px] mx-auto px-5 sm:px-10 py-2.5 flex flex-wrap items-center justify-between gap-3 text-[14px]">
+      <div class="flex items-center gap-2 overflow-x-auto">
+        <span class="text-muted text-[13px] mr-1 hidden sm:inline">View as:</span>
+        <button 
+          onclick="setLens('all')" 
+          id="lens-btn-all" 
+          class="lens-btn px-3 py-1 rounded-[4px] border border-green bg-green text-white font-medium transition-colors duration-120"
+        >
+          All
+        </button>
+        <button 
+          onclick="setLens('fintech')" 
+          id="lens-btn-fintech" 
+          class="lens-btn px-3 py-1 rounded-[4px] border border-rule bg-surface text-ink hover:border-green font-medium transition-colors duration-120"
+        >
+          Fintech
+        </button>
+        <button 
+          onclick="setLens('insurtech')" 
+          id="lens-btn-insurtech" 
+          class="lens-btn px-3 py-1 rounded-[4px] border border-rule bg-surface text-ink hover:border-green font-medium transition-colors duration-120"
+        >
+          Insurtech
+        </button>
+        <button 
+          onclick="setLens('ai')" 
+          id="lens-btn-ai" 
+          class="lens-btn px-3 py-1 rounded-[4px] border border-rule bg-surface text-ink hover:border-green font-medium transition-colors duration-120"
+        >
+          AI
+        </button>
+
+        <span class="text-rule mx-1 hidden sm:inline">|</span>
+
+        <!-- 45-Second Fast-Track Tour Trigger -->
+        <button 
+          onclick="startFastTrackTour()" 
+          id="fast-track-trigger"
+          class="flex items-center gap-1.5 px-3 py-1 rounded-[4px] border border-penblue bg-penblue/5 text-penblue hover:bg-penblue hover:text-white transition-colors duration-150 font-medium text-xs font-mono"
+          title="Take 45-second high-signal guided tour"
+        >
+          <span>⚡ 45s Recruiter Fast-Track</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-mono text-muted ml-auto">
+        <span id="lens-counter">Showing 18 of 18 items</span>
+        <span class="text-rule">|</span>
+        <button onclick="copyLensLink()" class="ledger-link font-sans text-xs">
+          Copy link to this view
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTAINER WITH 12-COLUMN GRID & CHAPTER RAIL -->
+  <!-- ========================================================================= -->
+  <div class="max-w-[1120px] mx-auto px-5 sm:px-10 pt-10 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- E4. STICKY CHAPTER RAIL (Desktop Left Rail: 2 Columns) -->
+      <nav class="hidden lg:block lg:col-span-2 sticky top-[130px] space-y-3 pt-4 text-[13px] border-r border-rule pr-4">
+        <div class="text-[11px] font-mono text-muted uppercase tracking-wider mb-2">Chapters</div>
+        <ul class="space-y-2 text-muted font-normal">
+          <li><a href="#outcomes" class="chapter-link hover:text-ink transition-colors block">Outcomes</a></li>
+          <li><a href="#experience" class="chapter-link hover:text-ink transition-colors block">Experience</a></li>
+          <li><a href="#built" class="chapter-link hover:text-ink transition-colors block">Things I've built</a></li>
+          <li><a href="#how-i-work" class="chapter-link hover:text-ink transition-colors block">How I work</a></li>
+          <li><a href="#teardowns" class="chapter-link hover:text-ink transition-colors block">Teardowns</a></li>
+          <li><a href="#ai-practice" class="chapter-link hover:text-ink transition-colors block">AI practice</a></li>
+          <li><a href="#matrix" class="chapter-link hover:text-ink transition-colors block">Evidence matrix</a></li>
+          <li><a href="#about" class="chapter-link hover:text-ink transition-colors block">About</a></li>
+          <li><a href="#contact" class="chapter-link hover:text-ink transition-colors block">Contact</a></li>
+        </ul>
+        <div class="pt-5 border-t border-rule space-y-2">
+          <div class="audit-stamp">AUDITED STATEMENT</div>
+          <div class="pen-note text-[16px] leading-tight">calm surface, deep behaviour</div>
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT AREA (10 Columns) -->
+      <main class="lg:col-span-10 space-y-24">
+
+        <!-- ===================================================================== -->
+        <!-- E1. HERO WITH LIVE RECONCILIATION MICRO-DEMO & SANDBOX SLIDER -->
+        <!-- ===================================================================== -->
+        <section id="hero" class="border-b border-rule pb-16">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left: Headline, Bio, Photo, Education (7 cols) -->
+            <div class="lg:col-span-7 space-y-6">
+              <h1 class="font-serif text-[34px] sm:text-[52px] font-normal leading-[1.1] tracking-[-0.01em] text-ink">
+                Transforming complex problems into products & AI solutions.
+              </h1>
+
+              <p class="text-[17px] leading-[1.6] text-muted max-w-[580px]">
+                AI-native product manager turning messy workflows into simple, measurable products. Building practical solutions across fintech, insurtech, and zero-to-one development.
+              </p>
+
+              <!-- CTAs -->
+              <div class="flex items-center gap-5 pt-1">
+                <a 
+                  href="#outcomes" 
+                  class="inline-block bg-green text-white text-[15px] font-medium px-5 py-2.5 rounded-[4px] hover:bg-ink transition-colors duration-120"
+                >
+                  Explore my work
+                </a>
+                <a 
+                  href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="ledger-link text-[15px] font-medium"
+                >
+                  Resume
+                </a>
+              </div>
+
+              <!-- Real Photo & Education with Archival Stamp -->
+              <div class="pt-4 flex items-center gap-4">
+                <div class="w-16 h-20 rounded-[2px] border border-rule overflow-hidden bg-surface flex-shrink-0 relative">
+                  <img 
+                    src="./profile.jpg" 
+                    alt="Rahul Das" 
+                    class="w-full h-full object-cover object-top"
+                    loading="eager"
+                  />
+                </div>
+                <div class="text-[14px] text-muted space-y-1">
+                  <div class="text-ink font-medium flex items-center gap-2">
+                    <span>Rahul Das · Associate PM</span>
+                    <span class="audit-stamp text-[9px]">BITS PILANI 2024</span>
+                  </div>
+                  <div>B.Tech, BITS Pilani, <span class="font-mono text-ink text-[13px]">2020 — 2024</span></div>
+                  <div class="text-[13px]">India · <a href="mailto:rahul4ever2011@gmail.com" class="ledger-link">rahul4ever2011@gmail.com</a></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Working Micro-Demo Hero Artifact (5 cols) on shadow-float -->
+            <div class="lg:col-span-5 pt-1">
+              <div 
+                id="hero-demo-card"
+                class="bg-surface border border-rule rounded-[8px] p-5 shadow-float relative transition-all"
+                aria-label="Working micro-demo of financial reconciliation with human review"
+              >
+                <!-- Card Header -->
+                <div class="flex items-baseline justify-between border-b border-rule pb-3 mb-3">
+                  <div>
+                    <div class="text-[13px] font-medium text-ink uppercase tracking-wider flex items-center gap-1.5">
+                      <span>Statement vs Ledger Recon</span>
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    </div>
+                    <div class="text-[12px] text-muted font-sans">Fuzzy match with human review step</div>
+                  </div>
+                  <span class="tag-illustrative">illustrative</span>
+                </div>
+
+                <!-- Live Region -->
+                <div id="recon-live-region" class="sr-only" aria-live="polite">
+                  4 statements matched automatically. 1 flagged for human review.
+                </div>
+
+                <!-- Interactive Threshold Slider -->
+                <div class="p-2.5 rounded-[4px] bg-paper border border-rule mb-3 space-y-1.5 text-xs font-mono">
+                  <div class="flex items-center justify-between text-muted">
+                    <span>Match Threshold: <strong id="threshold-val" class="text-ink">0.85</strong></span>
+                    <span class="text-[11px] text-penblue font-pen">drag to test sensitivity</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    id="recon-threshold-slider" 
+                    min="0.50" 
+                    max="0.98" 
+                    step="0.01" 
+                    value="0.85" 
+                    class="w-full cursor-pointer h-1 bg-rule rounded"
+                    oninput="updateReconThreshold(this.value)"
+                  />
+                </div>
+
+                <!-- 5 Statement Rows -->
+                <div class="space-y-2 font-mono text-[12px]" id="recon-rows-container">
+                  
+                  <!-- Row 1 -->
+                  <div class="border-b border-rule pb-1.5">
+                    <div class="flex justify-between items-start">
+                      <span class="text-ink">Blue Harbor, ₹42,500.00</span>
+                      <span class="tag-measured text-[11px]">matched 0.99</span>
+                    </div>
+                    <div class="text-[11px] text-muted">→ Blue Harbor Trdrs, ₹42,500.00</div>
+                  </div>
+
+                  <!-- Row 2 -->
+                  <div class="border-b border-rule pb-1.5">
+                    <div class="flex justify-between items-start">
+                      <span class="text-ink">Kestrel Supp., ₹18,240.50</span>
+                      <span class="tag-measured text-[11px]">matched 0.96</span>
+                    </div>
+                    <div class="text-[11px] text-muted">→ INV-2291 Kestrel Co, ₹18,240.50</div>
+                  </div>
+
+                  <!-- Row 3 -->
+                  <div class="border-b border-rule pb-1.5">
+                    <div class="flex justify-between items-start">
+                      <span class="text-ink">Orchard Foods, ₹1,26,000.00</span>
+                      <span class="tag-measured text-[11px]">matched 0.94</span>
+                    </div>
+                    <div class="text-[11px] text-muted">→ Orchard Food Prod, ₹1,26,000.00</div>
+                  </div>
+
+                  <!-- Row 4 -->
+                  <div class="border-b border-rule pb-1.5">
+                    <div class="flex justify-between items-start">
+                      <span class="text-ink">Delta Print, ₹7,900.00</span>
+                      <span id="row-delta-badge" class="tag-measured text-[11px]">matched 0.91</span>
+                    </div>
+                    <div class="text-[11px] text-muted">→ Delta Printing, ₹7,900.00</div>
+                  </div>
+
+                  <!-- Row 5: INTERACTIVE HUMAN REVIEW ROW -->
+                  <div id="recon-row-5" class="pt-1 rounded-[4px] p-2 bg-paper/70 transition-colors duration-120 relative">
+                    <div class="flex justify-between items-start">
+                      <span class="text-ink font-medium">Mira Textiles, ₹3,450.00</span>
+                      <span id="recon-status-badge" class="tag-projected text-[11px]">needs review 0.62</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[11px] mt-0.5">
+                      <span class="text-muted">→ Mira Textiles, ₹3,540.00</span>
+                      
+                      <!-- Hand-Drawn SVG Arrow & Pen Note -->
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-3 text-penblue" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                          <path d="M1 8 C 8 2, 16 14, 22 8 M16 4 L22 8 L18 13" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="pen-note">digits swapped?</span>
+                      </span>
+                    </div>
+
+                    <!-- Interactive Review Controls -->
+                    <div class="mt-2.5 pt-2 border-t border-rule flex flex-wrap items-center gap-2">
+                      <button 
+                        id="recon-btn-approve" 
+                        onclick="approveReconRow()" 
+                        class="text-[12px] bg-green text-white px-2.5 py-1 rounded-[4px] font-sans font-medium hover:bg-ink transition-colors"
+                      >
+                        Approve match
+                      </button>
+                      <button 
+                        id="recon-btn-reject" 
+                        onclick="rejectReconRow()" 
+                        class="text-[12px] border border-rule bg-surface text-ink px-2.5 py-1 rounded-[4px] font-sans hover:border-ink transition-colors"
+                      >
+                        Reject
+                      </button>
+                      <button 
+                        onclick="toggleReconWhyPopover()" 
+                        class="text-[12px] text-muted underline hover:text-ink font-sans transition-colors"
+                      >
+                        Why?
+                      </button>
+                      <button 
+                        id="recon-btn-reset" 
+                        onclick="resetReconRow()" 
+                        class="text-[11px] text-muted hover:text-ink ml-auto font-sans hidden"
+                      >
+                        Reset
+                      </button>
+                    </div>
+
+                    <!-- Popover: Why? -->
+                    <div id="recon-why-popover" class="hidden mt-2 p-2.5 text-[12px] text-muted bg-surface border border-rule rounded-[4px] font-sans">
+                      <strong class="text-ink font-medium">Fuzzy diagnosis:</strong> Party name matches with 0.94 confidence. Amount differs by swapped digits (₹3,450 vs ₹3,540). Operator review required before ledger post.
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Footer Summary of Demo -->
+                <div class="mt-3 pt-2.5 border-t border-rule flex items-center justify-between text-[13px] font-mono">
+                  <span id="recon-summary-line" class="text-ink font-medium">4 of 5 matched, 1 needs review</span>
+                  <span class="text-muted text-[11px] font-sans">10s philosophy demo</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E3. OUTCOMES AT A GLANCE + INTERACTIVE ROI SIMULATOR -->
+        <!-- ===================================================================== -->
+        <section id="outcomes" class="space-y-8">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-rule pb-3">
+            <div>
+              <h2 class="font-serif text-[28px] text-ink font-medium">Outcomes at a glance</h2>
+              <div class="text-[15px] text-muted">What has he delivered? Click any row to inspect proof in the case drawer.</div>
+            </div>
+            
+            <!-- Legend (Section 7) -->
+            <div class="flex items-center gap-3 text-[12px]">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-2 bar-measured"></span> <span class="tag-measured text-[11px]">measured</span></span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-2 bar-projected"></span> <span class="tag-projected text-[11px]">projected</span></span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-2 bar-illustrative"></span> <span class="tag-illustrative text-[11px]">illustrative</span></span>
+            </div>
+          </div>
+
+          <!-- Sortable Outcomes Table -->
+          <div class="border border-rule rounded-[4px] bg-surface overflow-x-auto">
+            <table class="w-full text-left text-[14px]">
+              <thead class="bg-paper ledger-double-rule font-medium text-muted text-[13px]">
+                <tr>
+                  <th onclick="sortOutcomesTable('outcome')" class="py-3 px-4 cursor-pointer hover:text-ink">
+                    Outcome <span id="sort-icon-outcome" class="font-mono text-[11px]">↕</span>
+                  </th>
+                  <th onclick="sortOutcomesTable('where')" class="py-3 px-4 cursor-pointer hover:text-ink">
+                    Where <span id="sort-icon-where" class="font-mono text-[11px]">↕</span>
+                  </th>
+                  <th onclick="sortOutcomesTable('value')" class="py-3 px-4 text-right cursor-pointer hover:text-ink">
+                    Value <span id="sort-icon-value" class="font-mono text-[11px]">↕</span>
+                  </th>
+                  <th class="py-3 px-4">Change bar</th>
+                  <th onclick="sortOutcomesTable('evidence')" class="py-3 px-4 cursor-pointer hover:text-ink">
+                    Tag <span id="sort-icon-evidence" class="font-mono text-[11px]">↕</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="outcomes-tbody" class="divide-y divide-rule font-normal">
+                <!-- Dynamically populated from EVIDENCE_DATA -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- INTERACTIVE OPERATIONAL SAVINGS / ROI SIMULATOR -->
+          <div id="roi-simulator" class="border border-rule rounded-[8px] bg-surface p-6 shadow-float space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-rule pb-3">
+              <div>
+                <h3 class="font-serif text-[20px] text-ink font-medium flex items-center gap-2">
+                  <span>Interactive Impact Simulator</span>
+                  <span class="audit-stamp audit-stamp-green text-[9px]">Model Your Ops</span>
+                </h3>
+                <div class="text-[14px] text-muted">Estimate time saved by scaling Rahul's 50% intake speedup and 45% reconciliation compression.</div>
+              </div>
+              <div class="pen-note text-right">derived from Edme CMS & PAS telemetry</div>
+            </div>
+
+            <!-- Two Sliders -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2 p-3 bg-paper rounded-[4px] border border-rule">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-muted">Monthly Claims / Transaction Volume</span>
+                  <span id="roi-volume-val" class="text-ink font-bold">3,500</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="roi-volume-slider" 
+                  min="500" 
+                  max="20000" 
+                  step="500" 
+                  value="3500" 
+                  class="w-full cursor-pointer h-1.5 bg-rule rounded"
+                  oninput="updateRoiCalc()"
+                />
+                <div class="text-[11px] text-muted flex justify-between">
+                  <span>500</span>
+                  <span>10,000</span>
+                  <span>20,000</span>
+                </div>
+              </div>
+
+              <div class="space-y-2 p-3 bg-paper rounded-[4px] border border-rule">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-muted">Current Manual Intake Time (Per Claim)</span>
+                  <span id="roi-time-val" class="text-ink font-bold">12 mins</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="roi-time-slider" 
+                  min="4" 
+                  max="25" 
+                  step="1" 
+                  value="12" 
+                  class="w-full cursor-pointer h-1.5 bg-rule rounded"
+                  oninput="updateRoiCalc()"
+                />
+                <div class="text-[11px] text-muted flex justify-between">
+                  <span>4 mins</span>
+                  <span>15 mins</span>
+                  <span>25 mins</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Calculated Metrics Result Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1 font-mono text-center">
+              <div class="p-3.5 bg-paper rounded-[4px] border border-rule">
+                <div class="text-[11px] text-muted uppercase">Ops Hours Reclaimed / Month</div>
+                <div id="roi-hours-saved" class="font-serif text-[28px] text-emerald-800 font-bold mt-0.5">350 hrs</div>
+                <div class="text-[11px] text-muted font-sans mt-0.5">via 50% intake acceleration</div>
+              </div>
+              <div class="p-3.5 bg-paper rounded-[4px] border border-rule">
+                <div class="text-[11px] text-muted uppercase">Exceptions Prevented / Month</div>
+                <div id="roi-errors-cut" class="font-serif text-[28px] text-ink font-bold mt-0.5">472 errors</div>
+                <div class="text-[11px] text-muted font-sans mt-0.5">via 90% error elimination</div>
+              </div>
+              <div class="p-3.5 bg-paper rounded-[4px] border border-rule">
+                <div class="text-[11px] text-muted uppercase">Recon Turnaround Cycle</div>
+                <div class="font-serif text-[28px] text-ink font-bold mt-0.5">-45% lag</div>
+                <div class="text-[11px] text-muted font-sans mt-0.5">from 14 days down to &lt;8 days</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E6. EXPERIENCE WITH INLINE INTERACTIVE MICRO-SIMULATORS -->
+        <!-- ===================================================================== -->
+        <section id="experience" class="space-y-12">
+          <div class="border-b border-rule pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <div>
+              <h2 class="font-serif text-[28px] text-ink font-medium">Experience</h2>
+              <div class="text-[15px] text-muted">Where, and doing what? Complete initiatives with inline interactive telemetry.</div>
+            </div>
+            <div class="pen-note text-right">click any row to inspect verified audit trail</div>
+          </div>
+
+          <div id="experience-container" class="space-y-14">
+            <!-- Dynamically populated from EVIDENCE_DATA grouped by company -->
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E7. THINGS I'VE BUILT (Working Prototypes in Device Frames) -->
+        <!-- ===================================================================== -->
+        <section id="built" class="space-y-8">
+          <div class="border-b border-rule pb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <div>
+              <h2 class="font-serif text-[28px] text-ink font-medium">Things I've built</h2>
+              <div class="text-[15px] text-muted">What can he build? Six interactive prototypes tested on real users.</div>
+            </div>
+            <div class="pen-note text-right">click to inspect working screens</div>
+          </div>
+
+          <!-- Featured 3 Prototypes (Large) + 3 Compact Tiles -->
+          <div id="built-container" class="space-y-8">
+            <!-- Populated from EVIDENCE_DATA -->
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E8. HOW I WORK (One Canonical Stepper) -->
+        <!-- ===================================================================== -->
+        <section id="how-i-work" class="space-y-6">
+          <div class="border-b border-rule pb-3">
+            <h2 class="font-serif text-[28px] text-ink font-medium">How I work</h2>
+            <div class="text-[15px] text-muted">One canonical sequence from discovery to measurable impact. Select a step to see linked evidence.</div>
+          </div>
+
+          <!-- Stepper Navigation -->
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 border border-rule rounded-[4px] p-1.5 bg-surface text-center">
+            <button onclick="setProcessStep(1)" id="step-btn-1" class="step-btn py-2 px-3 rounded-[3px] text-sm font-medium bg-green text-white transition-colors">
+              1. Discover
+            </button>
+            <button onclick="setProcessStep(2)" id="step-btn-2" class="step-btn py-2 px-3 rounded-[3px] text-sm font-medium text-muted hover:text-ink transition-colors">
+              2. Frame
+            </button>
+            <button onclick="setProcessStep(3)" id="step-btn-3" class="step-btn py-2 px-3 rounded-[3px] text-sm font-medium text-muted hover:text-ink transition-colors">
+              3. Prioritize
+            </button>
+            <button onclick="setProcessStep(4)" id="step-btn-4" class="step-btn py-2 px-3 rounded-[3px] text-sm font-medium text-muted hover:text-ink transition-colors">
+              4. Build
+            </button>
+            <button onclick="setProcessStep(5)" id="step-btn-5" class="step-btn py-2 px-3 rounded-[3px] text-sm font-medium text-muted hover:text-ink transition-colors">
+              5. Measure
+            </button>
+          </div>
+
+          <!-- Active Step Card -->
+          <div id="step-content-card" class="border border-rule rounded-[4px] p-6 bg-surface space-y-4">
+            <div>
+              <h3 id="step-title" class="font-serif text-[20px] text-ink font-medium">1. Discover</h3>
+              <p id="step-desc" class="text-[15px] text-muted mt-1">User interviews, workflow observation, and stakeholder context.</p>
+            </div>
+            <div>
+              <div class="text-[13px] font-mono text-muted uppercase mb-2">Linked Evidence Items:</div>
+              <div id="step-chips" class="flex flex-wrap gap-2">
+                <!-- Dynamically populated chips -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E11. PRODUCT TEARDOWNS (BookMyShow & Zepto PRDs) -->
+        <!-- ===================================================================== -->
+        <section id="teardowns" class="space-y-8">
+          <div class="border-b border-rule pb-3">
+            <h2 class="font-serif text-[28px] text-ink font-medium">Product teardowns</h2>
+            <div class="text-[15px] text-muted">How does he think unprompted? Real systems design & unit economics PRDs.</div>
+          </div>
+
+          <div id="teardowns-container" class="space-y-10">
+            <!-- Populated from EVIDENCE_DATA -->
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E9. AI, IN PRODUCTION TERMS (Decision Flow Diagram + Selectable Paths) -->
+        <!-- ===================================================================== -->
+        <section id="ai-practice" class="space-y-8">
+          <div class="border-b border-rule pb-3">
+            <h2 class="font-serif text-[28px] text-ink font-medium">AI, in production terms</h2>
+            <div class="text-[15px] text-muted">How does he use AI responsibly? A decision-flow diagram with 3 production paths.</div>
+          </div>
+
+          <p class="text-[16px] text-muted leading-[1.6]">
+            I treat AI as a product material — something shaped around a business decision, not a feature bolted on. Models are chosen where they genuinely outperform rules, with strict evaluation criteria and human override.
+          </p>
+
+          <!-- 3 Selectable Example Paths -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-mono text-muted">Select production path:</span>
+            <button 
+              onclick="selectAiPath('extraction')" 
+              id="ai-path-btn-extraction" 
+              class="ai-path-btn px-3 py-1 text-xs rounded-[4px] border border-green bg-green text-white font-medium"
+            >
+              1. Document extraction (Edme)
+            </button>
+            <button 
+              onclick="selectAiPath('support')" 
+              id="ai-path-btn-support" 
+              class="ai-path-btn px-3 py-1 text-xs rounded-[4px] border border-rule bg-surface text-ink hover:border-green font-medium"
+            >
+              2. Support bot (5paisa)
+            </button>
+            <button 
+              onclick="selectAiPath('recon')" 
+              id="ai-path-btn-recon" 
+              class="ai-path-btn px-3 py-1 text-xs rounded-[4px] border border-rule bg-surface text-ink hover:border-green font-medium"
+            >
+              3. Self-learning recon (Edme)
+            </button>
+          </div>
+
+          <!-- Decision-Flow Diagram (Section 6 E9) -->
+          <div class="border border-rule rounded-[4px] p-6 bg-surface space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+              
+              <!-- Node 1: Signal -->
+              <div id="ai-node-signal" class="p-4 rounded-[4px] border border-green bg-paper space-y-1">
+                <div class="text-[11px] font-mono uppercase text-green font-medium">Stage 01</div>
+                <div class="font-serif text-[18px] text-ink font-medium">Signal</div>
+                <div id="ai-node-signal-desc" class="text-[13px] text-muted">Heterogeneous hospital discharge PDFs</div>
+              </div>
+
+              <!-- Node 2: Model vs Rules -->
+              <div id="ai-node-model" class="p-4 rounded-[4px] border border-rule bg-paper space-y-1">
+                <div class="text-[11px] font-mono uppercase text-muted font-medium">Stage 02</div>
+                <div class="font-serif text-[18px] text-ink font-medium">Model vs rules</div>
+                <div id="ai-node-model-desc" class="text-[13px] text-muted">LayoutLM + OCR parses unstructured fields</div>
+              </div>
+
+              <!-- Node 3: Evaluation Criteria -->
+              <div id="ai-node-eval" class="p-4 rounded-[4px] border border-rule bg-paper space-y-1">
+                <div class="text-[11px] font-mono uppercase text-muted font-medium">Stage 03</div>
+                <div class="font-serif text-[18px] text-ink font-medium">Eval criteria</div>
+                <div id="ai-node-eval-desc" class="text-[13px] text-muted">Field confidence ≥ 0.85 & regex verification</div>
+              </div>
+
+              <!-- Node 4: Human Override -->
+              <div id="ai-node-override" class="p-4 rounded-[4px] border border-rule bg-paper space-y-1">
+                <div class="text-[11px] font-mono uppercase text-muted font-medium">Stage 04</div>
+                <div class="font-serif text-[18px] text-ink font-medium">Human override</div>
+                <div id="ai-node-override-desc" class="text-[13px] text-muted">Flagged fields routed to ops review queue</div>
+              </div>
+
+            </div>
+
+            <!-- Path Detail Commentary -->
+            <div id="ai-path-detail" class="border-t border-rule pt-4 text-[14px] text-muted space-y-1">
+              <strong class="text-ink font-medium">Architectural Rationale:</strong> Probabilistic document extraction never commits directly to core databases. High-confidence fields auto-fill; low-confidence fields zoom to the exact document bounding box for human confirmation.
+            </div>
+          </div>
+
+          <!-- 6 Supporting AI Practice Cards as Clean Rows -->
+          <div class="border-t border-rule divide-y divide-rule">
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">AI product management</h3>
+              <p class="text-[15px] text-muted mt-1">Identifying where models genuinely outperform rules, defining evaluation criteria, and designing for trust, validation, fallback and human override.</p>
+              <div class="text-xs font-mono text-muted mt-1">Signal → Model vs rules → Eval criteria → Human override</div>
+            </div>
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">Claude Code & AI agents</h3>
+              <p class="text-[15px] text-muted mt-1">Building and orchestrating agentic workflows and using AI-assisted development to rapidly turn validated ideas into working prototypes.</p>
+              <div class="text-xs font-mono text-muted mt-1">Task spec → Agent loop → Tool calls → Shipped build</div>
+            </div>
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">LLMs & prompt engineering</h3>
+              <p class="text-[15px] text-muted mt-1">Structured prompting, tool use, context engineering, and grounding model outputs in domain data for reliable business workflows.</p>
+              <div class="text-xs font-mono text-muted mt-1">Domain data → Context pack → Structured out → Guardrails</div>
+            </div>
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">MCP & workflow automation</h3>
+              <p class="text-[15px] text-muted mt-1">Connecting AI models with real systems, tools and workflows — moving from demos to reliable automation.</p>
+              <div class="text-xs font-mono text-muted mt-1">Core APIs → MCP bridge → Rules engine → Audit trail</div>
+            </div>
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">Rapid prototyping</h3>
+              <p class="text-[15px] text-muted mt-1">Using AI-assisted development to prototype concepts quickly, validate assumptions and reduce unnecessary engineering cycles.</p>
+              <div class="text-xs font-mono text-muted mt-1">Hypothesis → Prototype → User test → Build or kill</div>
+            </div>
+            <div class="py-4">
+              <h3 class="font-serif text-[18px] text-ink font-medium">Future AI experiments</h3>
+              <p class="text-[15px] text-muted mt-1">Exploring AI-assisted planning, intelligent monitoring, exception detection, natural-language constraints and autonomous workflow agents.</p>
+              <div class="text-xs font-mono text-muted mt-1">Monitoring → Exception detect → NL constraints → Autonomous agent</div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- E10. EVIDENCE MATRIX (Replaces Skills Chips) -->
+        <!-- ===================================================================== -->
+        <section id="matrix" class="space-y-6">
+          <div class="border-b border-rule pb-3">
+            <h2 class="font-serif text-[28px] text-ink font-medium">Evidence matrix</h2>
+            <div class="text-[15px] text-muted">Skills proven by shipped work. Click any dot to open the verifying case.</div>
+          </div>
+
+          <div class="border border-rule rounded-[4px] bg-surface overflow-x-auto">
+            <table class="w-full text-left text-[13px]">
+              <thead class="bg-paper ledger-double-rule font-medium text-muted">
+                <tr>
+                  <th class="py-3 px-4 min-w-[200px]">Skill / Capability</th>
+                  <th class="py-3 px-3 text-center">5paisa</th>
+                  <th class="py-3 px-3 text-center">Edme</th>
+                  <th class="py-3 px-3 text-center">Liquidmind</th>
+                  <th class="py-3 px-3 text-center">BMS PRD</th>
+                  <th class="py-3 px-3 text-center">Zepto PRD</th>
+                  <th class="py-3 px-3 text-center">PM Coach</th>
+                  <th class="py-3 px-3 text-center">Ins. CoPilot</th>
+                </tr>
+              </thead>
+              <tbody id="matrix-tbody" class="divide-y divide-rule font-normal">
+                <!-- Dynamically populated from EVIDENCE_MATRIX_DATA -->
+              </tbody>
+            </table>
+          </div>
+          <div class="text-[12px] text-muted text-right font-mono">
+            * Skills with no linked evidence rendered in muted tone.
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- ABOUT & EDUCATION -->
+        <!-- ===================================================================== -->
+        <section id="about" class="space-y-6">
+          <div class="border-b border-rule pb-3">
+            <h2 class="font-serif text-[28px] text-ink font-medium">About</h2>
+            <div class="text-[15px] text-muted">Who is he? Background, systems thinking, and education.</div>
+          </div>
+
+          <div class="space-y-4 text-[17px] leading-[1.6] text-muted max-w-[680px]">
+            <p>
+              I've spent the last few years inside the messiest parts of fintech and insurtech — where legacy ops meets broken software, and someone has to figure out what actually needs to be built. That's where I come in.
+            </p>
+            <p>
+              I connect the business context (what stakeholders really need) to the product (what gets shipped), bridging technology and data to make decisions stick — and lately, using AI & automation to cut the manual work that nobody should be doing today.
+            </p>
+          </div>
+
+          <!-- Education -->
+          <div class="border-t border-rule pt-6 space-y-2">
+            <h3 class="font-serif text-[20px] text-ink font-medium">Education</h3>
+            <div class="text-[15px] text-muted">
+              Bachelor of Technology (B.Tech), Birla Institute of Technology and Science (BITS), Pilani, <span class="font-mono text-ink text-[14px]">Nov 2020 — Aug 2024</span>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================== -->
+        <!-- CONTACT -->
+        <!-- ===================================================================== -->
+        <section id="contact" class="space-y-6 border-t border-rule pt-12">
+          <h2 class="font-serif text-[28px] text-ink font-medium">Contact</h2>
+          <p class="font-serif text-[22px] sm:text-[26px] text-ink leading-[1.3] max-w-[620px]">
+            Have a difficult workflow, an AI product problem, or an interesting PM role?
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-2 text-[15px]">
+            <a href="mailto:rahul4ever2011@gmail.com" class="ledger-link font-medium">
+              rahul4ever2011@gmail.com
+            </a>
+            <span class="hidden sm:inline text-rule">|</span>
+            <a href="https://www.linkedin.com/in/rahul-das-117a56223/" target="_blank" rel="noopener noreferrer" class="ledger-link font-medium">
+              LinkedIn profile
+            </a>
+            <span class="hidden sm:inline text-rule">|</span>
+            <a href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="ledger-link font-medium">
+              Resume on Google Docs
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- E12. STICKY FLOATING ACTION BAR (Appears on scroll) -->
+  <!-- ========================================================================= -->
+  <aside 
+    id="floating-action-bar" 
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-surface border border-rule rounded-[8px] p-2.5 px-5 shadow-float flex items-center gap-5 text-sm transition-all duration-180"
+  >
+    <a 
+      href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="bg-green text-white px-3.5 py-1.5 rounded-[4px] font-medium hover:bg-ink transition-colors duration-120"
+      onclick="logEvent('resume_click')"
+    >
+      Resume
+    </a>
+    <button onclick="copyEmail()" class="ledger-link text-[14px]">
+      Copy email
+    </button>
+    <span class="text-rule">|</span>
+    <button onclick="copyLensLink()" class="ledger-link text-[14px]">
+      Copy link to this view
+    </button>
+    <span class="text-rule">|</span>
+    <button onclick="openSearchModal()" class="text-xs font-mono text-muted hover:text-ink">
+      Find [/]
+    </button>
+  </aside>
+
+
+  <!-- ========================================================================= -->
+  <!-- E5. CASE DRAWER (Slide-over from right, 560px on desktop) -->
+  <!-- ========================================================================= -->
+  <div id="drawer-scrim" onclick="closeDrawer()" class="scrim-closed fixed inset-0 z-50 bg-[#12201A]/35 backdrop-blur-[1px]"></div>
+  
+  <div 
+    id="case-drawer" 
+    class="drawer-closed fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[560px] bg-surface border-l border-rule shadow-drawer flex flex-col justify-between overflow-y-auto"
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="drawer-title"
+  >
+    <!-- Drawer Header -->
+    <div class="p-6 border-b border-rule sticky top-0 bg-surface z-10 flex items-start justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span id="drawer-tag" class="tag-measured text-xs">measured</span>
+          <span id="drawer-lenses" class="text-xs font-mono text-muted">[fintech]</span>
+        </div>
+        <h3 id="drawer-title" class="font-serif text-[22px] text-ink font-medium leading-tight">
+          Initiative title
+        </h3>
+        <div id="drawer-where-date" class="text-xs text-muted font-mono">5paisa Capital · Nov 2024 — Sept 2025</div>
+      </div>
+      <button 
+        onclick="closeDrawer()" 
+        class="text-muted hover:text-ink text-xl font-mono p-1 leading-none rounded hover:bg-paper"
+        aria-label="Close case drawer"
+      >
+        ×
+      </button>
+    </div>
+
+    <!-- Drawer Body -->
+    <div class="p-6 space-y-6 flex-grow text-[15px] leading-relaxed">
+      
+      <!-- Problem -->
+      <div class="space-y-1.5">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-muted font-bold">The Problem</h4>
+        <p id="drawer-problem" class="text-muted">Problem description...</p>
+      </div>
+
+      <!-- What I Did -->
+      <div class="space-y-1.5">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-muted font-bold">What I Did</h4>
+        <p id="drawer-did" class="text-muted">Execution description...</p>
+      </div>
+
+      <!-- Outcome Ledger -->
+      <div class="space-y-1.5">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-muted font-bold">Outcome Ledger</h4>
+        <div id="drawer-ledger" class="space-y-2 pt-1 pb-1">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Decision Log (3 bullets max) -->
+      <div class="space-y-1.5">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-muted font-bold">Decision Log</h4>
+        <ul id="drawer-decisions" class="space-y-1.5 text-muted text-sm list-disc pl-5">
+          <!-- Populated dynamically -->
+        </ul>
+      </div>
+
+      <!-- Artifacts Preview -->
+      <div class="space-y-2">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-muted font-bold">Artifacts & Verification</h4>
+        <div id="drawer-artifacts" class="space-y-3">
+          <!-- Screenshot or Prototype Embed -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-4 border-t border-rule bg-paper sticky bottom-0 flex items-center justify-between text-xs font-mono">
+      <div class="flex items-center gap-3">
+        <button onclick="navigateDrawer(-1)" class="ledger-link font-sans text-xs">‹ Previous</button>
+        <span class="text-rule">|</span>
+        <button onclick="navigateDrawer(1)" class="ledger-link font-sans text-xs">Next ›</button>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="drawer-action-link"></span>
+        <button onclick="copyDrawerLink()" class="ledger-link font-sans text-xs">Copy link</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- E13. QUICK FIND MODAL (Press / to search) -->
+  <!-- ========================================================================= -->
+  <div id="search-modal" class="modal-closed fixed inset-0 z-50 bg-[#12201A]/35 backdrop-blur-[1px] flex items-start justify-center pt-20 px-4">
+    <div class="bg-surface border border-rule rounded-[8px] w-full max-w-lg shadow-drawer overflow-hidden" onclick="event.stopPropagation()">
+      <div class="p-3 border-b border-rule flex items-center gap-2">
+        <span class="text-muted text-sm">🔍</span>
+        <input 
+          id="search-input" 
+          type="text" 
+          placeholder="Search by title, outcome, or skill..." 
+          class="w-full text-sm bg-transparent outline-none text-ink placeholder:text-muted"
+          oninput="runQuickFind(this.value)"
+        />
+        <button onclick="closeSearchModal()" class="text-muted text-xs font-mono px-2 py-1 hover:text-ink">ESC</button>
+      </div>
+      <div id="search-results" class="max-h-72 overflow-y-auto divide-y divide-rule text-sm">
+        <div class="p-4 text-xs text-muted text-center font-mono">Type to search initiatives, outcomes, and prototypes...</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed top-5 right-5 z-50 bg-ink text-white text-xs px-3 py-2 rounded-[4px] shadow-float opacity-0 pointer-events-none transition-opacity duration-150">
+    Notification
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: DATA STORE & CLIENT-SIDE INTERACTION ENGINE -->
+  <!-- ========================================================================= -->
+  <script>
+    // -----------------------------------------------------------------------
+    // SECTION 11: SINGLE SOURCE OF TRUTH (EVIDENCE DATA MODEL)
+    // -----------------------------------------------------------------------
+    const EVIDENCE_DATA = [
+      // 5PAISA CAPITAL INITIATIVES
+      {
+        id: "paisa-1",
+        title: 'Curated "Basket Investing" & Goal-Based Discovery',
+        kind: 'initiative',
+        where: '5paisa Capital Ltd',
+        dates: 'Nov 2024 — Sept 2025',
+        lenses: ['fintech', 'ai'],
+        evidence: 'measured',
+        summary: 'Simplified multi-asset, goal-based fund discovery in collaboration with the research team.',
+        pen_note: 'thematic baskets cut choice paralysis',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Repeat investor engagement', value: '+15%', evidence: 'measured', pct: 15 },
+          { label: 'Portfolio adoption acceleration', value: '+20%', evidence: 'measured', pct: 20 }
+        ],
+        problem: 'Retail investors experienced choice paralysis navigating 2,000+ stocks and funds, creating drop-offs before first-time portfolio completion.',
+        did: 'Partnered with quantitative research to build thematic multi-asset baskets. Designed 1-click execution, basket carting logic, and rebalancing alerts.',
+        decisions: [
+          'Pre-configured baskets rather than user-customized to protect 1-click execution speed.',
+          'Rebalancing notifications kept opt-in to reduce investor alarm during market dips.',
+          'Integrated Nifty50 benchmark curve on detail view to ground risk expectation.'
+        ],
+        artifacts: [
+          { type: 'image', label: 'Basket Investing Flow Architecture', image: './projects/insurance-copilot.png' }
+        ],
+        links: [
+          { label: 'Open 5paisa Basket Investing Portal', url: 'https://5paisa.com' }
+        ],
+        skills: ['Product discovery', 'PRD/BRD', 'Feature prioritisation', 'Product analytics']
+      },
+      {
+        id: "paisa-2",
+        title: 'LLM-Powered Investor Support Copilot',
+        kind: 'initiative',
+        where: '5paisa Capital Ltd',
+        dates: 'Nov 2024 — Sept 2025',
+        lenses: ['fintech', 'ai'],
+        evidence: 'measured',
+        summary: 'Automated 60%+ of Tier-1 queries and lowered response latency from 12 mins to <30 secs.',
+        pen_note: 'connected directly to transactional trade ledger',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Support first-response time', value: '-70%', evidence: 'measured', pct: 70 },
+          { label: 'Tier-1 query automation', value: '60%+', evidence: 'measured', pct: 60 }
+        ],
+        problem: 'High-volume repetitive queries (order status, margins, ledger explanation) overwhelmed support agents, causing 12-minute queues during market peaks.',
+        did: 'Architected conversational user journeys using LLM intent parsing; connected the bot directly to trade ledger APIs with strict verification and warm agent handoff.',
+        decisions: [
+          'Direct transactional ledger API connection rather than cached database snapshots.',
+          'Strict handoff guardrails on financial margin calls to protect compliance.',
+          'Confidence gate below 0.82 triggers instant human escalation.'
+        ],
+        artifacts: [
+          { type: 'image', label: 'Intent Extraction & Guardrails Pipeline', image: './projects/pm-coach-pro.png' }
+        ],
+        links: [],
+        skills: ['Generative AI', 'Prompt engineering', 'AI workflow automation', 'KPI monitoring']
+      },
+      {
+        id: "paisa-3",
+        title: 'Mutual Fund Compare & Decision Benchmarking Tools',
+        kind: 'initiative',
+        where: '5paisa Capital Ltd',
+        dates: 'Nov 2024 — Sept 2025',
+        lenses: ['fintech'],
+        evidence: 'measured',
+        summary: 'Side-by-side performance comparison and Nifty50 relative benchmarking.',
+        process_step: 'Frame',
+        metrics: [
+          { label: 'User conversion lift via MF compare', value: '+3%', evidence: 'measured', pct: 3 }
+        ],
+        problem: 'Prelogin funnel analysis revealed severe drop-offs on fund detail pages due to lack of peer fund benchmarking.',
+        did: 'Shipped side-by-side MF comparison engine computing Alpha, Beta, Sharpe Ratio, and index-relative performance charts.',
+        decisions: [
+          'Maximum 3 funds compared side-by-side on mobile to prevent horizontal scrolling cognitive overload.',
+          'Color-coded expense ratios with categorical quintiles.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['Product analytics', 'User research', 'SQL']
+      },
+      {
+        id: "paisa-4",
+        title: 'Scalper Terminal, Margin Trading (MTF) & Pre-Login Journeys',
+        kind: 'initiative',
+        where: '5paisa Capital Ltd',
+        dates: 'Nov 2024 — Sept 2025',
+        lenses: ['fintech'],
+        evidence: 'measured',
+        summary: '1-click execution for options traders and transparent leverage calculator for MTF.',
+        process_step: 'Prioritize',
+        metrics: [
+          { label: 'Trading engagement lift via scalper & MTF', value: '+5–7%', evidence: 'measured', pct: 6 },
+          { label: 'Funnel conversion', value: '+3%', evidence: 'measured', pct: 3 }
+        ],
+        problem: 'High-frequency traders faced friction in multi-step order windows; MTF was hidden deep inside desktop submenus.',
+        did: 'Designed 1-click Scalper page for options hotkeys and revamped MTF discovery flow with transparent 4x leverage calculations.',
+        decisions: [
+          'Keyboard shortcuts mapped to standard broker terminal ergonomics.',
+          'Real-time liquidation boundary indicator.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['Agile / Scrum', 'Feature prioritisation', 'Fintech']
+      },
+      {
+        id: "paisa-5",
+        title: 'Partner Ecosystem & Self-Service Digital KYC Portal',
+        kind: 'initiative',
+        where: '5paisa Capital Ltd',
+        dates: 'Nov 2024 — Sept 2025',
+        lenses: ['fintech'],
+        evidence: 'measured',
+        summary: 'Automated digital onboarding and commission ledger for 500+ distribution partners.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Distribution partners onboarded', value: '500+', evidence: 'measured', pct: 50 },
+          { label: 'Digital KYC turnaround', value: '<15 mins', evidence: 'measured', pct: 85 }
+        ],
+        problem: 'Offline paperwork delayed partner verification by 5–7 days with fragmented tracking for partner commissions.',
+        did: 'Overhauled partner onboarding with Digilocker KYC, automated e-signatures, and real-time sub-broker commission ledger.',
+        decisions: [
+          'Digilocker fallback to manual PAN upload within 3 minutes of timeout.',
+          'Sub-broker commission payout summary downloadable as reconciled CSV.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['Stakeholder management', 'Workflow automation', 'Business analysis']
+      },
+
+      // EDME INSURANCE BROKER INITIATIVES
+      {
+        id: "edme-1",
+        title: '0→1 AI Insurance Platforms: CMS & PAS Rollout',
+        kind: 'initiative',
+        where: 'Edme Insurance Broker',
+        dates: 'Aug 2024 — Nov 2024',
+        lenses: ['insurtech', 'ai'],
+        evidence: 'measured',
+        summary: 'GenAI document extraction for discharge summaries across claims and operations teams.',
+        pen_note: 'OCR parsed multi-page hospital summaries',
+        process_step: 'Discover',
+        metrics: [
+          { label: 'Operational efficiency increase', value: '+50%', evidence: 'measured', pct: 50 },
+          { label: 'Manual effort reduction', value: '-10%', evidence: 'measured', pct: 10 }
+        ],
+        problem: 'Claims and policy operations relied on fragmented spreadsheets, physical discharge documents, and slow email trails.',
+        did: 'Spearheaded 0→1 build of Claims Management System (CMS) and Policy Administration System (PAS) with GenAI OCR document parsing.',
+        decisions: [
+          'Field-level confidence gating (threshold 0.85) rather than document-level gating.',
+          'Separation of document extraction from claim adjudication.'
+        ],
+        artifacts: [
+          { type: 'image', label: 'CMS Claims Intake Architecture', image: './projects/insurance-copilot.png' }
+        ],
+        links: [],
+        skills: ['Insurtech', 'Generative AI', 'PRD/BRD', 'AI agents']
+      },
+      {
+        id: "edme-2",
+        title: 'AI Roadmap Prioritization & Zero-Loss Data Migration',
+        kind: 'initiative',
+        where: 'Edme Insurance Broker',
+        dates: 'Aug 2024 — Nov 2024',
+        lenses: ['insurtech', 'ai'],
+        evidence: 'measured',
+        summary: 'Delivered 6+ releases and reconciled legacy records with AI-proposed schema mapping.',
+        process_step: 'Prioritize',
+        metrics: [
+          { label: 'On-schedule product releases', value: '6+', evidence: 'measured', pct: 60 },
+          { label: 'Backend reporting accuracy', value: '+30%', evidence: 'measured', pct: 30 }
+        ],
+        problem: 'Migrating legacy Aditya Birla records risked data loss, broken schema mappings, and reporting discrepancies.',
+        did: 'Owned sprint planning and UAT; utilized AI-assisted semantic schema matching to map 300+ legacy columns with rationale.',
+        decisions: [
+          'Mapped metadata and statistical sample distributions without exposing live customer PII.',
+          'Joint 2-hour engineering review war rooms to lock schema consensus.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['SQL', 'Agile / Scrum', 'ETL pipelines', 'Stakeholder management']
+      },
+      {
+        id: "edme-3",
+        title: '0→1 Self-Learning Reconciliation Engine & Policy Lifecycle',
+        kind: 'initiative',
+        where: 'Edme Insurance Broker',
+        dates: 'Aug 2024 — Nov 2024',
+        lenses: ['insurtech', 'ai', 'fintech'],
+        evidence: 'measured',
+        summary: 'Automated registration, booking, invoicing, and self-learning exception matching.',
+        pen_note: 'feedback loop learns from every human match',
+        process_step: 'Measure',
+        metrics: [
+          { label: 'Reconciliation turnaround reduction', value: '-45%', evidence: 'measured', pct: 45 },
+          { label: 'Processing errors eliminated', value: '90%+', evidence: 'measured', pct: 90 }
+        ],
+        problem: 'Multi-insurer payout reconciliation was manual and took weeks, suffering from format mismatches and human calculation errors.',
+        did: 'Architected 0→1 PAS reconciling payouts with an AI-driven self-learning feedback loop trained on human exception resolutions.',
+        decisions: [
+          'Composite deduplication key (Realization Date + Amount + Normalized Remarks).',
+          'Human-in-the-loop review queue for ambiguous line items.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['SQL', 'Dashboarding', 'KPI monitoring', 'Insurtech']
+      },
+
+      // LIQUIDMIND AI INITIATIVES
+      {
+        id: "liquid-1",
+        title: 'Onboarding Funnel Mapping & Time-to-Value Optimization',
+        kind: 'initiative',
+        where: 'Liquidmind AI',
+        dates: 'Jun 2024 — Aug 2024',
+        lenses: ['fintech'],
+        evidence: 'measured',
+        summary: 'Progressive onboarding and checklist guidance reducing time-to-value from 4.2 to 2.9 days.',
+        process_step: 'Discover',
+        metrics: [
+          { label: 'Time-to-value reduction', value: '-30%', evidence: 'measured', pct: 30 },
+          { label: 'Activation velocity', value: '2.9 days', evidence: 'measured', pct: 35 }
+        ],
+        problem: 'Enterprise merchants experienced high friction in registration and KYC credential verification, dropping off early in the funnel.',
+        did: 'Mapped drop-offs using session logs and redesigned onboarding with progressive checklist verification and automated defaults.',
+        decisions: [
+          'Deferred non-essential tax documents until first live billing batch.',
+          'Introduced interactive workspace progress meter.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['User research', 'Product analytics', 'B2B SaaS']
+      },
+      {
+        id: "liquid-2",
+        title: 'Flexible Checkout Architectures & Alternative Payment Structures',
+        kind: 'initiative',
+        where: 'Liquidmind AI',
+        dates: 'Jun 2024 — Aug 2024',
+        lenses: ['fintech'],
+        evidence: 'measured',
+        summary: 'Pay later, split payments, and 1-click checkout options for high-ticket transactions.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Checkout conversion lift', value: '+18%', evidence: 'measured', pct: 18 }
+        ],
+        problem: 'B2B merchants faced high cart drop-offs on high-ticket invoices due to lack of flexible liquidity and installment options.',
+        did: 'Spearheaded PRD and UX specification for 3 checkout modes: Pay Later (Net-30), Multi-card Split Pay, and 1-Click UPI/Cards.',
+        decisions: [
+          'Dynamic fee calculation updated client-side with 0 hidden markups.',
+          'Instant credit verification through gateway APIs.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['Fintech', 'PRD/BRD', 'Feature prioritisation']
+      },
+      {
+        id: "liquid-3",
+        title: 'Automated Webhook Listeners & 99% Payment Verification',
+        kind: 'initiative',
+        where: 'Liquidmind AI',
+        dates: 'Jun 2024 — Aug 2024',
+        lenses: ['fintech', 'ai'],
+        evidence: 'measured',
+        summary: 'Idempotent callback handling and automated status polling eliminating ghost transactions.',
+        process_step: 'Measure',
+        metrics: [
+          { label: 'Payment verification accuracy', value: '99%', evidence: 'measured', pct: 99 },
+          { label: 'Webhook listener reliability', value: '100%', evidence: 'measured', pct: 100 }
+        ],
+        problem: 'Asynchronous banking callback drops caused ghost orders and settlement disputes between merchants and buyers.',
+        did: 'Architected automated webhook listener architecture with signature verification, exponential backoff retries, and reconciliation polling.',
+        decisions: [
+          'Strict idempotency keying on transaction hashes.',
+          'Automated fallback polling for pending webhooks older than 45 seconds.'
+        ],
+        artifacts: [],
+        links: [],
+        skills: ['Workflow automation', 'KPI monitoring', 'Fintech']
+      },
+
+      // PROTOTYPES (THINGS I'VE BUILT)
+      {
+        id: "built-1",
+        title: "PM Interview Coach Pro — AI Mock Simulator",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['ai'],
+        evidence: 'illustrative',
+        featured: true,
+        device: 'laptop',
+        image: './projects/pm-coach-pro.png',
+        summary: 'Adaptive PM mock interviews with n8n workflow automation, multi-agent evaluation, and voice interaction.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Rubric evaluation accuracy', value: '88%', evidence: 'illustrative', pct: 88 }
+        ],
+        problem: 'Aspiring PMs lack access to realistic, adaptive mock interviewers with structured rubric feedback.',
+        did: 'Built platform combining n8n multi-agent orchestration, adaptive voice synthesis, and structured rubric scoring.',
+        decisions: ['Voice-first interaction to simulate real pressure.', 'Evaluated against standard Meta/Google PM rubrics.'],
+        artifacts: [{ type: 'prototype', label: 'PM Coach Live Web App', url: 'https://pm-coach-pro.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://pm-coach-pro.lovable.app' }],
+        skills: ['Generative AI', 'AI agents', 'AI-assisted product design']
+      },
+      {
+        id: "built-2",
+        title: "Insurance Co-Pilot — Protection Gap Intelligence for MFDs",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['insurtech', 'ai', 'fintech'],
+        evidence: 'illustrative',
+        featured: true,
+        device: 'laptop',
+        image: './projects/insurance-copilot.png',
+        summary: 'Audits client portfolios to detect protection gaps, underwriting limits, and commission-blind briefings.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Advisory gap coverage', value: '100%', evidence: 'illustrative', pct: 100 }
+        ],
+        problem: 'Mutual Fund Distributors hesitate to advise on insurance due to complex underwriting calculations and commission bias suspicion.',
+        did: 'Built copilot auditing customer portfolios, computing human life value, and generating commission-blind pre-meeting briefing cards.',
+        decisions: ['Commission-blind recommendation engine to maximize client trust.'],
+        artifacts: [{ type: 'prototype', label: 'Insurance Co-Pilot App', url: 'https://insurance-copilot-mfd.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://insurance-copilot-mfd.lovable.app' }],
+        skills: ['Insurtech', 'Generative AI', 'Fintech']
+      },
+      {
+        id: "built-3",
+        title: "Ola FeedPod — Electric Micro-Transit Loops",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['ai'],
+        evidence: 'illustrative',
+        featured: true,
+        device: 'phone',
+        image: './projects/ola-feedpod.png',
+        summary: 'Autonomous high-frequency electric pods looping between residential societies and metro stations every 90 seconds.',
+        process_step: 'Frame',
+        metrics: [
+          { label: 'Loop dispatch frequency', value: '90s', evidence: 'illustrative', pct: 90 }
+        ],
+        problem: 'First-and-last mile transit between gated societies and metro stations is broken, unpredictable, and expensive.',
+        did: 'Designed on-demand micro-transit dispatch simulator with real-time seat tracking and metro line timetable sync.',
+        decisions: ['Fixed loop routes with dynamic demand-responsive frequency.'],
+        artifacts: [{ type: 'prototype', label: 'Ola FeedPod Simulator', url: 'https://olapod2035.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://olapod2035.lovable.app' }],
+        skills: ['Product discovery', 'PRD/BRD']
+      },
+      {
+        id: "built-4",
+        title: "Money Wrapped — Spend Story Unpacked",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['fintech', 'ai'],
+        evidence: 'illustrative',
+        featured: false,
+        device: 'phone',
+        image: './projects/money-wrapped.png',
+        summary: 'Transforms raw UPI bank statements into personalized, shareable spending patterns and behavioral stories.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'UPI statement parsing rate', value: '96%', evidence: 'illustrative', pct: 96 }
+        ],
+        problem: 'Banking transaction statements are cold, cryptic, and unreadable for younger consumers.',
+        did: 'Created Spotify-Wrapped style interactive web app extracting UPI statements into delightful behavioral stories.',
+        decisions: ['Client-side statement parsing ensuring zero bank data reaches servers.'],
+        artifacts: [{ type: 'prototype', label: 'Money Wrapped Prototype', url: 'https://spend-story-unpacked.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://spend-story-unpacked.lovable.app' }],
+        skills: ['Fintech', 'Generative AI', 'SQL']
+      },
+      {
+        id: "built-5",
+        title: "Nooka — On-Demand Workspace Marketplace",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['fintech'],
+        evidence: 'illustrative',
+        featured: false,
+        device: 'laptop',
+        image: './projects/nooka.png',
+        summary: 'Workspace discovery connecting remote workers with quiet cafes, hotel lounges, and call pods with unified WorkPass.',
+        process_step: 'Discover',
+        metrics: [
+          { label: 'Space discovery filter options', value: '14 tags', evidence: 'illustrative', pct: 75 }
+        ],
+        problem: 'Remote professionals struggle to find quiet, reliable spaces to work with reliable Wi-Fi outside standard coworking offices.',
+        did: 'Built marketplace with vibe filters, noise meters, instant seat booking, and membership pass checkout.',
+        decisions: ['Aggregated hotel lobbies during off-peak hours for affordable high-speed seating.'],
+        artifacts: [{ type: 'prototype', label: 'Nooka Workspace Marketplace', url: 'https://work-inspired-frontend.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://work-inspired-frontend.lovable.app' }],
+        skills: ['Product discovery', 'B2B SaaS']
+      },
+      {
+        id: "built-6",
+        title: "TripMind — AI Travel Copilot for India",
+        kind: 'build',
+        where: 'Independent Prototype',
+        dates: '2024',
+        lenses: ['ai'],
+        evidence: 'illustrative',
+        featured: false,
+        device: 'phone',
+        image: './projects/tripmind.png',
+        summary: 'Computes dynamic 0–100 Trip Confidence Scores across seasonality, budget, and real-time transit itineraries.',
+        process_step: 'Build',
+        metrics: [
+          { label: 'Itinerary generation latency', value: '<90s', evidence: 'illustrative', pct: 90 }
+        ],
+        problem: 'Domestic Indian travel planning suffers from unreliable weather seasonality and disconnected regional transport options.',
+        did: 'Built AI travel consultant factoring monsoon risks, regional festivals, and realistic day-wise multi-modal schedules.',
+        decisions: ['Included real train availability fallback options.'],
+        artifacts: [{ type: 'prototype', label: 'TripMind Copilot App', url: 'https://go-india-ai.lovable.app' }],
+        links: [{ label: 'Open live prototype', url: 'https://go-india-ai.lovable.app' }],
+        skills: ['Generative AI', 'Prompt engineering']
+      },
+
+      // PRODUCT TEARDOWNS
+      {
+        id: "teardown-1",
+        title: "Improving BookMyShow: High-Surge Ticket Booking & Phantom Lock Resolution",
+        kind: 'teardown',
+        where: 'System Design & PRD (NextLeap Top Fellow)',
+        dates: '2024',
+        lenses: ['fintech'],
+        evidence: 'projected',
+        summary: 'Root-cause analysis of 82% phantom locks during high-surge Coldplay/World Cup sales with tokenized FIFO waiting room.',
+        pen_note: 'tokenized FIFO queue prevents database lock thrashing',
+        process_step: 'Frame',
+        metrics: [
+          { label: 'Peak surge uptime target', value: '99.4%', evidence: 'projected', pct: 99 },
+          { label: 'Checkout bounce reduction', value: '-64%', evidence: 'projected', pct: 64 },
+          { label: 'Scalping bot leakage', value: '0%', evidence: 'projected', pct: 100 }
+        ],
+        problem: '500k+ concurrent fans caused 82% phantom lock rates and checkout crashes during high-demand concert sales.',
+        did: 'Proposed tokenized FIFO virtual waiting room, edge seat soft-reservations, and bot rate-limiting to protect revenue conversion.',
+        decisions: [
+          'Edge caching seat availability to keep database write-locks under control.',
+          'Tokenized queue allocation with 4-minute cart countdown timer.'
+        ],
+        artifacts: [
+          { type: 'image', label: 'PRD Document Preview (Page 1 of 18)', image: './projects/bookmyshow.png' }
+        ],
+        links: [
+          { label: 'Read Case Study (18-Page PRD)', url: './bookmyshow-case-study.pdf' }
+        ],
+        skills: ['PRD/BRD', 'User research', 'System design']
+      },
+      {
+        id: "teardown-2",
+        title: "Zepto: Boosting Order Value & Grocery Experience via 'Zepto Stock Up'",
+        kind: 'teardown',
+        where: 'Quick Commerce Product Teardown',
+        dates: '2024',
+        lenses: ['fintech'],
+        evidence: 'projected',
+        summary: 'Strategic teardown and system design addressing grocery order hesitations with inventory tracking and bulk ladders.',
+        pen_note: 'shelf-life tracking drives bulk cart confidence',
+        process_step: 'Prioritize',
+        metrics: [
+          { label: 'Baseline AOV target', value: '₹400–450', evidence: 'projected', pct: 45 },
+          { label: 'Prioritization score (U*I/E)', value: '4.5 / 5.0', evidence: 'illustrative', pct: 90 },
+          { label: 'Target GenZ and millennials', value: '18 million', evidence: 'projected', pct: 60 }
+        ],
+        problem: 'Users treat quick commerce as impulse emergency shopping rather than high-value weekly planned pantry replenishment.',
+        did: 'Designed "Zepto Stock Up" module with household pantry inventory tracking, bulk discount ladders, and guaranteed shelf-life indicators.',
+        decisions: [
+          'Discount ladders tied strictly to non-perishable high-margin dark store SKUs.',
+          'Household consumption cycle predictions triggered reminders 3 days before depletion.'
+        ],
+        artifacts: [
+          { type: 'image', label: 'PRD Document Preview (Page 1 of 9)', image: './projects/zepto-teardown.png' }
+        ],
+        links: [
+          { label: 'Read Case Study (9-Page PRD)', url: './zepto-case-study.pdf' }
+        ],
+        skills: ['Product discovery', 'Feature prioritisation', 'Unit economics']
+      }
+    ];
+
+    // SKILLS EVIDENCE MATRIX DATA
+    const EVIDENCE_SKILLS = [
+      { name: 'Product discovery', links: ['paisa-1', 'edme-1', 'liquid-1', 'built-3', 'built-5', 'teardown-2'] },
+      { name: 'PRD/BRD documentation', links: ['paisa-1', 'edme-1', 'liquid-2', 'teardown-1', 'teardown-2'] },
+      { name: 'Feature prioritisation', links: ['paisa-1', 'paisa-4', 'edme-2', 'liquid-2', 'teardown-2'] },
+      { name: 'Generative AI & LLMs', links: ['paisa-2', 'edme-1', 'built-1', 'built-2', 'built-4', 'built-6'] },
+      { name: 'Prompt engineering & eval', links: ['paisa-2', 'built-1', 'built-6'] },
+      { name: 'AI agents & automation', links: ['paisa-2', 'edme-1', 'built-1', 'liquid-3'] },
+      { name: 'SQL & Data analysis', links: ['paisa-3', 'edme-2', 'edme-3', 'built-4'] },
+      { name: 'KPI monitoring & Dashboards', links: ['paisa-2', 'edme-3', 'liquid-3'] },
+      { name: 'Fintech domain architecture', links: ['paisa-1', 'paisa-2', 'paisa-4', 'liquid-2', 'liquid-3', 'built-2', 'teardown-1'] },
+      { name: 'Insurtech workflows (CMS/PAS)', links: ['edme-1', 'edme-2', 'edme-3', 'built-2'] },
+      { name: 'Agile & Sprint delivery', links: ['paisa-4', 'edme-2'] },
+      { name: 'Stakeholder alignment', links: ['paisa-5', 'edme-2'] }
+    ];
+
+    const PROCESS_STEPS_DATA = {
+      1: { title: '1. Discover', desc: 'User interviews, workflow observation, and stakeholder context.', items: ['edme-1', 'liquid-1', 'built-5', 'teardown-2'] },
+      2: { title: '2. Frame', desc: 'Journey maps, problem statements, constraints, and outcomes.', items: ['paisa-3', 'built-3', 'teardown-1'] },
+      3: { title: '3. Prioritize', desc: 'Impact, effort, and sequencing around the core user job.', items: ['paisa-4', 'edme-2', 'teardown-2'] },
+      4: { title: '4. Build', desc: 'PRDs, working prototypes, AI workflows, and sprint collaboration.', items: ['paisa-1', 'paisa-2', 'paisa-5', 'liquid-2', 'built-1', 'built-2', 'built-4', 'built-6'] },
+      5: { title: '5. Measure', desc: 'Instrumentation, adoption, reconciliation feedback loops, and iterative learning.', items: ['edme-3', 'liquid-3'] }
+    };
+
+    // -----------------------------------------------------------------------
+    // STATE MANAGEMENT
+    // -----------------------------------------------------------------------
+    let activeLens = 'all';
+    let currentDrawerIndex = 0;
+    let filteredItems = [...EVIDENCE_DATA];
+    let sortColumn = 'outcome';
+    let sortDirection = 'asc';
+    let isTourActive = false;
+    let currentTourStep = 0;
+
+    // -----------------------------------------------------------------------
+    // INITIALIZATION ON LOAD
+    // -----------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      // Parse URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const lensParam = urlParams.get('lens');
+      if (lensParam && ['fintech', 'insurtech', 'ai'].includes(lensParam)) {
+        setLens(lensParam, false);
+      } else {
+        renderAllViews();
+      }
+
+      // Check deep link hash (#case=id)
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#case=')) {
+        const caseId = hash.replace('#case=', '');
+        openCaseDrawer(caseId);
+      }
+
+      // Initialize Process Stepper & ROI Calc
+      setProcessStep(1);
+      updateRoiCalc();
+
+      // Keyboard shortcuts
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeDrawer();
+          closeSearchModal();
+          if (isTourActive) exitTour();
+        }
+        if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+          e.preventDefault();
+          openSearchModal();
+        }
+      });
+    });
+
+    // -----------------------------------------------------------------------
+    // LENS FILTERING ENGINE (E2)
+    // -----------------------------------------------------------------------
+    function setLens(lens, updateUrl = true) {
+      activeLens = lens;
+      logEvent('lens_select', { lens });
+
+      if (updateUrl) {
+        const newUrl = lens === 'all' ? window.location.pathname : `${window.location.pathname}?lens=${lens}`;
+        window.history.replaceState({}, '', newUrl);
+      }
+
+      // Update Lens Bar buttons
+      document.querySelectorAll('.lens-btn').forEach(btn => {
+        btn.classList.remove('bg-green', 'text-white', 'border-green');
+        btn.classList.add('bg-surface', 'text-ink', 'border-rule');
+      });
+      const activeBtn = document.getElementById(`lens-btn-${lens}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-surface', 'text-ink', 'border-rule');
+        activeBtn.classList.add('bg-green', 'text-white', 'border-green');
+      }
+
+      renderAllViews();
+    }
+
+    function renderAllViews() {
+      renderOutcomesTable();
+      renderExperienceSection();
+      renderBuiltSection();
+      renderTeardownsSection();
+      renderEvidenceMatrix();
+      updateLensCounter();
+    }
+
+    function updateLensCounter() {
+      const matchCount = EVIDENCE_DATA.filter(item => activeLens === 'all' || item.lenses.includes(activeLens)).length;
+      document.getElementById('lens-counter').textContent = `Showing ${matchCount} of ${EVIDENCE_DATA.length} items`;
+    }
+
+    function isItemInActiveLens(item) {
+      return activeLens === 'all' || item.lenses.includes(activeLens);
+    }
+
+    // -----------------------------------------------------------------------
+    // E3. OUTCOMES TABLE RENDERING & SORTING
+    // -----------------------------------------------------------------------
+    function renderOutcomesTable() {
+      const tbody = document.getElementById('outcomes-tbody');
+      tbody.innerHTML = '';
+
+      // Flatten metrics with parent reference
+      let outcomeRows = [];
+      EVIDENCE_DATA.forEach(item => {
+        item.metrics.forEach(m => {
+          outcomeRows.push({
+            outcome: m.label,
+            where: item.where.split(' ')[0],
+            companyFull: item.where,
+            value: m.value,
+            pct: m.pct || 10,
+            evidence: m.evidence,
+            parentItem: item
+          });
+        });
+      });
+
+      // Sort
+      outcomeRows.sort((a, b) => {
+        let valA = a[sortColumn];
+        let valB = b[sortColumn];
+        if (sortColumn === 'value') {
+          valA = a.pct;
+          valB = b.pct;
+        }
+        if (valA < valB) return sortDirection === 'asc' ? -1 : 1;
+        if (valA > valB) return sortDirection === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      outcomeRows.forEach(row => {
+        const isMatched = isItemInActiveLens(row.parentItem);
+        const tr = document.createElement('tr');
+        tr.className = `cursor-pointer hover:bg-paper transition-all duration-150 ${isMatched ? 'lens-active-item' : 'lens-dimmed'}`;
+        tr.onclick = () => openCaseDrawer(row.parentItem.id);
+
+        let barClass = 'bar-measured';
+        if (row.evidence === 'projected') barClass = 'bar-projected';
+        if (row.evidence === 'illustrative') barClass = 'bar-illustrative';
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-medium text-ink flex items-center gap-2">
+            <span>${row.outcome}</span>
+          </td>
+          <td class="py-3 px-4 text-muted text-xs font-mono">${row.where}</td>
+          <td class="py-3 px-4 text-right font-mono font-medium text-ink">${row.value}</td>
+          <td class="py-3 px-4 w-28">
+            <div class="${barClass}" style="width: ${Math.min(100, Math.max(15, row.pct))}%;"></div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="tag-${row.evidence}">${row.evidence}</span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function sortOutcomesTable(col) {
+      if (sortColumn === col) {
+        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortColumn = col;
+        sortDirection = 'asc';
+      }
+      renderOutcomesTable();
+    }
+
+    // -----------------------------------------------------------------------
+    // INTERACTIVE OPERATIONAL ROI / TIME-SAVED SIMULATOR
+    // -----------------------------------------------------------------------
+    function updateRoiCalc() {
+      const vol = parseInt(document.getElementById('roi-volume-slider').value, 10);
+      const time = parseInt(document.getElementById('roi-time-slider').value, 10);
+
+      document.getElementById('roi-volume-val').textContent = vol.toLocaleString();
+      document.getElementById('roi-time-val').textContent = `${time} mins`;
+
+      // Calculation based on Rahul's Edme numbers: 50% intake time cut, 90% error reduction on ~15% baseline error rate
+      const minutesSaved = vol * time * 0.50;
+      const hoursSaved = Math.round(minutesSaved / 60);
+      const errorsAvoided = Math.round(vol * 0.15 * 0.90);
+
+      document.getElementById('roi-hours-saved').textContent = `${hoursSaved.toLocaleString()} hrs`;
+      document.getElementById('roi-errors-cut').textContent = `${errorsAvoided.toLocaleString()} errors`;
+    }
+
+    // -----------------------------------------------------------------------
+    // E6. EXPERIENCE SECTION RENDERING WITH INLINE MICRO-SIMULATORS
+    // -----------------------------------------------------------------------
+    function renderExperienceSection() {
+      const container = document.getElementById('experience-container');
+      container.innerHTML = '';
+
+      const companies = [
+        { 
+          name: '5paisa Capital Ltd', 
+          role: 'Associate Product Manager', 
+          dates: 'Nov 2024 — Sept 2025',
+          stamp: 'TELEMETRY: 60-DAY COHORT',
+          microSim: '5paisa'
+        },
+        { 
+          name: 'Edme Insurance Broker', 
+          role: 'Associate Product Manager', 
+          dates: 'Aug 2024 — Nov 2024',
+          stamp: 'AUDIT: ZERO DATA LOSS',
+          microSim: 'edme'
+        },
+        { 
+          name: 'Liquidmind AI', 
+          role: 'Product Management Intern', 
+          dates: 'Jun 2024 — Aug 2024',
+          stamp: 'RECONCILED: ASYNC WEBHOOKS',
+          microSim: 'liquid'
+        }
+      ];
+
+      companies.forEach((comp, idx) => {
+        const compItems = EVIDENCE_DATA.filter(item => item.where === comp.name);
+        const compHasActiveLens = compItems.some(item => isItemInActiveLens(item));
+
+        const block = document.createElement('article');
+        block.id = `company-block-${comp.microSim}`;
+        block.className = `space-y-6 ${idx > 0 ? 'pt-10 border-t border-rule' : ''} ${compHasActiveLens ? 'lens-active-item' : 'lens-dimmed'}`;
+
+        // Header with Archival Stamp
+        let blockHtml = `
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-rule pb-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-serif text-[22px] font-medium text-ink">${comp.name}</h3>
+                <span class="audit-stamp">${comp.stamp}</span>
+              </div>
+              <div class="text-[15px] text-muted">${comp.role}</div>
+            </div>
+            <div class="font-mono text-[14px] text-muted">${comp.dates}</div>
+          </div>
+        `;
+
+        // Dotted Outcome Ledger
+        blockHtml += `<div class="space-y-2 pt-1 pb-3">`;
+        compItems.forEach(item => {
+          item.metrics.forEach(m => {
+            blockHtml += `
+              <div class="leader-row text-[14px]">
+                <span class="text-muted">${m.label}</span>
+                <span class="leader-dots"></span>
+                <span class="font-mono text-ink font-medium">${m.value}</span>
+                <span class="tag-${m.evidence}">${m.evidence}</span>
+              </div>
+            `;
+          });
+        });
+        blockHtml += `</div>`;
+
+        // Initiatives Rows with Tactile Hover
+        blockHtml += `<div class="border-t border-rule divide-y divide-rule">`;
+        compItems.forEach(item => {
+          const itemInLens = isItemInActiveLens(item);
+          blockHtml += `
+            <div 
+              onclick="openCaseDrawer('${item.id}')"
+              class="initiative-row py-4 cursor-pointer group p-2.5 rounded-[4px] ${itemInLens ? 'lens-active-item' : 'lens-dimmed'}"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-[16px] font-medium text-ink group-hover:text-green transition-colors flex items-center gap-2">
+                    <span>${item.title}</span>
+                  </div>
+                  <div class="text-[14px] text-muted mt-0.5">${item.summary}</div>
+                  ${item.pen_note ? `
+                    <div class="flex items-center gap-1.5 mt-1">
+                      <svg class="w-3.5 h-2.5 text-penblue" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M1 6 C 5 2, 12 10, 18 6" stroke-linecap="round"/>
+                      </svg>
+                      <span class="pen-note">${item.pen_note}</span>
+                    </div>
+                  ` : ''}
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0 pt-1">
+                  <span class="text-xs font-mono text-muted group-hover:text-green transition-colors">[audit trail →]</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        blockHtml += `</div>`;
+
+        // INLINE INTERACTIVE MICRO-SIMULATOR PER COMPANY
+        if (comp.microSim === 'edme') {
+          blockHtml += `
+            <div class="mt-4 p-4 rounded-[6px] border border-rule bg-surface space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rule pb-2 text-xs">
+                <div>
+                  <span class="font-serif font-bold text-ink text-sm">Interactive Logic: Field-Level Confidence Gate (CMS)</span>
+                  <div class="text-muted text-[12px] font-sans">Rahul's architectural decision: threshold gating per field, not entire document.</div>
+                </div>
+                <span class="font-mono text-penblue">Drag Threshold: <strong id="edme-thresh-val" class="text-ink text-xs">0.85</strong></span>
+              </div>
+              <input 
+                type="range" 
+                id="edme-sim-slider" 
+                min="0.65" 
+                max="0.96" 
+                step="0.01" 
+                value="0.85" 
+                class="w-full h-1 bg-rule cursor-pointer rounded"
+                oninput="updateEdmeSim(this.value)"
+              />
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono pt-1" id="edme-fields-grid">
+                <!-- Dynamically updated by updateEdmeSim -->
+              </div>
+              <div id="edme-sim-summary" class="text-[12px] text-muted font-sans border-t border-rule pt-2">
+                At <strong>0.85</strong> threshold: 3 fields auto-fill cleanly. 1 field isolates to human review queue with bounding-box zoom. Zero mis-keyed entries in production.
+              </div>
+            </div>
+          `;
+        } else if (comp.microSim === '5paisa') {
+          blockHtml += `
+            <div class="mt-4 p-4 rounded-[6px] border border-rule bg-surface space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rule pb-2 text-xs">
+                <div>
+                  <span class="font-serif font-bold text-ink text-sm">Live Trace: Trade Ledger Connected Bot (5paisa)</span>
+                  <div class="text-muted text-[12px] font-sans">Simulate how queries verify against transactional APIs with zero latency hallucination.</div>
+                </div>
+                <div class="flex items-center gap-1 font-mono text-[11px]">
+                  <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                  <span class="text-muted">API: 180ms</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs text-muted font-mono">Sample Query:</span>
+                <button onclick="set5paisaQuery('payout')" id="paisa-q-payout" class="px-2 py-0.5 text-xs rounded border border-green bg-green text-white font-medium">Fund Withdrawal</button>
+                <button onclick="set5paisaQuery('margin')" id="paisa-q-margin" class="px-2 py-0.5 text-xs rounded border border-rule bg-paper text-ink hover:border-green">MTF Margin 4x</button>
+                <button onclick="set5paisaQuery('compare')" id="paisa-q-compare" class="px-2 py-0.5 text-xs rounded border border-rule bg-paper text-ink hover:border-green">MF Sharpe Benchmarking</button>
+              </div>
+              <div id="paisa-trace-box" class="p-2.5 rounded bg-paper border border-rule text-xs font-mono space-y-1">
+                <div class="text-muted">Extracted Intent: <span id="paisa-intent" class="text-ink font-bold">LEDGER_SETTLEMENT_STATUS</span></div>
+                <div class="text-muted">API Endpoint: <span id="paisa-endpoint" class="text-penblue">GET /api/v2/ledger/settlements?client=5P8829</span></div>
+                <div class="text-slate-700 font-sans mt-1 p-2 bg-surface border border-rule rounded" id="paisa-response">
+                  "Your withdrawal of ₹45,000 was processed in Batch #WDR-9921. Bank UTR: <strong>HDFC0091823</strong> credited at 11:42 AM today."
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (comp.microSim === 'liquid') {
+          blockHtml += `
+            <div class="mt-4 p-4 rounded-[6px] border border-rule bg-surface space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rule pb-2 text-xs">
+                <div>
+                  <span class="font-serif font-bold text-ink text-sm">3-Mode B2B Checkout Simulator (Liquidmind AI)</span>
+                  <div class="text-muted text-[12px] font-sans">Tested liquidity modes on high-ticket invoices to drive a +18% conversion lift.</div>
+                </div>
+                <span class="tag-measured text-[11px]">+18% checkout lift</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                <button onclick="setLiquidMode('net30')" id="liquid-btn-net30" class="p-2 rounded border border-green bg-green text-white font-medium">1. Net-30 Pay Later</button>
+                <button onclick="setLiquidMode('split')" id="liquid-btn-split" class="p-2 rounded border border-rule bg-paper text-ink hover:border-green">2. Multi-Card Split</button>
+                <button onclick="setLiquidMode('upi')" id="liquid-btn-upi" class="p-2 rounded border border-rule bg-paper text-ink hover:border-green">3. 1-Click Instant UPI</button>
+              </div>
+              <div id="liquid-sim-details" class="p-2.5 rounded bg-paper border border-rule text-xs font-mono flex justify-between items-center">
+                <span>Invoice: ₹1,20,000 · <strong>0% Financing Fee</strong> · Underwriting in 1.4s</span>
+                <span class="text-emerald-700 font-bold">Webhook: 200 OK</span>
+              </div>
+            </div>
+          `;
+        }
+
+        block.innerHTML = blockHtml;
+        container.appendChild(block);
+      });
+
+      // Initialize Edme Sim Fields
+      updateEdmeSim(0.85);
+    }
+
+    // -----------------------------------------------------------------------
+    // INLINE SIMULATOR CONTROLLERS
+    // -----------------------------------------------------------------------
+    function updateEdmeSim(val) {
+      const threshold = parseFloat(val);
+      document.getElementById('edme-thresh-val').textContent = threshold.toFixed(2);
+      
+      const fields = [
+        { name: 'Claimant Name', score: 0.98 },
+        { name: 'Policy Number', score: 0.94 },
+        { name: 'Bill Amount', score: 0.88 },
+        { name: 'Discharge Date', score: 0.74 }
+      ];
+
+      const grid = document.getElementById('edme-fields-grid');
+      grid.innerHTML = '';
+
+      let autoCount = 0;
+      let reviewCount = 0;
+
+      fields.forEach(f => {
+        const isAuto = f.score >= threshold;
+        if (isAuto) autoCount++; else reviewCount++;
+        grid.innerHTML += `
+          <div class="p-2 rounded border ${isAuto ? 'border-emerald-300 bg-emerald-50/50' : 'border-amber-300 bg-amber-50/60'}">
+            <div class="text-slate-800 font-medium truncate">${f.name}</div>
+            <div class="flex items-center justify-between mt-1 text-[11px]">
+              <span class="text-muted">${f.score}</span>
+              <span class="${isAuto ? 'text-emerald-700 font-bold' : 'text-amber-800 font-bold'}">${isAuto ? 'AUTO' : 'REVIEW'}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('edme-sim-summary').innerHTML = `
+        At <strong>${threshold.toFixed(2)}</strong> threshold: <strong>${autoCount}</strong> fields auto-populate. <strong>${reviewCount}</strong> route to human review queue with zoomed PDF context. Zero downstream accounting errors.
+      `;
+    }
+
+    function set5paisaQuery(type) {
+      const buttons = ['payout', 'margin', 'compare'];
+      buttons.forEach(b => {
+        const btn = document.getElementById(`paisa-q-${b}`);
+        btn.className = (b === type) 
+          ? 'px-2 py-0.5 text-xs rounded border border-green bg-green text-white font-medium'
+          : 'px-2 py-0.5 text-xs rounded border border-rule bg-paper text-ink hover:border-green';
+      });
+
+      if (type === 'payout') {
+        document.getElementById('paisa-intent').textContent = 'LEDGER_SETTLEMENT_STATUS';
+        document.getElementById('paisa-endpoint').textContent = 'GET /api/v2/ledger/settlements?client=5P8829';
+        document.getElementById('paisa-response').innerHTML = '"Your withdrawal of ₹45,000 was processed in Batch #WDR-9921. Bank UTR: <strong>HDFC0091823</strong> credited at 11:42 AM today."';
+      } else if (type === 'margin') {
+        document.getElementById('paisa-intent').textContent = 'MTF_LEVERAGE_DIAGNOSTIC';
+        document.getElementById('paisa-endpoint').textContent = 'GET /api/v1/mtf/limits?symbol=RELIANCE';
+        document.getElementById('paisa-response').innerHTML = '"RELIANCE is eligible for 4x MTF leverage under Category-A bluechips. Liquidation boundary is set transparently at ₹2,180."';
+      } else if (type === 'compare') {
+        document.getElementById('paisa-intent').textContent = 'MF_BENCHMARK_RELATIVE';
+        document.getElementById('paisa-endpoint').textContent = 'GET /api/v1/mf/metrics?scheme_id=NIPPON_SC';
+        document.getElementById('paisa-response').innerHTML = '"Nippon Small Cap generated 1.42 Sharpe ratio vs Nifty50 0.98 over 3-year rolling window. Expense ratio: 0.82%."';
+      }
+    }
+
+    function setLiquidMode(mode) {
+      const modes = ['net30', 'split', 'upi'];
+      modes.forEach(m => {
+        const btn = document.getElementById(`liquid-btn-${m}`);
+        btn.className = (m === mode) 
+          ? 'p-2 rounded border border-green bg-green text-white font-medium'
+          : 'p-2 rounded border border-rule bg-paper text-ink hover:border-green';
+      });
+
+      const details = document.getElementById('liquid-sim-details');
+      if (mode === 'net30') {
+        details.innerHTML = '<span>Invoice: ₹1,20,000 · <strong>0% Financing Fee</strong> · Underwriting in 1.4s</span> <span class="text-emerald-700 font-bold">Webhook: 200 OK</span>';
+      } else if (mode === 'split') {
+        details.innerHTML = '<span>Split across 2 corporate cards: ₹60,000 + ₹60,000 · <strong>Zero single-limit rejections</strong></span> <span class="text-emerald-700 font-bold">Webhook: 200 OK</span>';
+      } else if (mode === 'upi') {
+        details.innerHTML = '<span>Dynamic UPI QR code with auto-settlement · <strong>1.2s instant reconciliation</strong></span> <span class="text-emerald-700 font-bold">Webhook: 200 OK</span>';
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // E7. THINGS I'VE BUILT (PROTOTYPES) RENDERING
+    // -----------------------------------------------------------------------
+    function renderBuiltSection() {
+      const container = document.getElementById('built-container');
+      container.innerHTML = '';
+
+      const builtItems = EVIDENCE_DATA.filter(item => item.kind === 'build');
+      const featured = builtItems.filter(item => item.featured);
+      const compact = builtItems.filter(item => !item.featured);
+
+      // Featured grid (Large)
+      const featuredDiv = document.createElement('div');
+      featuredDiv.className = 'grid grid-cols-1 md:grid-cols-3 gap-6';
+
+      featured.forEach(item => {
+        const inLens = isItemInActiveLens(item);
+        const card = document.createElement('div');
+        card.className = `border border-rule rounded-[8px] bg-surface p-4 shadow-float flex flex-col justify-between cursor-pointer hover:border-green transition-all duration-180 ${inLens ? 'lens-active-item' : 'lens-dimmed'}`;
+        card.onclick = () => openCaseDrawer(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="border border-rule rounded-[4px] overflow-hidden bg-paper aspect-[16/10] mb-3 relative">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-top" loading="lazy" />
+              <div class="absolute top-2 right-2 tag-illustrative text-[11px]">prototype</div>
+            </div>
+            <h3 class="font-serif text-[18px] text-ink font-medium leading-snug">${item.title}</h3>
+            <p class="text-[14px] text-muted mt-2 leading-relaxed">${item.summary}</p>
+          </div>
+          <div class="pt-4 border-t border-rule mt-4 flex items-center justify-between text-xs">
+            <span class="font-mono text-muted">Lovable · n8n</span>
+            <span class="ledger-link font-medium">Inspect prototype</span>
+          </div>
+        `;
+        featuredDiv.appendChild(card);
+      });
+      container.appendChild(featuredDiv);
+
+      // Compact grid
+      const compactDiv = document.createElement('div');
+      compactDiv.className = 'grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2';
+
+      compact.forEach(item => {
+        const inLens = isItemInActiveLens(item);
+        const tile = document.createElement('div');
+        tile.className = `border border-rule rounded-[4px] bg-surface p-3.5 flex items-center gap-3 cursor-pointer hover:border-green transition-all duration-180 ${inLens ? 'lens-active-item' : 'lens-dimmed'}`;
+        tile.onclick = () => openCaseDrawer(item.id);
+
+        tile.innerHTML = `
+          <div class="w-14 h-14 rounded-[2px] border border-rule overflow-hidden bg-paper flex-shrink-0">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-top" loading="lazy" />
+          </div>
+          <div class="flex-grow min-w-0">
+            <h4 class="font-serif text-[15px] text-ink font-medium truncate">${item.title}</h4>
+            <div class="text-[12px] text-muted truncate">${item.summary}</div>
+          </div>
+        `;
+        compactDiv.appendChild(tile);
+      });
+      container.appendChild(compactDiv);
+    }
+
+    // -----------------------------------------------------------------------
+    // E11. TEARDOWNS RENDERING
+    // -----------------------------------------------------------------------
+    function renderTeardownsSection() {
+      const container = document.getElementById('teardowns-container');
+      container.innerHTML = '';
+
+      const teardowns = EVIDENCE_DATA.filter(item => item.kind === 'teardown');
+
+      teardowns.forEach(item => {
+        const inLens = isItemInActiveLens(item);
+        const article = document.createElement('article');
+        article.className = `grid grid-cols-1 md:grid-cols-12 gap-6 items-start border-b border-rule pb-8 last:border-b-0 ${inLens ? 'lens-active-item' : 'lens-dimmed'}`;
+
+        let ledgerHtml = '';
+        item.metrics.forEach(m => {
+          ledgerHtml += `
+            <div class="leader-row text-[14px]">
+              <span class="text-muted">${m.label}</span>
+              <span class="leader-dots"></span>
+              <span class="font-mono text-ink font-medium">${m.value}</span>
+              <span class="tag-${m.evidence}">${m.evidence}</span>
+            </div>
+          `;
+        });
+
+        article.innerHTML = `
+          <div class="md:col-span-5 border border-rule rounded-[2px] overflow-hidden bg-surface aspect-[16/10] relative cursor-pointer" onclick="openCaseDrawer('${item.id}')">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover object-top" loading="lazy" />
+            <div class="absolute bottom-2 left-2 tag-projected text-[11px]">PRD preview</div>
+          </div>
+          <div class="md:col-span-7 space-y-3">
+            <div class="text-[13px] text-muted font-mono">${item.where}</div>
+            <h3 class="font-serif text-[22px] font-medium text-ink cursor-pointer hover:text-green transition-colors" onclick="openCaseDrawer('${item.id}')">
+              ${item.title}
+            </h3>
+            <p class="text-[15px] text-muted leading-relaxed">${item.summary}</p>
+            ${item.pen_note ? `
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-2.5 text-penblue" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M1 6 C 5 2, 12 10, 18 6" stroke-linecap="round"/>
+                </svg>
+                <span class="pen-note">${item.pen_note}</span>
+              </div>
+            ` : ''}
+            <div class="space-y-1.5 pt-1 pb-1">
+              ${ledgerHtml}
+            </div>
+            <div class="pt-2 flex items-center gap-4">
+              <button onclick="openCaseDrawer('${item.id}')" class="ledger-link text-[15px] font-medium">
+                Read 30-sec summary & PRD
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(article);
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // E10. EVIDENCE MATRIX RENDERING
+    // -----------------------------------------------------------------------
+    function renderEvidenceMatrix() {
+      const tbody = document.getElementById('matrix-tbody');
+      tbody.innerHTML = '';
+
+      const targetColIds = ['paisa-1', 'edme-1', 'liquid-1', 'teardown-1', 'teardown-2', 'built-1', 'built-2'];
+
+      EVIDENCE_SKILLS.forEach(skill => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-paper transition-colors';
+
+        let dotsHtml = '';
+        targetColIds.forEach(targetId => {
+          const isLinked = skill.links.includes(targetId);
+          if (isLinked) {
+            dotsHtml += `
+              <td class="py-2.5 px-3 text-center">
+                <button 
+                  onclick="openCaseDrawer('${targetId}')" 
+                  class="w-3.5 h-3.5 rounded-full bg-green hover:bg-ink inline-block transition-colors"
+                  title="${skill.name} verified in ${targetId}"
+                ></button>
+              </td>
+            `;
+          } else {
+            dotsHtml += `<td class="py-2.5 px-3 text-center text-rule">·</td>`;
+          }
+        });
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-4 font-medium text-ink">${skill.name}</td>
+          ${dotsHtml}
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // E8. HOW I WORK STEPPER
+    // -----------------------------------------------------------------------
+    function setProcessStep(stepNum) {
+      document.querySelectorAll('.step-btn').forEach(btn => {
+        btn.classList.remove('bg-green', 'text-white');
+        btn.classList.add('text-muted');
+      });
+      const activeBtn = document.getElementById(`step-btn-${stepNum}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-green', 'text-white');
+        activeBtn.classList.remove('text-muted');
+      }
+
+      const stepData = PROCESS_STEPS_DATA[stepNum];
+      document.getElementById('step-title').textContent = stepData.title;
+      document.getElementById('step-desc').textContent = stepData.desc;
+
+      const chipsContainer = document.getElementById('step-chips');
+      chipsContainer.innerHTML = '';
+
+      stepData.items.forEach(itemId => {
+        const item = EVIDENCE_DATA.find(i => i.id === itemId);
+        if (item) {
+          const chip = document.createElement('button');
+          chip.className = 'px-2.5 py-1 text-xs rounded-[4px] border border-rule bg-paper hover:border-green text-ink font-mono transition-colors';
+          chip.textContent = item.title;
+          chip.onclick = () => openCaseDrawer(item.id);
+          chipsContainer.appendChild(chip);
+        }
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // E9. AI PRACTICE INTERACTIVE PATH SELECTOR
+    // -----------------------------------------------------------------------
+    const AI_PATHS = {
+      extraction: {
+        signal: 'Heterogeneous hospital discharge PDFs',
+        model: 'LayoutLM + OCR parses unstructured fields',
+        eval: 'Field confidence ≥ 0.85 & regex verification',
+        override: 'Flagged fields routed to ops review queue',
+        commentary: 'Architectural Rationale: Probabilistic document extraction never commits directly to core databases. High-confidence fields auto-fill; low-confidence fields zoom to the exact document bounding box for human confirmation.'
+      },
+      support: {
+        signal: 'Incoming Tier-1 margin & order queries',
+        model: 'LLM intent classification with schema prompt',
+        eval: 'Verified trade ledger API data match',
+        override: 'Warm handoff to human support on margin dispute',
+        commentary: 'Architectural Rationale: Support bots must be grounded directly on real-time transactional APIs, not generic knowledge bases. Confidence below 0.82 triggers immediate zero-wait human agent handoff.'
+      },
+      recon: {
+        signal: 'Unmatched insurer payout line items',
+        model: 'Embedding similarity + synthetic hypothesis',
+        eval: 'Hypothesis validated by bank UTR & GSTIN overlap',
+        override: 'Ops reviewer clicks [Approve / Reject]',
+        commentary: 'Architectural Rationale: A closed feedback loop. Human resolutions are logged with feature weights so match suggestions compound in accuracy cycle-over-cycle.'
+      }
+    };
+
+    function selectAiPath(pathKey) {
+      document.querySelectorAll('.ai-path-btn').forEach(btn => {
+        btn.classList.remove('bg-green', 'text-white', 'border-green');
+        btn.classList.add('bg-surface', 'text-ink', 'border-rule');
+      });
+      const activeBtn = document.getElementById(`ai-path-btn-${pathKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-surface', 'text-ink', 'border-rule');
+        activeBtn.classList.add('bg-green', 'text-white', 'border-green');
+      }
+
+      const path = AI_PATHS[pathKey];
+      document.getElementById('ai-node-signal-desc').textContent = path.signal;
+      document.getElementById('ai-node-model-desc').textContent = path.model;
+      document.getElementById('ai-node-eval-desc').textContent = path.eval;
+      document.getElementById('ai-node-override-desc').textContent = path.override;
+      document.getElementById('ai-path-detail').innerHTML = `<strong class="text-ink font-medium">Architectural Rationale:</strong> ${path.commentary}`;
+    }
+
+    // -----------------------------------------------------------------------
+    // E1. HERO RECONCILIATION DEMO INTERACTION & THRESHOLD SANDBOX
+    // -----------------------------------------------------------------------
+    function updateReconThreshold(val) {
+      const thresh = parseFloat(val);
+      document.getElementById('threshold-val').textContent = thresh.toFixed(2);
+
+      const deltaBadge = document.getElementById('row-delta-badge');
+      if (thresh > 0.91) {
+        deltaBadge.textContent = 'needs review 0.91';
+        deltaBadge.className = 'tag-projected text-[11px]';
+      } else {
+        deltaBadge.textContent = 'matched 0.91';
+        deltaBadge.className = 'tag-measured text-[11px]';
+      }
+
+      const miraBadge = document.getElementById('recon-status-badge');
+      if (thresh <= 0.62) {
+        miraBadge.textContent = 'matched 0.62';
+        miraBadge.className = 'tag-measured text-[11px]';
+        document.getElementById('recon-summary-line').textContent = '5 of 5 auto-matched';
+      } else {
+        miraBadge.textContent = 'needs review 0.62';
+        miraBadge.className = 'tag-projected text-[11px]';
+        document.getElementById('recon-summary-line').textContent = '4 of 5 matched, 1 needs review';
+      }
+    }
+
+    function approveReconRow() {
+      const badge = document.getElementById('recon-status-badge');
+      badge.textContent = 'matched 1.00';
+      badge.className = 'tag-measured text-[11px]';
+      document.getElementById('recon-summary-line').textContent = '5 of 5 matched, 1 reviewed by you';
+      document.getElementById('recon-live-region').textContent = 'Reconciliation resolved: 5 of 5 matched, 1 approved by user.';
+      document.getElementById('recon-btn-approve').classList.add('hidden');
+      document.getElementById('recon-btn-reject').classList.add('hidden');
+      document.getElementById('recon-btn-reset').classList.remove('hidden');
+      document.getElementById('recon-why-popover').classList.add('hidden');
+      showToast('Match approved: recorded in simulated ledger');
+    }
+
+    function rejectReconRow() {
+      const badge = document.getElementById('recon-status-badge');
+      badge.textContent = 'sent back';
+      badge.className = 'tag-illustrative text-[11px]';
+      document.getElementById('recon-summary-line').textContent = '4 of 5 matched, 1 rejected';
+      document.getElementById('recon-live-region').textContent = 'Reconciliation updated: 4 of 5 matched, 1 rejected by user.';
+      document.getElementById('recon-btn-approve').classList.add('hidden');
+      document.getElementById('recon-btn-reject').classList.add('hidden');
+      document.getElementById('recon-btn-reset').classList.remove('hidden');
+      document.getElementById('recon-why-popover').classList.add('hidden');
+      showToast('Line sent back for vendor clarification');
+    }
+
+    function resetReconRow() {
+      const badge = document.getElementById('recon-status-badge');
+      badge.textContent = 'needs review 0.62';
+      badge.className = 'tag-projected text-[11px]';
+      document.getElementById('recon-summary-line').textContent = '4 of 5 matched, 1 needs review';
+      document.getElementById('recon-btn-approve').classList.remove('hidden');
+      document.getElementById('recon-btn-reject').classList.remove('hidden');
+      document.getElementById('recon-btn-reset').classList.add('hidden');
+      document.getElementById('recon-why-popover').classList.add('hidden');
+    }
+
+    function toggleReconWhyPopover() {
+      const popover = document.getElementById('recon-why-popover');
+      popover.classList.toggle('hidden');
+    }
+
+    // -----------------------------------------------------------------------
+    // RECRUITER 45-SECOND FAST-TRACK TOUR
+    // -----------------------------------------------------------------------
+    const TOUR_STEPS = [
+      {
+        targetId: 'company-block-edme',
+        label: 'Stop 1 of 4: Edme +50% Efficiency & Confidence Gate Architecture',
+        note: 'Scoping field-level confidence gates over bulk documents reduced manual intake by 50%.'
+      },
+      {
+        targetId: 'roi-simulator',
+        label: 'Stop 2 of 4: Interactive Operational ROI Modeling',
+        note: 'Scales measured turnaround compression (-45%) across monthly enterprise volume.'
+      },
+      {
+        targetId: 'teardowns',
+        label: 'Stop 3 of 4: BookMyShow 18-Page PRD (FIFO Surge Queue)',
+        note: 'Root-caused 82% phantom lock rates with tokenized queue design.'
+      },
+      {
+        targetId: 'built',
+        label: 'Stop 4 of 4: PM Interview Coach Pro (Working AI Prototype)',
+        note: 'Live multi-agent voice simulator built and shipped in production.'
+      }
+    ];
+
+    function startFastTrackTour() {
+      isTourActive = true;
+      currentTourStep = 0;
+      document.getElementById('tour-banner').classList.remove('hidden');
+      executeTourStep(0);
+      showToast('⚡ Recruiter Fast-Track activated');
+      logEvent('tour_start');
+    }
+
+    function executeTourStep(index) {
+      document.querySelectorAll('.fast-track-highlight').forEach(el => el.classList.remove('fast-track-highlight'));
+
+      const step = TOUR_STEPS[index];
+      document.getElementById('tour-step-counter').textContent = step.label;
+
+      const targetEl = document.getElementById(step.targetId);
+      if (targetEl) {
+        targetEl.classList.add('fast-track-highlight');
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function nextTourStep() {
+      if (currentTourStep < TOUR_STEPS.length - 1) {
+        currentTourStep++;
+        executeTourStep(currentTourStep);
+      } else {
+        exitTour();
+        showToast('Tour completed! Open Resume or explore freely.');
+      }
+    }
+
+    function prevTourStep() {
+      if (currentTourStep > 0) {
+        currentTourStep--;
+        executeTourStep(currentTourStep);
+      }
+    }
+
+    function exitTour() {
+      isTourActive = false;
+      document.getElementById('tour-banner').classList.add('hidden');
+      document.querySelectorAll('.fast-track-highlight').forEach(el => el.classList.remove('fast-track-highlight'));
+      logEvent('tour_exit');
+    }
+
+    // -----------------------------------------------------------------------
+    // E5. CASE DRAWER ENGINE
+    // -----------------------------------------------------------------------
+    function openCaseDrawer(itemId) {
+      const item = EVIDENCE_DATA.find(i => i.id === itemId);
+      if (!item) return;
+
+      currentDrawerIndex = EVIDENCE_DATA.indexOf(item);
+      logEvent('case_open', { id: item.id, title: item.title });
+
+      // Deep link hash
+      window.location.hash = `case=${item.id}`;
+
+      // Populate content
+      document.getElementById('drawer-title').textContent = item.title;
+      document.getElementById('drawer-where-date').textContent = `${item.where} · ${item.dates}`;
+      
+      const tagEl = document.getElementById('drawer-tag');
+      tagEl.textContent = item.evidence;
+      tagEl.className = `tag-${item.evidence} text-xs`;
+
+      document.getElementById('drawer-lenses').textContent = item.lenses.map(l => `[${l}]`).join(' ');
+
+      document.getElementById('drawer-problem').textContent = item.problem;
+      document.getElementById('drawer-did').textContent = item.did;
+
+      // Ledger
+      const ledgerEl = document.getElementById('drawer-ledger');
+      ledgerEl.innerHTML = '';
+      item.metrics.forEach(m => {
+        ledgerEl.innerHTML += `
+          <div class="leader-row text-[14px]">
+            <span class="text-muted">${m.label}</span>
+            <span class="leader-dots"></span>
+            <span class="font-mono text-ink font-medium">${m.value}</span>
+            <span class="tag-${m.evidence}">${m.evidence}</span>
+          </div>
+        `;
+      });
+
+      // Decisions
+      const decisionsEl = document.getElementById('drawer-decisions');
+      decisionsEl.innerHTML = '';
+      item.decisions.forEach(d => {
+        decisionsEl.innerHTML += `<li>${d}</li>`;
+      });
+
+      // Artifacts
+      const artifactsEl = document.getElementById('drawer-artifacts');
+      artifactsEl.innerHTML = '';
+      if (item.artifacts && item.artifacts.length > 0) {
+        item.artifacts.forEach(art => {
+          if (art.type === 'image') {
+            artifactsEl.innerHTML += `
+              <div class="border border-rule rounded-[4px] p-2 bg-paper">
+                <div class="text-xs font-mono text-muted mb-1.5">${art.label}</div>
+                <div class="rounded-[2px] overflow-hidden border border-rule aspect-[16/10]">
+                  <img src="${art.image}" alt="${art.label}" class="w-full h-full object-cover object-top" />
+                </div>
+              </div>
+            `;
+          } else if (art.type === 'prototype') {
+            artifactsEl.innerHTML += `
+              <div class="border border-rule rounded-[4px] p-3 bg-paper space-y-2">
+                <div class="text-xs font-mono text-muted">${art.label}</div>
+                <button onclick="loadLivePrototypeInDrawer('${art.url}')" class="bg-green text-white px-3 py-1.5 rounded-[4px] text-xs font-medium hover:bg-ink transition-colors">
+                  Load live prototype in new window
+                </button>
+              </div>
+            `;
+          }
+        });
+      } else {
+        artifactsEl.innerHTML = `<div class="text-xs text-muted font-mono italic">Verified against internal sprint releases and metrics telemetry.</div>`;
+      }
+
+      // External action link
+      const actionLinkEl = document.getElementById('drawer-action-link');
+      if (item.links && item.links.length > 0) {
+        actionLinkEl.innerHTML = `<a href="${item.links[0].url}" target="_blank" rel="noopener noreferrer" class="ledger-link font-sans text-xs">${item.links[0].label}</a>`;
+      } else {
+        actionLinkEl.innerHTML = '';
+      }
+
+      // Show drawer
+      document.getElementById('drawer-scrim').classList.remove('scrim-closed');
+      document.getElementById('drawer-scrim').classList.add('scrim-open');
+      document.getElementById('case-drawer').classList.remove('drawer-closed');
+      document.getElementById('case-drawer').classList.add('drawer-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer-scrim').classList.remove('scrim-open');
+      document.getElementById('drawer-scrim').classList.add('scrim-closed');
+      document.getElementById('case-drawer').classList.remove('drawer-open');
+      document.getElementById('case-drawer').classList.add('drawer-closed');
+      document.body.style.overflow = '';
+      
+      // Remove hash
+      if (window.location.hash.startsWith('#case=')) {
+        history.replaceState(null, null, ' ');
+      }
+    }
+
+    function navigateDrawer(direction) {
+      let newIndex = currentDrawerIndex + direction;
+      if (newIndex < 0) newIndex = EVIDENCE_DATA.length - 1;
+      if (newIndex >= EVIDENCE_DATA.length) newIndex = 0;
+      openCaseDrawer(EVIDENCE_DATA[newIndex].id);
+    }
+
+    function loadLivePrototypeInDrawer(url) {
+      logEvent('prototype_load', { url });
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    function copyDrawerLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Direct link to this case copied');
+        logEvent('link_copy', { url });
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // E13. QUICK FIND MODAL
+    // -----------------------------------------------------------------------
+    function openSearchModal() {
+      document.getElementById('search-modal').classList.remove('modal-closed');
+      document.getElementById('search-modal').classList.add('modal-open');
+      const input = document.getElementById('search-input');
+      input.value = '';
+      input.focus();
+      runQuickFind('');
+    }
+
+    function closeSearchModal() {
+      document.getElementById('search-modal').classList.remove('modal-open');
+      document.getElementById('search-modal').classList.add('modal-closed');
+    }
+
+    function runQuickFind(query) {
+      const resultsDiv = document.getElementById('search-results');
+      resultsDiv.innerHTML = '';
+      const q = query.toLowerCase().trim();
+
+      const matched = EVIDENCE_DATA.filter(item => {
+        if (!q) return true;
+        return item.title.toLowerCase().includes(q) ||
+               item.summary.toLowerCase().includes(q) ||
+               item.where.toLowerCase().includes(q) ||
+               item.skills.some(s => s.toLowerCase().includes(q));
+      });
+
+      if (matched.length === 0) {
+        resultsDiv.innerHTML = `<div class="p-4 text-xs text-muted text-center font-mono">No items found matching "${query}".</div>`;
+        return;
+      }
+
+      matched.slice(0, 8).forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'p-3 hover:bg-paper cursor-pointer flex items-center justify-between text-xs';
+        row.onclick = () => {
+          closeSearchModal();
+          openCaseDrawer(item.id);
+        };
+        row.innerHTML = `
+          <div>
+            <div class="font-medium text-ink text-sm">${item.title}</div>
+            <div class="text-muted font-mono mt-0.5">${item.where}</div>
+          </div>
+          <span class="tag-${item.evidence}">${item.evidence}</span>
+        `;
+        resultsDiv.appendChild(row);
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // UTILITIES & EVENT LOGGING (E14)
+    // -----------------------------------------------------------------------
+    function copyLensLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Shareable link copied to clipboard');
+        logEvent('link_copy', { url });
+      });
+    }
+
+    function copyEmail() {
+      navigator.clipboard.writeText('rahul4ever2011@gmail.com').then(() => {
+        showToast('Email address copied to clipboard');
+        logEvent('email_copy');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+      }, 2400);
+    }
+
+    function logEvent(name, data = {}) {
+      // Cookieless client-side analytics event logger
+      console.log(`[Event: ${name}]`, Object.assign({ timestamp: new Date().toISOString() }, data));
+    }
+  </script>
+</body>
+</html>
