@@ -234,14 +234,6 @@ const Index: React.FC = () => {
   const [activeModal, setActiveModal] = useState<ModalData | null>(null);
   const [activeSection, setActiveSection] = useState<string>("");
   const [showBackTop, setShowBackTop] = useState<boolean>(false);
-  const [openPreviews, setOpenPreviews] = useState<Record<string, boolean>>({});
-
-  const togglePreview = (id: string) => {
-    setOpenPreviews((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const heroPhotoRef = useRef<HTMLDivElement>(null);
   const stickyNoteRef = useRef<HTMLDivElement>(null);
@@ -1232,7 +1224,7 @@ const Index: React.FC = () => {
             </p>
           </div>
 
-          <article className="case case--feature paper reveal">
+          <article className="case case--feature paper reveal" tabIndex={0}>
             <span className="tape"></span>
             <div>
               <span className="tag tag--ai">AI</span>
@@ -1261,13 +1253,6 @@ const Index: React.FC = () => {
               <li>Lovable</li>
             </ul>
             <div className="project-actions">
-              <button
-                type="button"
-                className={`preview-toggle-btn ${openPreviews["pm-coach"] ? "is-active" : ""}`}
-                onClick={() => togglePreview("pm-coach")}
-              >
-                {openPreviews["pm-coach"] ? "Hide preview ▴" : "Preview homepage ▾"}
-              </button>
               <a
                 className="link-arrow"
                 href="https://pm-coach-pro.lovable.app/"
@@ -1276,42 +1261,41 @@ const Index: React.FC = () => {
               >
                 Try the prototype
               </a>
+              <span className="preview-pill-hint">Hover to preview</span>
             </div>
 
-            {openPreviews["pm-coach"] && (
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">pm-coach-pro.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
+            <div className="project-preview-drawer">
+              <div className="project-mockup">
+                <div className="mockup-bar">
+                  <div className="mockup-dots">
+                    <span className="m-dot m-dot--red"></span>
+                    <span className="m-dot m-dot--yellow"></span>
+                    <span className="m-dot m-dot--green"></span>
                   </div>
-                  <a
-                    href="https://pm-coach-pro.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/pm-coach-pro.png"
-                      alt="PM Interview Coach Pro homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
+                  <span className="mockup-url">pm-coach-pro.lovable.app</span>
+                  <span className="mockup-chip">Live</span>
                 </div>
+                <a
+                  href="https://pm-coach-pro.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mockup-link"
+                  title="Click to launch live prototype"
+                >
+                  <img
+                    src="/projects/pm-coach-pro.png"
+                    alt="PM Interview Coach Pro homepage"
+                    className="mockup-img"
+                    loading="lazy"
+                  />
+                  <span className="mockup-hover-hint">Launch prototype ↗</span>
+                </a>
               </div>
-            )}
+            </div>
           </article>
 
           <div className="case-row case-row--2">
-            <article className="case paper tilt-l reveal">
+            <article className="case paper tilt-l reveal" tabIndex={0}>
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -1333,13 +1317,6 @@ const Index: React.FC = () => {
                 Underwriting signals<b>→</b>Pre-meeting cards
               </p>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["insurance-copilot"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("insurance-copilot")}
-                >
-                  {openPreviews["insurance-copilot"] ? "Hide preview ▴" : "Preview homepage ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://insurance-copilot-mfd.lovable.app/"
@@ -1348,41 +1325,40 @@ const Index: React.FC = () => {
                 >
                   Try the prototype
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["insurance-copilot"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">insurance-copilot-mfd.lovable.app</span>
-                      <span className="mockup-chip">Live</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://insurance-copilot-mfd.lovable.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to launch live prototype"
-                    >
-                      <img
-                        src="/projects/insurance-copilot.png"
-                        alt="Insurance Co-Pilot homepage"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Launch prototype ↗</span>
-                    </a>
+                    <span className="mockup-url">insurance-copilot-mfd.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
                   </div>
+                  <a
+                    href="https://insurance-copilot-mfd.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/insurance-copilot.png"
+                      alt="Insurance Co-Pilot homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
 
-            <article className="case paper tilt-r reveal">
+            <article className="case paper tilt-r reveal" tabIndex={0}>
               <div>
                 <span className="tag tag--fin">Fintech</span>
                 <span className="tag tag--ai">AI</span>
@@ -1401,13 +1377,6 @@ const Index: React.FC = () => {
                 insights<b>→</b>Shareable stories
               </p>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["money-wrapped"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("money-wrapped")}
-                >
-                  {openPreviews["money-wrapped"] ? "Hide preview ▴" : "Preview homepage ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://spend-story-unpacked.lovable.app/"
@@ -1416,43 +1385,42 @@ const Index: React.FC = () => {
                 >
                   Try the prototype
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["money-wrapped"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">spend-story-unpacked.lovable.app</span>
-                      <span className="mockup-chip">Live</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://spend-story-unpacked.lovable.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to launch live prototype"
-                    >
-                      <img
-                        src="/projects/money-wrapped.png"
-                        alt="Money Wrapped homepage"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Launch prototype ↗</span>
-                    </a>
+                    <span className="mockup-url">spend-story-unpacked.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
                   </div>
+                  <a
+                    href="https://spend-story-unpacked.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/money-wrapped.png"
+                      alt="Money Wrapped homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
           </div>
 
           <div className="case-row">
-            <article className="case paper reveal">
+            <article className="case paper reveal" tabIndex={0}>
               <div>
                 <span className="pill">Urban mobility</span>
                 <span className="pill pill--live">Live</span>
@@ -1469,13 +1437,6 @@ const Index: React.FC = () => {
                 Monthly pass
               </p>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["ola-feedpod"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("ola-feedpod")}
-                >
-                  {openPreviews["ola-feedpod"] ? "Hide preview ▴" : "Preview homepage ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://olapod2035.lovable.app/"
@@ -1484,41 +1445,40 @@ const Index: React.FC = () => {
                 >
                   Try the prototype
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["ola-feedpod"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">olapod2035.lovable.app</span>
-                      <span className="mockup-chip">Live</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://olapod2035.lovable.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to launch live prototype"
-                    >
-                      <img
-                        src="/projects/ola-feedpod.png"
-                        alt="Ola FeedPod homepage"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Launch prototype ↗</span>
-                    </a>
+                    <span className="mockup-url">olapod2035.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
                   </div>
+                  <a
+                    href="https://olapod2035.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/ola-feedpod.png"
+                      alt="Ola FeedPod homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
 
-            <article className="case paper tilt-r reveal">
+            <article className="case paper tilt-r reveal" tabIndex={0}>
               <div>
                 <span className="pill">Marketplace</span>
                 <span className="pill pill--live">Live</span>
@@ -1534,13 +1494,6 @@ const Index: React.FC = () => {
                 booking<b>→</b>WorkPass
               </p>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["nooka"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("nooka")}
-                >
-                  {openPreviews["nooka"] ? "Hide preview ▴" : "Preview homepage ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://work-inspired-frontend.lovable.app/"
@@ -1549,41 +1502,40 @@ const Index: React.FC = () => {
                 >
                   Try the prototype
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["nooka"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">work-inspired-frontend.lovable.app</span>
-                      <span className="mockup-chip">Live</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://work-inspired-frontend.lovable.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to launch live prototype"
-                    >
-                      <img
-                        src="/projects/nooka.png"
-                        alt="Nooka homepage"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Launch prototype ↗</span>
-                    </a>
+                    <span className="mockup-url">work-inspired-frontend.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
                   </div>
+                  <a
+                    href="https://work-inspired-frontend.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/nooka.png"
+                      alt="Nooka homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
 
-            <article className="case paper reveal">
+            <article className="case paper reveal" tabIndex={0}>
               <div>
                 <span className="tag tag--ai">AI</span>
                 <span className="pill">Travel-tech</span>
@@ -1600,13 +1552,6 @@ const Index: React.FC = () => {
                 <b>→</b>Itinerary
               </p>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["tripmind"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("tripmind")}
-                >
-                  {openPreviews["tripmind"] ? "Hide preview ▴" : "Preview homepage ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://go-india-ai.lovable.app/"
@@ -1615,38 +1560,37 @@ const Index: React.FC = () => {
                 >
                   Try the prototype
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["tripmind"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">go-india-ai.lovable.app</span>
-                      <span className="mockup-chip">Live</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://go-india-ai.lovable.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to launch live prototype"
-                    >
-                      <img
-                        src="/projects/tripmind.png"
-                        alt="TripMind homepage"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Launch prototype ↗</span>
-                    </a>
+                    <span className="mockup-url">go-india-ai.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
                   </div>
+                  <a
+                    href="https://go-india-ai.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/tripmind.png"
+                      alt="TripMind homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
           </div>
         </section>
@@ -1665,7 +1609,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="case-row case-row--2">
-            <article className="case paper tilt-l reveal">
+            <article className="case paper tilt-l reveal" tabIndex={0}>
               <span className="tape"></span>
               <div>
                 <span className="pill">System design &amp; PRD</span>
@@ -1702,13 +1646,6 @@ const Index: React.FC = () => {
                 <li>Edge reservation</li>
               </ul>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["bookmyshow"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("bookmyshow")}
-                >
-                  {openPreviews["bookmyshow"] ? "Hide preview ▴" : "Preview case study ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
@@ -1733,41 +1670,40 @@ const Index: React.FC = () => {
                 >
                   PDF
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["bookmyshow"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">bookmyshow.prd-teardown</span>
-                      <span className="mockup-chip">Teardown</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to view BookMyShow PRD teardown"
-                    >
-                      <img
-                        src="/projects/bookmyshow.png"
-                        alt="BookMyShow case study preview"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Read 18-page PRD ↗</span>
-                    </a>
+                    <span className="mockup-url">bookmyshow.prd-teardown</span>
+                    <span className="mockup-chip">Teardown</span>
                   </div>
+                  <a
+                    href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to view BookMyShow PRD teardown"
+                  >
+                    <img
+                      src="/projects/bookmyshow.png"
+                      alt="BookMyShow case study preview"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Read 18-page PRD ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
 
-            <article className="case paper tilt-r reveal">
+            <article className="case paper tilt-r reveal" tabIndex={0}>
               <div>
                 <span className="pill">Quick commerce</span>
                 <span className="pill">Unit economics</span>
@@ -1800,13 +1736,6 @@ const Index: React.FC = () => {
                 <li>AOV growth</li>
               </ul>
               <div className="project-actions">
-                <button
-                  type="button"
-                  className={`preview-toggle-btn ${openPreviews["zepto"] ? "is-active" : ""}`}
-                  onClick={() => togglePreview("zepto")}
-                >
-                  {openPreviews["zepto"] ? "Hide preview ▴" : "Preview case study ▾"}
-                </button>
                 <a
                   className="link-arrow"
                   href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
@@ -1831,38 +1760,37 @@ const Index: React.FC = () => {
                 >
                   PDF
                 </a>
+                <span className="preview-pill-hint">Hover to preview</span>
               </div>
 
-              {openPreviews["zepto"] && (
-                <div className="project-preview-drawer">
-                  <div className="project-mockup">
-                    <div className="mockup-bar">
-                      <div className="mockup-dots">
-                        <span className="m-dot m-dot--red"></span>
-                        <span className="m-dot m-dot--yellow"></span>
-                        <span className="m-dot m-dot--green"></span>
-                      </div>
-                      <span className="mockup-url">zepto.stock-up-teardown</span>
-                      <span className="mockup-chip">Teardown</span>
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
                     </div>
-                    <a
-                      href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mockup-link"
-                      title="Click to view Zepto PRD teardown"
-                    >
-                      <img
-                        src="/projects/zepto-teardown.png"
-                        alt="Zepto Stock Up case study preview"
-                        className="mockup-img"
-                        loading="lazy"
-                      />
-                      <span className="mockup-hover-hint">Read 9-page PRD ↗</span>
-                    </a>
+                    <span className="mockup-url">zepto.stock-up-teardown</span>
+                    <span className="mockup-chip">Teardown</span>
                   </div>
+                  <a
+                    href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to view Zepto PRD teardown"
+                  >
+                    <img
+                      src="/projects/zepto-teardown.png"
+                      alt="Zepto Stock Up case study preview"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Read 9-page PRD ↗</span>
+                  </a>
                 </div>
-              )}
+              </div>
             </article>
           </div>
         </section>

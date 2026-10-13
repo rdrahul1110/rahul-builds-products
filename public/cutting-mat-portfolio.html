@@ -155,9 +155,10 @@
     .case__note{font-family:var(--hand);font-size:1.35rem;line-height:1.1;color:var(--mat);display:inline-block;transform:rotate(-2deg);margin:2px 0 6px}
     .case__result{margin-top:12px;font-size:.92rem}
     .case--feature{padding:34px}
-    .case-row{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px}
+    .case-row{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px;align-items:start}
     .case-row--2{grid-template-columns:repeat(2,1fr)}
-    .case{display:flex;flex-direction:column;align-items:flex-start;font-size:.93rem}
+    .case{display:flex;flex-direction:column;align-items:flex-start;font-size:.93rem;transition:box-shadow .25s ease}
+    .case:hover{box-shadow:7px 9px 0 rgba(0,0,0,.28)}
     .case > p:not(.case__hook):not(.case__result):not(.case__note):not(.eyebrow){flex:1}
     .stack,.chips ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
     .stack li,.chips li{border:1.5px solid var(--ink);border-radius:99px;padding:3px 13px;font-size:.8rem}
@@ -436,61 +437,66 @@
     @media(max-width:600px){
       .back-top { bottom: 20px; right: 18px; padding: 6px 10px; }
     }
-    /* ---------- project screenshot mockups & toggle ---------- */
+    /* ---------- project screenshot mockups & hover preview ---------- */
     .project-actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
       margin-top: 14px;
       width: 100%;
     }
-    .preview-toggle-btn {
+    .preview-pill-hint {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--paper-2);
-      color: var(--ink);
-      border: 1.5px solid var(--ink);
-      border-radius: 99px;
-      padding: 6px 14px;
+      gap: 5px;
       font-family: var(--mono);
-      font-size: 0.74rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(28, 27, 25, 0.05);
+      border: 1px dashed rgba(28, 27, 25, 0.28);
+      border-radius: 99px;
+      padding: 3px 10px;
+      transition: all 0.22s ease;
+      pointer-events: none;
+      user-select: none;
     }
-    .preview-toggle-btn:hover {
+    .case:hover .preview-pill-hint,
+    .case:focus-within .preview-pill-hint {
+      color: var(--ink);
       background: var(--yellow);
-      transform: translateY(-2px);
-    }
-    .preview-toggle-btn.is-active {
-      background: var(--ink);
-      color: var(--paper);
-    }
-    .preview-toggle-btn.is-active:hover {
-      background: var(--pink);
-      border-color: var(--pink);
-      color: #fff;
+      border-color: var(--ink);
+      border-style: solid;
+      transform: translateY(-1px);
     }
     .project-preview-drawer {
       width: 100%;
-      margin-top: 14px;
-      animation: previewSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
       overflow: hidden;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.32s ease,
+                  margin-top 0.32s ease,
+                  transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: max-height, opacity, transform;
     }
-    .project-preview-drawer[hidden] {
-      display: none;
+    .case:hover .project-preview-drawer,
+    .case:focus-within .project-preview-drawer {
+      max-height: 360px;
+      opacity: 1;
+      margin-top: 16px;
+      pointer-events: auto;
+      transform: translateY(0);
     }
-    @keyframes previewSlideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .case--feature:hover .project-preview-drawer,
+    .case--feature:focus-within .project-preview-drawer {
+      max-height: 440px;
     }
     .project-mockup {
       background: var(--ink);
@@ -1063,10 +1069,10 @@
         <p class="flow">Resume ingestion<b>→</b>n8n agent pipeline<b>→</b>Adaptive voice interview<b>→</b>Rubric evaluation</p>
         <ul class="stack"><li>n8n workflows</li><li>Multi-agent LLMs</li><li>Evaluation engine</li><li>Voice AI</li><li>Lovable</li></ul>
         <div class="project-actions">
-          <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-pm-coach">Preview homepage ▾</button>
           <a class="link-arrow" href="https://pm-coach-pro.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+          <span class="preview-pill-hint">Hover to preview</span>
         </div>
-        <div id="preview-pm-coach" class="project-preview-drawer" hidden>
+        <div id="preview-pm-coach" class="project-preview-drawer">
           <div class="project-mockup">
             <div class="mockup-bar">
               <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1082,16 +1088,16 @@
       </article>
 
       <div class="case-row case-row--2">
-        <article class="case paper tilt-l">
+        <article class="case paper tilt-l" tabindex="0">
           <div><span class="tag tag--fin">Fintech</span><span class="tag tag--ai">AI</span><span class="pill">Insurtech</span><span class="pill">Advisory copilot</span><span class="pill pill--live">Live</span></div>
           <h3>Insurance Co-Pilot — protection gap intelligence for MFDs</h3>
           <p>An advisory copilot for Mutual Fund Distributors that audits client portfolios to detect critical protection gaps, computes underwriting limits and tax regime trade-offs, and generates commission-blind pre-meeting briefing cards.</p>
           <p class="flow">Client book audit<b>→</b>Gap severity ranking<b>→</b>Underwriting signals<b>→</b>Pre-meeting cards</p>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-insurance">Preview homepage ▾</button>
             <a class="link-arrow" href="https://insurance-copilot-mfd.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-insurance" class="project-preview-drawer" hidden>
+          <div id="preview-insurance" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1105,16 +1111,16 @@
             </div>
           </div>
         </article>
-        <article class="case paper tilt-r">
+        <article class="case paper tilt-r" tabindex="0">
           <div><span class="tag tag--fin">Fintech</span><span class="tag tag--ai">AI</span><span class="pill">Fintech</span><span class="pill">Consumer AI</span><span class="pill pill--live">Live</span></div>
           <h3>Money Wrapped — spend story unpacked</h3>
           <p>A personal finance web app that turns raw UPI transaction statements into personalised, shareable spending patterns and behavioural stories — a 'Spotify Wrapped' for your wallet.</p>
           <p class="flow">Upload statement<b>→</b>UPI parser<b>→</b>Behavioural insights<b>→</b>Shareable stories</p>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-money-wrapped">Preview homepage ▾</button>
             <a class="link-arrow" href="https://spend-story-unpacked.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-money-wrapped" class="project-preview-drawer" hidden>
+          <div id="preview-money-wrapped" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1131,16 +1137,16 @@
       </div>
 
       <div class="case-row">
-        <article class="case paper">
+        <article class="case paper" tabindex="0">
           <div><span class="pill">Urban mobility</span><span class="pill pill--live">Live</span></div>
           <h3>Ola FeedPod — electric micro-transit loops</h3>
           <p>Electric pods looping between gated societies and metro stations every 90 seconds, with dynamic loop dispatch, real-time seat tracking, metro timetable sync, and a single monthly pass.</p>
           <p class="flow">Society–metro loop<b>→</b>90s frequency<b>→</b>Metro sync<b>→</b>Monthly pass</p>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-ola-feedpod">Preview homepage ▾</button>
             <a class="link-arrow" href="https://olapod2035.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-ola-feedpod" class="project-preview-drawer" hidden>
+          <div id="preview-ola-feedpod" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1154,16 +1160,16 @@
             </div>
           </div>
         </article>
-        <article class="case paper tilt-r">
+        <article class="case paper tilt-r" tabindex="0">
           <div><span class="pill">Marketplace</span><span class="pill pill--live">Live</span></div>
           <h3>Nooka — on-demand workspace marketplace</h3>
           <p>Connects remote professionals with boutique cafés, hotel lounges, call pods, and quiet studios — with dynamic filters, collections, and a unified WorkPass membership.</p>
           <p class="flow">Vibe &amp; needs filter<b>→</b>Discovery<b>→</b>Instant booking<b>→</b>WorkPass</p>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-nooka">Preview homepage ▾</button>
             <a class="link-arrow" href="https://work-inspired-frontend.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-nooka" class="project-preview-drawer" hidden>
+          <div id="preview-nooka" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1177,16 +1183,16 @@
             </div>
           </div>
         </article>
-        <article class="case paper">
+        <article class="case paper" tabindex="0">
           <div><span class="tag tag--ai">AI</span><span class="pill">Travel-tech</span><span class="pill pill--live">Live</span></div>
           <h3>TripMind — AI travel copilot for India</h3>
           <p>Computes a 0–100 Trip Confidence Score across weather seasonality, travel style, and budget — then generates realistic day-wise itineraries in under 90 seconds.</p>
           <p class="flow">Preferences<b>→</b>Seasonality filter<b>→</b>Confidence score<b>→</b>Itinerary</p>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-tripmind">Preview homepage ▾</button>
             <a class="link-arrow" href="https://go-india-ai.lovable.app/" target="_blank" rel="noopener">Try the prototype</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-tripmind" class="project-preview-drawer" hidden>
+          <div id="preview-tripmind" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1212,7 +1218,7 @@
       </div>
 
       <div class="case-row case-row--2">
-        <article class="case paper tilt-l">
+        <article class="case paper tilt-l" tabindex="0">
           <span class="tape"></span>
           <div><span class="pill">System design &amp; PRD</span><span class="pill">NextLeap top fellow</span></div>
           <h3>Improving BookMyShow: high-surge booking &amp; phantom lock resolution</h3>
@@ -1224,12 +1230,12 @@
           </dl>
           <ul class="stack"><li>FIFO waiting room</li><li>Phantom lock mitigation</li><li>Edge reservation</li></ul>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-bookmyshow">Preview case study ▾</button>
             <a class="link-arrow" href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing" target="_blank" rel="noopener">Read the 18-page PRD</a>
             <a class="link-arrow" href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf" target="_blank" rel="noopener">Drive folder</a>
             <a class="link-arrow" href="/bookmyshow-case-study.pdf" target="_blank" rel="noopener">PDF</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-bookmyshow" class="project-preview-drawer" hidden>
+          <div id="preview-bookmyshow" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1244,7 +1250,7 @@
           </div>
         </article>
 
-        <article class="case paper tilt-r">
+        <article class="case paper tilt-r" tabindex="0">
           <div><span class="pill">Quick commerce</span><span class="pill">Unit economics</span></div>
           <h3>Zepto: boosting order value with 'Zepto Stock Up'</h3>
           <p>A product strategy and system design teardown of why users hesitate to place high-value grocery orders. Designed 'Zepto Stock Up' with household inventory tracking, bulk discount ladders, and shelf-life indicators to boost dark store throughput.</p>
@@ -1255,12 +1261,12 @@
           </dl>
           <ul class="stack"><li>Dark store economics</li><li>Shelf-life tracker</li><li>AOV growth</li></ul>
           <div class="project-actions">
-            <button class="preview-toggle-btn" type="button" aria-expanded="false" data-target="preview-zepto">Preview case study ▾</button>
             <a class="link-arrow" href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing" target="_blank" rel="noopener">Read the 9-page PRD</a>
             <a class="link-arrow" href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf" target="_blank" rel="noopener">Drive folder</a>
             <a class="link-arrow" href="/zepto-case-study.pdf" target="_blank" rel="noopener">PDF</a>
+            <span class="preview-pill-hint">Hover to preview</span>
           </div>
-          <div id="preview-zepto" class="project-preview-drawer" hidden>
+          <div id="preview-zepto" class="project-preview-drawer">
             <div class="project-mockup">
               <div class="mockup-bar">
                 <div class="mockup-dots"><span class="m-dot m-dot--red"></span><span class="m-dot m-dot--yellow"></span><span class="m-dot m-dot--green"></span></div>
@@ -1442,28 +1448,6 @@
     });
     dlg.querySelector('.detail__close').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-
-    // screenshot preview drawer toggles
-    document.querySelectorAll('.preview-toggle-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var targetId = btn.getAttribute('data-target');
-        var drawer = document.getElementById(targetId);
-        if (!drawer) return;
-        var isHidden = drawer.hasAttribute('hidden');
-        var isTeardown = targetId === 'preview-bookmyshow' || targetId === 'preview-zepto';
-        if (isHidden) {
-          drawer.removeAttribute('hidden');
-          btn.classList.add('is-active');
-          btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Hide preview ▴';
-        } else {
-          drawer.setAttribute('hidden', '');
-          btn.classList.remove('is-active');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = isTeardown ? 'Preview case study ▾' : 'Preview homepage ▾';
-        }
-      });
-    });
 
     // confetti helper
     function triggerConfetti(originX, originY) {

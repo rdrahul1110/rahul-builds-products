@@ -627,6 +627,7 @@ main.main-content {
   grid-template-columns: repeat(3, 1fr);
   gap: 26px;
   margin-top: 30px;
+  align-items: start;
 }
 
 .case-row--2 {
@@ -638,6 +639,11 @@ main.main-content {
   flex-direction: column;
   align-items: flex-start;
   font-size: 0.93rem;
+  transition: box-shadow 0.25s ease;
+}
+
+.case:hover {
+  box-shadow: 7px 9px 0 rgba(0, 0, 0, 0.28);
 }
 
 .case > p:not(.case__hook):not(.case__result):not(.case__note):not(.eyebrow) {
@@ -1496,59 +1502,66 @@ dialog.detail::backdrop {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 10px;
   margin-top: 14px;
   width: 100%;
 }
 
-.preview-toggle-btn {
+.preview-pill-hint {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: var(--paper-2);
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: 99px;
-  padding: 6px 14px;
+  gap: 5px;
   font-family: var(--mono);
-  font-size: 0.74rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(28, 27, 25, 0.05);
+  border: 1px dashed rgba(28, 27, 25, 0.28);
+  border-radius: 99px;
+  padding: 3px 10px;
+  transition: all 0.22s ease;
+  pointer-events: none;
+  user-select: none;
 }
 
-.preview-toggle-btn:hover {
+.case:hover .preview-pill-hint,
+.case:focus-within .preview-pill-hint {
+  color: var(--ink);
   background: var(--yellow);
-  transform: translateY(-2px);
-}
-
-.preview-toggle-btn.is-active {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.preview-toggle-btn.is-active:hover {
-  background: var(--pink);
-  border-color: var(--pink);
-  color: #fff;
+  border-color: var(--ink);
+  border-style: solid;
+  transform: translateY(-1px);
 }
 
 .project-preview-drawer {
   width: 100%;
-  margin-top: 14px;
-  animation: previewSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
   overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.32s ease,
+              margin-top 0.32s ease,
+              transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: max-height, opacity, transform;
 }
 
-@keyframes previewSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.case:hover .project-preview-drawer,
+.case:focus-within .project-preview-drawer {
+  max-height: 360px;
+  opacity: 1;
+  margin-top: 16px;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.case--feature:hover .project-preview-drawer,
+.case--feature:focus-within .project-preview-drawer {
+  max-height: 440px;
 }
 
 .project-mockup {
