@@ -1491,6 +1491,173 @@ dialog.detail::backdrop {
   }
 }
 
+/* ---------- project preview drawer & browser mockup ---------- */
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  width: 100%;
+}
+
+.preview-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper-2);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.preview-toggle-btn:hover {
+  background: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.preview-toggle-btn.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.preview-toggle-btn.is-active:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+.project-preview-drawer {
+  width: 100%;
+  margin-top: 14px;
+  animation: previewSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes previewSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-mockup {
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.22);
+  width: 100%;
+}
+
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #252422;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.m-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.m-dot--red { background: #ff5f56; }
+.m-dot--yellow { background: #ffbd2e; }
+.m-dot--green { background: #27c93f; }
+
+.mockup-url {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: rgba(251, 246, 234, 0.75);
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 65%;
+}
+
+.mockup-chip {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  background: rgba(35, 107, 75, 0.85);
+  color: var(--paper);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.mockup-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  text-decoration: none;
+}
+
+.mockup-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.case--feature .mockup-img {
+  max-height: 320px;
+}
+
+.mockup-link:hover .mockup-img {
+  transform: scale(1.02);
+  filter: brightness(0.92);
+}
+
+.mockup-hover-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(28, 27, 25, 0.88);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.mockup-link:hover .mockup-hover-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cursor, .marquee__track {
     animation: none;
