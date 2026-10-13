@@ -71,6 +71,67 @@ const Ticket = ({
   );
 };
 
+const CoStat = ({
+  target,
+  prefix = "",
+  suffix = "",
+  label,
+}: {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+}) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+          if (prefersReducedMotion) {
+            setCount(target);
+            return;
+          }
+          const dur = 1200;
+          let start: number | null = null;
+          const step = (t: number) => {
+            if (!start) start = t;
+            const p = Math.min((t - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setCount(Math.round(target * eased));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, hasAnimated]);
+
+  return (
+    <div ref={ref} className="co-stat-card">
+      <b>
+        {prefix}
+        {hasAnimated ? count : target}
+        {suffix}
+      </b>
+      <small>{label}</small>
+    </div>
+  );
+};
+
 const Index: React.FC = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
@@ -417,22 +478,10 @@ const Index: React.FC = () => {
             </div>
           </div>
           <div className="co-stats">
-            <div>
-              <b>+15%</b>
-              <small>Repeat investor</small>
-            </div>
-            <div>
-              <b>&lt;30s</b>
-              <small>Response time</small>
-            </div>
-            <div>
-              <b>60%+</b>
-              <small>Bot automated</small>
-            </div>
-            <div>
-              <b>500+</b>
-              <small>Partners ingested</small>
-            </div>
+            <CoStat target={15} prefix="+" suffix="%" label="Repeat investor" />
+            <CoStat target={30} prefix="<" suffix="s" label="Response time" />
+            <CoStat target={60} suffix="%+" label="Bot automated" />
+            <CoStat target={500} suffix="+" label="Partners ingested" />
           </div>
 
           <div className="case-row case-row--2">
@@ -641,22 +690,10 @@ const Index: React.FC = () => {
             </div>
           </div>
           <div className="co-stats">
-            <div>
-              <b>+50%</b>
-              <small>Ops efficiency</small>
-            </div>
-            <div>
-              <b>-45%</b>
-              <small>Recon turnaround</small>
-            </div>
-            <div>
-              <b>90%+</b>
-              <small>Errors eliminated</small>
-            </div>
-            <div>
-              <b>6+</b>
-              <small>On-time releases</small>
-            </div>
+            <CoStat target={50} prefix="+" suffix="%" label="Ops efficiency" />
+            <CoStat target={45} prefix="-" suffix="%" label="Recon turnaround" />
+            <CoStat target={90} suffix="%+" label="Errors eliminated" />
+            <CoStat target={6} suffix="+" label="On-time releases" />
           </div>
 
           <div className="case-row">
@@ -790,22 +827,10 @@ const Index: React.FC = () => {
             </div>
           </div>
           <div className="co-stats">
-            <div>
-              <b>30% ↓</b>
-              <small>Time-to-value</small>
-            </div>
-            <div>
-              <b>99%</b>
-              <small>Pay accuracy</small>
-            </div>
-            <div>
-              <b>3 types</b>
-              <small>Checkout modes</small>
-            </div>
-            <div>
-              <b>100%</b>
-              <small>Webhook health</small>
-            </div>
+            <CoStat target={30} suffix="% ↓" label="Time-to-value" />
+            <CoStat target={99} suffix="%" label="Pay accuracy" />
+            <CoStat target={3} suffix=" types" label="Checkout modes" />
+            <CoStat target={100} suffix="%" label="Webhook health" />
           </div>
 
           <div className="case-row">

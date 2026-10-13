@@ -884,27 +884,76 @@ main.main-content {
 .co-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 14px;
   margin-top: 20px;
 }
 
-.co-stats div {
+.co-stats div,
+.co-stat-card {
+  position: relative;
+  overflow: hidden;
+  background: #12241b;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 6px;
-  padding: 12px 14px;
+  border-left: 3px solid var(--pink);
+  border-radius: 8px;
+  padding: 14px 16px;
   color: var(--cream);
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.co-stats b {
+.co-stats div:hover,
+.co-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--yellow);
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.38);
+}
+
+.co-stats div::after,
+.co-stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-20deg);
+  animation: statShine 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.co-stats div:nth-child(1)::after,
+.co-stat-card:nth-child(1)::after { animation-delay: 0s; }
+.co-stats div:nth-child(2)::after,
+.co-stat-card:nth-child(2)::after { animation-delay: 1.5s; }
+.co-stats div:nth-child(3)::after,
+.co-stat-card:nth-child(3)::after { animation-delay: 3s; }
+.co-stats div:nth-child(4)::after,
+.co-stat-card:nth-child(4)::after { animation-delay: 4.5s; }
+
+@keyframes statShine {
+  0% { left: -100%; }
+  22%, 100% { left: 200%; }
+}
+
+.co-stats b,
+.co-stat-card b {
   display: block;
   font-family: var(--display);
-  font-size: 1.6rem;
+  font-size: 1.65rem;
+  font-weight: 700;
   line-height: 1.05;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
 }
 
-.co-stats small {
+.co-stats small,
+.co-stat-card small {
+  display: block;
+  margin-top: 5px;
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cream-2);

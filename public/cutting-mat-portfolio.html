@@ -197,10 +197,26 @@
     .co h3{font-size:1.8rem;margin:0;color:var(--cream)}
     .co__meta{font-family:var(--mono);font-size:.78rem;color:var(--cream-2);margin-top:4px}
     .co__meta span{color:var(--yellow)}
-    .co-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
-    .co-stats div{border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:12px 14px;color:var(--cream)}
-    .co-stats b{display:block;font-family:var(--display);font-size:1.6rem;line-height:1.05}
-    .co-stats small{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-2)}
+    .co-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+    .co-stats div{
+      position:relative;overflow:hidden;background:#12241b;
+      border:1px solid rgba(255,255,255,.18);border-left:3px solid var(--pink);border-radius:8px;padding:14px 16px;
+      color:var(--cream);box-shadow:4px 5px 0 rgba(0,0,0,.28);
+      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+    }
+    .co-stats div:hover{transform:translateY(-3px);border-color:var(--yellow);box-shadow:6px 7px 0 rgba(0,0,0,.38)}
+    .co-stats div::after{
+      content:"";position:absolute;top:0;left:-100%;width:50%;height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:skewX(-20deg);
+      animation:statShine 6s infinite ease-in-out;pointer-events:none;
+    }
+    .co-stats div:nth-child(1)::after{animation-delay:0s}
+    .co-stats div:nth-child(2)::after{animation-delay:1.5s}
+    .co-stats div:nth-child(3)::after{animation-delay:3s}
+    .co-stats div:nth-child(4)::after{animation-delay:4.5s}
+    @keyframes statShine{0%{left:-100%}22%,100%{left:200%}}
+    .co-stats b{display:block;font-family:var(--display);font-size:1.65rem;font-weight:700;line-height:1.05;color:#fff;letter-spacing:-.02em}
+    .co-stats small{display:block;margin-top:5px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-2)}
 
     /* ---------- detail pop-up ---------- */
     dialog.detail{border:0;background:transparent;padding:0;max-width:640px;width:calc(100% - 32px);margin:auto;overflow:visible}
