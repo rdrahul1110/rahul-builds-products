@@ -277,7 +277,7 @@ const Index: React.FC = () => {
 
   // Scroll-spy active nav link
   useEffect(() => {
-    const sectionIds = ["focus", "experience", "built", "teardowns", "ai", "about"];
+    const sectionIds = ["focus", "built", "teardowns", "method", "experience", "ai", "about"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -389,18 +389,11 @@ const Index: React.FC = () => {
             Fintech × AI
           </a>
           <a
-            href="#experience"
-            className={activeSection === "experience" ? "active" : ""}
-            onClick={() => setNavOpen(false)}
-          >
-            Experience
-          </a>
-          <a
             href="#built"
             className={activeSection === "built" ? "active" : ""}
             onClick={() => setNavOpen(false)}
           >
-            Built
+            Projects
           </a>
           <a
             href="#teardowns"
@@ -408,6 +401,20 @@ const Index: React.FC = () => {
             onClick={() => setNavOpen(false)}
           >
             Teardowns
+          </a>
+          <a
+            href="#method"
+            className={activeSection === "method" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
+            Method
+          </a>
+          <a
+            href="#experience"
+            className={activeSection === "experience" ? "active" : ""}
+            onClick={() => setNavOpen(false)}
+          >
+            Experience
           </a>
           <a
             href="#ai"
@@ -608,10 +615,594 @@ const Index: React.FC = () => {
           </div>
         </section>
 
+        {/* ============ BUILT ============ */}
+        <section id="built" className="section">
+          <div className="label-card">
+            <p className="eyebrow">01 · Projects</p>
+            <h2>
+              Things I've <em>built</em>.
+            </h2>
+            <p>
+              Interactive prototypes, agentic workflows, and financial
+              intelligence tools built from 0→1. All of them are live.
+            </p>
+          </div>
+
+          <article className="case case--feature paper reveal" tabIndex={0}>
+            <span className="tape"></span>
+            <div>
+              <span className="tag tag--ai">AI</span>
+              <span className="pill">GenAI</span>
+              <span className="pill">Agentic workflows</span>
+              <span className="pill pill--live">Live</span>
+            </div>
+            <h3>PM Interview Coach Pro — AI mock simulator</h3>
+            <p className="case__hook">
+              An AI-powered mock interview platform built with n8n workflow
+              automation, adaptive LLM agents, and voice interaction.
+            </p>
+            <p>
+              It conducts realistic PM interviews with real-time follow-ups,
+              rubric scoring, and structured feedback.
+            </p>
+            <p className="flow">
+              Resume ingestion<b>→</b>n8n agent pipeline<b>→</b>Adaptive voice
+              interview<b>→</b>Rubric evaluation
+            </p>
+            <ul className="stack">
+              <li>n8n workflows</li>
+              <li>Multi-agent LLMs</li>
+              <li>Evaluation engine</li>
+              <li>Voice AI</li>
+              <li>Lovable</li>
+            </ul>
+            <div className="project-actions">
+              <a
+                className="link-arrow"
+                href="https://pm-coach-pro.lovable.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Try the prototype
+              </a>
+              <span className="preview-pill-hint">Hover to preview</span>
+            </div>
+
+            <div className="project-preview-drawer">
+              <div className="project-mockup">
+                <div className="mockup-bar">
+                  <div className="mockup-dots">
+                    <span className="m-dot m-dot--red"></span>
+                    <span className="m-dot m-dot--yellow"></span>
+                    <span className="m-dot m-dot--green"></span>
+                  </div>
+                  <span className="mockup-url">pm-coach-pro.lovable.app</span>
+                  <span className="mockup-chip">Live</span>
+                </div>
+                <a
+                  href="https://pm-coach-pro.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mockup-link"
+                  title="Click to launch live prototype"
+                >
+                  <img
+                    src="/projects/pm-coach-pro.png"
+                    alt="PM Interview Coach Pro homepage"
+                    className="mockup-img"
+                    loading="lazy"
+                  />
+                  <span className="mockup-hover-hint">Launch prototype ↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <div className="case-row case-row--2">
+            <article className="case paper tilt-l reveal" tabIndex={0}>
+              <div>
+                <span className="tag tag--fin">Fintech</span>
+                <span className="tag tag--ai">AI</span>
+                <span className="pill">Insurtech</span>
+                <span className="pill">Advisory copilot</span>
+                <span className="pill pill--live">Live</span>
+              </div>
+              <h3>
+                Insurance Co-Pilot — protection gap intelligence for MFDs
+              </h3>
+              <p>
+                An advisory copilot for Mutual Fund Distributors that audits
+                client portfolios to detect critical protection gaps, computes
+                underwriting limits and tax regime trade-offs, and generates
+                commission-blind pre-meeting briefing cards.
+              </p>
+              <p className="flow">
+                Client book audit<b>→</b>Gap severity ranking<b>→</b>
+                Underwriting signals<b>→</b>Pre-meeting cards
+              </p>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://insurance-copilot-mfd.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try the prototype
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">insurance-copilot-mfd.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
+                  </div>
+                  <a
+                    href="https://insurance-copilot-mfd.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/insurance-copilot.png"
+                      alt="Insurance Co-Pilot homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="case paper tilt-r reveal" tabIndex={0}>
+              <div>
+                <span className="tag tag--fin">Fintech</span>
+                <span className="tag tag--ai">AI</span>
+                <span className="pill">Fintech</span>
+                <span className="pill">Consumer AI</span>
+                <span className="pill pill--live">Live</span>
+              </div>
+              <h3>Money Wrapped — spend story unpacked</h3>
+              <p>
+                A personal finance web app that turns raw UPI transaction
+                statements into personalised, shareable spending patterns and
+                behavioural stories — a 'Spotify Wrapped' for your wallet.
+              </p>
+              <p className="flow">
+                Upload statement<b>→</b>UPI parser<b>→</b>Behavioural
+                insights<b>→</b>Shareable stories
+              </p>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://spend-story-unpacked.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try the prototype
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">spend-story-unpacked.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
+                  </div>
+                  <a
+                    href="https://spend-story-unpacked.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/money-wrapped.png"
+                      alt="Money Wrapped homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div className="case-row">
+            <article className="case paper reveal" tabIndex={0}>
+              <div>
+                <span className="pill">Urban mobility</span>
+                <span className="pill pill--live">Live</span>
+              </div>
+              <h3>Ola FeedPod — electric micro-transit loops</h3>
+              <p>
+                Electric pods looping between gated societies and metro
+                stations every 90 seconds, with dynamic loop dispatch,
+                real-time seat tracking, metro timetable sync, and a single
+                monthly pass.
+              </p>
+              <p className="flow">
+                Society–metro loop<b>→</b>90s frequency<b>→</b>Metro sync<b>→</b>
+                Monthly pass
+              </p>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://olapod2035.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try the prototype
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">olapod2035.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
+                  </div>
+                  <a
+                    href="https://olapod2035.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/ola-feedpod.png"
+                      alt="Ola FeedPod homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="case paper tilt-r reveal" tabIndex={0}>
+              <div>
+                <span className="pill">Marketplace</span>
+                <span className="pill pill--live">Live</span>
+              </div>
+              <h3>Nooka — on-demand workspace marketplace</h3>
+              <p>
+                Connects remote professionals with boutique cafés, hotel
+                lounges, call pods, and quiet studios — with dynamic filters,
+                collections, and a unified WorkPass membership.
+              </p>
+              <p className="flow">
+                Vibe &amp; needs filter<b>→</b>Discovery<b>→</b>Instant
+                booking<b>→</b>WorkPass
+              </p>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://work-inspired-frontend.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try the prototype
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">work-inspired-frontend.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
+                  </div>
+                  <a
+                    href="https://work-inspired-frontend.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/nooka.png"
+                      alt="Nooka homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="case paper reveal" tabIndex={0}>
+              <div>
+                <span className="tag tag--ai">AI</span>
+                <span className="pill">Travel-tech</span>
+                <span className="pill pill--live">Live</span>
+              </div>
+              <h3>TripMind — AI travel copilot for India</h3>
+              <p>
+                Computes a 0–100 Trip Confidence Score across weather
+                seasonality, travel style, and budget — then generates realistic
+                day-wise itineraries in under 90 seconds.
+              </p>
+              <p className="flow">
+                Preferences<b>→</b>Seasonality filter<b>→</b>Confidence score
+                <b>→</b>Itinerary
+              </p>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://go-india-ai.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try the prototype
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">go-india-ai.lovable.app</span>
+                    <span className="mockup-chip">Live</span>
+                  </div>
+                  <a
+                    href="https://go-india-ai.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to launch live prototype"
+                  >
+                    <img
+                      src="/projects/tripmind.png"
+                      alt="TripMind homepage"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Launch prototype ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* ============ TEARDOWNS ============ */}
+        <section id="teardowns" className="section">
+          <div className="label-card">
+            <p className="eyebrow">02 · Product teardowns</p>
+            <h2>
+              How I think when <em>nobody asked</em>.
+            </h2>
+            <p>
+              Self-directed product strategy, unit-economics teardowns, and
+              root-cause analyses of high-growth consumer products.
+            </p>
+          </div>
+
+          <div className="case-row case-row--2">
+            <article className="case paper tilt-l reveal" tabIndex={0}>
+              <span className="tape"></span>
+              <div>
+                <span className="pill">System design &amp; PRD</span>
+                <span className="pill">NextLeap top fellow</span>
+              </div>
+              <h3>
+                Improving BookMyShow: high-surge booking &amp; phantom lock
+                resolution
+              </h3>
+              <p>
+                Root-cause investigation of why 500k+ concurrent fans caused 82%
+                phantom lock rates and checkout crashes during Coldplay &amp;
+                World Cup sales. Proposed a tokenized FIFO virtual waiting room,
+                edge seat soft-reservations, and bot rate-limiting to protect
+                revenue conversion.
+              </p>
+              <dl className="stats">
+                <div>
+                  <dt>Peak surge uptime</dt>
+                  <dd>99.4%</dd>
+                </div>
+                <div>
+                  <dt>Checkout bounce</dt>
+                  <dd>-64%</dd>
+                </div>
+                <div>
+                  <dt>Scalping bot leakage</dt>
+                  <dd>0%</dd>
+                </div>
+              </dl>
+              <ul className="stack">
+                <li>FIFO waiting room</li>
+                <li>Phantom lock mitigation</li>
+                <li>Edge reservation</li>
+              </ul>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read the 18-page PRD
+                </a>
+                <a
+                  className="link-arrow"
+                  href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Drive folder
+                </a>
+                <a
+                  className="link-arrow"
+                  href="/bookmyshow-case-study.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  PDF
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">bookmyshow.prd-teardown</span>
+                    <span className="mockup-chip">Teardown</span>
+                  </div>
+                  <a
+                    href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to view BookMyShow PRD teardown"
+                  >
+                    <img
+                      src="/projects/bookmyshow.png"
+                      alt="BookMyShow case study preview"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Read 18-page PRD ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="case paper tilt-r reveal" tabIndex={0}>
+              <div>
+                <span className="pill">Quick commerce</span>
+                <span className="pill">Unit economics</span>
+              </div>
+              <h3>Zepto: boosting order value with 'Zepto Stock Up'</h3>
+              <p>
+                A product strategy and system design teardown of why users
+                hesitate to place high-value grocery orders. Designed 'Zepto
+                Stock Up' with household inventory tracking, bulk discount
+                ladders, and shelf-life indicators to boost dark store
+                throughput.
+              </p>
+              <dl className="stats">
+                <div>
+                  <dt>Baseline AOV target</dt>
+                  <dd>₹400–450</dd>
+                </div>
+                <div>
+                  <dt>Prioritization score (U×I/E)</dt>
+                  <dd>4.5/5</dd>
+                </div>
+                <div>
+                  <dt>Target Gen Z / millennials</dt>
+                  <dd>18M</dd>
+                </div>
+              </dl>
+              <ul className="stack">
+                <li>Dark store economics</li>
+                <li>Shelf-life tracker</li>
+                <li>AOV growth</li>
+              </ul>
+              <div className="project-actions">
+                <a
+                  className="link-arrow"
+                  href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read the 9-page PRD
+                </a>
+                <a
+                  className="link-arrow"
+                  href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Drive folder
+                </a>
+                <a
+                  className="link-arrow"
+                  href="/zepto-case-study.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  PDF
+                </a>
+                <span className="preview-pill-hint">Hover to preview</span>
+              </div>
+
+              <div className="project-preview-drawer">
+                <div className="project-mockup">
+                  <div className="mockup-bar">
+                    <div className="mockup-dots">
+                      <span className="m-dot m-dot--red"></span>
+                      <span className="m-dot m-dot--yellow"></span>
+                      <span className="m-dot m-dot--green"></span>
+                    </div>
+                    <span className="mockup-url">zepto.stock-up-teardown</span>
+                    <span className="mockup-chip">Teardown</span>
+                  </div>
+                  <a
+                    href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mockup-link"
+                    title="Click to view Zepto PRD teardown"
+                  >
+                    <img
+                      src="/projects/zepto-teardown.png"
+                      alt="Zepto Stock Up case study preview"
+                      className="mockup-img"
+                      loading="lazy"
+                    />
+                    <span className="mockup-hover-hint">Read 9-page PRD ↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
         {/* ============ METHOD ============ */}
         <section id="method" className="section">
           <div className="label-card">
-            <p className="eyebrow">00 · Method</p>
+            <p className="eyebrow">03 · Method</p>
             <h2>
               How I turn problems into <em>products</em>.
             </h2>
@@ -663,7 +1254,7 @@ const Index: React.FC = () => {
         {/* ============ EXPERIENCE ============ */}
         <section id="experience" className="section">
           <div className="label-card">
-            <p className="eyebrow">01 · Experience</p>
+            <p className="eyebrow">04 · Experience</p>
             <h2>
               Things I shipped, <em>with the numbers</em>.
             </h2>
@@ -1211,594 +1802,10 @@ const Index: React.FC = () => {
           </div>
         </section>
 
-        {/* ============ BUILT ============ */}
-        <section id="built" className="section">
-          <div className="label-card">
-            <p className="eyebrow">02 · Selected work</p>
-            <h2>
-              Things I've <em>built</em>.
-            </h2>
-            <p>
-              Interactive prototypes, agentic workflows, and financial
-              intelligence tools built from 0→1. All of them are live.
-            </p>
-          </div>
-
-          <article className="case case--feature paper reveal" tabIndex={0}>
-            <span className="tape"></span>
-            <div>
-              <span className="tag tag--ai">AI</span>
-              <span className="pill">GenAI</span>
-              <span className="pill">Agentic workflows</span>
-              <span className="pill pill--live">Live</span>
-            </div>
-            <h3>PM Interview Coach Pro — AI mock simulator</h3>
-            <p className="case__hook">
-              An AI-powered mock interview platform built with n8n workflow
-              automation, adaptive LLM agents, and voice interaction.
-            </p>
-            <p>
-              It conducts realistic PM interviews with real-time follow-ups,
-              rubric scoring, and structured feedback.
-            </p>
-            <p className="flow">
-              Resume ingestion<b>→</b>n8n agent pipeline<b>→</b>Adaptive voice
-              interview<b>→</b>Rubric evaluation
-            </p>
-            <ul className="stack">
-              <li>n8n workflows</li>
-              <li>Multi-agent LLMs</li>
-              <li>Evaluation engine</li>
-              <li>Voice AI</li>
-              <li>Lovable</li>
-            </ul>
-            <div className="project-actions">
-              <a
-                className="link-arrow"
-                href="https://pm-coach-pro.lovable.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Try the prototype
-              </a>
-              <span className="preview-pill-hint">Hover to preview</span>
-            </div>
-
-            <div className="project-preview-drawer">
-              <div className="project-mockup">
-                <div className="mockup-bar">
-                  <div className="mockup-dots">
-                    <span className="m-dot m-dot--red"></span>
-                    <span className="m-dot m-dot--yellow"></span>
-                    <span className="m-dot m-dot--green"></span>
-                  </div>
-                  <span className="mockup-url">pm-coach-pro.lovable.app</span>
-                  <span className="mockup-chip">Live</span>
-                </div>
-                <a
-                  href="https://pm-coach-pro.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mockup-link"
-                  title="Click to launch live prototype"
-                >
-                  <img
-                    src="/projects/pm-coach-pro.png"
-                    alt="PM Interview Coach Pro homepage"
-                    className="mockup-img"
-                    loading="lazy"
-                  />
-                  <span className="mockup-hover-hint">Launch prototype ↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <div className="case-row case-row--2">
-            <article className="case paper tilt-l reveal" tabIndex={0}>
-              <div>
-                <span className="tag tag--fin">Fintech</span>
-                <span className="tag tag--ai">AI</span>
-                <span className="pill">Insurtech</span>
-                <span className="pill">Advisory copilot</span>
-                <span className="pill pill--live">Live</span>
-              </div>
-              <h3>
-                Insurance Co-Pilot — protection gap intelligence for MFDs
-              </h3>
-              <p>
-                An advisory copilot for Mutual Fund Distributors that audits
-                client portfolios to detect critical protection gaps, computes
-                underwriting limits and tax regime trade-offs, and generates
-                commission-blind pre-meeting briefing cards.
-              </p>
-              <p className="flow">
-                Client book audit<b>→</b>Gap severity ranking<b>→</b>
-                Underwriting signals<b>→</b>Pre-meeting cards
-              </p>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://insurance-copilot-mfd.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Try the prototype
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">insurance-copilot-mfd.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
-                  </div>
-                  <a
-                    href="https://insurance-copilot-mfd.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/insurance-copilot.png"
-                      alt="Insurance Co-Pilot homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="case paper tilt-r reveal" tabIndex={0}>
-              <div>
-                <span className="tag tag--fin">Fintech</span>
-                <span className="tag tag--ai">AI</span>
-                <span className="pill">Fintech</span>
-                <span className="pill">Consumer AI</span>
-                <span className="pill pill--live">Live</span>
-              </div>
-              <h3>Money Wrapped — spend story unpacked</h3>
-              <p>
-                A personal finance web app that turns raw UPI transaction
-                statements into personalised, shareable spending patterns and
-                behavioural stories — a 'Spotify Wrapped' for your wallet.
-              </p>
-              <p className="flow">
-                Upload statement<b>→</b>UPI parser<b>→</b>Behavioural
-                insights<b>→</b>Shareable stories
-              </p>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://spend-story-unpacked.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Try the prototype
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">spend-story-unpacked.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
-                  </div>
-                  <a
-                    href="https://spend-story-unpacked.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/money-wrapped.png"
-                      alt="Money Wrapped homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div className="case-row">
-            <article className="case paper reveal" tabIndex={0}>
-              <div>
-                <span className="pill">Urban mobility</span>
-                <span className="pill pill--live">Live</span>
-              </div>
-              <h3>Ola FeedPod — electric micro-transit loops</h3>
-              <p>
-                Electric pods looping between gated societies and metro
-                stations every 90 seconds, with dynamic loop dispatch,
-                real-time seat tracking, metro timetable sync, and a single
-                monthly pass.
-              </p>
-              <p className="flow">
-                Society–metro loop<b>→</b>90s frequency<b>→</b>Metro sync<b>→</b>
-                Monthly pass
-              </p>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://olapod2035.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Try the prototype
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">olapod2035.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
-                  </div>
-                  <a
-                    href="https://olapod2035.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/ola-feedpod.png"
-                      alt="Ola FeedPod homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="case paper tilt-r reveal" tabIndex={0}>
-              <div>
-                <span className="pill">Marketplace</span>
-                <span className="pill pill--live">Live</span>
-              </div>
-              <h3>Nooka — on-demand workspace marketplace</h3>
-              <p>
-                Connects remote professionals with boutique cafés, hotel
-                lounges, call pods, and quiet studios — with dynamic filters,
-                collections, and a unified WorkPass membership.
-              </p>
-              <p className="flow">
-                Vibe &amp; needs filter<b>→</b>Discovery<b>→</b>Instant
-                booking<b>→</b>WorkPass
-              </p>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://work-inspired-frontend.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Try the prototype
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">work-inspired-frontend.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
-                  </div>
-                  <a
-                    href="https://work-inspired-frontend.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/nooka.png"
-                      alt="Nooka homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="case paper reveal" tabIndex={0}>
-              <div>
-                <span className="tag tag--ai">AI</span>
-                <span className="pill">Travel-tech</span>
-                <span className="pill pill--live">Live</span>
-              </div>
-              <h3>TripMind — AI travel copilot for India</h3>
-              <p>
-                Computes a 0–100 Trip Confidence Score across weather
-                seasonality, travel style, and budget — then generates realistic
-                day-wise itineraries in under 90 seconds.
-              </p>
-              <p className="flow">
-                Preferences<b>→</b>Seasonality filter<b>→</b>Confidence score
-                <b>→</b>Itinerary
-              </p>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://go-india-ai.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Try the prototype
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">go-india-ai.lovable.app</span>
-                    <span className="mockup-chip">Live</span>
-                  </div>
-                  <a
-                    href="https://go-india-ai.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to launch live prototype"
-                  >
-                    <img
-                      src="/projects/tripmind.png"
-                      alt="TripMind homepage"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Launch prototype ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        {/* ============ TEARDOWNS ============ */}
-        <section id="teardowns" className="section">
-          <div className="label-card">
-            <p className="eyebrow">03 · Product teardowns</p>
-            <h2>
-              How I think when <em>nobody asked</em>.
-            </h2>
-            <p>
-              Self-directed product strategy, unit-economics teardowns, and
-              root-cause analyses of high-growth consumer products.
-            </p>
-          </div>
-
-          <div className="case-row case-row--2">
-            <article className="case paper tilt-l reveal" tabIndex={0}>
-              <span className="tape"></span>
-              <div>
-                <span className="pill">System design &amp; PRD</span>
-                <span className="pill">NextLeap top fellow</span>
-              </div>
-              <h3>
-                Improving BookMyShow: high-surge booking &amp; phantom lock
-                resolution
-              </h3>
-              <p>
-                Root-cause investigation of why 500k+ concurrent fans caused 82%
-                phantom lock rates and checkout crashes during Coldplay &amp;
-                World Cup sales. Proposed a tokenized FIFO virtual waiting room,
-                edge seat soft-reservations, and bot rate-limiting to protect
-                revenue conversion.
-              </p>
-              <dl className="stats">
-                <div>
-                  <dt>Peak surge uptime</dt>
-                  <dd>99.4%</dd>
-                </div>
-                <div>
-                  <dt>Checkout bounce</dt>
-                  <dd>-64%</dd>
-                </div>
-                <div>
-                  <dt>Scalping bot leakage</dt>
-                  <dd>0%</dd>
-                </div>
-              </dl>
-              <ul className="stack">
-                <li>FIFO waiting room</li>
-                <li>Phantom lock mitigation</li>
-                <li>Edge reservation</li>
-              </ul>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Read the 18-page PRD
-                </a>
-                <a
-                  className="link-arrow"
-                  href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Drive folder
-                </a>
-                <a
-                  className="link-arrow"
-                  href="/bookmyshow-case-study.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PDF
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">bookmyshow.prd-teardown</span>
-                    <span className="mockup-chip">Teardown</span>
-                  </div>
-                  <a
-                    href="https://drive.google.com/file/d/1JX4YSxJYN_LoULuBqvCOjfBbDsJHAdPO/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to view BookMyShow PRD teardown"
-                  >
-                    <img
-                      src="/projects/bookmyshow.png"
-                      alt="BookMyShow case study preview"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Read 18-page PRD ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article className="case paper tilt-r reveal" tabIndex={0}>
-              <div>
-                <span className="pill">Quick commerce</span>
-                <span className="pill">Unit economics</span>
-              </div>
-              <h3>Zepto: boosting order value with 'Zepto Stock Up'</h3>
-              <p>
-                A product strategy and system design teardown of why users
-                hesitate to place high-value grocery orders. Designed 'Zepto
-                Stock Up' with household inventory tracking, bulk discount
-                ladders, and shelf-life indicators to boost dark store
-                throughput.
-              </p>
-              <dl className="stats">
-                <div>
-                  <dt>Baseline AOV target</dt>
-                  <dd>₹400–450</dd>
-                </div>
-                <div>
-                  <dt>Prioritization score (U×I/E)</dt>
-                  <dd>4.5/5</dd>
-                </div>
-                <div>
-                  <dt>Target Gen Z / millennials</dt>
-                  <dd>18M</dd>
-                </div>
-              </dl>
-              <ul className="stack">
-                <li>Dark store economics</li>
-                <li>Shelf-life tracker</li>
-                <li>AOV growth</li>
-              </ul>
-              <div className="project-actions">
-                <a
-                  className="link-arrow"
-                  href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Read the 9-page PRD
-                </a>
-                <a
-                  className="link-arrow"
-                  href="https://drive.google.com/drive/folders/14Mgnz3e0ev8qYpaJ23fxRFYM1MJRhkaf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Drive folder
-                </a>
-                <a
-                  className="link-arrow"
-                  href="/zepto-case-study.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PDF
-                </a>
-                <span className="preview-pill-hint">Hover to preview</span>
-              </div>
-
-              <div className="project-preview-drawer">
-                <div className="project-mockup">
-                  <div className="mockup-bar">
-                    <div className="mockup-dots">
-                      <span className="m-dot m-dot--red"></span>
-                      <span className="m-dot m-dot--yellow"></span>
-                      <span className="m-dot m-dot--green"></span>
-                    </div>
-                    <span className="mockup-url">zepto.stock-up-teardown</span>
-                    <span className="mockup-chip">Teardown</span>
-                  </div>
-                  <a
-                    href="https://drive.google.com/file/d/1jOh0dfjqQNW5q3ENtnDMwvJk3XAKoeWL/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mockup-link"
-                    title="Click to view Zepto PRD teardown"
-                  >
-                    <img
-                      src="/projects/zepto-teardown.png"
-                      alt="Zepto Stock Up case study preview"
-                      className="mockup-img"
-                      loading="lazy"
-                    />
-                    <span className="mockup-hover-hint">Read 9-page PRD ↗</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
         {/* ============ AI PRACTICE ============ */}
         <section id="ai" className="section">
           <div className="label-card">
-            <p className="eyebrow">04 · AI practice</p>
+            <p className="eyebrow">05 · AI practice</p>
             <h2>
               AI, in <em>production terms</em>.
             </h2>
@@ -2017,7 +2024,7 @@ const Index: React.FC = () => {
         {/* ============ PROBLEM → IMPACT ============ */}
         <section id="impact" className="section">
           <div className="label-card">
-            <p className="eyebrow">05 · Problem → impact</p>
+            <p className="eyebrow">06 · Problem → impact</p>
             <h2>
               Real problems, <em>solved</em>.
             </h2>
@@ -2094,7 +2101,7 @@ const Index: React.FC = () => {
           <div className="about paper reveal">
             <span className="tape"></span>
             <div>
-              <p className="eyebrow">06 · About</p>
+              <p className="eyebrow">07 · About</p>
               <h2>
                 Systems thinker. <em>Product builder.</em>
               </h2>
@@ -2267,7 +2274,7 @@ const Index: React.FC = () => {
         {/* ============ CONTACT ============ */}
         <section id="contact" className="contact paper reveal">
           <span className="tape"></span>
-          <p className="eyebrow">07 · Contact</p>
+          <p className="eyebrow">08 · Contact</p>
           <h2>
             Have a difficult workflow, an AI product problem, or an{" "}
             <em>interesting PM role</em>?
