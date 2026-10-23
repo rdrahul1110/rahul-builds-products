@@ -432,7 +432,7 @@ const Index: React.FC = () => {
           </a>
           <a
             className="nav__cta"
-            href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
+            href="https://drive.google.com/file/d/1_jUuR5lLC-4zSG6qMAj1SwdQoCYHFjEs/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -470,7 +470,7 @@ const Index: React.FC = () => {
               </a>
               <a
                 className="btn btn--line"
-                href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
+                href="https://drive.google.com/file/d/1_jUuR5lLC-4zSG6qMAj1SwdQoCYHFjEs/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -2301,7 +2301,7 @@ const Index: React.FC = () => {
             </button>
             <a
               className="btn btn--ghost"
-              href="https://docs.google.com/document/d/1B50cdCZgtqYdsdUDB9HLjpUGYYblGIF6j34-nf3gZyM/edit?tab=t.0"
+              href="https://drive.google.com/file/d/1_jUuR5lLC-4zSG6qMAj1SwdQoCYHFjEs/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
             >
