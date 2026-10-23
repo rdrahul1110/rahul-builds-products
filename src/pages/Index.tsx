@@ -605,7 +605,7 @@ const Index: React.FC = () => {
               <p className="eyebrow">AI</p>
               <h3>Where the work gets automated</h3>
               <ul>
-                <li>GenAI OCR for claims: +50% ops efficiency</li>
+                <li>Vision OCR intake &amp; split-screen review: +50% ops efficiency</li>
                 <li>AI-proposed schema mapping for 180k+ policies</li>
                 <li>n8n multi-agent interview coach</li>
                 <li>LLM evals, prompt design, MCP workflows</li>
@@ -1525,24 +1525,23 @@ const Index: React.FC = () => {
               <div>
                 <span className="tag tag--ai">AI</span>
                 <span className="pill">0→1 platforms</span>
-                <span className="pill">GenAI OCR</span>
+                <span className="pill">Vision OCR</span>
               </div>
-              <h3>0→1 AI insurance platforms: CMS &amp; PAS rollout</h3>
+              <h3>0→1 Claims Management System (CMS) &amp; intake automation</h3>
               <span className="case__note">saved ops 4.5 hrs/day</span>
               <p>
-                Led the 0→1 build of two AI-enabled platforms (Claims Management
-                &amp; Policy Administration), utilizing GenAI document
-                extraction to unify fragmented operations and cut manual effort
-                by 10%.
+                Architected the 0→1 CMS with multimodal screenshot and document
+                extraction, cutting First Notice of Loss intake from 10m to 2m
+                and doubling daily operations throughput.
               </p>
               <p className="case__result">
-                <strong>+50%</strong> ops efficiency · <strong>10% ↓</strong>{" "}
-                manual effort
+                <strong>+50%</strong> ops efficiency · <strong>10m → 2m</strong>{" "}
+                intake time
               </p>
               <p className="case__teaser">
-                <strong>Problem preview:</strong> Claims and policy operations
-                relied on fragmented spreadsheets, physical discharge documents,
-                and slow email handoffs.
+                <strong>Problem preview:</strong> Claims intake relied on manual
+                entry from messy customer emails, forwarded screenshots, and
+                multi-page hospital PDFs, causing 48h queues.
               </p>
               <button
                 className="more-btn"
@@ -1550,13 +1549,13 @@ const Index: React.FC = () => {
                 onClick={() =>
                   setActiveModal({
                     eyebrow: "Edme Insurance Broker · 0→1 platforms",
-                    title: "0→1 AI insurance platforms: CMS & PAS rollout",
+                    title: "0→1 Claims Management System (CMS) & intake automation",
                     problem:
-                      "Insurance claims and policy operations relied on fragmented legacy spreadsheets, physical discharge documents, and slow email trails across internal teams and third-party insurers.",
+                      "Claims intake relied on manual data entry from messy customer emails, forwarded screenshots, and multi-page hospital PDFs, causing 48-hour processing queues.",
                     whatIDid:
-                      "Spearheaded the 0→1 build of two scalable platforms: Claims Management System (CMS) and Policy Administration System (PAS). Integrated GenAI OCR document parsing to automatically ingest, extract, and categorize complex medical and motor insurance discharge summaries.",
+                      "Architected the 0→1 CMS with automated email ingestion, vision OCR extraction, field-level confidence gates (0.85 threshold), and a split-screen verification UI.",
                     whatHappened:
-                      "Improved overall operational efficiency by 50% and slashed manual data entry effort by 10% across claims, policy issuance, and underwriting operations teams.",
+                      "Cut intake verification time from 10m to under 2m, halved overall claim turnaround time from 48h to 24h (+50% efficiency), and doubled handler throughput.",
                   })
                 }
               >
@@ -1570,22 +1569,22 @@ const Index: React.FC = () => {
                 <span className="pill">Cross-functional execution</span>
               </div>
               <h3>
-                AI roadmap prioritization &amp; zero-loss data migration
+                Zero-loss data migration &amp; 6+ on-time releases
               </h3>
               <span className="case__note">180k+ policies migrated</span>
               <p>
-                Delivered 6+ product releases on schedule owning AI sprint
-                prioritization, stakeholder UAT, and backend data migration
-                using AI-proposed schema and field-mapping.
+                Delivered 6+ releases on schedule via rapid prototyping loops;
+                standardized 250+ legacy Aditya Birla policy fields with strict
+                validations, boosting reporting accuracy by 30%.
               </p>
               <p className="case__result">
                 <strong>6+</strong> releases on schedule ·{" "}
                 <strong>+30%</strong> reporting accuracy
               </p>
               <p className="case__teaser">
-                <strong>Problem preview:</strong> Migrating 180k+ historical
-                policies from legacy databases carried high risk of broken schema
-                mappings and reporting discrepancies.
+                <strong>Problem preview:</strong> Legacy Aditya Birla databases had
+                250+ cryptic, unvalidated fields (CLMT_NM_1, POL_ISS_DT), causing
+                35% of monthly financial reports to fail reconciliation.
               </p>
               <button
                 className="more-btn"
@@ -1595,13 +1594,13 @@ const Index: React.FC = () => {
                     eyebrow:
                        "Edme Insurance Broker · Cross-functional execution",
                     title:
-                      "AI roadmap prioritization & zero-loss data migration",
+                      "Zero-loss data migration & 6+ on-time releases",
                     problem:
-                      "Migrating high volumes of historical insurance policies from Aditya Birla legacy data stores carried high risk of reporting discrepancies, broken schema mappings, and sprint deadline slippages.",
+                      "Legacy Aditya Birla databases had 250+ cryptic, unvalidated fields (CLMT_NM_1, POL_ISS_DT), causing 35% of monthly financial reports to fail reconciliation.",
                     whatIDid:
-                      "Owned end-to-end sprint planning, user acceptance testing (UAT), and stakeholder management. Employed AI-proposed schema and field-mapping transformations to reconcile inconsistent legacy database records into normalized relational entities.",
+                      "Owned sprint delivery and used AI-assisted field mapping to clean, split, and normalize 250+ legacy schema fields, enforcing strict data validation rules at entry.",
                     whatHappened:
-                      "Delivered 6+ product releases strictly on schedule and improved backend regulatory and management reporting accuracy by 30% throughout the platform transition.",
+                      "Delivered 6+ product releases strictly on schedule and dropped monthly reporting discrepancy rates from 35% to under 5% (+30% first-pass accuracy gain).",
                   })
                 }
               >
@@ -1615,21 +1614,21 @@ const Index: React.FC = () => {
                 <span className="tag tag--ai">AI</span>
                 <span className="pill">Financial automation</span>
               </div>
-              <h3>0→1 policy administration &amp; self-learning recon</h3>
+              <h3>0→1 PAS &amp; self-learning auto-reconciliation</h3>
               <span className="case__note">-45% TAT · 90% errors gone</span>
               <p>
-                Automated the complete policy lifecycle (booking to
-                cancellation) and architected an AI reconciliation feedback
-                loop, slashing TAT by 45% and eliminating 90%+ errors.
+                Built the 0→1 PAS lifecycle and a 4-layer auto-reconciliation
+                engine with vector memory, growing auto-match rates to 88%+ and
+                cutting month-end cycle time by 45%.
               </p>
               <p className="case__result">
                 <strong>-45%</strong> turnaround · <strong>90%+</strong> errors
                 eliminated
               </p>
               <p className="case__teaser">
-                <strong>Problem preview:</strong> Insurer payout reconciliation
-                against internal registers took weeks, suffering from human data
-                entry errors and missed accruals.
+                <strong>Problem preview:</strong> Month-end insurer invoice
+                reconciliation in Excel took 8 days across thousands of mismatched
+                lines, suffering from fatigue and 100+ manual errors/month.
               </p>
               <button
                 className="more-btn"
@@ -1638,13 +1637,13 @@ const Index: React.FC = () => {
                   setActiveModal({
                     eyebrow: "Edme Insurance Broker · Financial automation",
                     title:
-                      "0→1 self-learning reconciliation engine & policy lifecycle",
+                      "0→1 PAS & self-learning auto-reconciliation",
                     problem:
-                      "Manual policy reconciliation between multi-insurer payout statements and internal booking registers took weeks, suffering from high human entry error and missing commission accruals.",
+                      "Month-end insurer invoice reconciliation in Excel took 8 days across thousands of mismatched line items, suffering from high fatigue and 100+ manual errors/month.",
                     whatIDid:
-                      "Architected the 0→1 Policy Administration System covering policy registration, booking, automated invoice generation, and cancellation. Designed an AI-driven self-learning reconciliation feedback loop that learns from every human-resolved exception.",
+                      "Architected the 0→1 PAS with a 4-layer reconciliation engine: deterministic rules for 75% clean matches, and an LLM with vector memory to resolve partial payments and endorsements.",
                     whatHappened:
-                      "Slashed financial reconciliation turnaround time by 45% and eliminated 90%+ of operational processing errors, unlocking real-time financial audit readiness.",
+                      "Compounded auto-match rate from 70% to 88%+, cutting month-end reconciliation time from 8 days to 4 days (-45% TAT) and eliminating 90%+ of processing errors.",
                   })
                 }
               >
@@ -2051,8 +2050,8 @@ const Index: React.FC = () => {
               </p>
               <h4 style={{ marginTop: "10px" }}>Solution</h4>
               <p>
-                0→1 development of AI-enabled CMS &amp; PAS with fuzzy
-                matching.
+                0→1 CMS &amp; PAS with vision document extraction, confidence
+                gating, and self-learning reconciliation.
               </p>
             </article>
             <article className="case paper tilt-r reveal">
