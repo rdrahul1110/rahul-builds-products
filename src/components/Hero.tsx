@@ -96,7 +96,7 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <a
-                href="https://drive.google.com/file/d/1_jUuR5lLC-4zSG6qMAj1SwdQoCYHFjEs/view?usp=sharing"
+                href="https://drive.google.com/file/d/1C0YJ1BUbqBIT7l-XcXtn1eN6Ac4OZMfD/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-transparent hover:bg-white/5 text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 shadow-sm"
